@@ -90,19 +90,17 @@
 
 
 
-<meta name="description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 jar包  [jar]  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        typ">
+<meta name="description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 [jar]包  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        type:&quot;po">
 <meta name="keywords" content="spring mvc,json">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssm架构下json数据传递问题和解决">
 <meta property="og:url" content="http://yoursite.com/2017/05/18/ssm架构下json数据传递问题和解决/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 jar包  [jar]  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        typ">
-<meta property="og:image" content="http://yoursite.com/2017/05/18/ssm架构下json数据传递问题和解决/avatar2.jpg">
-<meta property="og:updated_time" content="2017-05-18T05:35:56.987Z">
+<meta property="og:description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 [jar]包  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        type:&quot;po">
+<meta property="og:updated_time" content="2017-05-18T05:37:48.653Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssm架构下json数据传递问题和解决">
-<meta name="twitter:description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 jar包  [jar]  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        typ">
-<meta name="twitter:image" content="http://yoursite.com/2017/05/18/ssm架构下json数据传递问题和解决/avatar2.jpg">
+<meta name="twitter:description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 [jar]包  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        type:&quot;po">
 
 
 
@@ -322,10 +320,8 @@
       
         <h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><ul>
 <li>springmvc-4.3.6 jar包</li>
-<li>jackson-2.7.4 jar包</li>
+<li>jackson-2.7.4 <a href="/2017/05/18/ssm架构下json数据传递问题和解决/json-jar.zip" title="[jar]">[jar]</a>包</li>
 </ul>
-<a href="/2017/05/18/ssm架构下json数据传递问题和解决/json-jar.zip" title="[jar]">[jar]</a>
-<img src="/2017/05/18/ssm架构下json数据传递问题和解决/avatar2.jpg" alt="This is an example image" title="This is an example image">
 <h2 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h2><p>在springmvc.xml文件中采用<code>&lt;mvc:annotation-driven/&gt;</code>注解驱动。<br>在jsp文件下,配置一个按钮调用下面的js代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">requestJson</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $ajax(&#123;</div><div class="line">        <span class="attr">type</span>:<span class="string">"post"</span>,</div><div class="line">        <span class="attr">url</span>:<span class="string">"$&#123;pageContext.request.contextPath &#125;/requestJson.action"</span>,</div><div class="line">        <span class="attr">data</span>:<span class="string">'&#123;"articleid":10,"title":"test"&#125;'</span>,</div><div class="line">        <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            alert(data);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>在后台创建一个controller。传入json数据，@RequestBody转为实体类。传出实体类，使用@ResponseBody转为json格式。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Controller</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonTest</span></span>&#123;</div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/requestJson"</span>)</div><div class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> <span class="function">items <span class="title">requestJson</span><span class="params">(@RequestBody Items items)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> items;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>在浏览器中打开jsp页面，F12控制台观察requestJson.action的状态码</p>
@@ -455,7 +451,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
