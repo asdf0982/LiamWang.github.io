@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[ssm架构下json数据传递问题和解决]]></title>
+    <url>%2F2017%2F05%2F18%2Fssm%E6%9E%B6%E6%9E%84%E4%B8%8Bjson%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%2F</url>
+    <content type="text"><![CDATA[环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 [jar]包 代码说明在springmvc.xml文件中采用&lt;mvc:annotation-driven/&gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&#123; $ajax(&#123; type:"post", url:"$&#123;pageContext.request.contextPath &#125;/requestJson.action", data:'&#123;"articleid":10,"title":"test"&#125;', success:function(data)&#123; alert(data); &#125; &#125;);&#125; 在后台创建一个controller。传入json数据，@RequestBody转为实体类。传出实体类，使用@ResponseBody转为json格式。1234567@Controllerpublic class JsonTest&#123; @RequestMapping("/requestJson") public @ResponseBody items requestJson(@RequestBody Items items)&#123; return items; &#125;&#125; 在浏览器中打开jsp页面，F12控制台观察requestJson.action的状态码 问题1.状态码200/415，不进入后端controller断点，浏览器弹出网页html代码解决办法：缺少class，更换jar包。 2.状态码400/500，不进入后端controller断点，浏览器无反应解决办法：jsp页面中data数据需采用正确的json编写格式，以逗号分隔。]]></content>
+      <tags>
+        <tag>spring mvc</tag>
+        <tag>json</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[windows下使用hexo+github部署个人博客]]></title>
+    <url>%2F2017%2F05%2F17%2F20170517%2F</url>
+    <content type="text"><![CDATA[需要装好git, node.js 并全程科学上网(全局代理)。 使用gitbash npm install hexo 新建文件夹用于个人博客，并进入目录下hexo init 继续使用hexo g 和hexo s 生成并本地测试网站, 打开浏览器输入localhost:4000 ，此时需临时关闭全局代理方可看到本地博客。 配置config.yml文件(关键为deploy区域，其余部分自由发挥) 1234deploy: type: git repo: https://github.com/asdf0982/asdf0982.github.io.git branch: master 使用hexo d 将本地文档上传到github(需全局代理保证网络链接)如一切正常会弹出一个github登录框。关于ssh的配置，其实只是省略了这个登录的步骤。]]></content>
+      <tags>
+        <tag>git</tag>
+        <tag>hexo</tag>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+</search>
