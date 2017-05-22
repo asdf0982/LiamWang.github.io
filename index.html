@@ -254,6 +254,129 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/22/CS231n学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/22/CS231n学习笔记/" itemprop="url">CS231n学习笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-22T23:02:58+08:00">
+                2017-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate()"></a>enumerate()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> y, cls <span class="keyword">in</span> enumerate(classes):</div><div class="line">    <span class="keyword">print</span> y, cls</div></pre></td></tr></table></figure>
+<p>enumerate能遍历一个数组或列表，并获得索引和索引内容。得到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">0 plane</div><div class="line">1 car</div><div class="line">2 bird</div><div class="line">3 cat</div><div class="line">4 deer</div><div class="line">5 dog</div><div class="line">6 frog</div><div class="line">7 horse</div><div class="line">8 ship</div><div class="line">9 truck</div></pre></td></tr></table></figure></p>
+<h3 id="flatnonzero"><a href="#flatnonzero" class="headerlink" title="flatnonzero()"></a>flatnonzero()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">idxs = np.flatnonzero(y_train == y)</div><div class="line"><span class="keyword">print</span> idxs</div></pre></td></tr></table></figure>
+<p>y_train 为训练集图片的标签集。<br>flatnonzero() 打印非零元素的位置。<br>整体意为以图片标签分类，输出图片的下标。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[   29    30    35 ..., 49941 49992 49994]</div><div class="line">[    4     5    32 ..., 49993 49998 49999]</div><div class="line">[    6    13    18 ..., 49987 49991 49995]</div><div class="line">[    9    17    21 ..., 49979 49982 49983]</div><div class="line">[    3    10    20 ..., 49981 49984 49990]</div><div class="line">[   27    40    51 ..., 49964 49980 49988]</div><div class="line">[    0    19    22 ..., 49962 49966 49996]</div><div class="line">[    7    11    12 ..., 49965 49978 49986]</div><div class="line">[    8    62    69 ..., 49968 49976 49985]</div><div class="line">[    1     2    14 ..., 49963 49971 49997]</div></pre></td></tr></table></figure></p>
+<h3 id="np-random-choice"><a href="#np-random-choice" class="headerlink" title="np.random.choice()"></a>np.random.choice()</h3><p><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.choice.html" target="_blank" rel="external">官方介绍</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">idxs = np.random.choice(idxs, samples_per_class, replace=<span class="keyword">False</span>)</div><div class="line">    <span class="keyword">print</span> idxs</div></pre></td></tr></table></figure></p>
+<p>从idxs中随机取出samples_per_class个数，不可重复。</p>
+<h3 id="subplot-m-n-p"><a href="#subplot-m-n-p" class="headerlink" title="subplot(m,n,p)"></a>subplot(m,n,p)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plt.subplot(samples_per_class, num_classes, plt_idx)</div></pre></td></tr></table></figure>
+<p>subplot(m,n,p)是将多个图画到一个平面上的工具。其中，m表示是图排成m行，n表示图排成n列，也就是整个figure中有n个图是排成一行的，一共m行，如果m=2就是表示2行图。p表示图所在的位置，p=1表示从左到右从上到下的第一个位置。</p>
+<h3 id="reshape"><a href="#reshape" class="headerlink" title="reshape()"></a>reshape()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">X_train = np.reshape(X_train, (X_train.shape[<span class="number">0</span>], <span class="number">-1</span>))</div></pre></td></tr></table></figure>
+<p>如果newshape给的参数是（x,-1）,那么函数会自动判别newshape为(x, mn/x）,这里的x一定要能被m*n整除！<br>stackoverflow有相关的介绍。<a href="http://stackoverflow.com/questions/18691084/what-does-1-mean-in-numpy-reshape" target="_blank" rel="external">‘-1’在此处的意义</a><br>-1表示我懒得计算该填什么数字，让机器通过其他的值推测出来。</p>
+<p>###<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(num_test):</div><div class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> xrange(num_train):</div><div class="line">        <span class="comment">#####################################################################</span></div><div class="line">        <span class="comment"># <span class="doctag">TODO:</span>                                                             #</span></div><div class="line">        <span class="comment"># Compute the l2 distance between the ith test point and the jth    #</span></div><div class="line">        <span class="comment"># training point, and store the result in dists[i, j]. You should   #</span></div><div class="line">        <span class="comment"># not use a loop over dimension.                                    #</span></div><div class="line">        <span class="comment">#####################################################################</span></div><div class="line">        dists[i,j] = np.sum((X[i,:]-self.X_train[j,:])**<span class="number">2</span>)</div><div class="line">        <span class="comment">#####################################################################</span></div><div class="line">        <span class="comment">#                       END OF YOUR CODE                            #</span></div><div class="line">        <span class="comment">#####################################################################</span></div><div class="line">    <span class="keyword">print</span> dists[<span class="number">0</span>,<span class="number">0</span>],dists[<span class="number">0</span>,<span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> dists</div></pre></td></tr></table></figure></p>
+<p>这里代表X为测试集，X_train是训练集。X有500个点，每个点代表一张图片，有32*32维。每个点的维度都与训练集X_train相减后求平方的和。得到测试集与训练集的点的“距离”。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/18/ssm架构下json数据传递问题和解决/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -532,7 +655,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -545,7 +668,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

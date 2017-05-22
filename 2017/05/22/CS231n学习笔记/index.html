@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="spring mvc,json," />
+  <meta name="keywords" content="Deep Learning," />
 
 
 
@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 [jar]包  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        type:&quot;po">
-<meta name="keywords" content="spring mvc,json">
+<meta name="description" content="enumerate()12for y, cls in enumerate(classes):    print y, cls enumerate能遍历一个数组或列表，并获得索引和索引内容。得到：123456789100 plane1 car2 bird3 cat4 deer5 dog6 frog7 horse8 ship9 truck flatnonzero()12idxs = np.flatno">
+<meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ssm架构下json数据传递问题和解决">
-<meta property="og:url" content="https://asdf0982.github.io/2017/05/18/ssm架构下json数据传递问题和解决/index.html">
+<meta property="og:title" content="CS231n学习笔记">
+<meta property="og:url" content="https://asdf0982.github.io/2017/05/22/CS231n学习笔记/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 [jar]包  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        type:&quot;po">
-<meta property="og:updated_time" content="2017-05-18T05:37:48.653Z">
+<meta property="og:description" content="enumerate()12for y, cls in enumerate(classes):    print y, cls enumerate能遍历一个数组或列表，并获得索引和索引内容。得到：123456789100 plane1 car2 bird3 cat4 deer5 dog6 frog7 horse8 ship9 truck flatnonzero()12idxs = np.flatno">
+<meta property="og:updated_time" content="2017-05-22T15:04:29.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ssm架构下json数据传递问题和解决">
-<meta name="twitter:description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 [jar]包  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        type:&quot;po">
+<meta name="twitter:title" content="CS231n学习笔记">
+<meta name="twitter:description" content="enumerate()12for y, cls in enumerate(classes):    print y, cls enumerate能遍历一个数组或列表，并获得索引和索引内容。得到：123456789100 plane1 car2 bird3 cat4 deer5 dog6 frog7 horse8 ship9 truck flatnonzero()12idxs = np.flatno">
 
 
 
@@ -128,13 +128,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/05/18/ssm架构下json数据传递问题和解决/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/05/22/CS231n学习笔记/"/>
 
 
 
 
 
-  <title>ssm架构下json数据传递问题和解决 | Liam's Blog</title>
+  <title>CS231n学习笔记 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -254,7 +254,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/18/ssm架构下json数据传递问题和解决/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/22/CS231n学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -271,7 +271,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">ssm架构下json数据传递问题和解决</h2>
+          <h2 class="post-title" itemprop="name headline">CS231n学习笔记</h2>
         
 
         <div class="post-meta">
@@ -283,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T12:47:48+08:00">
-                2017-05-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-22T23:02:58+08:00">
+                2017-05-22
               </time>
             
 
@@ -318,15 +318,18 @@
       
 
       
-        <h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><ul>
-<li>springmvc-4.3.6 jar包</li>
-<li>jackson-2.7.4 <a href="/2017/05/18/ssm架构下json数据传递问题和解决/json-jar.zip" title="[jar]">[jar]</a>包</li>
-</ul>
-<h2 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h2><p>在springmvc.xml文件中采用<code>&lt;mvc:annotation-driven/&gt;</code>注解驱动。<br>在jsp文件下,配置一个按钮调用下面的js代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">requestJson</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $ajax(&#123;</div><div class="line">        <span class="attr">type</span>:<span class="string">"post"</span>,</div><div class="line">        <span class="attr">url</span>:<span class="string">"$&#123;pageContext.request.contextPath &#125;/requestJson.action"</span>,</div><div class="line">        <span class="attr">data</span>:<span class="string">'&#123;"articleid":10,"title":"test"&#125;'</span>,</div><div class="line">        <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            alert(data);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在后台创建一个controller。传入json数据，@RequestBody转为实体类。传出实体类，使用@ResponseBody转为json格式。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Controller</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonTest</span></span>&#123;</div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/requestJson"</span>)</div><div class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> <span class="function">items <span class="title">requestJson</span><span class="params">(@RequestBody Items items)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> items;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在浏览器中打开jsp页面，F12控制台观察requestJson.action的状态码</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>1.状态码200/415，不进入后端controller断点，浏览器弹出网页html代码<br>解决办法：缺少class，更换jar包。</p>
-<p>2.状态码400/500，不进入后端controller断点，浏览器无反应<br>解决办法：jsp页面中data数据需采用正确的json编写格式，以逗号分隔。</p>
+        <h3 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate()"></a>enumerate()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> y, cls <span class="keyword">in</span> enumerate(classes):</div><div class="line">    <span class="keyword">print</span> y, cls</div></pre></td></tr></table></figure>
+<p>enumerate能遍历一个数组或列表，并获得索引和索引内容。得到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">0 plane</div><div class="line">1 car</div><div class="line">2 bird</div><div class="line">3 cat</div><div class="line">4 deer</div><div class="line">5 dog</div><div class="line">6 frog</div><div class="line">7 horse</div><div class="line">8 ship</div><div class="line">9 truck</div></pre></td></tr></table></figure></p>
+<h3 id="flatnonzero"><a href="#flatnonzero" class="headerlink" title="flatnonzero()"></a>flatnonzero()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">idxs = np.flatnonzero(y_train == y)</div><div class="line"><span class="keyword">print</span> idxs</div></pre></td></tr></table></figure>
+<p>y_train 为训练集图片的标签集。<br>flatnonzero() 打印非零元素的位置。<br>整体意为以图片标签分类，输出图片的下标。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[   29    30    35 ..., 49941 49992 49994]</div><div class="line">[    4     5    32 ..., 49993 49998 49999]</div><div class="line">[    6    13    18 ..., 49987 49991 49995]</div><div class="line">[    9    17    21 ..., 49979 49982 49983]</div><div class="line">[    3    10    20 ..., 49981 49984 49990]</div><div class="line">[   27    40    51 ..., 49964 49980 49988]</div><div class="line">[    0    19    22 ..., 49962 49966 49996]</div><div class="line">[    7    11    12 ..., 49965 49978 49986]</div><div class="line">[    8    62    69 ..., 49968 49976 49985]</div><div class="line">[    1     2    14 ..., 49963 49971 49997]</div></pre></td></tr></table></figure></p>
+<h3 id="np-random-choice"><a href="#np-random-choice" class="headerlink" title="np.random.choice()"></a>np.random.choice()</h3><p><a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.choice.html" target="_blank" rel="external">官方介绍</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">idxs = np.random.choice(idxs, samples_per_class, replace=<span class="keyword">False</span>)</div><div class="line">    <span class="keyword">print</span> idxs</div></pre></td></tr></table></figure></p>
+<p>从idxs中随机取出samples_per_class个数，不可重复。</p>
+<h3 id="subplot-m-n-p"><a href="#subplot-m-n-p" class="headerlink" title="subplot(m,n,p)"></a>subplot(m,n,p)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">plt.subplot(samples_per_class, num_classes, plt_idx)</div></pre></td></tr></table></figure>
+<p>subplot(m,n,p)是将多个图画到一个平面上的工具。其中，m表示是图排成m行，n表示图排成n列，也就是整个figure中有n个图是排成一行的，一共m行，如果m=2就是表示2行图。p表示图所在的位置，p=1表示从左到右从上到下的第一个位置。</p>
+<h3 id="reshape"><a href="#reshape" class="headerlink" title="reshape()"></a>reshape()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">X_train = np.reshape(X_train, (X_train.shape[<span class="number">0</span>], <span class="number">-1</span>))</div></pre></td></tr></table></figure>
+<p>如果newshape给的参数是（x,-1）,那么函数会自动判别newshape为(x, mn/x）,这里的x一定要能被m*n整除！<br>stackoverflow有相关的介绍。<a href="http://stackoverflow.com/questions/18691084/what-does-1-mean-in-numpy-reshape" target="_blank" rel="external">‘-1’在此处的意义</a><br>-1表示我懒得计算该填什么数字，让机器通过其他的值推测出来。</p>
+<p>###<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(num_test):</div><div class="line">      <span class="keyword">for</span> j <span class="keyword">in</span> xrange(num_train):</div><div class="line">        <span class="comment">#####################################################################</span></div><div class="line">        <span class="comment"># <span class="doctag">TODO:</span>                                                             #</span></div><div class="line">        <span class="comment"># Compute the l2 distance between the ith test point and the jth    #</span></div><div class="line">        <span class="comment"># training point, and store the result in dists[i, j]. You should   #</span></div><div class="line">        <span class="comment"># not use a loop over dimension.                                    #</span></div><div class="line">        <span class="comment">#####################################################################</span></div><div class="line">        dists[i,j] = np.sum((X[i,:]-self.X_train[j,:])**<span class="number">2</span>)</div><div class="line">        <span class="comment">#####################################################################</span></div><div class="line">        <span class="comment">#                       END OF YOUR CODE                            #</span></div><div class="line">        <span class="comment">#####################################################################</span></div><div class="line">    <span class="keyword">print</span> dists[<span class="number">0</span>,<span class="number">0</span>],dists[<span class="number">0</span>,<span class="number">1</span>]</div><div class="line">    <span class="keyword">return</span> dists</div></pre></td></tr></table></figure></p>
+<p>这里代表X为测试集，X_train是训练集。X有500个点，每个点代表一张图片，有32*32维。每个点的维度都与训练集X_train相减后求平方的和。得到测试集与训练集的点的“距离”。</p>
 
       
     </div>
@@ -356,9 +359,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/spring-mvc/" rel="tag"># spring mvc</a>
-          
-            <a href="/tags/json/" rel="tag"># json</a>
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
           
         </div>
       
@@ -371,8 +372,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/17/20170517/" rel="next" title="windows下使用hexo+github部署个人博客">
-                <i class="fa fa-chevron-left"></i> windows下使用hexo+github部署个人博客
+              <a href="/2017/05/18/ssm架构下json数据传递问题和解决/" rel="next" title="ssm架构下json数据传递问题和解决">
+                <i class="fa fa-chevron-left"></i> ssm架构下json数据传递问题和解决
               </a>
             
           </div>
@@ -380,10 +381,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/22/CS231n学习笔记/" rel="prev" title="CS231n学习笔记">
-                CS231n学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -523,7 +520,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境说明"><span class="nav-number">1.</span> <span class="nav-text">环境说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码说明"><span class="nav-number">2.</span> <span class="nav-text">代码说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">3.</span> <span class="nav-text">问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#enumerate"><span class="nav-number">1.</span> <span class="nav-text">enumerate()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flatnonzero"><span class="nav-number">2.</span> <span class="nav-text">flatnonzero()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#np-random-choice"><span class="nav-number">3.</span> <span class="nav-text">np.random.choice()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#subplot-m-n-p"><span class="nav-number">4.</span> <span class="nav-text">subplot(m,n,p)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reshape"><span class="nav-number">5.</span> <span class="nav-text">reshape()</span></a></li></ol></div>
             
 
           </div>
