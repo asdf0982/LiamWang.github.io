@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[CS231n学习笔记(softmax)]]></title>
+    <url>%2F2017%2F05%2F28%2FCS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-softmax%2F</url>
+    <content type="text"><![CDATA[完成作业: [softmax.ipynb] [softmax.py] softmax的计算方式与SVM类似。参考此图其loss和gradient的计算推导过程如图]]></content>
+      <tags>
+        <tag>DeepLearning</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[UEditor的数据回显]]></title>
     <url>%2F2017%2F05%2F26%2FUEditor%E7%9A%84%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE%2F</url>
     <content type="text"><![CDATA[最近遇到了ueditor的不能显示数据的回显问题。解决思路： 在jsp页面添加hidden类型的input栏，作为中转站保存数据。 使用js代码配置ueditor面板，从上获得数据并展示 12&lt;input id="temp" type="hidden" value="$&#123;***.**&#125;"&gt;&lt;srcipt id="container" name="content" type="text/plain"&gt;&lt;/srcipt&gt; 12345&lt;script type="text/javascript"&gt;var ue = UE.getEditor('container');ue.ready(function()&#123;ue.setContent($('#temp').val());&#125;);]]></content>
