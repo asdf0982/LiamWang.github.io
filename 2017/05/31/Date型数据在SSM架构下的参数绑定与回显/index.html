@@ -99,7 +99,7 @@
 <meta property="og:url" content="https://asdf0982.github.io/2017/05/31/Date型数据在SSM架构下的参数绑定与回显/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="Date型数据有很多种表现形式，传递起来相对来说比较复杂。最近做的项目涉及到这方面内容，做个笔记。 Date型数据的参数绑定。想要将jsp页面收到String型参数转为Date型参数再保存到实体类中，首先需要创建一个转换器。创建Controller包,姑且命名为liam.ssm.controller.converter。在其中创建一个类(Class),命名为CustomDateConverter.">
-<meta property="og:updated_time" content="2017-05-31T10:24:54.394Z">
+<meta property="og:updated_time" content="2017-05-31T10:39:36.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Date型数据在SSM架构下的参数绑定与回显">
 <meta name="twitter:description" content="Date型数据有很多种表现形式，传递起来相对来说比较复杂。最近做的项目涉及到这方面内容，做个笔记。 Date型数据的参数绑定。想要将jsp页面收到String型参数转为Date型参数再保存到实体类中，首先需要创建一个转换器。创建Controller包,姑且命名为liam.ssm.controller.converter。在其中创建一个类(Class),命名为CustomDateConverter.">
@@ -310,7 +310,7 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-31T18:24:54+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2017-05-31T18:39:36+08:00">
                 2017-05-31
               </time>
             
@@ -348,6 +348,133 @@
 <p>到后台controller，假如我们创建过liam这个实体类，那么time这个参数应该能正确传递。（本质上以上的操作均属于自定义的参数绑定，可以应用到其他类型绑定上去。）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">(Liam liam)</span><span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">	<span class="comment">//TODO 设置有个断点，进来看看liam内包含的time是否正确</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="Date型数据的回显"><a href="#Date型数据的回显" class="headerlink" title="Date型数据的回显"></a>Date型数据的回显</h2><p>如果简单使用<code>&lt;input name=&quot;liam.time&quot; id=&quot;time&quot; value=&quot;${liam.time}&quot;/&gt;</code>会发现显示的时间是<code>Wed May 31 18:11:32 CST 2017</code>这样的形式。<br>为了将其原模原样的回显成<code>yyyy-MM-dd HH:mm:ss</code>格式我使用JSTL标签。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%@taglib</span> <span class="attr">uri</span>=<span class="string">"http://java.sun.com/jsp/jstl/fmt"</span> <span class="attr">prefix</span>=<span class="string">"fmt"</span>%&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">fmt:formatDate</span> <span class="attr">value</span>=<span class="string">"$&#123;liam.time&#125;"</span> <span class="attr">pattern</span>=<span class="string">"yyyy-MM-dd HH:mm:ss"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
 <p>如果想要在input输入框回显，不显示具体时间，则这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input name=&quot;liam.time&quot; value=&apos;&lt;fmt:formatDate value=&quot;$&#123;liam.time &#125;&quot; pattern=&quot;yyyy-MM-dd&quot; /&gt;&apos; /&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>：<br><code>yyyy-MM-dd HH:mm:ss</code>中的字符大小写不要随意修改，也许包含不同的含义。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字母</th>
+<th style="text-align:left">日期或时间元素</th>
+<th style="text-align:left">表示</th>
+<th style="text-align:left">示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">G</td>
+<td style="text-align:left">Era 标志符</td>
+<td style="text-align:left">Text</td>
+<td style="text-align:left">AD</td>
+</tr>
+<tr>
+<td style="text-align:left">y</td>
+<td style="text-align:left">年</td>
+<td style="text-align:left">Year</td>
+<td style="text-align:left">1996 ; 96</td>
+</tr>
+<tr>
+<td style="text-align:left">M</td>
+<td style="text-align:left">年中的月份</td>
+<td style="text-align:left">Month</td>
+<td style="text-align:left">July ; Jul ; 07</td>
+</tr>
+<tr>
+<td style="text-align:left">w</td>
+<td style="text-align:left">年中的周数</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">27</td>
+</tr>
+<tr>
+<td style="text-align:left">W</td>
+<td style="text-align:left">月份中的周数</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">D</td>
+<td style="text-align:left">年中的天数</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">189</td>
+</tr>
+<tr>
+<td style="text-align:left">d</td>
+<td style="text-align:left">月份中的天数</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">10</td>
+</tr>
+<tr>
+<td style="text-align:left">F</td>
+<td style="text-align:left">月份中的星期</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">E</td>
+<td style="text-align:left">星期中的天数</td>
+<td style="text-align:left">Text</td>
+<td style="text-align:left">Tuesday ; Tue</td>
+</tr>
+<tr>
+<td style="text-align:left">a</td>
+<td style="text-align:left">Am/pm 标记</td>
+<td style="text-align:left">Text</td>
+<td style="text-align:left">PM</td>
+</tr>
+<tr>
+<td style="text-align:left">H</td>
+<td style="text-align:left">一天中的小时数（0-23）</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">k</td>
+<td style="text-align:left">一天中的小时数（1-24）</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">24</td>
+</tr>
+<tr>
+<td style="text-align:left">K</td>
+<td style="text-align:left">am/pm 中的小时数（0-11）</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">0</td>
+</tr>
+<tr>
+<td style="text-align:left">h</td>
+<td style="text-align:left">am/pm 中的小时数（1-12）</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">12</td>
+</tr>
+<tr>
+<td style="text-align:left">m</td>
+<td style="text-align:left">小时中的分钟数</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">30</td>
+</tr>
+<tr>
+<td style="text-align:left">s</td>
+<td style="text-align:left">分钟中的秒数</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">55</td>
+</tr>
+<tr>
+<td style="text-align:left">S</td>
+<td style="text-align:left">毫秒数</td>
+<td style="text-align:left">Number</td>
+<td style="text-align:left">978</td>
+</tr>
+<tr>
+<td style="text-align:left">z</td>
+<td style="text-align:left">时区</td>
+<td style="text-align:left">General time zone</td>
+<td style="text-align:left">Pacific Standard Time ; PST ; GMT-08:00</td>
+</tr>
+<tr>
+<td style="text-align:left">Z</td>
+<td style="text-align:left">时区</td>
+<td style="text-align:left">RFC 822 time zone</td>
+<td style="text-align:left">-0800</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
