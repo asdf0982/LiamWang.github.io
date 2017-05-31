@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="spring mvc,json," />
+  <meta name="keywords" content="spring mvc," />
 
 
 
@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 [jar]包  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        type:&quot;po">
-<meta name="keywords" content="spring mvc,json">
+<meta name="description" content="Date型数据有很多种表现形式，传递起来相对来说比较复杂。最近做的项目涉及到这方面内容，做个笔记。 Date型数据的参数绑定。想要将jsp页面收到String型参数转为Date型参数再保存到实体类中，首先需要创建一个转换器。创建Controller包,姑且命名为liam.ssm.controller.converter。在其中创建一个类(Class),命名为CustomDateConverter.">
+<meta name="keywords" content="spring mvc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ssm架构下json数据传递问题和解决">
-<meta property="og:url" content="https://asdf0982.github.io/2017/05/18/ssm架构下json数据传递问题和解决/index.html">
+<meta property="og:title" content="Date型数据在SSM架构下的参数绑定与回显">
+<meta property="og:url" content="https://asdf0982.github.io/2017/05/31/Date型数据在SSM架构下的参数绑定与回显/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 [jar]包  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        type:&quot;po">
-<meta property="og:updated_time" content="2017-05-18T05:37:48.653Z">
+<meta property="og:description" content="Date型数据有很多种表现形式，传递起来相对来说比较复杂。最近做的项目涉及到这方面内容，做个笔记。 Date型数据的参数绑定。想要将jsp页面收到String型参数转为Date型参数再保存到实体类中，首先需要创建一个转换器。创建Controller包,姑且命名为liam.ssm.controller.converter。在其中创建一个类(Class),命名为CustomDateConverter.">
+<meta property="og:updated_time" content="2017-05-31T10:24:54.394Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ssm架构下json数据传递问题和解决">
-<meta name="twitter:description" content="环境说明 springmvc-4.3.6 jar包 jackson-2.7.4 [jar]包  代码说明在springmvc.xml文件中采用&amp;lt;mvc:annotation-driven/&amp;gt;注解驱动。在jsp文件下,配置一个按钮调用下面的js代码12345678910function requestJson()&amp;#123;    $ajax(&amp;#123;        type:&quot;po">
+<meta name="twitter:title" content="Date型数据在SSM架构下的参数绑定与回显">
+<meta name="twitter:description" content="Date型数据有很多种表现形式，传递起来相对来说比较复杂。最近做的项目涉及到这方面内容，做个笔记。 Date型数据的参数绑定。想要将jsp页面收到String型参数转为Date型参数再保存到实体类中，首先需要创建一个转换器。创建Controller包,姑且命名为liam.ssm.controller.converter。在其中创建一个类(Class),命名为CustomDateConverter.">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/05/18/ssm架构下json数据传递问题和解决/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/05/31/Date型数据在SSM架构下的参数绑定与回显/"/>
 
 
 
 
 
-  <title>ssm架构下json数据传递问题和解决 | Liam's Blog</title>
+  <title>Date型数据在SSM架构下的参数绑定与回显 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -265,7 +265,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/18/ssm架构下json数据传递问题和解决/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/31/Date型数据在SSM架构下的参数绑定与回显/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -282,7 +282,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">ssm架构下json数据传递问题和解决</h2>
+          <h2 class="post-title" itemprop="name headline">Date型数据在SSM架构下的参数绑定与回显</h2>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-18T12:47:48+08:00">
-                2017-05-18
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-31T18:23:09+08:00">
+                2017-05-31
               </time>
             
 
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-18T13:37:48+08:00">
-                2017-05-18
+              <time title="Post modified" itemprop="dateModified" datetime="2017-05-31T18:24:54+08:00">
+                2017-05-31
               </time>
             
           </span>
@@ -341,15 +341,13 @@
       
 
       
-        <h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><ul>
-<li>springmvc-4.3.6 jar包</li>
-<li>jackson-2.7.4 <a href="/2017/05/18/ssm架构下json数据传递问题和解决/json-jar.zip" title="[jar]">[jar]</a>包</li>
-</ul>
-<h2 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h2><p>在springmvc.xml文件中采用<code>&lt;mvc:annotation-driven/&gt;</code>注解驱动。<br>在jsp文件下,配置一个按钮调用下面的js代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">requestJson</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $ajax(&#123;</div><div class="line">        <span class="attr">type</span>:<span class="string">"post"</span>,</div><div class="line">        <span class="attr">url</span>:<span class="string">"$&#123;pageContext.request.contextPath &#125;/requestJson.action"</span>,</div><div class="line">        <span class="attr">data</span>:<span class="string">'&#123;"articleid":10,"title":"test"&#125;'</span>,</div><div class="line">        <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            alert(data);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在后台创建一个controller。传入json数据，@RequestBody转为实体类。传出实体类，使用@ResponseBody转为json格式。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Controller</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonTest</span></span>&#123;</div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/requestJson"</span>)</div><div class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> <span class="function">items <span class="title">requestJson</span><span class="params">(@RequestBody Items items)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> items;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在浏览器中打开jsp页面，F12控制台观察requestJson.action的状态码</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>1.状态码200/415，不进入后端controller断点，浏览器弹出网页html代码<br>解决办法：缺少class，更换jar包。</p>
-<p>2.状态码400/500，不进入后端controller断点，浏览器无反应<br>解决办法：jsp页面中data数据需采用正确的json编写格式，以逗号分隔。</p>
+        <p>Date型数据有很多种表现形式，传递起来相对来说比较复杂。最近做的项目涉及到这方面内容，做个笔记。</p>
+<h2 id="Date型数据的参数绑定。"><a href="#Date型数据的参数绑定。" class="headerlink" title="Date型数据的参数绑定。"></a>Date型数据的参数绑定。</h2><p>想要将jsp页面收到String型参数转为Date型参数再保存到实体类中，首先需要<strong>创建一个转换器</strong>。<br>创建Controller包,姑且命名为liam.ssm.controller.converter。在其中创建一个类(Class),命名为CustomDateConverter.java<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomDateConverter</span> <span class="keyword">implements</span> <span class="title">Converter</span>&lt;<span class="title">String</span>, <span class="title">Date</span>&gt; </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Date <span class="title">convert</span><span class="params">(String source)</span> </span>&#123;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</div><div class="line">			<span class="comment">//String型数据的格式为"yyyy-MM-dd HH:mm:ss"才能被正确转换</span></div><div class="line">			<span class="keyword">return</span> simpleDateFormat.parse(source);</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		<span class="comment">//转换失败返回空</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>然后由于spingmvc使用注解驱动。需要在配置文件(springmvc.xml)将刚刚设置的转换器配置进去。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">conversion-service</span>=<span class="string">"conversionService"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- conversionService --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"conversionService"</span></span></div><div class="line">		<span class="attr">class</span>=<span class="string">"org.springframework.format.support.FormattingConversionServiceFactoryBean"</span>&gt;</div><div class="line">		<span class="comment">&lt;!-- 转换器 --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"converters"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"liam.ssm.controller.converter.CustomDateConverter"</span>/&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这样参数绑定就完成了，下面看看jsp中的相关代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input name=<span class="string">"liam.time"</span> id=<span class="string">"time"</span> value=<span class="string">"2017-5-31 18:02:12"</span>/&gt;</div></pre></td></tr></table></figure></p>
+<p>到后台controller，假如我们创建过liam这个实体类，那么time这个参数应该能正确传递。（本质上以上的操作均属于自定义的参数绑定，可以应用到其他类型绑定上去。）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">(Liam liam)</span><span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">	<span class="comment">//TODO 设置有个断点，进来看看liam内包含的time是否正确</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Date型数据的回显"><a href="#Date型数据的回显" class="headerlink" title="Date型数据的回显"></a>Date型数据的回显</h2><p>如果简单使用<code>&lt;input name=&quot;liam.time&quot; id=&quot;time&quot; value=&quot;${liam.time}&quot;/&gt;</code>会发现显示的时间是<code>Wed May 31 18:11:32 CST 2017</code>这样的形式。<br>为了将其原模原样的回显成<code>yyyy-MM-dd HH:mm:ss</code>格式我使用JSTL标签。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%@taglib</span> <span class="attr">uri</span>=<span class="string">"http://java.sun.com/jsp/jstl/fmt"</span> <span class="attr">prefix</span>=<span class="string">"fmt"</span>%&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">fmt:formatDate</span> <span class="attr">value</span>=<span class="string">"$&#123;liam.time&#125;"</span> <span class="attr">pattern</span>=<span class="string">"yyyy-MM-dd HH:mm:ss"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
+<p>如果想要在input输入框回显，不显示具体时间，则这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input name=&quot;liam.time&quot; value=&apos;&lt;fmt:formatDate value=&quot;$&#123;liam.time &#125;&quot; pattern=&quot;yyyy-MM-dd&quot; /&gt;&apos; /&gt;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -381,8 +379,6 @@
           
             <a href="/tags/spring-mvc/" rel="tag"># spring mvc</a>
           
-            <a href="/tags/json/" rel="tag"># json</a>
-          
         </div>
       
 
@@ -394,8 +390,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/17/20170517/" rel="next" title="windows下使用hexo+github部署个人博客">
-                <i class="fa fa-chevron-left"></i> windows下使用hexo+github部署个人博客
+              <a href="/2017/05/29/CS231n学习笔记-两层网络/" rel="next" title="CS231n学习笔记-两层网络">
+                <i class="fa fa-chevron-left"></i> CS231n学习笔记-两层网络
               </a>
             
           </div>
@@ -403,10 +399,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/22/CS231n学习笔记/" rel="prev" title="CS231n学习笔记">
-                CS231n学习笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -546,7 +538,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境说明"><span class="nav-number">1.</span> <span class="nav-text">环境说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码说明"><span class="nav-number">2.</span> <span class="nav-text">代码说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">3.</span> <span class="nav-text">问题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Date型数据的参数绑定。"><span class="nav-number">1.</span> <span class="nav-text">Date型数据的参数绑定。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date型数据的回显"><span class="nav-number">2.</span> <span class="nav-text">Date型数据的回显</span></a></li></ol></div>
             
 
           </div>
