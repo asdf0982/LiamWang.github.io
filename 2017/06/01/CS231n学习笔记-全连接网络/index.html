@@ -92,20 +92,17 @@
 
 
 
-<meta name="description" content="完成作业:  [softmax.ipynb] [softmax.py]   softmax的计算方式与SVM类似。参考此图">
+<meta name="description" content="进入了assignment2学习，打开FullyConnectedNets.ipynb，有一大段引言我试着翻译一下。   在之前的作业中，你在CIFAR-10数据集上实现了一个2层的全连接神经网络。这次简单的实现并不十分模块化，因为loss和梯度都在一块函数中计算。对于一个简单的2层网络来说，这样是可管理的。但随着我们向更大的模型推进时，这样做又变得不切实际。在理想情况下，我们希望使用更模块化的设">
 <meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS231n学习笔记(softmax)">
-<meta property="og:url" content="https://asdf0982.github.io/2017/05/28/CS231n学习笔记-softmax/index.html">
+<meta property="og:title" content="CS231n学习笔记(全连接网络)">
+<meta property="og:url" content="https://asdf0982.github.io/2017/06/01/CS231n学习笔记-全连接网络/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="完成作业:  [softmax.ipynb] [softmax.py]   softmax的计算方式与SVM类似。参考此图">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/28/CS231n学习笔记-softmax/SVM&softmax.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/28/CS231n学习笔记-softmax/DerivativeOfSoftmaxLossFunction.png">
-<meta property="og:updated_time" content="2017-05-28T09:01:53.005Z">
+<meta property="og:description" content="进入了assignment2学习，打开FullyConnectedNets.ipynb，有一大段引言我试着翻译一下。   在之前的作业中，你在CIFAR-10数据集上实现了一个2层的全连接神经网络。这次简单的实现并不十分模块化，因为loss和梯度都在一块函数中计算。对于一个简单的2层网络来说，这样是可管理的。但随着我们向更大的模型推进时，这样做又变得不切实际。在理想情况下，我们希望使用更模块化的设">
+<meta property="og:updated_time" content="2017-06-01T14:41:43.542Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CS231n学习笔记(softmax)">
-<meta name="twitter:description" content="完成作业:  [softmax.ipynb] [softmax.py]   softmax的计算方式与SVM类似。参考此图">
-<meta name="twitter:image" content="https://asdf0982.github.io/2017/05/28/CS231n学习笔记-softmax/SVM&softmax.png">
+<meta name="twitter:title" content="CS231n学习笔记(全连接网络)">
+<meta name="twitter:description" content="进入了assignment2学习，打开FullyConnectedNets.ipynb，有一大段引言我试着翻译一下。   在之前的作业中，你在CIFAR-10数据集上实现了一个2层的全连接神经网络。这次简单的实现并不十分模块化，因为loss和梯度都在一块函数中计算。对于一个简单的2层网络来说，这样是可管理的。但随着我们向更大的模型推进时，这样做又变得不切实际。在理想情况下，我们希望使用更模块化的设">
 
 
 
@@ -133,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/05/28/CS231n学习笔记-softmax/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/06/01/CS231n学习笔记-全连接网络/"/>
 
 
 
 
 
-  <title>CS231n学习笔记(softmax) | Liam's Blog</title>
+  <title>CS231n学习笔记(全连接网络) | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -268,7 +265,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/28/CS231n学习笔记-softmax/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/01/CS231n学习笔记-全连接网络/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -285,7 +282,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CS231n学习笔记(softmax)</h2>
+          <h2 class="post-title" itemprop="name headline">CS231n学习笔记(全连接网络)</h2>
         
 
         <div class="post-meta">
@@ -297,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-28T15:39:26+08:00">
-                2017-05-28
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-01T15:21:18+08:00">
+                2017-06-01
               </time>
             
 
@@ -313,8 +310,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-28T17:01:53+08:00">
-                2017-05-28
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-01T22:41:43+08:00">
+                2017-06-01
               </time>
             
           </span>
@@ -344,13 +341,12 @@
       
 
       
-        <p>完成作业:</p>
-<ul>
-<li><a href="/2017/05/28/CS231n学习笔记-softmax/softmax.ipynb" title="[softmax.ipynb]">[softmax.ipynb]</a></li>
-<li><a href="/2017/05/28/CS231n学习笔记-softmax/softmax.py" title="[softmax.py]">[softmax.py]</a>
-</li>
-</ul>
-<p>softmax的计算方式与SVM类似。参考此图<br><img src="/2017/05/28/CS231n学习笔记-softmax/SVM&softmax.png" alt="[Compare SVM&softmax]" title="[Compare SVM&softmax]"><br><a id="more"></a><br>其loss和gradient的计算推导过程如图<br><img src="/2017/05/28/CS231n学习笔记-softmax/DerivativeOfSoftmaxLossFunction.png" alt="[Derivative of softmax loss function]" title="[Derivative of softmax loss function]"></p>
+        <p>进入了assignment2学习，打开FullyConnectedNets.ipynb，有一大段引言我试着翻译一下。 </p>
+<blockquote>
+<p>在之前的作业中，你在CIFAR-10数据集上实现了一个2层的全连接神经网络。这次简单的实现并不十分模块化，因为loss和梯度都在一块函数中计算。对于一个简单的2层网络来说，这样是可管理的。但随着我们向更大的模型推进时，这样做又变得不切实际。在理想情况下，我们希望使用更模块化的设计来独立实现不同类型的层，然后根据不同模型的结构把他们拼到一起。<br>这次作业我们将使用更模块化的方法来实现一个全连接的神经网络。每一层我们都将实现一个前向和反向传播的功能。前向传播接收输入，权重和其他参数，并返回反向传播所需的输出和缓存对象。如下：<br><a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">layer_forward</span><span class="params">(x, w)</span>:</span></div><div class="line">  <span class="string">""" Receive inputs x and weights w """</span></div><div class="line">  <span class="comment"># Do some computations ...</span></div><div class="line">  z = <span class="comment"># ... some intermediate value</span></div><div class="line">  <span class="comment"># Do some more computations ...</span></div><div class="line">  out = <span class="comment"># the output</span></div><div class="line"></div><div class="line">  cache = (x, w, z, out) <span class="comment"># Values we need to compute gradients</span></div><div class="line"></div><div class="line">  <span class="keyword">return</span> out, cache</div></pre></td></tr></table></figure></p>
+<p>而反向传播将接收上行导数（？）和缓存对象，并返回根据梯度调整的输入和权重。如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">layer_backward</span><span class="params">(dout, cache)</span>:</span></div><div class="line">  <span class="string">"""</span></div><div class="line">  Receive derivative of loss with respect to outputs and cache,</div><div class="line">  and compute derivative with respect to inputs.</div><div class="line">  """</div><div class="line">  <span class="comment"># Unpack cache values</span></div><div class="line">  x, w, z, out = cache</div><div class="line"></div><div class="line">  <span class="comment"># Use values in cache to compute derivatives</span></div><div class="line">  dx = <span class="comment"># Derivative of loss with respect to x</span></div><div class="line">  dw = <span class="comment"># Derivative of loss with respect to w</span></div><div class="line"></div><div class="line">  <span class="keyword">return</span> dx, dw</div></pre></td></tr></table></figure></p>
+<p>以这种模块化的方式实现了一些层后，我们就可以轻松地把它们组合起来去构建不同结构的分类器了。除了能实现任意深度的全连接网络，我们也能探索不同的最优化更新规则并引入Dropout方法作为规则化和批规范化的工具使优化深度网络更高效。</p>
+</blockquote>
 
       
     </div>
@@ -393,8 +389,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/26/UEditor的数据回显/" rel="next" title="UEditor的数据回显">
-                <i class="fa fa-chevron-left"></i> UEditor的数据回显
+              <a href="/2017/05/31/Date型数据在SSM架构下的参数绑定与回显/" rel="next" title="Date型数据在SSM架构下的参数绑定与回显">
+                <i class="fa fa-chevron-left"></i> Date型数据在SSM架构下的参数绑定与回显
               </a>
             
           </div>
@@ -402,10 +398,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/29/CS231n学习笔记-两层网络/" rel="prev" title="CS231n学习笔记-两层网络">
-                CS231n学习笔记-两层网络 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
