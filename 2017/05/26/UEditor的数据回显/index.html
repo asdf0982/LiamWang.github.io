@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="最近遇到了ueditor的不能显示数据的回显问题。解决思路：  在jsp页面添加hidden类型的input栏，作为中转站保存数据。 使用js代码配置ueditor面板，从上获得数据并展示  12&amp;lt;input id=&quot;temp&quot; type=&quot;hidden&quot; value=&quot;$&amp;#123;***.**&amp;#125;&quot;&amp;gt;&amp;lt;srcipt id=&quot;container&quot; name=&quot;conte">
+<meta name="description" content="最近遇到了ueditor的不能显示数据的回显问题。解决思路：  在jsp页面添加div类型的隐藏栏，作为中转站保存数据。 使用js代码配置ueditor面板，从上获得数据并展示  12&amp;lt;div id=&quot;temp&quot; style=&quot;display: none;&quot;&amp;gt;$&amp;#123;***.**&amp;#125;&amp;lt;/div&amp;gt;&amp;lt;srcipt id=&quot;container&quot; name=&quot;c">
 <meta name="keywords" content="Tips">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UEditor的数据回显">
 <meta property="og:url" content="https://asdf0982.github.io/2017/05/26/UEditor的数据回显/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="最近遇到了ueditor的不能显示数据的回显问题。解决思路：  在jsp页面添加hidden类型的input栏，作为中转站保存数据。 使用js代码配置ueditor面板，从上获得数据并展示  12&amp;lt;input id=&quot;temp&quot; type=&quot;hidden&quot; value=&quot;$&amp;#123;***.**&amp;#125;&quot;&amp;gt;&amp;lt;srcipt id=&quot;container&quot; name=&quot;conte">
-<meta property="og:updated_time" content="2017-05-26T01:39:47.417Z">
+<meta property="og:description" content="最近遇到了ueditor的不能显示数据的回显问题。解决思路：  在jsp页面添加div类型的隐藏栏，作为中转站保存数据。 使用js代码配置ueditor面板，从上获得数据并展示  12&amp;lt;div id=&quot;temp&quot; style=&quot;display: none;&quot;&amp;gt;$&amp;#123;***.**&amp;#125;&amp;lt;/div&amp;gt;&amp;lt;srcipt id=&quot;container&quot; name=&quot;c">
+<meta property="og:updated_time" content="2017-06-02T02:31:25.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UEditor的数据回显">
-<meta name="twitter:description" content="最近遇到了ueditor的不能显示数据的回显问题。解决思路：  在jsp页面添加hidden类型的input栏，作为中转站保存数据。 使用js代码配置ueditor面板，从上获得数据并展示  12&amp;lt;input id=&quot;temp&quot; type=&quot;hidden&quot; value=&quot;$&amp;#123;***.**&amp;#125;&quot;&amp;gt;&amp;lt;srcipt id=&quot;container&quot; name=&quot;conte">
+<meta name="twitter:description" content="最近遇到了ueditor的不能显示数据的回显问题。解决思路：  在jsp页面添加div类型的隐藏栏，作为中转站保存数据。 使用js代码配置ueditor面板，从上获得数据并展示  12&amp;lt;div id=&quot;temp&quot; style=&quot;display: none;&quot;&amp;gt;$&amp;#123;***.**&amp;#125;&amp;lt;/div&amp;gt;&amp;lt;srcipt id=&quot;container&quot; name=&quot;c">
 
 
 
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-26T09:39:47+08:00">
-                2017-05-26
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-02T10:31:25+08:00">
+                2017-06-02
               </time>
             
           </span>
@@ -343,11 +343,17 @@
       
         <p>最近遇到了ueditor的不能显示数据的回显问题。<br>解决思路：</p>
 <ol>
-<li>在jsp页面添加hidden类型的input栏，作为中转站保存数据。</li>
+<li>在jsp页面添加div类型的隐藏栏，作为中转站保存数据。</li>
 <li>使用js代码配置ueditor面板，从上获得数据并展示</li>
 </ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"temp"</span> <span class="attr">type</span>=<span class="string">"hidden"</span> <span class="attr">value</span>=<span class="string">"$&#123;***.**&#125;"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">srcipt</span> <span class="attr">id</span>=<span class="string">"container"</span> <span class="attr">name</span>=<span class="string">"content"</span> <span class="attr">type</span>=<span class="string">"text/plain"</span>&gt;</span><span class="tag">&lt;/<span class="name">srcipt</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line"><span class="keyword">var</span> ue = UE.getEditor(<span class="string">'container'</span>);</div><div class="line">ue.ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">ue.setContent($(<span class="string">'#temp'</span>).val());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"temp"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span>&gt;</span>$&#123;***.**&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">srcipt</span> <span class="attr">id</span>=<span class="string">"container"</span> <span class="attr">name</span>=<span class="string">"content"</span> <span class="attr">type</span>=<span class="string">"text/plain"</span>&gt;</span><span class="tag">&lt;/<span class="name">srcipt</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line"><span class="keyword">var</span> ue = UE.getEditor(<span class="string">'container'</span>);</div><div class="line">ue.ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">ue.setContent($(<span class="string">'#temp'</span>).html());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Tips：</p>
+<ol>
+<li>最初我用的办法是<code>&lt;input id=&quot;temp&quot; type=&quot;hidden&quot; value=&quot;${***.**}&quot;&gt;</code>和<code>ue.setContent($(&#39;#temp&#39;).val());</code>图像和信息能正确上传但不能回显。原因是数据库中图像的内容为<code>&lt;p&gt;&lt;img src=&quot;http://localhost:8080/…/ueditor/jsp/upload/image/20170602/**.png……&quot;&gt;</code>这里src=之后的双引号会和value=后的双引号配对，导致图像的路径信息无法传入，所以改为上面的方法。</li>
+<li>使用eclipse+tomcat调试项目，图像保存在<code>workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\myown\ueditor\jsp\upload\image</code>下的日期目录（其中workspace代表eclipse的默认工程路径，myown是我的项目名称）。在eclipse项目内点击ueditor-&gt;jsp-&gt;config.json中调整图像的保存路径。我修改为<code>&quot;imageUrlPrefix&quot;: &quot;/myown&quot;,</code></li>
+</ol>
+
       
     </div>
 

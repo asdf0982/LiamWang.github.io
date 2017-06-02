@@ -35,7 +35,7 @@
   <entry>
     <title><![CDATA[UEditor的数据回显]]></title>
     <url>%2F2017%2F05%2F26%2FUEditor%E7%9A%84%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE%2F</url>
-    <content type="text"><![CDATA[最近遇到了ueditor的不能显示数据的回显问题。解决思路： 在jsp页面添加hidden类型的input栏，作为中转站保存数据。 使用js代码配置ueditor面板，从上获得数据并展示 12&lt;input id="temp" type="hidden" value="$&#123;***.**&#125;"&gt;&lt;srcipt id="container" name="content" type="text/plain"&gt;&lt;/srcipt&gt; 12345&lt;script type="text/javascript"&gt;var ue = UE.getEditor('container');ue.ready(function()&#123;ue.setContent($('#temp').val());&#125;);]]></content>
+    <content type="text"><![CDATA[最近遇到了ueditor的不能显示数据的回显问题。解决思路： 在jsp页面添加div类型的隐藏栏，作为中转站保存数据。 使用js代码配置ueditor面板，从上获得数据并展示 12&lt;div id="temp" style="display: none;"&gt;$&#123;***.**&#125;&lt;/div&gt;&lt;srcipt id="container" name="content" type="text/plain"&gt;&lt;/srcipt&gt; 12345&lt;script type="text/javascript"&gt;var ue = UE.getEditor('container');ue.ready(function()&#123;ue.setContent($('#temp').html());&#125;); Tips： 最初我用的办法是&lt;input id=&quot;temp&quot; type=&quot;hidden&quot; value=&quot;${***.**}&quot;&gt;和ue.setContent($(&#39;#temp&#39;).val());图像和信息能正确上传但不能回显。原因是数据库中图像的内容为&lt;p&gt;&lt;img src=&quot;http://localhost:8080/…/ueditor/jsp/upload/image/20170602/**.png……&quot;&gt;这里src=之后的双引号会和value=后的双引号配对，导致图像的路径信息无法传入，所以改为上面的方法。 使用eclipse+tomcat调试项目，图像保存在workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\myown\ueditor\jsp\upload\image下的日期目录（其中workspace代表eclipse的默认工程路径，myown是我的项目名称）。在eclipse项目内点击ueditor-&gt;jsp-&gt;config.json中调整图像的保存路径。我修改为&quot;imageUrlPrefix&quot;: &quot;/myown&quot;,]]></content>
       <tags>
         <tag>Tips</tag>
       </tags>
