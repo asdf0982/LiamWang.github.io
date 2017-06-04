@@ -99,7 +99,7 @@
 <meta property="og:url" content="https://asdf0982.github.io/2017/06/01/CS231n学习笔记-全连接网络/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="完成作业：  [FullyConnectedNets.ipynb] [fc_net.py] [layers.py] [layer_utils.py] [optim.py]   这次作业非常重要，是assignment1的一次总结和大提升，我感觉应该反复咀嚼，琢磨透。">
-<meta property="og:updated_time" content="2017-06-03T14:49:16.838Z">
+<meta property="og:updated_time" content="2017-06-04T12:21:39.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231n学习笔记(全连接网络)">
 <meta name="twitter:description" content="完成作业：  [FullyConnectedNets.ipynb] [fc_net.py] [layers.py] [layer_utils.py] [optim.py]   这次作业非常重要，是assignment1的一次总结和大提升，我感觉应该反复咀嚼，琢磨透。">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-03T22:49:16+08:00">
-                2017-06-03
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-04T20:21:39+08:00">
+                2017-06-04
               </time>
             
           </span>
@@ -325,6 +325,11 @@
           
           
 
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>hits
+            </span>
           
 
           
@@ -362,6 +367,13 @@
 <h2 id="fc-net-init"><a href="#fc-net-init" class="headerlink" title="fc_net.init"></a>fc_net.init</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">############################################################################</span></div><div class="line"><span class="comment"># <span class="doctag">TODO:</span> Initialize the weights and biases of the two-layer net. Weights    #</span></div><div class="line"><span class="comment"># should be initialized from a Gaussian with standard deviation equal to   #</span></div><div class="line"><span class="comment"># weight_scale, and biases should be initialized to zero. All weights and  #</span></div><div class="line"><span class="comment"># biases should be stored in the dictionary self.params, with first layer  #</span></div><div class="line"><span class="comment"># weights and biases using the keys 'W1' and 'b1' and second layer weights #</span></div><div class="line"><span class="comment"># and biases using the keys 'W2' and 'b2'.                                 #</span></div><div class="line"><span class="comment">############################################################################</span></div><div class="line"><span class="comment">#根据上面的提示，权重W需要初始化在一个标准差为weight_scale的高斯（正态）分布矩阵</span></div><div class="line"><span class="comment">#故在W1生成input_dim行，hidden_dim列的高斯矩阵</span></div><div class="line">self.params[<span class="string">'W1'</span>] = weight_scale * np.random.randn(input_dim,hidden_dim) <span class="comment">#D,H</span></div><div class="line"><span class="comment">#权重b应该被初始化为零</span></div><div class="line">self.params[<span class="string">'b1'</span>] = np.zeros((<span class="number">1</span>,hidden_dim)) <span class="comment">#1,H</span></div><div class="line"><span class="comment">#同理W2，b2</span></div><div class="line">self.params[<span class="string">'W2'</span>] = weight_scale * np.random.randn(hidden_dim,num_classes) <span class="comment">#H,C</span></div><div class="line">self.params[<span class="string">'b2'</span>] = np.zeros((<span class="number">1</span>,num_classes)) <span class="comment">#1,C</span></div></pre></td></tr></table></figure>
 <h2 id="fc-net-loss"><a href="#fc-net-loss" class="headerlink" title="fc_net.loss"></a>fc_net.loss</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">scores = <span class="keyword">None</span></div><div class="line"><span class="comment">############################################################################</span></div><div class="line"><span class="comment"># <span class="doctag">TODO:</span> Implement the forward pass for the two-layer net, computing the    #</span></div><div class="line"><span class="comment"># class scores for X and storing them in the scores variable.              #</span></div><div class="line"><span class="comment">############################################################################</span></div><div class="line">W1, b1, W2, b2 = self.params[<span class="string">'W1'</span>], self.params[<span class="string">'b1'</span>], self.params[<span class="string">'W2'</span>],self.params[<span class="string">'b2'</span>]</div><div class="line"><span class="comment"># Forward into first layer</span></div><div class="line">hidden_layer, cache_hidden_layer = affine_relu_forward(X, W1, b1)</div><div class="line"><span class="comment"># Forward into second layer</span></div><div class="line">scores, cache_scores = affine_forward(hidden_layer, W2, b2)</div><div class="line"><span class="comment">############################################################################</span></div><div class="line"><span class="comment">#                             END OF YOUR CODE                             #</span></div><div class="line"><span class="comment">############################################################################</span></div><div class="line"></div><div class="line"><span class="comment"># If y is None then we are in test mode so just return scores</span></div><div class="line"><span class="keyword">if</span> y <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">    <span class="keyword">return</span> scores</div><div class="line"></div><div class="line">loss, grads = <span class="number">0</span>, &#123;&#125;</div><div class="line"><span class="comment">############################################################################</span></div><div class="line"><span class="comment"># <span class="doctag">TODO:</span> Implement the backward pass for the two-layer net. Store the loss  #</span></div><div class="line"><span class="comment"># in the loss variable and gradients in the grads dictionary. Compute data #</span></div><div class="line"><span class="comment"># loss using softmax, and make sure that grads[k] holds the gradients for  #</span></div><div class="line"><span class="comment"># self.params[k]. Don't forget to add L2 regularization!                   #</span></div><div class="line"><span class="comment">#                                                                          #</span></div><div class="line"><span class="comment"># <span class="doctag">NOTE:</span> To ensure that your implementation matches ours and you pass the   #</span></div><div class="line"><span class="comment"># automated tests, make sure that your L2 regularization includes a factor #</span></div><div class="line"><span class="comment"># of 0.5 to simplify the expression for the gradient.                      #</span></div><div class="line"><span class="comment">############################################################################</span></div><div class="line">data_loss, dscores = softmax_loss(scores, y)</div><div class="line">reg_loss = <span class="number">0.5</span> * self.reg * (np.sum(W1**<span class="number">2</span>) + np.sum(W2**<span class="number">2</span>))</div><div class="line">loss = data_loss + reg_loss</div><div class="line"><span class="comment"># Backprop into second layer</span></div><div class="line">dx1, dW2, db2 = affine_backward(dscores,cache_scores)</div><div class="line">dW2 += self.reg * W2</div><div class="line"><span class="comment"># Backprop into first layer</span></div><div class="line">dx, dW1, db1 = affine_relu_backward(dx1, cache_hidden_layer)</div><div class="line">dW1 += self.reg * W1</div><div class="line"></div><div class="line">grads.update(&#123;<span class="string">'W1'</span>: dW1,</div><div class="line">			  <span class="string">'b1'</span>: db1,</div><div class="line">			  <span class="string">'W2'</span>: dW2,</div><div class="line">			  <span class="string">'b2'</span>: db2&#125;)</div></pre></td></tr></table></figure>
 <p>正向的计算不多说了，反向传播说一下。<br>先理理思路softmax层最终计算出了的是loss，我们希望loss下降，于是也给出了<strong>loss关于score的偏导数dscore</strong>。即$dscores = \frac{\partial loss}{\partial scores}$,于是想要求dx1,只要用链式法则$dx1 = \frac{\partial loss}{\partial scores}*\frac{\partial scores}{\partial x1}$可得到即hidden_layer的梯度。</p>
+<h2 id="最优化方法"><a href="#最优化方法" class="headerlink" title="最优化方法"></a>最优化方法</h2><p>推荐文章：</p>
+<ol>
+<li><a href="http://sebastianruder.com/optimizing-gradient-descent/" target="_blank" rel="external">An overview of gradient descent optimization algorithms</a>  <a href="http://blog.csdn.net/google19890102/article/details/69942970" target="_blank" rel="external"><strong>中文版</strong></a></li>
+<li><a href="http://shuokay.com/2016/06/11/optimization/" target="_blank" rel="external">卷积神经网络中的优化算法比较</a>（这篇文章包含代码，便于理解）</li>
+<li><a href="https://zhuanlan.zhihu.com/p/22252270" target="_blank" rel="external">深度学习最全优化方法总结比较</a></li>
+</ol>
+<p>注意：在RMSprop方法的eps是在sqr内的，二号文章的代码将其放在外。</p>
 
       
     </div>
@@ -552,7 +564,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#fc-net-init"><span class="nav-number">1.</span> <span class="nav-text">fc_net.init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fc-net-loss"><span class="nav-number">2.</span> <span class="nav-text">fc_net.loss</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#fc-net-init"><span class="nav-number">1.</span> <span class="nav-text">fc_net.init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fc-net-loss"><span class="nav-number">2.</span> <span class="nav-text">fc_net.loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最优化方法"><span class="nav-number">3.</span> <span class="nav-text">最优化方法</span></a></li></ol></div>
             
 
           </div>
@@ -596,6 +608,14 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
 
         
       </div>
