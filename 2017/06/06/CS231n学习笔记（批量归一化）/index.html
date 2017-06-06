@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Tips," />
+  <meta name="keywords" content="Deep Learning," />
 
 
 
@@ -92,24 +92,20 @@
 
 
 
-<meta name="description" content="先比较连接手机时的音质，判断是否为耳机自身故障。 确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】">
-<meta name="keywords" content="Tips">
+<meta name="description" content="引言大意：  使深层网络更容易训练的一种方法是使用更复杂的优化程序，如SGD +momentum，RMSProp或Adam。 另一个策略是改变网络架构，使其更容易训练。这些方面的一个想法是最近提出的批量归一化(Batch normalization)这个想法比较简单。 当机器学习方法的输入数据由零均值和单位方差的不相关特征组成时，往往会更好地工作。 在训练神经网络时，我们可以在将数据馈送到网络之前">
+<meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="连接电脑时蓝牙耳机音质明显下降">
-<meta property="og:url" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/index.html">
+<meta property="og:title" content="CS231n学习笔记(批量归一化)">
+<meta property="og:url" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="先比较连接手机时的音质，判断是否为耳机自身故障。 确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/1.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/2.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/3.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/4.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/5.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/6.png">
-<meta property="og:updated_time" content="2017-05-25T03:15:41.413Z">
+<meta property="og:description" content="引言大意：  使深层网络更容易训练的一种方法是使用更复杂的优化程序，如SGD +momentum，RMSProp或Adam。 另一个策略是改变网络架构，使其更容易训练。这些方面的一个想法是最近提出的批量归一化(Batch normalization)这个想法比较简单。 当机器学习方法的输入数据由零均值和单位方差的不相关特征组成时，往往会更好地工作。 在训练神经网络时，我们可以在将数据馈送到网络之前">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/BatchNormalization1.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/Backpropagatethegradientofloss.png">
+<meta property="og:updated_time" content="2017-06-06T13:27:47.140Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="连接电脑时蓝牙耳机音质明显下降">
-<meta name="twitter:description" content="先比较连接手机时的音质，判断是否为耳机自身故障。 确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】">
-<meta name="twitter:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/1.png">
+<meta name="twitter:title" content="CS231n学习笔记(批量归一化)">
+<meta name="twitter:description" content="引言大意：  使深层网络更容易训练的一种方法是使用更复杂的优化程序，如SGD +momentum，RMSProp或Adam。 另一个策略是改变网络架构，使其更容易训练。这些方面的一个想法是最近提出的批量归一化(Batch normalization)这个想法比较简单。 当机器学习方法的输入数据由零均值和单位方差的不相关特征组成时，往往会更好地工作。 在训练神经网络时，我们可以在将数据馈送到网络之前">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/BatchNormalization1.png">
 
 
 
@@ -137,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/"/>
 
 
 
 
 
-  <title>连接电脑时蓝牙耳机音质明显下降 | Liam's Blog</title>
+  <title>CS231n学习笔记(批量归一化) | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -272,7 +268,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -289,7 +285,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">连接电脑时蓝牙耳机音质明显下降</h2>
+          <h2 class="post-title" itemprop="name headline">CS231n学习笔记(批量归一化)</h2>
         
 
         <div class="post-meta">
@@ -301,8 +297,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T10:47:52+08:00">
-                2017-05-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-06T21:20:53+08:00">
+                2017-06-06
               </time>
             
 
@@ -317,8 +313,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-25T11:15:41+08:00">
-                2017-05-25
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-06T21:27:47+08:00">
+                2017-06-06
               </time>
             
           </span>
@@ -353,17 +349,16 @@
       
 
       
-        <ol>
-<li>先比较连接手机时的音质，判断是否为耳机自身故障。</li>
-<li>确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】<a id="more"></a><img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/1.png" alt="[步骤1]" title="[步骤1]"></li>
-<li>在相关设置下选择【设备和打印机】<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/2.png" alt="[步骤2]" title="[步骤2]"></li>
-<li>右击【蓝牙耳机】图标-声音设置 <img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/3.png" alt="[步骤3]" title="[步骤3]"></li>
-<li>观察到一个耳机却又两个模式<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/4.png" alt="[步骤4]" title="[步骤4]">，点开Stereo模式的【属性】-选择【高级】</li>
-<li>观察到“2通道，CD音质”说明现在使用的耳机模式是听音乐的。<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/5.png" alt="[步骤5]" title="[步骤5]"></li>
-<li>作为对比回去再打开Hands-Free模式的【属性】【高级】</li>
-<li>观察到“1通道，电话音质”，这就是我之前使用的，音质明显下降的版本。<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/6.png" alt="[步骤6]" title="[步骤6]"></li>
-<li>选择Stereo为默认模式。</li>
-</ol>
+        <p>引言大意：</p>
+<blockquote>
+<p>使深层网络更容易训练的一种方法是使用更复杂的优化程序，如SGD +momentum，RMSProp或Adam。 另一个策略是改变网络架构，使其更容易训练。这些方面的一个想法是最近提出的批量归一化(Batch normalization)这个想法比较简单。 当机器学习方法的输入数据由零均值和单位方差的不相关特征组成时，往往会更好地工作。 在训练神经网络时，我们可以在将数据馈送到网络之前对数据进行预处理，以明确地解耦其特征; 这将确保网络的第一层看到遵循良好分发的数据。 然而，即使我们对输入数据进行预处理，网络较深层的激活可能不会再去相关，并且不再具有零均值或单位方差，因为它们是从网络中较早的层输出的。 更糟糕的是，在训练过程中，网络每层的特征分布将随着每个层的权重更新而移动。<br><a id="more"></a><br>[3]的作者假设深层神经网络中特征的偏移分布可能使训练深层网络更加困难。 为了克服这个问题，[3]提出将批量归一化层插入到网络中。 在训练时间内，批量归一化层使用数据的小批量来估计每个特征的平均值和标准偏差。 然后使用这些估计的平均值和标准偏差来中心和标准化小型化的特征。 在训练期间，这些平均值和标准偏差的平均值保持不变，在测试时，这些运行平均值用于对特征进行中心和归一化。<br>这种归一化策略有可能降低网络的代表性能力，因为某些层有时可能具有非零均值或单位方差特征的优化。 为此，批量归一化层包括每个特征维度的可学习的移位和缩放参数。<br>[3] Sergey Ioffe and Christian Szegedy, “Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift”, ICML 2015.</p>
+</blockquote>
+<h2 id="Batch-normalization-Forward"><a href="#Batch-normalization-Forward" class="headerlink" title="Batch normalization: Forward"></a>Batch normalization: Forward</h2><p>先上公式<br><img src="/2017/06/06/CS231n学习笔记（批量归一化）/BatchNormalization1.png" alt="[Batch Normalization1]" title="[Batch Normalization1]"></p>
+<p>再上关键代码块<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sample_mean = np.mean(x, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>)       <span class="comment"># [1,D]    </span></div><div class="line">sample_var = np.var(x, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>)         <span class="comment"># [1,D] </span></div><div class="line">x_normalized = (x - sample_mean) / np.sqrt(sample_var + eps)    <span class="comment"># [N,D]    </span></div><div class="line">out = gamma * x_normalized + beta    </div><div class="line">cache = (x_normalized, gamma, beta, sample_mean, sample_var, x, eps)    </div><div class="line">running_mean = momentum * running_mean + (<span class="number">1</span> - momentum) * sample_mean    </div><div class="line">running_var = momentum * running_var + (<span class="number">1</span> - momentum) * sample_var</div></pre></td></tr></table></figure></p>
+<p><strong>gamma和std对应，beta和mean对应</strong>。</p>
+<h2 id="Batch-Normalization-backward"><a href="#Batch-Normalization-backward" class="headerlink" title="Batch Normalization: backward"></a>Batch Normalization: backward</h2><img src="/2017/06/06/CS231n学习笔记（批量归一化）/Backpropagatethegradientofloss.png" alt="[Backpropagate the gradient of loss]" title="[Backpropagate the gradient of loss]">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">x_normalized, gamma, beta, sample_mean, sample_var, x, eps = cache</div><div class="line">N, D = x.shape</div><div class="line">dx_normalized = dout * gamma       <span class="comment"># [N,D]</span></div><div class="line">x_mu = x - sample_mean             <span class="comment"># [N,D]</span></div><div class="line">sample_std_inv = <span class="number">1.0</span> / np.sqrt(sample_var + eps)    <span class="comment"># [1,D]</span></div><div class="line">dsample_var = <span class="number">-0.5</span> * np.sum(dx_normalized * x_mu, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>) * sample_std_inv**<span class="number">3</span></div><div class="line">dsample_mean = <span class="number">-1.0</span> * np.sum(dx_normalized * sample_std_inv, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>) - \</div><div class="line">                               <span class="number">2.0</span> * dsample_var * np.mean(x_mu, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>)</div><div class="line">dx1 = dx_normalized * sample_std_inv</div><div class="line">dx2 = <span class="number">2.0</span>/N * dsample_var * x_mu</div><div class="line">dx = dx1 + dx2 + <span class="number">1.0</span>/N * dsample_mean</div><div class="line">dgamma = np.sum(dout * x_normalized, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>)</div><div class="line">dbeta = np.sum(dout, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
+<p>dout就是loss关于yi的偏导数。</p>
 
       
     </div>
@@ -393,7 +388,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Tips/" rel="tag"># Tips</a>
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
           
         </div>
       
@@ -406,8 +401,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/24/CS231n-学习笔记-SVM/" rel="next" title="CS231n 学习笔记(SVM)">
-                <i class="fa fa-chevron-left"></i> CS231n 学习笔记(SVM)
+              <a href="/2017/06/01/CS231n学习笔记-全连接网络/" rel="next" title="CS231n学习笔记(全连接网络)">
+                <i class="fa fa-chevron-left"></i> CS231n学习笔记(全连接网络)
               </a>
             
           </div>
@@ -415,10 +410,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/26/UEditor的数据回显/" rel="prev" title="UEditor的数据回显">
-                UEditor的数据回显 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -465,8 +456,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar2.jpg"
@@ -539,6 +539,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-normalization-Forward"><span class="nav-number">1.</span> <span class="nav-text">Batch normalization: Forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-Normalization-backward"><span class="nav-number">2.</span> <span class="nav-text">Batch Normalization: backward</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
