@@ -95,15 +95,16 @@
 <meta name="description" content="引言大意：  使深层网络更容易训练的一种方法是使用更复杂的优化程序，如SGD +momentum，RMSProp或Adam。 另一个策略是改变网络架构，使其更容易训练。这些方面的一个想法是最近提出的批量归一化(Batch normalization)这个想法比较简单。 当机器学习方法的输入数据由零均值和单位方差的不相关特征组成时，往往会更好地工作。 在训练神经网络时，我们可以在将数据馈送到网络之前">
 <meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS231n学习笔记(批量归一化)">
+<meta property="og:title" content="CS231n学习笔记(批量归一化和dropout)">
 <meta property="og:url" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="引言大意：  使深层网络更容易训练的一种方法是使用更复杂的优化程序，如SGD +momentum，RMSProp或Adam。 另一个策略是改变网络架构，使其更容易训练。这些方面的一个想法是最近提出的批量归一化(Batch normalization)这个想法比较简单。 当机器学习方法的输入数据由零均值和单位方差的不相关特征组成时，往往会更好地工作。 在训练神经网络时，我们可以在将数据馈送到网络之前">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/BatchNormalization1.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/Backpropagatethegradientofloss.png">
-<meta property="og:updated_time" content="2017-06-06T13:27:47.140Z">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/dropout.png">
+<meta property="og:updated_time" content="2017-06-07T04:12:35.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CS231n学习笔记(批量归一化)">
+<meta name="twitter:title" content="CS231n学习笔记(批量归一化和dropout)">
 <meta name="twitter:description" content="引言大意：  使深层网络更容易训练的一种方法是使用更复杂的优化程序，如SGD +momentum，RMSProp或Adam。 另一个策略是改变网络架构，使其更容易训练。这些方面的一个想法是最近提出的批量归一化(Batch normalization)这个想法比较简单。 当机器学习方法的输入数据由零均值和单位方差的不相关特征组成时，往往会更好地工作。 在训练神经网络时，我们可以在将数据馈送到网络之前">
 <meta name="twitter:image" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/BatchNormalization1.png">
 
@@ -139,7 +140,7 @@
 
 
 
-  <title>CS231n学习笔记(批量归一化) | Liam's Blog</title>
+  <title>CS231n学习笔记(批量归一化和dropout) | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -285,7 +286,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CS231n学习笔记(批量归一化)</h2>
+          <h2 class="post-title" itemprop="name headline">CS231n学习笔记(批量归一化和dropout)</h2>
         
 
         <div class="post-meta">
@@ -313,8 +314,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-06T21:27:47+08:00">
-                2017-06-06
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-07T12:12:35+08:00">
+                2017-06-07
               </time>
             
           </span>
@@ -359,7 +360,10 @@
 <h2 id="Batch-Normalization-backward"><a href="#Batch-Normalization-backward" class="headerlink" title="Batch Normalization: backward"></a>Batch Normalization: backward</h2><img src="/2017/06/06/CS231n学习笔记（批量归一化）/Backpropagatethegradientofloss.png" alt="[Backpropagate the gradient of loss]" title="[Backpropagate the gradient of loss]">
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">x_normalized, gamma, beta, sample_mean, sample_var, x, eps = cache</div><div class="line">N, D = x.shape</div><div class="line">dx_normalized = dout * gamma       <span class="comment"># [N,D]</span></div><div class="line">x_mu = x - sample_mean             <span class="comment"># [N,D]</span></div><div class="line">sample_std_inv = <span class="number">1.0</span> / np.sqrt(sample_var + eps)    <span class="comment"># [1,D]</span></div><div class="line">dsample_var = <span class="number">-0.5</span> * np.sum(dx_normalized * x_mu, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>) * sample_std_inv**<span class="number">3</span></div><div class="line">dsample_mean = <span class="number">-1.0</span> * np.sum(dx_normalized * sample_std_inv, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>) - \</div><div class="line">                               <span class="number">2.0</span> * dsample_var * np.mean(x_mu, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>)</div><div class="line">dx1 = dx_normalized * sample_std_inv</div><div class="line">dx2 = <span class="number">2.0</span>/N * dsample_var * x_mu</div><div class="line">dx = dx1 + dx2 + <span class="number">1.0</span>/N * dsample_mean</div><div class="line">dgamma = np.sum(dout * x_normalized, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>)</div><div class="line">dbeta = np.sum(dout, axis=<span class="number">0</span>, keepdims=<span class="keyword">True</span>)</div></pre></td></tr></table></figure>
 <p>dout就是loss关于yi的偏导数。</p>
-
+<h2 id="dropout-forward"><a href="#dropout-forward" class="headerlink" title="dropout_forward"></a>dropout_forward</h2><img src="/2017/06/06/CS231n学习笔记（批量归一化）/dropout.png" alt="[dropout]" title="[dropout]">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mask = (np.random.rand(*x.shape) &lt; p) / p</div><div class="line">out = x * mask</div></pre></td></tr></table></figure>
+<p>p代表节点生效的概率。最后除以p是为了让整体的均值不变。</p>
+<h2 id="dropout-backward"><a href="#dropout-backward" class="headerlink" title="dropout_backward"></a>dropout_backward</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dx = dout * mask</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -410,6 +414,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/08/CS231n学习笔记-卷积网络/" rel="prev" title="CS231n学习笔记(卷积网络)">
+                CS231n学习笔记(卷积网络) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -481,7 +489,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -549,7 +557,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-normalization-Forward"><span class="nav-number">1.</span> <span class="nav-text">Batch normalization: Forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-Normalization-backward"><span class="nav-number">2.</span> <span class="nav-text">Batch Normalization: backward</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-normalization-Forward"><span class="nav-number">1.</span> <span class="nav-text">Batch normalization: Forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-Normalization-backward"><span class="nav-number">2.</span> <span class="nav-text">Batch Normalization: backward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dropout-forward"><span class="nav-number">3.</span> <span class="nav-text">dropout_forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dropout-backward"><span class="nav-number">4.</span> <span class="nav-text">dropout_backward</span></a></li></ol></div>
             
 
           </div>

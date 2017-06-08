@@ -265,6 +265,135 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/08/CS231n学习笔记-卷积网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/08/CS231n学习笔记-卷积网络/" itemprop="url">CS231n学习笔记(卷积网络)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-08T21:37:55+08:00">
+                2017-06-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-08T23:46:47+08:00">
+                2017-06-08
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Convolution-Naive-forward-pass"><a href="#Convolution-Naive-forward-pass" class="headerlink" title="Convolution: Naive forward pass"></a>Convolution: Naive forward pass</h2><img src="/2017/06/08/CS231n学习笔记-卷积网络/1.gif" alt="[Convolutional Neural Networks for Visual Recognition]" title="[Convolutional Neural Networks for Visual Recognition]">
+<p>pad=x就是在图像边缘加x圈零,stride=2就是卷积核(fliter)在横向和纵向移动的时候都要空一格.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">stride, pad = conv_param[<span class="string">'stride'</span>], conv_param[<span class="string">'pad'</span>]</div><div class="line">N, C, H, W = x.shape</div><div class="line">F, C, HH, WW = w.shape</div><div class="line">x_padded = np.pad(x, ((<span class="number">0</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="number">0</span>), (pad, pad), (pad, pad)), mode=<span class="string">'constant'</span>)</div><div class="line"></div><div class="line">H_n = <span class="number">1</span> + (H + <span class="number">2</span> * pad - HH) / stride</div><div class="line">W_n = <span class="number">1</span> + (W + <span class="number">2</span> * pad - WW) / stride</div><div class="line">out = np.zeros((N, F, H_n, W_n))</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(N):       <span class="comment"># ith image    </span></div><div class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> xrange(F):   <span class="comment"># fth filter        </span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> xrange(H_n):            </div><div class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> xrange(W_n):                </div><div class="line">                out[i, f, j, k] = np.sum(x_padded[i, :, j*stride:HH+j*stride, k*stride:WW+k*stride] * w[f]) + b[f]</div></pre></td></tr></table></figure></p>
+<h3 id="图像的切割"><a href="#图像的切割" class="headerlink" title="图像的切割"></a>图像的切割</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">kitten, puppy = imread(<span class="string">'kitten.jpg'</span>), imread(<span class="string">'puppy.jpg'</span>)</div><div class="line"><span class="comment"># kitten is wide, and puppy is already square</span></div><div class="line">d = kitten.shape[<span class="number">1</span>] - kitten.shape[<span class="number">0</span>]</div><div class="line">kitten_cropped = kitten[:, d//<span class="number">2</span>:-d//<span class="number">2</span>, :] <span class="comment">#kitten[Channel,Wide,height]</span></div></pre></td></tr></table></figure>
+<p>切割图像成为一个正方形.<br>图像的3个通道分别是红,绿,蓝.也就是RGB</p>
+<h3 id="图像的放缩"><a href="#图像的放缩" class="headerlink" title="图像的放缩"></a>图像的放缩</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">img_size = <span class="number">200</span>   <span class="comment"># Make this smaller if it runs too slow</span></div><div class="line">x = np.zeros((<span class="number">2</span>, <span class="number">3</span>, img_size, img_size))</div><div class="line">x[<span class="number">0</span>, :, :, :] = imresize(puppy, (img_size, img_size)).transpose((<span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>))</div></pre></td></tr></table></figure>
+<p>imresize(puppy, (img_size, img_size))的形状是(200L, 200L, 3L)<br>transpose((2,0,1))是以原来的shape按0,1,2这样排,然后去2,0,1重排得到结果.<br>故x[0, :, :, :]的形状是(3L, 200L, 200L)</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -284,7 +413,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/06/CS231n学习笔记（批量归一化）/" itemprop="url">CS231n学习笔记(批量归一化)</a></h2>
+                <a class="post-title-link" href="/2017/06/06/CS231n学习笔记（批量归一化）/" itemprop="url">CS231n学习笔记(批量归一化和dropout)</a></h2>
         
 
         <div class="post-meta">
@@ -312,8 +441,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-06T21:27:47+08:00">
-                2017-06-06
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-07T12:12:35+08:00">
+                2017-06-07
               </time>
             
           </span>
@@ -1458,138 +1587,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/18/ssm架构下json数据传递问题和解决/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/18/ssm架构下json数据传递问题和解决/" itemprop="url">ssm架构下json数据传递问题和解决</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-18T12:47:48+08:00">
-                2017-05-18
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-18T13:37:48+08:00">
-                2017-05-18
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><ul>
-<li>springmvc-4.3.6 jar包</li>
-<li>jackson-2.7.4 <a href="/2017/05/18/ssm架构下json数据传递问题和解决/json-jar.zip" title="[jar]">[jar]</a>包</li>
-</ul>
-<h2 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h2><p>在springmvc.xml文件中采用<code>&lt;mvc:annotation-driven/&gt;</code>注解驱动。<br>在jsp文件下,配置一个按钮调用下面的js代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">requestJson</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    $ajax(&#123;</div><div class="line">        <span class="attr">type</span>:<span class="string">"post"</span>,</div><div class="line">        <span class="attr">url</span>:<span class="string">"$&#123;pageContext.request.contextPath &#125;/requestJson.action"</span>,</div><div class="line">        <span class="attr">data</span>:<span class="string">'&#123;"articleid":10,"title":"test"&#125;'</span>,</div><div class="line">        <span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            alert(data);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在后台创建一个controller。传入json数据，@RequestBody转为实体类。传出实体类，使用@ResponseBody转为json格式。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Controller</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JsonTest</span></span>&#123;</div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/requestJson"</span>)</div><div class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> <span class="function">items <span class="title">requestJson</span><span class="params">(@RequestBody Items items)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> items;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在浏览器中打开jsp页面，F12控制台观察requestJson.action的状态码</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>1.状态码200/415，不进入后端controller断点，浏览器弹出网页html代码<br>解决办法：缺少class，更换jar包。</p>
-<p>2.状态码400/500，不进入后端controller断点，浏览器无反应<br>解决办法：jsp页面中data数据需采用正确的json编写格式，以逗号分隔。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1639,7 +1636,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
