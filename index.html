@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-08T23:46:47+08:00">
-                2017-06-08
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-09T23:31:11+08:00">
+                2017-06-09
               </time>
             
           </span>
@@ -344,15 +344,18 @@
 
       
         
-          
-            <h2 id="Convolution-Naive-forward-pass"><a href="#Convolution-Naive-forward-pass" class="headerlink" title="Convolution: Naive forward pass"></a>Convolution: Naive forward pass</h2><img src="/2017/06/08/CS231n学习笔记-卷积网络/1.gif" alt="[Convolutional Neural Networks for Visual Recognition]" title="[Convolutional Neural Networks for Visual Recognition]">
-<p>pad=x就是在图像边缘加x圈零,stride=2就是卷积核(fliter)在横向和纵向移动的时候都要空一格.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">stride, pad = conv_param[<span class="string">'stride'</span>], conv_param[<span class="string">'pad'</span>]</div><div class="line">N, C, H, W = x.shape</div><div class="line">F, C, HH, WW = w.shape</div><div class="line">x_padded = np.pad(x, ((<span class="number">0</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="number">0</span>), (pad, pad), (pad, pad)), mode=<span class="string">'constant'</span>)</div><div class="line"></div><div class="line">H_n = <span class="number">1</span> + (H + <span class="number">2</span> * pad - HH) / stride</div><div class="line">W_n = <span class="number">1</span> + (W + <span class="number">2</span> * pad - WW) / stride</div><div class="line">out = np.zeros((N, F, H_n, W_n))</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(N):       <span class="comment"># ith image    </span></div><div class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> xrange(F):   <span class="comment"># fth filter        </span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> xrange(H_n):            </div><div class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> xrange(W_n):                </div><div class="line">                out[i, f, j, k] = np.sum(x_padded[i, :, j*stride:HH+j*stride, k*stride:WW+k*stride] * w[f]) + b[f]</div></pre></td></tr></table></figure></p>
-<h3 id="图像的切割"><a href="#图像的切割" class="headerlink" title="图像的切割"></a>图像的切割</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">kitten, puppy = imread(<span class="string">'kitten.jpg'</span>), imread(<span class="string">'puppy.jpg'</span>)</div><div class="line"><span class="comment"># kitten is wide, and puppy is already square</span></div><div class="line">d = kitten.shape[<span class="number">1</span>] - kitten.shape[<span class="number">0</span>]</div><div class="line">kitten_cropped = kitten[:, d//<span class="number">2</span>:-d//<span class="number">2</span>, :] <span class="comment">#kitten[Channel,Wide,height]</span></div></pre></td></tr></table></figure>
-<p>切割图像成为一个正方形.<br>图像的3个通道分别是红,绿,蓝.也就是RGB</p>
-<h3 id="图像的放缩"><a href="#图像的放缩" class="headerlink" title="图像的放缩"></a>图像的放缩</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">img_size = <span class="number">200</span>   <span class="comment"># Make this smaller if it runs too slow</span></div><div class="line">x = np.zeros((<span class="number">2</span>, <span class="number">3</span>, img_size, img_size))</div><div class="line">x[<span class="number">0</span>, :, :, :] = imresize(puppy, (img_size, img_size)).transpose((<span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>))</div></pre></td></tr></table></figure>
-<p>imresize(puppy, (img_size, img_size))的形状是(200L, 200L, 3L)<br>transpose((2,0,1))是以原来的shape按0,1,2这样排,然后去2,0,1重排得到结果.<br>故x[0, :, :, :]的形状是(3L, 200L, 200L)</p>
-
-          
+          <p>完成作业:</p>
+<ul>
+<li><a href="/2017/06/08/CS231n学习笔记-卷积网络/ConvolutionalNetworks.ipynb" title="[ConvolutionalNetworks.ipynb]">[ConvolutionalNetworks.ipynb]</a></li>
+<li><a href="/2017/06/08/CS231n学习笔记-卷积网络/cnn.py" title="[cnn.py]">[cnn.py]</a></li>
+<li><a href="/2017/06/08/CS231n学习笔记-卷积网络/layers.py" title="[layers.py]">[layers.py]</a></li></ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/08/CS231n学习笔记-卷积网络/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
