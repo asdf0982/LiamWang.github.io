@@ -1,0 +1,760 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="zioBb4Ac5xjO7-IkGVs3Qnyfbu-5lW01M2wTphSvcWU" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Deep Learning,tensorflow," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="跳过数据导入部分,直接进入model部分. simple_model12345678910111213141516171819202122232425262728293031323334# clear old variablestf.reset_default_graph()# setup input (e.g. the data that changes every batch)# The fi">
+<meta name="keywords" content="Deep Learning,tensorflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS231n学习笔记(TensorFlow)">
+<meta property="og:url" content="https://asdf0982.github.io/2017/06/11/CS231n学习笔记-TensorFlow/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="跳过数据导入部分,直接进入model部分. simple_model12345678910111213141516171819202122232425262728293031323334# clear old variablestf.reset_default_graph()# setup input (e.g. the data that changes every batch)# The fi">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/11/CS231n学习笔记-TensorFlow/fliter.gif">
+<meta property="og:updated_time" content="2017-06-11T12:00:40.662Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CS231n学习笔记(TensorFlow)">
+<meta name="twitter:description" content="跳过数据导入部分,直接进入model部分. simple_model12345678910111213141516171819202122232425262728293031323334# clear old variablestf.reset_default_graph()# setup input (e.g. the data that changes every batch)# The fi">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/11/CS231n学习笔记-TensorFlow/fliter.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://asdf0982.github.io/2017/06/11/CS231n学习笔记-TensorFlow/"/>
+
+
+
+
+
+  <title>CS231n学习笔记(TensorFlow) | Liam's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99966000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Share the joy of coding.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/11/CS231n学习笔记-TensorFlow/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">CS231n学习笔记(TensorFlow)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T00:27:32+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-11T20:00:40+08:00">
+                2017-06-11
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>hits
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>跳过数据导入部分,直接进入model部分.</p>
+<h2 id="simple-model"><a href="#simple-model" class="headerlink" title="simple_model"></a>simple_model</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># clear old variables</span></div><div class="line">tf.reset_default_graph()</div><div class="line"></div><div class="line"><span class="comment"># setup input (e.g. the data that changes every batch)</span></div><div class="line"><span class="comment"># The first dim is None, and gets sets automatically based on batch size fed in</span></div><div class="line">X = tf.placeholder(tf.float32, [<span class="keyword">None</span>, <span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>])</div><div class="line">y = tf.placeholder(tf.int64, [<span class="keyword">None</span>])</div><div class="line">is_training = tf.placeholder(tf.bool)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">simple_model</span><span class="params">(X,y)</span>:</span></div><div class="line">    <span class="comment"># define our weights (e.g. init_two_layer_convnet)</span></div><div class="line">    </div><div class="line">    <span class="comment"># setup variables</span></div><div class="line">    Wconv1 = tf.get_variable(<span class="string">"Wconv1"</span>, shape=[<span class="number">7</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">32</span>])</div><div class="line">    bconv1 = tf.get_variable(<span class="string">"bconv1"</span>, shape=[<span class="number">32</span>])</div><div class="line">    W1 = tf.get_variable(<span class="string">"W1"</span>, shape=[<span class="number">5408</span>, <span class="number">10</span>])</div><div class="line">    b1 = tf.get_variable(<span class="string">"b1"</span>, shape=[<span class="number">10</span>])</div><div class="line"></div><div class="line">    <span class="comment"># define our graph (e.g. two_layer_convnet)</span></div><div class="line">    a1 = tf.nn.conv2d(X, Wconv1, strides=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>], padding=<span class="string">'VALID'</span>) + bconv1</div><div class="line">    h1 = tf.nn.relu(a1)</div><div class="line">    h1_flat = tf.reshape(h1,[<span class="number">-1</span>,<span class="number">5408</span>])</div><div class="line">    y_out = tf.matmul(h1_flat,W1) + b1</div><div class="line">    <span class="keyword">return</span> y_out</div><div class="line"></div><div class="line">y_out = simple_model(X,y)</div><div class="line"></div><div class="line"><span class="comment"># define our loss</span></div><div class="line">total_loss = tf.losses.hinge_loss(tf.one_hot(y,<span class="number">10</span>),logits=y_out)</div><div class="line">mean_loss = tf.reduce_mean(total_loss)</div><div class="line"></div><div class="line"><span class="comment"># define our optimizer</span></div><div class="line">optimizer = tf.train.AdamOptimizer(<span class="number">5e-4</span>) <span class="comment"># select optimizer and set learning rate</span></div><div class="line">train_step = optimizer.minimize(mean_loss)</div></pre></td></tr></table></figure>
+<img src="/2017/06/11/CS231n学习笔记-TensorFlow/fliter.gif" alt="[回顾卷积过程]" title="[回顾卷积过程]">
+<p><code>Wconv1 = tf.get_variable(&quot;Wconv1&quot;, shape=[7, 7, 3, 32])</code><br>表示卷积核的大小为7*7,每个卷积核包含3个通道,共有32个卷积核.</p>
+<p><code>bconv1 = tf.get_variable(&quot;bconv1&quot;, shape=[32])</code><br>32个卷积核,每个都包含1个偏置项.</p>
+<p><code>W1 = tf.get_variable(&quot;W1&quot;, shape=[5408, 10])</code><br>已知stride,图像与卷积核的宽度高度,根据公式计算卷积后输出矩阵的大小,1+(32-7)/2 = 13, 故每个卷积核会输出一个13*13的矩阵(不再以通道区分),共有32个卷积核,故输出的参数总数为13*13*32 = 5408. 而CASIA-10是最终分10类的,所以取10.</p>
+<p><code>a1 = tf.nn.conv2d(X, Wconv1, strides=[1,2,2,1], padding=&#39;VALID&#39;) + bconv1</code></p>
+<ul>
+<li><a href="https://stackoverflow.com/questions/34619177/what-does-tf-nn-conv2d-do-in-tensorflow" target="_blank" rel="external">What does tf.nn.conv2d do in tensorflow?</a></li>
+<li><a href="http://blog.csdn.net/lujiandong1/article/details/53728053" target="_blank" rel="external">tensorflow conv2d的padding解释以及参数解释</a><br>strides[0]和strides[3]必须为1.即strides = [1, X, X, 1]</li>
+</ul>
+<p><code>total_loss = tf.losses.hinge_loss(tf.one_hot(y,10),logits=y_out)</code><br><a href="https://zhuanlan.zhihu.com/p/25896409" target="_blank" rel="external">tf.one_hot()使用</a>,即创建一个全零矩阵,将对应位置置1.</p>
+<h2 id="Training-the-model-on-one-epoch"><a href="#Training-the-model-on-one-epoch" class="headerlink" title="Training the model on one epoch"></a>Training the model on one epoch</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_model</span><span class="params">(session, predict, loss_val, Xd, yd,</span></span></div><div class="line">              epochs=<span class="number">1</span>, batch_size=<span class="number">64</span>, print_every=<span class="number">100</span>,</div><div class="line">              training=None, plot_losses=False):</div><div class="line">    <span class="comment"># have tensorflow compute accuracy</span></div><div class="line">    correct_prediction = tf.equal(tf.argmax(predict,<span class="number">1</span>), y)</div><div class="line">    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))</div><div class="line">    </div><div class="line">    <span class="comment"># shuffle indicies</span></div><div class="line">    train_indicies = np.arange(Xd.shape[<span class="number">0</span>])</div><div class="line">    np.random.shuffle(train_indicies)</div><div class="line"></div><div class="line">    training_now = training <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="comment">#True</span></div><div class="line">    </div><div class="line">    <span class="comment"># setting up variables we want to compute (and optimizing)</span></div><div class="line">    <span class="comment"># if we have a training function, add that to things we compute</span></div><div class="line">    variables = [mean_loss,correct_prediction,accuracy]</div><div class="line">    <span class="keyword">if</span> training_now:</div><div class="line">        variables[<span class="number">-1</span>] = training</div><div class="line">    </div><div class="line">    <span class="comment"># counter </span></div><div class="line">    iter_cnt = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> range(epochs):</div><div class="line">        <span class="comment"># keep track of losses and accuracy</span></div><div class="line">        correct = <span class="number">0</span></div><div class="line">        losses = []</div><div class="line">        <span class="comment"># make sure we iterate over the dataset once</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(int(math.ceil(Xd.shape[<span class="number">0</span>]/batch_size))):<span class="comment">#也许最后还有一些训练集没有被纳入,也就不管它们了,宁缺毋滥</span></div><div class="line">            <span class="comment"># generate indicies for the batch</span></div><div class="line">            start_idx = (i*batch_size)%Xd.shape[<span class="number">0</span>] <span class="comment">#batch索引起始位置</span></div><div class="line">            idx = train_indicies[start_idx:start_idx+batch_size] <span class="comment">#一个batch所有索引(已打乱)</span></div><div class="line">            </div><div class="line">            <span class="comment"># create a feed dictionary for this batch</span></div><div class="line">            feed_dict = &#123;X: Xd[idx,:],</div><div class="line">                         y: yd[idx],</div><div class="line">                         is_training: training_now &#125;</div><div class="line">            <span class="comment"># get batch size</span></div><div class="line">            actual_batch_size = yd[idx].shape[<span class="number">0</span>]</div><div class="line">            </div><div class="line">            <span class="comment"># have tensorflow compute loss and correct predictions</span></div><div class="line">            <span class="comment"># and (if given) perform a training step</span></div><div class="line">            loss, corr, _ = session.run(variables,feed_dict=feed_dict)</div><div class="line">            </div><div class="line">            <span class="comment"># aggregate performance stats</span></div><div class="line">            losses.append(loss*actual_batch_size)</div><div class="line">            correct += np.sum(corr)</div><div class="line">            </div><div class="line">            <span class="comment"># print every now and then</span></div><div class="line">            <span class="keyword">if</span> training_now <span class="keyword">and</span> (iter_cnt % print_every) == <span class="number">0</span>:</div><div class="line">                print(<span class="string">"Iteration &#123;0&#125;: with minibatch training loss = &#123;1:.3g&#125; and accuracy of &#123;2:.2g&#125;"</span>\</div><div class="line">                      .format(iter_cnt,loss,np.sum(corr)/actual_batch_size)) <span class="comment">#.ng表示n位有效数字</span></div><div class="line">            iter_cnt += <span class="number">1</span></div><div class="line">        total_correct = correct/Xd.shape[<span class="number">0</span>]</div><div class="line">        total_loss = np.sum(losses)/Xd.shape[<span class="number">0</span>]</div><div class="line">        print(<span class="string">"Epoch &#123;2&#125;, Overall loss = &#123;0:.3g&#125; and accuracy of &#123;1:.3g&#125;"</span>\</div><div class="line">              .format(total_loss,total_correct,e+<span class="number">1</span>))</div><div class="line">        <span class="keyword">if</span> plot_losses:</div><div class="line">            plt.plot(losses)</div><div class="line">            plt.grid(<span class="keyword">True</span>)</div><div class="line">            plt.title(<span class="string">'Epoch &#123;&#125; Loss'</span>.format(e+<span class="number">1</span>))</div><div class="line">            plt.xlabel(<span class="string">'minibatch number'</span>)</div><div class="line">            plt.ylabel(<span class="string">'minibatch loss'</span>)</div><div class="line">            plt.show()</div><div class="line">    <span class="keyword">return</span> total_loss,total_correct</div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    <span class="keyword">with</span> tf.device(<span class="string">"/cpu:0"</span>): <span class="comment">#"/cpu:0" or "/gpu:0" </span></div><div class="line">        sess.run(tf.global_variables_initializer())</div><div class="line">        print(<span class="string">'Training'</span>)</div><div class="line">        run_model(sess,y_out,mean_loss,X_train,y_train,<span class="number">1</span>,<span class="number">64</span>,<span class="number">100</span>,train_step,<span class="keyword">True</span>)</div><div class="line">        print(<span class="string">'Validation'</span>)</div><div class="line">        run_model(sess,y_out,mean_loss,X_val,y_val,<span class="number">1</span>,<span class="number">64</span>)</div></pre></td></tr></table></figure>
+<p><code>correct_prediction = tf.equal(tf.argmax(predict,1), y)</code><br><code>tf.argmax</code>是一个非常有用的函数，它能给出某个tensor对象在某一维上的其数据最大值所在的索引值。由于标签向量是由0,1组成，因此最大值1所在的索引位置就是类别标签，比如tf.argmax(predict,1)返回的是模型对于任一输入x预测到的标签值.<br><code>tf.equal</code>返回一个布尔数组,如<code>[True, False, True, True]</code></p>
+<p><code>accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))</code><br>可以使用<code>tf.cast()</code>函数将其转换为布尔值转换为[1, 0, 1, 1]，以方便准确率的计算.<br><code>tf.reduce_mean</code>可跨越维度的计算张量各元素的平均值.</p>
+<p><code>np.random.shuffle(train_indicies)</code><br>以随机次序重组序列</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/10/install-tensorflow/" rel="next" title="Install tensorflow on Win10">
+                <i class="fa fa-chevron-left"></i> Install tensorflow on Win10
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar2.jpg"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/asdf0982" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ghat0982" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#simple-model"><span class="nav-number">1.</span> <span class="nav-text">simple_model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Training-the-model-on-one-epoch"><span class="nav-number">2.</span> <span class="nav-text">Training the model on one epoch</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

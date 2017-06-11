@@ -275,6 +275,141 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/24/CS231n-学习笔记-SVM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/24/CS231n-学习笔记-SVM/" itemprop="url">CS231n 学习笔记(SVM)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-24T22:10:08+08:00">
+                2017-05-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-05-28T11:35:40+08:00">
+                2017-05-28
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>完成作业：</p>
+<ul>
+<li><a href="/2017/05/24/CS231n-学习笔记-SVM/svm.ipynb" title="[svm.ipynb]">[svm.ipynb]</a></li>
+<li><a href="/2017/05/24/CS231n-学习笔记-SVM/linear_svm.py" title="[linear_svm.py]">[linear_svm.py]</a></li>
+<li><a href="/2017/05/24/CS231n-学习笔记-SVM/linear_classifier.py" title="[linear_classifier.py]">[linear_classifier.py]</a>
+</li>
+</ul>
+<h3 id="hstack-vstack"><a href="#hstack-vstack" class="headerlink" title="hstack(),vstack()"></a>hstack(),vstack()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line">x = np.array([[<span class="number">1</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">4</span>],[<span class="number">5</span>,<span class="number">6</span>]])</div><div class="line">a = np.ones((x.shape[<span class="number">0</span>],<span class="number">1</span>))</div><div class="line">b = np.ones((<span class="number">1</span>,x.shape[<span class="number">1</span>]))</div><div class="line">c = np.hstack([x,a])</div><div class="line">d = np.vstack([x,b])</div><div class="line"><span class="keyword">print</span> (a)</div><div class="line"><span class="keyword">print</span> (b)</div><div class="line"><span class="keyword">print</span> (c)</div><div class="line"><span class="keyword">print</span> (d)</div><div class="line"></div><div class="line">[[ <span class="number">1.</span>]</div><div class="line"> [ <span class="number">1.</span>]</div><div class="line"> [ <span class="number">1.</span>]]</div><div class="line">[[ <span class="number">1.</span>  <span class="number">1.</span>]]</div><div class="line">[[ <span class="number">1.</span>  <span class="number">2.</span>  <span class="number">1.</span>]</div><div class="line"> [ <span class="number">3.</span>  <span class="number">4.</span>  <span class="number">1.</span>]</div><div class="line"> [ <span class="number">5.</span>  <span class="number">6.</span>  <span class="number">1.</span>]]</div><div class="line">[[ <span class="number">1.</span>  <span class="number">2.</span>]</div><div class="line"> [ <span class="number">3.</span>  <span class="number">4.</span>]</div><div class="line"> [ <span class="number">5.</span>  <span class="number">6.</span>]</div><div class="line"> [ <span class="number">1.</span>  <span class="number">1.</span>]]</div></pre></td></tr></table></figure>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/24/CS231n-学习笔记-SVM/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/22/CS231n学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -717,7 +852,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -4,6 +4,25 @@
 
     
   <url>
+    <loc>https://asdf0982.github.io/2017/06/11/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-TensorFlow/</loc>
+    <lastmod>2017-06-11T12:00:40.662Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记(TensorFlow)</title>
+        <pubTime>2017-06-10T16:27:32.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>tensorflow</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://asdf0982.github.io/2017/06/10/install-tensorflow/</loc>
     <lastmod>2017-06-10T03:08:36.060Z</lastmod>
     <data>
@@ -13,9 +32,9 @@
         
         <tag>Deep Learning</tag>
          
-        <tag>Tips</tag>
-         
         <tag>tensorflow</tag>
+         
+        <tag>Tips</tag>
          
          
            
