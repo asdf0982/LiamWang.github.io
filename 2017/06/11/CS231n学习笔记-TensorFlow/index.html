@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="完成作业: [TensorFlow.ipynb]跳过数据导入部分,直接进入model部分.tensorflow的api有很多,建议边写边查.api文档 simple_model12345678910111213141516171819202122232425262728293031323334# clear old variablestf.reset_default_graph()# setup">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/11/CS231n学习笔记-TensorFlow/fliter.gif">
-<meta property="og:updated_time" content="2017-06-12T12:01:10.170Z">
+<meta property="og:updated_time" content="2017-06-12T13:28:25.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231n学习笔记(TensorFlow)">
 <meta name="twitter:description" content="完成作业: [TensorFlow.ipynb]跳过数据导入部分,直接进入model部分.tensorflow的api有很多,建议边写边查.api文档 simple_model12345678910111213141516171819202122232425262728293031323334# clear old variablestf.reset_default_graph()# setup">
@@ -322,7 +322,7 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-12T20:01:10+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-12T21:28:25+08:00">
                 2017-06-12
               </time>
             
@@ -363,7 +363,7 @@
 <img src="/2017/06/11/CS231n学习笔记-TensorFlow/fliter.gif" alt="[回顾卷积过程]" title="[回顾卷积过程]">
 <p><code>Wconv1 = tf.get_variable(&quot;Wconv1&quot;, shape=[7, 7, 3, 32])</code><br>表示卷积核的大小为7*7,每个卷积核包含3个通道,共有32个卷积核.</p>
 <p><code>bconv1 = tf.get_variable(&quot;bconv1&quot;, shape=[32])</code><br>32个卷积核,每个都包含1个偏置项.</p>
-<p><code>W1 = tf.get_variable(&quot;W1&quot;, shape=[5408, 10])</code><br>已知stride,图像与卷积核的宽度高度,根据公式’H_n = 1 + (H + 2 <em> pad - HH)/stride’计算卷积后输出矩阵的大小,1+(32-7)/2 = 13, 故每个卷积核会输出一个13\</em>13的矩阵(不再以通道区分),共有32个卷积核,故输出的参数总数为13*13*32 = 5408. 而CASIA-10是最终分10类的,所以取10.</p>
+<p><code>W1 = tf.get_variable(&quot;W1&quot;, shape=[5408, 10])</code><br>已知stride,图像与卷积核的宽度高度,根据公式’H_n = 1 + (H + 2 * pad - HH)/stride’计算卷积后输出矩阵的大小,1+(32-7)/2 = 13, 故每个卷积核会输出一个13*13的矩阵(不再以通道区分),共有32个卷积核,故输出的参数总数为13*13*32 = 5408. 而CASIA-10是最终分10类的,所以取10.</p>
 <p><code>a1 = tf.nn.conv2d(X, Wconv1, strides=[1,2,2,1], padding=&#39;VALID&#39;) + bconv1</code></p>
 <ul>
 <li><a href="https://stackoverflow.com/questions/34619177/what-does-tf-nn-conv2d-do-in-tensorflow" target="_blank" rel="external">What does tf.nn.conv2d do in tensorflow?</a></li>
@@ -430,6 +430,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/13/PHPstorm10wamp3/" rel="prev" title="PHPstorm10+wamp3.0 环境搭建">
+                PHPstorm10+wamp3.0 环境搭建 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -501,7 +505,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -514,7 +518,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
