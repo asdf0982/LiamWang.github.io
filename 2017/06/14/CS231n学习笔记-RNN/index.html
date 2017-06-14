@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Tips," />
+  <meta name="keywords" content="Deep Learning," />
 
 
 
@@ -92,24 +92,17 @@
 
 
 
-<meta name="description" content="先比较连接手机时的音质，判断是否为耳机自身故障。 确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】">
-<meta name="keywords" content="Tips">
+<meta name="description" content="数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.运行至第三个代码块时可能运行至os.remove(fname)报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.np.linspace在指定的间隔内返回均匀间隔的数字. Vanilla RNN: step forward打开cs231n/rnn_layers.py找到rnn_s">
+<meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="连接电脑时蓝牙耳机音质明显下降">
-<meta property="og:url" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/index.html">
+<meta property="og:title" content="CS231n学习笔记(RNN)">
+<meta property="og:url" content="https://asdf0982.github.io/2017/06/14/CS231n学习笔记-RNN/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="先比较连接手机时的音质，判断是否为耳机自身故障。 确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/1.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/2.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/3.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/4.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/5.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/6.png">
-<meta property="og:updated_time" content="2017-05-25T03:15:41.413Z">
+<meta property="og:description" content="数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.运行至第三个代码块时可能运行至os.remove(fname)报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.np.linspace在指定的间隔内返回均匀间隔的数字. Vanilla RNN: step forward打开cs231n/rnn_layers.py找到rnn_s">
+<meta property="og:updated_time" content="2017-06-14T15:23:41.457Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="连接电脑时蓝牙耳机音质明显下降">
-<meta name="twitter:description" content="先比较连接手机时的音质，判断是否为耳机自身故障。 确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】">
-<meta name="twitter:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/1.png">
+<meta name="twitter:title" content="CS231n学习笔记(RNN)">
+<meta name="twitter:description" content="数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.运行至第三个代码块时可能运行至os.remove(fname)报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.np.linspace在指定的间隔内返回均匀间隔的数字. Vanilla RNN: step forward打开cs231n/rnn_layers.py找到rnn_s">
 
 
 
@@ -137,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/06/14/CS231n学习笔记-RNN/"/>
 
 
 
 
 
-  <title>连接电脑时蓝牙耳机音质明显下降 | Liam's Blog</title>
+  <title>CS231n学习笔记(RNN) | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -282,7 +275,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/14/CS231n学习笔记-RNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -299,7 +292,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">连接电脑时蓝牙耳机音质明显下降</h2>
+          <h2 class="post-title" itemprop="name headline">CS231n学习笔记(RNN)</h2>
         
 
         <div class="post-meta">
@@ -311,8 +304,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T10:47:52+08:00">
-                2017-05-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-14T16:18:19+08:00">
+                2017-06-14
               </time>
             
 
@@ -327,8 +320,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-25T11:15:41+08:00">
-                2017-05-25
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-14T23:23:41+08:00">
+                2017-06-14
               </time>
             
           </span>
@@ -363,18 +356,14 @@
       
 
       
-        <ol>
-<li>先比较连接手机时的音质，判断是否为耳机自身故障。</li>
-<li>确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】<a id="more"></a><img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/1.png" alt="[步骤1]" title="[步骤1]"></li>
-<li>在相关设置下选择【设备和打印机】<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/2.png" alt="[步骤2]" title="[步骤2]"></li>
-<li>右击【蓝牙耳机】图标-声音设置 <img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/3.png" alt="[步骤3]" title="[步骤3]"></li>
-<li>观察到一个耳机却又两个模式<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/4.png" alt="[步骤4]" title="[步骤4]">，点开Stereo模式的【属性】-选择【高级】</li>
-<li>观察到“2通道，CD音质”说明现在使用的耳机模式是听音乐的。<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/5.png" alt="[步骤5]" title="[步骤5]"></li>
-<li>作为对比回去再打开Hands-Free模式的【属性】【高级】</li>
-<li>观察到“1通道，电话音质”，这就是我之前使用的，音质明显下降的版本。<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/6.png" alt="[步骤6]" title="[步骤6]"></li>
-<li>选择Stereo为默认模式。</li>
-</ol>
-
+        <p>数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.<br>运行至第三个代码块时可能运行至<code>os.remove(fname)</code>报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.<br><code>np.linspace</code>在指定的间隔内返回均匀间隔的数字.</p>
+<h2 id="Vanilla-RNN-step-forward"><a href="#Vanilla-RNN-step-forward" class="headerlink" title="Vanilla RNN: step forward"></a>Vanilla RNN: step forward</h2><p>打开<code>cs231n/rnn_layers.py</code>找到<code>rnn_step_forward(x, prev_h, Wx, Wh, b)</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = prev_h.dot(Wh) + x.dot(Wx) + b</div><div class="line">next_h = np.tanh(a)</div><div class="line">cache = (x, prev_h, Wh, Wx, b, next_h)</div></pre></td></tr></table></figure></p>
+<p>即next_h = tanh(x*Wx+pre_h*Wh+b)</p>
+<h2 id="Vanilla-RNN-step-backward"><a href="#Vanilla-RNN-step-backward" class="headerlink" title="Vanilla RNN: step backward"></a>Vanilla RNN: step backward</h2><p>找到<code>rnn_step_backward(dnext_h, cache)</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">x, prev_h, Wh, Wx, b, next_h = cache</div><div class="line">da = dnext_h * (<span class="number">1</span> - next_h ** <span class="number">2</span>) <span class="comment">#(N,H)</span></div><div class="line">dx = np.dot(da, Wx.T) <span class="comment">#(N,D)</span></div><div class="line">dprev_h = np.dot(da, Wh.T) <span class="comment">#(N,H)</span></div><div class="line">dWx = np.dot(x.T, da) <span class="comment">#(D,H)</span></div><div class="line">dWh = np.dot(prev_h.T, da) <span class="comment">#(H,H)</span></div><div class="line">db = np.sum(da, axis = <span class="number">0</span>) <span class="comment">#(H,)</span></div></pre></td></tr></table></figure></p>
+<p>若激活函数为sigmoid,那么$f’(z) = f(z)(1-f)$<br>若激活函数为tanh,那么$f’(z) = 1-(f(z))^2$</p>
+<h2 id="Vanilla-RNN-forward"><a href="#Vanilla-RNN-forward" class="headerlink" title="Vanilla RNN: forward"></a>Vanilla RNN: forward</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">N, T, D = x.shape</div><div class="line">(H,) = b.shape</div><div class="line">h = np.zeros((N, T,H))</div><div class="line">prev_h = h0</div><div class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(T):</div><div class="line">  xt = x[:, t, :]</div><div class="line">  next_h,_ = rnn_step_forward(xt, prev_h, Wx, Wh, b)</div><div class="line">  prev_h = next_h</div><div class="line">  h[:, t, :] = prev_h</div><div class="line">cache = (x, h0, Wh, Wx, b, h)</div></pre></td></tr></table></figure>
+<h2 id="Vanilla-RNN-backward"><a href="#Vanilla-RNN-backward" class="headerlink" title="Vanilla RNN: backward"></a>Vanilla RNN: backward</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">x, h0, Wh, Wx, b, h = cache</div><div class="line">N, T, H = dh.shape</div><div class="line">D = x.shape[<span class="number">2</span>]</div><div class="line">next_h = h[:, T<span class="number">-1</span>, :]</div><div class="line">dprev_h = np.zeros((N, H))</div><div class="line">dx = np.zeros((N, T, D))</div><div class="line">dh0 = np.zeros((N, H))</div><div class="line">dWx = np.zeros((D, H))</div><div class="line">dWh = np.zeros((H, H))</div><div class="line">db = np.zeros((H,))</div><div class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(T):</div><div class="line">  t = T<span class="number">-1</span>-t </div><div class="line">  xt = x[:, t, :] <span class="comment">#(N,D)</span></div><div class="line">  <span class="keyword">if</span> t==<span class="number">0</span>:</div><div class="line">    prev_h = h0</div><div class="line">  <span class="keyword">else</span>:</div><div class="line">    prev_h = h[:,t<span class="number">-1</span>,:]</div><div class="line">  step_cache = (xt, prev_h, Wh, Wx, b, next_h)</div><div class="line">  next_h = prev_h</div><div class="line">  dnext_h = dh[:, t, :] + dprev_h</div><div class="line">  dx[:, t, :], dprev_h, dWxt, dWht, dbt = rnn_step_backward(dnext_h, step_cache)</div><div class="line">  dWx, dWh, db = dWx+dWxt, dWh+dWht, db+dbt</div><div class="line">dh0 = dprev_h</div></pre></td></tr></table></figure>
+<h2 id="Word-embedding-forward"><a href="#Word-embedding-forward" class="headerlink" title="Word embedding: forward"></a>Word embedding: forward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">N, T = x.shape</div><div class="line">V, D = W.shape</div><div class="line">out = np.zeros((N, T, D))</div><div class="line">for i in range(N):</div><div class="line">  for j in range(T):</div><div class="line">    out[i, j] = W[x[i,j]]</div><div class="line">cache = (x, W.shape)</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -403,7 +392,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Tips/" rel="tag"># Tips</a>
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
           
         </div>
       
@@ -416,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/24/CS231n-学习笔记-SVM/" rel="next" title="CS231n 学习笔记(SVM)">
-                <i class="fa fa-chevron-left"></i> CS231n 学习笔记(SVM)
+              <a href="/2017/06/13/PHPstorm10wamp3/" rel="next" title="PHPstorm10+wamp3.0环境搭建">
+                <i class="fa fa-chevron-left"></i> PHPstorm10+wamp3.0环境搭建
               </a>
             
           </div>
@@ -425,10 +414,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/26/UEditor的数据回显/" rel="prev" title="UEditor的数据回显">
-                UEditor的数据回显 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -475,8 +460,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar2.jpg"
@@ -549,6 +543,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Vanilla-RNN-step-forward"><span class="nav-number">1.</span> <span class="nav-text">Vanilla RNN: step forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vanilla-RNN-step-backward"><span class="nav-number">2.</span> <span class="nav-text">Vanilla RNN: step backward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vanilla-RNN-forward"><span class="nav-number">3.</span> <span class="nav-text">Vanilla RNN: forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vanilla-RNN-backward"><span class="nav-number">4.</span> <span class="nav-text">Vanilla RNN: backward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Word-embedding-forward"><span class="nav-number">5.</span> <span class="nav-text">Word embedding: forward</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -726,6 +736,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
