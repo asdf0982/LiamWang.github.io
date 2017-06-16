@@ -275,6 +275,139 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/16/CS231n学习笔记-LSTM/" itemprop="url">CS231n学习笔记(LSTM)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-16T18:04:25+08:00">
+                2017-06-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-16T21:34:15+08:00">
+                2017-06-16
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>作业: <a href="/2017/06/16/CS231n学习笔记-LSTM/LSTM_Captioning.ipynb" title="[LSTM_Captioning.ipynb]">[LSTM_Captioning.ipynb]</a><br>参考:<a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external"><strong>Understanding LSTM Networks</strong></a>和<a href="http://www.jianshu.com/p/e46b1aa48886" target="_blank" rel="external"><strong>CS231n_assignment3</strong></a><br>在使用RNN时,时间(t)过大会导致前后的信息相关程度越来越小,最后出现梯度消失现象.而LSTM(Long Short-Term Memory Networks)就是为了解决这个<strong>长期依赖</strong>问题而被提出的.<br>LSTM的一般结构见下图. 和RNN一样，LSTM也是随着时间序列重复着一样的模块，只是LSTM的每个某块比RNN更加复杂，拥有四个层（3个门+1个记忆单元）。下图方框内上方的那条水平线，被称为胞元状态（cell state），LSTM通过门结构对记忆单元上的信息进行线性修改，保证了当时间序列变得很长的时候，前后信息的关联度不会衰减。<img src="/2017/06/16/CS231n学习笔记-LSTM/LSTM.png" alt="[LSTM]" title="[LSTM]"></p>
+<ol>
+<li>forget gate:根据上一个时刻输出的h_t-1和当前输入x_t,通过sigmoid控制得到f_t <img src="/2017/06/16/CS231n学习笔记-LSTM/forget_gate.png" alt="[forget gate]" title="[forget gate]"></li>
+<li>Input gate:决定哪些值进行更新进cell state.<img src="/2017/06/16/CS231n学习笔记-LSTM/input_gate.png" alt="[input gate]" title="[input gate]"><br>对cell state进行更新<img src="/2017/06/16/CS231n学习笔记-LSTM/update.png" alt="[update cell state]" title="[update cell state]"></li>
+<li>Output gate:<img src="/2017/06/16/CS231n学习笔记-LSTM/output_gate.png" alt="[output gate]" title="[output gate]"></li>
+</ol>
+<p>LSTM还有很多变体见参考<strong>CS231n_assignment3</strong></p>
+<h2 id="LSTM-step-forward"><a href="#LSTM-step-forward" class="headerlink" title="LSTM: step forward"></a>LSTM: step forward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">H = prev_h.shape[1]</div><div class="line">a = x.dot(Wx) + prev_h.dot(Wh) + b</div><div class="line">z_i = sigmoid(a[:,:H]) #input gate it</div><div class="line">z_f = sigmoid(a[:,H:2*H]) #forget gate ft</div><div class="line">z_o = sigmoid(a[:,2*H:3*H])#output gate ot</div><div class="line">z_g = np.tanh(a[:,3*H:]) #input gate Ct</div><div class="line">next_c = z_f * prev_c + z_i * z_g</div><div class="line">z_t = np.tanh(next_c)</div><div class="line">next_h = z_o * z_t</div><div class="line">cache = (z_i, z_f, z_o, z_g, z_t, prev_c, prev_h, Wx, Wh, x)</div></pre></td></tr></table></figure>
+<h2 id="LSTM-step-backward"><a href="#LSTM-step-backward" class="headerlink" title="LSTM: step backward"></a>LSTM: step backward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">H = dnext_h.shape[1]</div><div class="line">z_i, z_f, z_o, z_g, z_t, prev_c, prev_h, Wx, Wh, x = cache</div><div class="line"></div><div class="line">dz_o = z_t * dnext_h</div><div class="line">dc_t = z_o * (1 - z_t * z_t) * dnext_h + dnext_c</div><div class="line">dz_f = prev_c * dc_t</div><div class="line">dz_i = z_g * dc_t</div><div class="line">dprev_c = z_f * dc_t</div><div class="line">dz_g = z_i * dc_t</div><div class="line">  </div><div class="line">da_i = (1 - z_i) * z_i * dz_i</div><div class="line">da_f = (1 - z_f) * z_f * dz_f</div><div class="line">da_o = (1 - z_o) * z_o * dz_o</div><div class="line">da_g = (1 - z_g * z_g) * dz_g</div><div class="line">da = np.hstack((da_i, da_f, da_o, da_g))</div><div class="line"></div><div class="line">dWx = x.T.dot(da)</div><div class="line">dWh = prev_h.T.dot(da)</div><div class="line">  </div><div class="line">db = np.sum(da, axis = 0)</div><div class="line">dx = da.dot(Wx.T)</div><div class="line">dprev_h = da.dot(Wh.T)</div></pre></td></tr></table></figure>
+<h2 id="LSTM-forward"><a href="#LSTM-forward" class="headerlink" title="LSTM: forward"></a>LSTM: forward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">N, T, D = x.shape</div><div class="line">H = b.shape[0]/4</div><div class="line">h = np.zeros((N, T, H))</div><div class="line">cache = &#123;&#125;</div><div class="line">prev_h = h0</div><div class="line">prev_c = np.zeros((N, H))</div><div class="line">for t in range(T):</div><div class="line">  xt = x[:, t, :]</div><div class="line">  next_h, next_c, cache[t] = lstm_step_forward(xt, prev_h, prev_c, Wx, Wh, b)</div><div class="line">  prev_h = next_h</div><div class="line">  prev_c = next_c</div><div class="line">  h[:, t, :] = prev_h</div></pre></td></tr></table></figure>
+<h2 id="LSTM-backward"><a href="#LSTM-backward" class="headerlink" title="LSTM: backward"></a>LSTM: backward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">N, T, H = dh.shape</div><div class="line">z_i, z_f, z_o, z_g, z_t, prev_c, prev_h, Wx, Wh, x = cache[T-1]</div><div class="line">D = x.shape[1]</div><div class="line">  </div><div class="line">dprev_h = np.zeros((N, H))</div><div class="line">dprev_c = np.zeros((N, H))</div><div class="line">dx = np.zeros((N, T, D))</div><div class="line">dh0 = np.zeros((N, H))</div><div class="line">dWx= np.zeros((D, 4*H))</div><div class="line">dWh = np.zeros((H, 4*H))</div><div class="line">db = np.zeros((4*H,))</div><div class="line">  </div><div class="line">for t in range(T):</div><div class="line">  t = T-1-t</div><div class="line">  step_cache = cache[t]</div><div class="line">  dnext_h = dh[:,t,:] + dprev_h</div><div class="line">  dnext_c = dprev_c</div><div class="line">  dx[:,t,:], dprev_h, dprev_c, dWxt, dWht, dbt = lstm_step_backward(dnext_h, dnext_c, step_cache)</div><div class="line">  dWx, dWh, db = dWx+dWxt, dWh+dWht, db+dbt</div><div class="line">  </div><div class="line">dh0 = dprev_h</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/14/CS231n学习笔记-RNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -322,8 +455,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-15T23:17:41+08:00">
-                2017-06-15
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-16T21:35:03+08:00">
+                2017-06-16
               </time>
             
           </span>
@@ -355,7 +488,7 @@
       
         
           
-            <p>数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.<br>运行至第三个代码块时可能运行至<code>os.remove(fname)</code>报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.<br><code>np.linspace</code>在指定的间隔内返回均匀间隔的数字.</p>
+            <p>作业: <a href="/2017/06/14/CS231n学习笔记-RNN/RNN_Captioning.ipynb" title="[RNN_Captioning.ipynb]">[RNN_Captioning.ipynb]</a><br>数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.<br>运行至第三个代码块时可能运行至<code>os.remove(fname)</code>报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.<br><code>np.linspace</code>在指定的间隔内返回均匀间隔的数字.</p>
 <h2 id="Vanilla-RNN-step-forward"><a href="#Vanilla-RNN-step-forward" class="headerlink" title="Vanilla RNN: step forward"></a>Vanilla RNN: step forward</h2><p>打开<code>cs231n/rnn_layers.py</code>找到<code>rnn_step_forward(x, prev_h, Wx, Wh, b)</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = prev_h.dot(Wh) + x.dot(Wx) + b</div><div class="line">next_h = np.tanh(a)</div><div class="line">cache = (x, prev_h, Wh, Wx, b, next_h)</div></pre></td></tr></table></figure></p>
 <p>即next_h = tanh(x*Wx+pre_h*Wh+b)</p>
 <h2 id="Vanilla-RNN-step-backward"><a href="#Vanilla-RNN-step-backward" class="headerlink" title="Vanilla RNN: step backward"></a>Vanilla RNN: step backward</h2><p>找到<code>rnn_step_backward(dnext_h, cache)</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">x, prev_h, Wh, Wx, b, next_h = cache</div><div class="line">da = dnext_h * (<span class="number">1</span> - next_h ** <span class="number">2</span>) <span class="comment">#(N,H)</span></div><div class="line">dx = np.dot(da, Wx.T) <span class="comment">#(N,D)</span></div><div class="line">dprev_h = np.dot(da, Wh.T) <span class="comment">#(N,H)</span></div><div class="line">dWx = np.dot(x.T, da) <span class="comment">#(D,H)</span></div><div class="line">dWh = np.dot(prev_h.T, da) <span class="comment">#(H,H)</span></div><div class="line">db = np.sum(da, axis = <span class="number">0</span>) <span class="comment">#(H,)</span></div></pre></td></tr></table></figure></p>
@@ -1480,140 +1613,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/28/CS231n学习笔记-softmax/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/28/CS231n学习笔记-softmax/" itemprop="url">CS231n学习笔记(softmax)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-28T15:39:26+08:00">
-                2017-05-28
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-28T17:01:53+08:00">
-                2017-05-28
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>完成作业:</p>
-<ul>
-<li><a href="/2017/05/28/CS231n学习笔记-softmax/softmax.ipynb" title="[softmax.ipynb]">[softmax.ipynb]</a></li>
-<li><a href="/2017/05/28/CS231n学习笔记-softmax/softmax.py" title="[softmax.py]">[softmax.py]</a>
-</li>
-</ul>
-<p>softmax的计算方式与SVM类似。参考此图<br><img src="/2017/05/28/CS231n学习笔记-softmax/SVM&softmax.png" alt="[Compare SVM&softmax]" title="[Compare SVM&softmax]"><br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/28/CS231n学习笔记-softmax/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1663,7 +1662,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

@@ -1,0 +1,756 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="zioBb4Ac5xjO7-IkGVs3Qnyfbu-5lW01M2wTphSvcWU" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Deep Learning," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="作业: [LSTM_Captioning.ipynb]参考:Understanding LSTM Networks和CS231n_assignment3在使用RNN时,时间(t)过大会导致前后的信息相关程度越来越小,最后出现梯度消失现象.而LSTM(Long Short-Term Memory Networks)就是为了解决这个长期依赖问题而被提出的.LSTM的一般结构见下图. 和RNN一样，LS">
+<meta name="keywords" content="Deep Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CS231n学习笔记(LSTM)">
+<meta property="og:url" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="作业: [LSTM_Captioning.ipynb]参考:Understanding LSTM Networks和CS231n_assignment3在使用RNN时,时间(t)过大会导致前后的信息相关程度越来越小,最后出现梯度消失现象.而LSTM(Long Short-Term Memory Networks)就是为了解决这个长期依赖问题而被提出的.LSTM的一般结构见下图. 和RNN一样，LS">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/LSTM.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/forget_gate.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/input_gate.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/update.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/output_gate.png">
+<meta property="og:updated_time" content="2017-06-16T13:34:15.418Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CS231n学习笔记(LSTM)">
+<meta name="twitter:description" content="作业: [LSTM_Captioning.ipynb]参考:Understanding LSTM Networks和CS231n_assignment3在使用RNN时,时间(t)过大会导致前后的信息相关程度越来越小,最后出现梯度消失现象.而LSTM(Long Short-Term Memory Networks)就是为了解决这个长期依赖问题而被提出的.LSTM的一般结构见下图. 和RNN一样，LS">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/LSTM.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/"/>
+
+
+
+
+
+  <title>CS231n学习笔记(LSTM) | Liam's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99966000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Share the joy of coding.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">CS231n学习笔记(LSTM)</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-16T18:04:25+08:00">
+                2017-06-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-16T21:34:15+08:00">
+                2017-06-16
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>hits
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作业: <a href="/2017/06/16/CS231n学习笔记-LSTM/LSTM_Captioning.ipynb" title="[LSTM_Captioning.ipynb]">[LSTM_Captioning.ipynb]</a><br>参考:<a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external"><strong>Understanding LSTM Networks</strong></a>和<a href="http://www.jianshu.com/p/e46b1aa48886" target="_blank" rel="external"><strong>CS231n_assignment3</strong></a><br>在使用RNN时,时间(t)过大会导致前后的信息相关程度越来越小,最后出现梯度消失现象.而LSTM(Long Short-Term Memory Networks)就是为了解决这个<strong>长期依赖</strong>问题而被提出的.<br>LSTM的一般结构见下图. 和RNN一样，LSTM也是随着时间序列重复着一样的模块，只是LSTM的每个某块比RNN更加复杂，拥有四个层（3个门+1个记忆单元）。下图方框内上方的那条水平线，被称为胞元状态（cell state），LSTM通过门结构对记忆单元上的信息进行线性修改，保证了当时间序列变得很长的时候，前后信息的关联度不会衰减。<img src="/2017/06/16/CS231n学习笔记-LSTM/LSTM.png" alt="[LSTM]" title="[LSTM]"></p>
+<ol>
+<li>forget gate:根据上一个时刻输出的h_t-1和当前输入x_t,通过sigmoid控制得到f_t <img src="/2017/06/16/CS231n学习笔记-LSTM/forget_gate.png" alt="[forget gate]" title="[forget gate]"></li>
+<li>Input gate:决定哪些值进行更新进cell state.<img src="/2017/06/16/CS231n学习笔记-LSTM/input_gate.png" alt="[input gate]" title="[input gate]"><br>对cell state进行更新<img src="/2017/06/16/CS231n学习笔记-LSTM/update.png" alt="[update cell state]" title="[update cell state]"></li>
+<li>Output gate:<img src="/2017/06/16/CS231n学习笔记-LSTM/output_gate.png" alt="[output gate]" title="[output gate]"></li>
+</ol>
+<p>LSTM还有很多变体见参考<strong>CS231n_assignment3</strong></p>
+<h2 id="LSTM-step-forward"><a href="#LSTM-step-forward" class="headerlink" title="LSTM: step forward"></a>LSTM: step forward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">H = prev_h.shape[1]</div><div class="line">a = x.dot(Wx) + prev_h.dot(Wh) + b</div><div class="line">z_i = sigmoid(a[:,:H]) #input gate it</div><div class="line">z_f = sigmoid(a[:,H:2*H]) #forget gate ft</div><div class="line">z_o = sigmoid(a[:,2*H:3*H])#output gate ot</div><div class="line">z_g = np.tanh(a[:,3*H:]) #input gate Ct</div><div class="line">next_c = z_f * prev_c + z_i * z_g</div><div class="line">z_t = np.tanh(next_c)</div><div class="line">next_h = z_o * z_t</div><div class="line">cache = (z_i, z_f, z_o, z_g, z_t, prev_c, prev_h, Wx, Wh, x)</div></pre></td></tr></table></figure>
+<h2 id="LSTM-step-backward"><a href="#LSTM-step-backward" class="headerlink" title="LSTM: step backward"></a>LSTM: step backward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">H = dnext_h.shape[1]</div><div class="line">z_i, z_f, z_o, z_g, z_t, prev_c, prev_h, Wx, Wh, x = cache</div><div class="line"></div><div class="line">dz_o = z_t * dnext_h</div><div class="line">dc_t = z_o * (1 - z_t * z_t) * dnext_h + dnext_c</div><div class="line">dz_f = prev_c * dc_t</div><div class="line">dz_i = z_g * dc_t</div><div class="line">dprev_c = z_f * dc_t</div><div class="line">dz_g = z_i * dc_t</div><div class="line">  </div><div class="line">da_i = (1 - z_i) * z_i * dz_i</div><div class="line">da_f = (1 - z_f) * z_f * dz_f</div><div class="line">da_o = (1 - z_o) * z_o * dz_o</div><div class="line">da_g = (1 - z_g * z_g) * dz_g</div><div class="line">da = np.hstack((da_i, da_f, da_o, da_g))</div><div class="line"></div><div class="line">dWx = x.T.dot(da)</div><div class="line">dWh = prev_h.T.dot(da)</div><div class="line">  </div><div class="line">db = np.sum(da, axis = 0)</div><div class="line">dx = da.dot(Wx.T)</div><div class="line">dprev_h = da.dot(Wh.T)</div></pre></td></tr></table></figure>
+<h2 id="LSTM-forward"><a href="#LSTM-forward" class="headerlink" title="LSTM: forward"></a>LSTM: forward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">N, T, D = x.shape</div><div class="line">H = b.shape[0]/4</div><div class="line">h = np.zeros((N, T, H))</div><div class="line">cache = &#123;&#125;</div><div class="line">prev_h = h0</div><div class="line">prev_c = np.zeros((N, H))</div><div class="line">for t in range(T):</div><div class="line">  xt = x[:, t, :]</div><div class="line">  next_h, next_c, cache[t] = lstm_step_forward(xt, prev_h, prev_c, Wx, Wh, b)</div><div class="line">  prev_h = next_h</div><div class="line">  prev_c = next_c</div><div class="line">  h[:, t, :] = prev_h</div></pre></td></tr></table></figure>
+<h2 id="LSTM-backward"><a href="#LSTM-backward" class="headerlink" title="LSTM: backward"></a>LSTM: backward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">N, T, H = dh.shape</div><div class="line">z_i, z_f, z_o, z_g, z_t, prev_c, prev_h, Wx, Wh, x = cache[T-1]</div><div class="line">D = x.shape[1]</div><div class="line">  </div><div class="line">dprev_h = np.zeros((N, H))</div><div class="line">dprev_c = np.zeros((N, H))</div><div class="line">dx = np.zeros((N, T, D))</div><div class="line">dh0 = np.zeros((N, H))</div><div class="line">dWx= np.zeros((D, 4*H))</div><div class="line">dWh = np.zeros((H, 4*H))</div><div class="line">db = np.zeros((4*H,))</div><div class="line">  </div><div class="line">for t in range(T):</div><div class="line">  t = T-1-t</div><div class="line">  step_cache = cache[t]</div><div class="line">  dnext_h = dh[:,t,:] + dprev_h</div><div class="line">  dnext_c = dprev_c</div><div class="line">  dx[:,t,:], dprev_h, dprev_c, dWxt, dWht, dbt = lstm_step_backward(dnext_h, dnext_c, step_cache)</div><div class="line">  dWx, dWh, db = dWx+dWxt, dWh+dWht, db+dbt</div><div class="line">  </div><div class="line">dh0 = dprev_h</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/14/CS231n学习笔记-RNN/" rel="next" title="CS231n学习笔记(RNN)">
+                <i class="fa fa-chevron-left"></i> CS231n学习笔记(RNN)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar2.jpg"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/asdf0982" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/ghat0982" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM-step-forward"><span class="nav-number">1.</span> <span class="nav-text">LSTM: step forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM-step-backward"><span class="nav-number">2.</span> <span class="nav-text">LSTM: step backward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM-forward"><span class="nav-number">3.</span> <span class="nav-text">LSTM: forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LSTM-backward"><span class="nav-number">4.</span> <span class="nav-text">LSTM: backward</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
