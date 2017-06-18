@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Tips," />
+  <meta name="keywords" content="Deep Learning," />
 
 
 
@@ -92,24 +92,24 @@
 
 
 
-<meta name="description" content="先比较连接手机时的音质，判断是否为耳机自身故障。 确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】">
-<meta name="keywords" content="Tips">
+<meta name="description" content="此文由牛津大学视觉研究所于2015年发表.论文链接: PDF参考:   Deep Face Recognition论文阅读 VGG-Face：Deep Face Recognition 笔记 triplet loss 原理以及梯度推导 论文：Deep Face Recognition 概括  本文有两个主要部分:  如何用较少的人力搜集和建立一个相对优质的数据集;  用深度网络完成人脸识别和验证并">
+<meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="连接电脑时蓝牙耳机音质明显下降">
-<meta property="og:url" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/index.html">
+<meta property="og:title" content="Deep Face Recognition 阅读笔记">
+<meta property="og:url" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="先比较连接手机时的音质，判断是否为耳机自身故障。 确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/1.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/2.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/3.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/4.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/5.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/6.png">
-<meta property="og:updated_time" content="2017-05-25T03:15:41.413Z">
+<meta property="og:description" content="此文由牛津大学视觉研究所于2015年发表.论文链接: PDF参考:   Deep Face Recognition论文阅读 VGG-Face：Deep Face Recognition 笔记 triplet loss 原理以及梯度推导 论文：Deep Face Recognition 概括  本文有两个主要部分:  如何用较少的人力搜集和建立一个相对优质的数据集;  用深度网络完成人脸识别和验证并">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/Table2.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/Table1.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/VGG.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/triplet-loss.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/Table4.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/Table5.png">
+<meta property="og:updated_time" content="2017-06-18T15:38:31.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="连接电脑时蓝牙耳机音质明显下降">
-<meta name="twitter:description" content="先比较连接手机时的音质，判断是否为耳机自身故障。 确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】">
-<meta name="twitter:image" content="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/1.png">
+<meta name="twitter:title" content="Deep Face Recognition 阅读笔记">
+<meta name="twitter:description" content="此文由牛津大学视觉研究所于2015年发表.论文链接: PDF参考:   Deep Face Recognition论文阅读 VGG-Face：Deep Face Recognition 笔记 triplet loss 原理以及梯度推导 论文：Deep Face Recognition 概括  本文有两个主要部分:  如何用较少的人力搜集和建立一个相对优质的数据集;  用深度网络完成人脸识别和验证并">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/Table2.png">
 
 
 
@@ -137,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/"/>
 
 
 
 
 
-  <title>连接电脑时蓝牙耳机音质明显下降 | Liam's Blog</title>
+  <title>Deep Face Recognition 阅读笔记 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -282,7 +282,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -299,7 +299,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">连接电脑时蓝牙耳机音质明显下降</h2>
+          <h2 class="post-title" itemprop="name headline">Deep Face Recognition 阅读笔记</h2>
         
 
         <div class="post-meta">
@@ -311,8 +311,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-25T10:47:52+08:00">
-                2017-05-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-18T14:46:32+08:00">
+                2017-06-18
               </time>
             
 
@@ -327,8 +327,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-25T11:15:41+08:00">
-                2017-05-25
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-18T23:38:31+08:00">
+                2017-06-18
               </time>
             
           </span>
@@ -363,16 +363,39 @@
       
 
       
-        <ol>
-<li>先比较连接手机时的音质，判断是否为耳机自身故障。</li>
-<li>确定非耳机故障时，右击【蓝牙设备】图标-【显示蓝牙设备】<a id="more"></a><img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/1.png" alt="[步骤1]" title="[步骤1]"></li>
-<li>在相关设置下选择【设备和打印机】<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/2.png" alt="[步骤2]" title="[步骤2]"></li>
-<li>右击【蓝牙耳机】图标-声音设置 <img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/3.png" alt="[步骤3]" title="[步骤3]"></li>
-<li>观察到一个耳机却又两个模式<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/4.png" alt="[步骤4]" title="[步骤4]">，点开Stereo模式的【属性】-选择【高级】</li>
-<li>观察到“2通道，CD音质”说明现在使用的耳机模式是听音乐的。<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/5.png" alt="[步骤5]" title="[步骤5]"></li>
-<li>作为对比回去再打开Hands-Free模式的【属性】【高级】</li>
-<li>观察到“1通道，电话音质”，这就是我之前使用的，音质明显下降的版本。<img src="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/6.png" alt="[步骤6]" title="[步骤6]"></li>
-<li>选择Stereo为默认模式。</li>
+        <p>此文由牛津大学视觉研究所于2015年发表.<br>论文链接: <a href="https://www.robots.ox.ac.uk/~vgg/publications/2015/Parkhi15/parkhi15.pdf" target="_blank" rel="external">PDF</a><br>参考: </p>
+<ul>
+<li><a href="http://yongyuan.name/blog/deep-face-recognition-note.html" target="_blank" rel="external">Deep Face Recognition论文阅读</a></li>
+<li><a href="http://blog.csdn.net/kunyxu/article/details/54376850" target="_blank" rel="external">VGG-Face：Deep Face Recognition 笔记</a></li>
+<li><a href="http://blog.csdn.net/tangwei2014/article/details/46788025" target="_blank" rel="external">triplet loss 原理以及梯度推导</a></li>
+<li><a href="http://blog.csdn.net/sallyxyl1993/article/details/51685093" target="_blank" rel="external">论文：Deep Face Recognition 概括</a></li>
+</ul>
+<p>本文有两个主要部分:</p>
+<ol>
+<li>如何用较少的人力搜集和建立一个相对优质的数据集; </li>
+<li>用深度网络完成人脸识别和验证并比较不同的网络结构在不同的数据集上的表现</li>
+</ol>
+<h2 id="Dataset-Collection-收集整理数据集"><a href="#Dataset-Collection-收集整理数据集" class="headerlink" title="Dataset Collection 收集整理数据集"></a>Dataset Collection 收集整理数据集</h2><ol>
+<li><strong>过滤出候选的人名列表</strong><br>从IMDB资料库中获得5k个人名, 其中男女各一半.使用google图片搜索每个人名搜集200张图片. 筛去图片纯净度低的, 与LFW汗YFW重合人名的, 还剩下2622个人名.</li>
+<li><strong>为每个人名收集更多图片</strong><br>在google和bing里搜图并在每个名字之后加上”actor”再搜一遍,每次搜500张,总计单个名字下搜集2000张图片.</li>
+<li><strong>使用自动的过滤器提高纯净度</strong><br>基于Google的查询结果, 取前50张图片作为正训练样本. 其他人名查询下的前50张为负训练样本, 使用Fisher Vector Faces训练一个one-vs-rest的线性SVM分类器对2000张图片排序, 保留前1000张.</li>
+<li><strong>删除相似的图片</strong><br>抽出不同搜索引擎找到的相同图片和在网路上不同位置的相同图片, 还有那些只是色彩平衡不同的近似图片. 通过计算每张图片的VLAD descriptor, 对每个人名下的1000张图片聚类, 使用一个相当紧缩的阈值范围保留一部分图片.(图表展示为平均623张,不是每个人名下623张.)</li>
+<li><strong>最终人工筛选</strong><br>这一步的目的是通过人为注释提高数据集纯度. 但是为了减轻人员标注的负担, 使用AlexNet对所有人名下的图片进行rank. rank完的图片以200张一批的方式展示给注释人员. 如果一批内图像的纯度大约高于95%, 那么就是good. 最终得到982803张图片.</li>
+</ol>
+<p>搜集过程和用时表格(A代表自动, M代表手动):<br><img src="/2017/06/18/Deep-Face-recognition/Table2.png" alt="[Dataset statistics after each stage of processing]" title="[Dataset statistics after each stage of processing]"><br>与公开的数据集进行对比:<br><img src="/2017/06/18/Deep-Face-recognition/Table1.png" alt="[Dataset comparisons]" title="[Dataset comparisons]"></p>
+<h2 id="Network-architecture-and-training-网络结构与训练"><a href="#Network-architecture-and-training-网络结构与训练" class="headerlink" title="Network architecture and training 网络结构与训练"></a>Network architecture and training 网络结构与训练</h2><p>训练采用VGGNet,结构如图:<br><img src="/2017/06/18/Deep-Face-recognition/VGG.png" alt="[Network configuration]" title="[Network configuration]"><br>网络的最后一层使用<em>softmax log-loss</em>作为分类器.<br>训练结束后, 移除最后一层, 模型最终得到的score vectors可通过计算欧式距离再比较的方法进行人脸对比检测. 然而, 通过在欧式空间里使用”triplet loss”的方法可以使上面的分数向量进一步改善.公式如下:<br><img src="/2017/06/18/Deep-Face-recognition/triplet-loss.png" alt="[tripplet loss]" title="[tripplet loss]"></p>
+<h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><p>考虑使用A,B,D三个网络结构, 其中A就是上表展示的VGG网络.最后3个是全连接层, 只是将他看作卷积层(卷积核与输入图像一样大).<br>B,D的网络结构相比A分别多了2和5个卷积层.<br>输入人脸图像的大小是224*224.</p>
+<h2 id="Experiments-and-results"><a href="#Experiments-and-results" class="headerlink" title="Experiments and results"></a>Experiments and results</h2><p><strong>各个网络结构的表现如下</strong>:(C-数据集搜集和整理中第五步的数据集; F-第三步)<br><img src="/2017/06/18/Deep-Face-recognition/Table4.png" alt="[Performance evaluation on LFW]" title="[Performance evaluation on LFW]"><br>可以发现</p>
+<ol>
+<li>F数据集表现的更好;</li>
+<li>测试时2D对齐能轻微提高表现,但训练时没有帮助; </li>
+<li>网络B的表现最好;</li>
+<li>验证时的嵌入学习(triplet-loss)能显著提升表现.</li>
+</ol>
+<p><strong>与最先进的网络对比</strong>:<br><img src="/2017/06/18/Deep-Face-recognition/Table5.png" alt="[Performance evaluation on LFW]" title="[Performance evaluation on LFW]"><br>可以看到此文使用比其他网络少许多的数据集和较少的网络得到与其他先进网络媲美的结果.</p>
+<h2 id="疑问和思考"><a href="#疑问和思考" class="headerlink" title="疑问和思考"></a>疑问和思考</h2><ol>
+<li>triplet loss具体是在哪一步如何实现的.</li>
+<li>为什么净化后的数据集训练效果反而降低了.</li>
 </ol>
 
       
@@ -403,7 +426,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Tips/" rel="tag"># Tips</a>
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
           
         </div>
       
@@ -416,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/24/CS231n-学习笔记-SVM/" rel="next" title="CS231n 学习笔记(SVM)">
-                <i class="fa fa-chevron-left"></i> CS231n 学习笔记(SVM)
+              <a href="/2017/06/16/CS231n学习笔记-LSTM/" rel="next" title="CS231n学习笔记(LSTM)">
+                <i class="fa fa-chevron-left"></i> CS231n学习笔记(LSTM)
               </a>
             
           </div>
@@ -425,10 +448,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/26/UEditor的数据回显/" rel="prev" title="UEditor的数据回显">
-                UEditor的数据回显 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -475,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar2.jpg"
@@ -549,6 +577,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dataset-Collection-收集整理数据集"><span class="nav-number">1.</span> <span class="nav-text">Dataset Collection 收集整理数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-architecture-and-training-网络结构与训练"><span class="nav-number">2.</span> <span class="nav-text">Network architecture and training 网络结构与训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture"><span class="nav-number">2.1.</span> <span class="nav-text">Architecture</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-results"><span class="nav-number">3.</span> <span class="nav-text">Experiments and results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问和思考"><span class="nav-number">4.</span> <span class="nav-text">疑问和思考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
