@@ -92,23 +92,23 @@
 
 
 
-<meta name="description" content="此文由牛津大学视觉研究所于2015年发表.论文链接: PDF参考:   Deep Face Recognition论文阅读 VGG-Face：Deep Face Recognition 笔记 triplet loss 原理以及梯度推导 论文：Deep Face Recognition 概括  本文有两个主要部分:  如何用较少的人力搜集和建立一个相对优质的数据集;  用深度网络完成人脸识别和验证并">
+<meta name="description" content="此文由牛津大学视觉研究所于2015年发表.论文链接: PDF参考:   Deep Face Recognition论文阅读 VGG-Face：Deep Face Recognition 笔记 triplet loss 原理以及梯度推导 论文：Deep Face Recognition 概括  本文有两个主要部分:  如何用较少的人力, 搜集和建立一个相对优质的数据集. 用深度网络完成人脸识别和验证">
 <meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Deep Face Recognition 阅读笔记">
 <meta property="og:url" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="此文由牛津大学视觉研究所于2015年发表.论文链接: PDF参考:   Deep Face Recognition论文阅读 VGG-Face：Deep Face Recognition 笔记 triplet loss 原理以及梯度推导 论文：Deep Face Recognition 概括  本文有两个主要部分:  如何用较少的人力搜集和建立一个相对优质的数据集;  用深度网络完成人脸识别和验证并">
+<meta property="og:description" content="此文由牛津大学视觉研究所于2015年发表.论文链接: PDF参考:   Deep Face Recognition论文阅读 VGG-Face：Deep Face Recognition 笔记 triplet loss 原理以及梯度推导 论文：Deep Face Recognition 概括  本文有两个主要部分:  如何用较少的人力, 搜集和建立一个相对优质的数据集. 用深度网络完成人脸识别和验证">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/Table2.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/Table1.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/VGG.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/triplet-loss.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/Table4.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/Table5.png">
-<meta property="og:updated_time" content="2017-06-18T15:38:31.747Z">
+<meta property="og:updated_time" content="2017-06-19T02:52:24.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Deep Face Recognition 阅读笔记">
-<meta name="twitter:description" content="此文由牛津大学视觉研究所于2015年发表.论文链接: PDF参考:   Deep Face Recognition论文阅读 VGG-Face：Deep Face Recognition 笔记 triplet loss 原理以及梯度推导 论文：Deep Face Recognition 概括  本文有两个主要部分:  如何用较少的人力搜集和建立一个相对优质的数据集;  用深度网络完成人脸识别和验证并">
+<meta name="twitter:description" content="此文由牛津大学视觉研究所于2015年发表.论文链接: PDF参考:   Deep Face Recognition论文阅读 VGG-Face：Deep Face Recognition 笔记 triplet loss 原理以及梯度推导 论文：Deep Face Recognition 概括  本文有两个主要部分:  如何用较少的人力, 搜集和建立一个相对优质的数据集. 用深度网络完成人脸识别和验证">
 <meta name="twitter:image" content="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/Table2.png">
 
 
@@ -327,8 +327,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-18T23:38:31+08:00">
-                2017-06-18
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-19T10:52:24+08:00">
+                2017-06-19
               </time>
             
           </span>
@@ -372,8 +372,8 @@
 </ul>
 <p>本文有两个主要部分:</p>
 <ol>
-<li>如何用较少的人力搜集和建立一个相对优质的数据集; </li>
-<li>用深度网络完成人脸识别和验证并比较不同的网络结构在不同的数据集上的表现</li>
+<li>如何用较少的人力, 搜集和建立一个相对优质的数据集.</li>
+<li>用深度网络完成人脸识别和验证, 并比较不同的网络结构在不同的数据集上的表现.</li>
 </ol>
 <h2 id="Dataset-Collection-收集整理数据集"><a href="#Dataset-Collection-收集整理数据集" class="headerlink" title="Dataset Collection 收集整理数据集"></a>Dataset Collection 收集整理数据集</h2><ol>
 <li><strong>过滤出候选的人名列表</strong><br>从IMDB资料库中获得5k个人名, 其中男女各一半.使用google图片搜索每个人名搜集200张图片. 筛去图片纯净度低的, 与LFW汗YFW重合人名的, 还剩下2622个人名.</li>
@@ -383,8 +383,9 @@
 <li><strong>最终人工筛选</strong><br>这一步的目的是通过人为注释提高数据集纯度. 但是为了减轻人员标注的负担, 使用AlexNet对所有人名下的图片进行rank. rank完的图片以200张一批的方式展示给注释人员. 如果一批内图像的纯度大约高于95%, 那么就是good. 最终得到982803张图片.</li>
 </ol>
 <p>搜集过程和用时表格(A代表自动, M代表手动):<br><img src="/2017/06/18/Deep-Face-recognition/Table2.png" alt="[Dataset statistics after each stage of processing]" title="[Dataset statistics after each stage of processing]"><br>与公开的数据集进行对比:<br><img src="/2017/06/18/Deep-Face-recognition/Table1.png" alt="[Dataset comparisons]" title="[Dataset comparisons]"></p>
-<h2 id="Network-architecture-and-training-网络结构与训练"><a href="#Network-architecture-and-training-网络结构与训练" class="headerlink" title="Network architecture and training 网络结构与训练"></a>Network architecture and training 网络结构与训练</h2><p>训练采用VGGNet,结构如图:<br><img src="/2017/06/18/Deep-Face-recognition/VGG.png" alt="[Network configuration]" title="[Network configuration]"><br>网络的最后一层使用<em>softmax log-loss</em>作为分类器.<br>训练结束后, 移除最后一层, 模型最终得到的score vectors可通过计算欧式距离再比较的方法进行人脸对比检测. 然而, 通过在欧式空间里使用”triplet loss”的方法可以使上面的分数向量进一步改善.公式如下:<br><img src="/2017/06/18/Deep-Face-recognition/triplet-loss.png" alt="[tripplet loss]" title="[tripplet loss]"></p>
+<h2 id="Network-architecture-and-training-网络结构与训练"><a href="#Network-architecture-and-training-网络结构与训练" class="headerlink" title="Network architecture and training 网络结构与训练"></a>Network architecture and training 网络结构与训练</h2><p>训练采用VGGNet,结构如图:<br><img src="/2017/06/18/Deep-Face-recognition/VGG.png" alt="[Network configuration]" title="[Network configuration]"><br>输入的图像大小为224*224,<br>卷积层的配置为{stride=2;pad=1;filter_size=3*3;filter_num=64}<br>则卷积后输出大小1+(224+2*1-3)/1 = 224,即卷积后仍为224*224的图像,只不过包含64个通道(filter_num).<br>池化层的配置为{stride=2;pad=0;filter_size=2*2}<br>则池化后输出大小(224-2)/2+1 = 112,即池化后为112*112的图像(大小减半,通道数不变)<br>经过一系列的conv-maxpool,最后包含3个FC层(理解为filter和input一样大的卷积层).<br>第一个FC层的输入为7*7, 512通道.filter也为7*7, 512通道.filter_num为4096.故输出大小(1, 4096).<br>网络的最后一层使用<em>softmax log-loss</em>作为分类器.<br>训练结束后, 移除最后一层, 模型最终得到的score vectors可通过计算欧式距离再比较的方法进行人脸对比检测. 然而, 通过在欧式空间里使用”triplet loss”的方法可以使上面的分数向量进一步改善.公式如下:<br><img src="/2017/06/18/Deep-Face-recognition/triplet-loss.png" alt="[tripplet loss]" title="[tripplet loss]"><br>a:anchor; p:positive; n:negative, 参考<a href="http://blog.csdn.net/tangwei2014/article/details/46788025" target="_blank" rel="external"><strong>triplet loss 原理以及梯度推导</strong></a></p>
 <h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><p>考虑使用A,B,D三个网络结构, 其中A就是上表展示的VGG网络.最后3个是全连接层, 只是将他看作卷积层(卷积核与输入图像一样大).<br>B,D的网络结构相比A分别多了2和5个卷积层.<br>输入人脸图像的大小是224*224.</p>
+<h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><p>描述了训练的详细过程, 如使用SGD+momentum的最优化方法, 学习率的设置, 通过翻转图像增大数据集, BD模型均在A模型训练好的基础上进行微调等等.</p>
 <h2 id="Experiments-and-results"><a href="#Experiments-and-results" class="headerlink" title="Experiments and results"></a>Experiments and results</h2><p><strong>各个网络结构的表现如下</strong>:(C-数据集搜集和整理中第五步的数据集; F-第三步)<br><img src="/2017/06/18/Deep-Face-recognition/Table4.png" alt="[Performance evaluation on LFW]" title="[Performance evaluation on LFW]"><br>可以发现</p>
 <ol>
 <li>F数据集表现的更好;</li>
@@ -394,8 +395,8 @@
 </ol>
 <p><strong>与最先进的网络对比</strong>:<br><img src="/2017/06/18/Deep-Face-recognition/Table5.png" alt="[Performance evaluation on LFW]" title="[Performance evaluation on LFW]"><br>可以看到此文使用比其他网络少许多的数据集和较少的网络得到与其他先进网络媲美的结果.</p>
 <h2 id="疑问和思考"><a href="#疑问和思考" class="headerlink" title="疑问和思考"></a>疑问和思考</h2><ol>
-<li>triplet loss具体是在哪一步如何实现的.</li>
-<li>为什么净化后的数据集训练效果反而降低了.</li>
+<li>triplet loss具体是在哪一步如何实现的?</li>
+<li>为什么净化后的数据集训练效果反而降低了?<br>文章给出了两点可能的解释:1.就算标签存在噪声,数据量越大越好.2.一些微妙的正确图样在步骤5被移除了.</li>
 </ol>
 
       
@@ -587,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dataset-Collection-收集整理数据集"><span class="nav-number">1.</span> <span class="nav-text">Dataset Collection 收集整理数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-architecture-and-training-网络结构与训练"><span class="nav-number">2.</span> <span class="nav-text">Network architecture and training 网络结构与训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture"><span class="nav-number">2.1.</span> <span class="nav-text">Architecture</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-results"><span class="nav-number">3.</span> <span class="nav-text">Experiments and results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问和思考"><span class="nav-number">4.</span> <span class="nav-text">疑问和思考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dataset-Collection-收集整理数据集"><span class="nav-number">1.</span> <span class="nav-text">Dataset Collection 收集整理数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Network-architecture-and-training-网络结构与训练"><span class="nav-number">2.</span> <span class="nav-text">Network architecture and training 网络结构与训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Architecture"><span class="nav-number">2.1.</span> <span class="nav-text">Architecture</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training"><span class="nav-number">2.2.</span> <span class="nav-text">Training</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments-and-results"><span class="nav-number">3.</span> <span class="nav-text">Experiments and results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问和思考"><span class="nav-number">4.</span> <span class="nav-text">疑问和思考</span></a></li></ol></div>
             
 
           </div>
