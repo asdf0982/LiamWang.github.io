@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="PHP," />
+  <meta name="keywords" content="Deep Learning,Face Recognition," />
 
 
 
@@ -92,23 +92,24 @@
 
 
 
-<meta name="description" content="phpstorm10的破解过程和wamp的安装过程不展开讲了。下面说说如何配置phpstorm。第1步：wamp自带xDebug，找到php.ini，在末尾加入12345678910111213141516; XDEBUG Extensionzend_extension_ts = &amp;quot;D:/wamp64/bin/php/php5.6.25/zend_ext/php_xdebug-2.4.1">
-<meta name="keywords" content="PHP">
+<meta name="description" content="本文中科院自动所于2017年发表。也是我上一篇博客阅读内容的升级版。论文链接：PDF参考阅读：  人脸识别之light_cnn 人脸识别方向论文笔记（1）– A Light CNN for Deep Face Representation With Noisy Labels  第一作者提供项目地址: https://github.com/AlfredXiangWu/face_verificatio">
+<meta name="keywords" content="Deep Learning,Face Recognition">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PHPstorm10+wamp3.0环境搭建">
-<meta property="og:url" content="https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/index.html">
+<meta property="og:title" content="A Light CNN for Deep Face Representation with Noisy Labels 阅读笔记">
+<meta property="og:url" content="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="phpstorm10的破解过程和wamp的安装过程不展开讲了。下面说说如何配置phpstorm。第1步：wamp自带xDebug，找到php.ini，在末尾加入12345678910111213141516; XDEBUG Extensionzend_extension_ts = &amp;quot;D:/wamp64/bin/php/php5.6.25/zend_ext/php_xdebug-2.4.1">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/2.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/3.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/4.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/5.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/6.png">
-<meta property="og:updated_time" content="2017-06-13T15:13:09.952Z">
+<meta property="og:description" content="本文中科院自动所于2017年发表。也是我上一篇博客阅读内容的升级版。论文链接：PDF参考阅读：  人脸识别之light_cnn 人脸识别方向论文笔记（1）– A Light CNN for Deep Face Representation With Noisy Labels  第一作者提供项目地址: https://github.com/AlfredXiangWu/face_verificatio">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/MFM.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/MFM2.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/CNN1.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/CNN2.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/CNN3.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/result1.png">
+<meta property="og:updated_time" content="2017-06-21T06:05:55.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PHPstorm10+wamp3.0环境搭建">
-<meta name="twitter:description" content="phpstorm10的破解过程和wamp的安装过程不展开讲了。下面说说如何配置phpstorm。第1步：wamp自带xDebug，找到php.ini，在末尾加入12345678910111213141516; XDEBUG Extensionzend_extension_ts = &amp;quot;D:/wamp64/bin/php/php5.6.25/zend_ext/php_xdebug-2.4.1">
-<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/2.png">
+<meta name="twitter:title" content="A Light CNN for Deep Face Representation with Noisy Labels 阅读笔记">
+<meta name="twitter:description" content="本文中科院自动所于2017年发表。也是我上一篇博客阅读内容的升级版。论文链接：PDF参考阅读：  人脸识别之light_cnn 人脸识别方向论文笔记（1）– A Light CNN for Deep Face Representation With Noisy Labels  第一作者提供项目地址: https://github.com/AlfredXiangWu/face_verificatio">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/MFM.png">
 
 
 
@@ -136,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/"/>
 
 
 
 
 
-  <title>PHPstorm10+wamp3.0环境搭建 | Liam's Blog</title>
+  <title>A Light CNN for Deep Face Representation with Noisy Labels 阅读笔记 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -281,7 +282,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -298,7 +299,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">PHPstorm10+wamp3.0环境搭建</h2>
+          <h2 class="post-title" itemprop="name headline">A Light CNN for Deep Face Representation with Noisy Labels 阅读笔记</h2>
         
 
         <div class="post-meta">
@@ -310,8 +311,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-13T21:51:48+08:00">
-                2017-06-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-20T21:14:50+08:00">
+                2017-06-20
               </time>
             
 
@@ -326,8 +327,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-13T23:13:09+08:00">
-                2017-06-13
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-21T14:05:55+08:00">
+                2017-06-21
               </time>
             
           </span>
@@ -362,9 +363,32 @@
       
 
       
-        <p>phpstorm10的破解过程和wamp的安装过程不展开讲了。<br>下面说说如何配置phpstorm。<br>第1步：wamp自带xDebug，找到php.ini，在末尾加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">; XDEBUG Extension</div><div class="line"></div><div class="line">zend_extension_ts = &quot;D:/wamp64/bin/php/php5.6.25/zend_ext/php_xdebug-2.4.1-5.6-vc11-x86_64.dll&quot;</div><div class="line">;</div><div class="line">[xdebug]</div><div class="line">xdebug.remote_enable = off</div><div class="line">xdebug.profiler_enable = off</div><div class="line">xdebug.profiler_enable_trigger = off</div><div class="line">xdebug.profiler_output_name = cachegrind.out.%t.%p</div><div class="line">xdebug.profiler_output_dir = &quot;d:/wamp64/tmp&quot;</div><div class="line">xdebug.show_local_vars=0</div><div class="line">xdebug.idekey=PhpStorm</div><div class="line">xdebug.remote_enable = On</div><div class="line">xdebug.remote_host=localhost</div><div class="line">xdebug.remote_port=9000</div><div class="line">xdebug.remote_handler=dbgp</div></pre></td></tr></table></figure></p>
-<p><em>注意</em>：其中.dll和tmp的路径根据实际情况修改。</p>
-<p>第2步： File-&gt;Settings-&gt;Languages&amp;Frame Works-&gt;Php-&gt;Interpreter 选择web服务器套件中php.exe的路径<br><img src="/2017/06/13/PHPstorm10wamp3/2.png" alt="2.png" title=""><br>第3步： File-&gt;Settings-&gt;Languages&amp;Frame Works-&gt;Php-&gt;Servers 配置服务器相关设置:<br><img src="/2017/06/13/PHPstorm10wamp3/3.png" alt="3.png" title=""><br>第4步： File-&gt;Settings-&gt;Languages&amp;Frame Works-&gt;Php-&gt;Debug-&gt;DBGp Proxy 配置相关设置：<br><img src="/2017/06/13/PHPstorm10wamp3/4.png" alt="4.png" title=""><br>第5步： File-&gt;Settings-&gt;Languages&amp;Frame Works-&gt;Php-Debug 找到右边窗口对应的debug设置，把端口改成9000<br><img src="/2017/06/13/PHPstorm10wamp3/5.png" alt="5.png" title=""><br>第6步：在主界面右上角运行调试配置中创建phpwebapplication（我的php文件在www文件下的test下 所以设置为test）<br><img src="/2017/06/13/PHPstorm10wamp3/6.png" alt="6.png" title=""><br>第7步：安装chrome 扩展程序 —— xdebug helper 。点击phpstorm右上角的监听按钮。即可进行调试</p>
+        <p>本文中科院自动所于2017年发表。也是我上一篇博客阅读内容的升级版。<br>论文链接：<a href="https://arxiv.org/pdf/1511.02683v3.pdf" target="_blank" rel="external">PDF</a><br>参考阅读：</p>
+<ul>
+<li><a href="http://blog.csdn.net/qq_14845119/article/details/56677339" target="_blank" rel="external">人脸识别之light_cnn</a></li>
+<li><a href="http://blog.csdn.net/sihailongwang/article/details/72831259" target="_blank" rel="external">人脸识别方向论文笔记（1）– A Light CNN for Deep Face Representation With Noisy Labels</a></li>
+</ul>
+<p>第一作者提供项目地址: <a href="https://github.com/AlfredXiangWu/face_verification_experiment" target="_blank" rel="external">https://github.com/AlfredXiangWu/face_verification_experiment</a></p>
+<h2 id="Introduction-and-Related-Work"><a href="#Introduction-and-Related-Work" class="headerlink" title="Introduction and Related Work"></a>Introduction and Related Work</h2><p>本文有以下贡献：</p>
+<ol>
+<li>介绍了激活函数MFM。相比RELU，它的临界值由训练数据得到，并采用竞争关系其在不同的数据集上拥有更好泛化和适应能力。</li>
+<li>受AlexNet, VGG, ResNet启发设计了3个基于MFM的light CNN。</li>
+<li>提出了一种通过预训练深度网络的语义引导方法来处理大规模数据集中的噪声标记图像。标签不一致可以通过预测的概率有效检测，然后被重新标记或删除用于训练。</li>
+<li>提出的有256维特征的单一模型在各种不同人脸识别基准下表现不错。模型有较少参数故能在CPU或嵌入式系统上较快地抽取特征。</li>
+</ol>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><h3 id="Max-Feature-Map-Operation"><a href="#Max-Feature-Map-Operation" class="headerlink" title="Max-Feature-Map Operation"></a>Max-Feature-Map Operation</h3><p>我上一篇博文已经介绍了这个概念.这里只是增加了MFM 3/2的用法.<br>附上示意图与公式.<br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/MFM.png" alt="[MFM与传统激活函数对比]" title="[MFM与传统激活函数对比]"><br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/MFM2.png" alt="[MFM公式]" title="[MFM公式]"></p>
+<h3 id="The-Light-CNN-Framework"><a href="#The-Light-CNN-Framework" class="headerlink" title="The Light CNN Framework"></a>The Light CNN Framework</h3><p>第一个结构:(缘于AlexNet)<br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/CNN1.png" alt="[Light CNN-4]" title="[Light CNN-4]"><br>第二个结构:<br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/CNN2.png" alt="[Light CNN-9]" title="[Light CNN-9]"><br>可以看到此结构相比于旧版论文, 在Conv2a位置更细致并在Conv4-5之间去掉了一个pool层.<br>第三个结构:<br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/CNN3.png" alt="[Light CNN-29]" title="[Light CNN-29]"><br>注意:</p>
+<ol>
+<li>取消了批量归一化操作(batch normalization).</li>
+<li>采用全连接层而不是global average pooling layer.因为训练图像都是对齐的.global average pooling layer可能损坏图像的一部分语义和空间特征.</li>
+</ol>
+<h3 id="Semantic-Bootstrapping-for-Noisy-Label"><a href="#Semantic-Bootstrapping-for-Noisy-Label" class="headerlink" title="Semantic Bootstrapping for Noisy Label"></a>Semantic Bootstrapping for Noisy Label</h3><p>如下步骤:</p>
+<ol>
+<li>用原始的含噪声标签数据集训练LightCNN</li>
+<li>用训练好的模型预测训练集的标签.设置一个是否接受预测的阈值.</li>
+<li>用重新标签过的数据集再次训练LightCNN</li>
+</ol>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>在LFW和YFW上的表现:<br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/result1.png" alt="[Comparison]" title="[Comparison]"><br>在其他数据集的表现见论文.</p>
 
       
     </div>
@@ -394,7 +418,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/PHP/" rel="tag"># PHP</a>
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/tags/Face-Recognition/" rel="tag"># Face Recognition</a>
           
         </div>
       
@@ -407,8 +433,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/11/CS231n学习笔记-TensorFlow/" rel="next" title="CS231n学习笔记(TensorFlow)">
-                <i class="fa fa-chevron-left"></i> CS231n学习笔记(TensorFlow)
+              <a href="/2017/06/20/A-lightened-cnn-for-deep-face-representation/" rel="next" title="A lightened cnn for deep face representation 阅读笔记">
+                <i class="fa fa-chevron-left"></i> A lightened cnn for deep face representation 阅读笔记
               </a>
             
           </div>
@@ -416,10 +442,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/14/CS231n学习笔记-RNN/" rel="prev" title="CS231n学习笔记(RNN)">
-                CS231n学习笔记(RNN) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -466,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar2.jpg"
@@ -540,6 +571,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-and-Related-Work"><span class="nav-number">1.</span> <span class="nav-text">Introduction and Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Architecture"><span class="nav-number">2.</span> <span class="nav-text">Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Max-Feature-Map-Operation"><span class="nav-number">2.1.</span> <span class="nav-text">Max-Feature-Map Operation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Light-CNN-Framework"><span class="nav-number">2.2.</span> <span class="nav-text">The Light CNN Framework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantic-Bootstrapping-for-Noisy-Label"><span class="nav-number">2.3.</span> <span class="nav-text">Semantic Bootstrapping for Noisy Label</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">3.</span> <span class="nav-text">Experiments</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

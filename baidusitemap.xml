@@ -4,31 +4,16 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/06/20/A-lightened-cnn-for-deep-face-representation/</loc>
-    <lastmod>2017-06-20T11:27:39.873Z</lastmod>
+    <loc>https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/</loc>
+    <lastmod>2017-06-21T06:05:55.882Z</lastmod>
     <data>
         <display>
-        <title>A lightened cnn for deep face representation 阅读笔记</title>
-        <pubTime>2017-06-20T03:01:47.000Z</pubTime>
+        <title>A Light CNN for Deep Face Representation with Noisy Labels 阅读笔记</title>
+        <pubTime>2017-06-20T13:14:50.000Z</pubTime>
         
         <tag>Deep Learning</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/19/DeepFace-Closing-the-Gap-to-Human-Level-Performance-in-Face-Verification/</loc>
-    <lastmod>2017-06-19T14:56:51.139Z</lastmod>
-    <data>
-        <display>
-        <title>DeepFace: Closing the Gap to Human-Level Performance in Face Verification 阅读笔记</title>
-        <pubTime>2017-06-19T03:19:59.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
+        <tag>Face Recognition</tag>
          
          
            
@@ -39,13 +24,53 @@
     
   <url>
     <loc>https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/</loc>
-    <lastmod>2017-06-19T03:16:32.413Z</lastmod>
+    <lastmod>2017-06-20T13:22:55.547Z</lastmod>
     <data>
         <display>
         <title>Deep Face Recognition 阅读笔记</title>
         <pubTime>2017-06-18T06:46:32.000Z</pubTime>
         
         <tag>Deep Learning</tag>
+         
+        <tag>Face Recognition</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/19/DeepFace-Closing-the-Gap-to-Human-Level-Performance-in-Face-Verification/</loc>
+    <lastmod>2017-06-20T13:22:46.832Z</lastmod>
+    <data>
+        <display>
+        <title>DeepFace: Closing the Gap to Human-Level Performance in Face Verification 阅读笔记</title>
+        <pubTime>2017-06-19T03:19:59.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>Face Recognition</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/20/A-lightened-cnn-for-deep-face-representation/</loc>
+    <lastmod>2017-06-20T13:22:24.975Z</lastmod>
+    <data>
+        <display>
+        <title>A lightened cnn for deep face representation 阅读笔记</title>
+        <pubTime>2017-06-20T03:01:47.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>Face Recognition</tag>
          
          
            
