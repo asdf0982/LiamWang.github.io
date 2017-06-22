@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Deep Learning," />
+  <meta name="keywords" content="Deep Learning,Face Recognition," />
 
 
 
@@ -92,20 +92,24 @@
 
 
 
-<meta name="description" content="完成作业:  [ConvolutionalNetworks.ipynb] [cnn.py] [layers.py]">
-<meta name="keywords" content="Deep Learning">
+<meta name="description" content="本文由香港中文大学于2014年发表在CVPR会议参考:  Deep Learning Face Representation from Predicting 10,000 Classes论文笔记 【深度学习论文笔记】Deep Learning Face Representation from Predicting 10,000 Classes Deep Learning Face Represen">
+<meta name="keywords" content="Deep Learning,Face Recognition">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS231n学习笔记(卷积网络)">
-<meta property="og:url" content="https://asdf0982.github.io/2017/06/08/CS231n学习笔记-卷积网络/index.html">
+<meta property="og:title" content="Deep Learning Face Representation from Predicting 10,000 Classes 阅读笔记">
+<meta property="og:url" content="https://asdf0982.github.io/2017/06/21/DeepID/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="完成作业:  [ConvolutionalNetworks.ipynb] [cnn.py] [layers.py]">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/08/CS231n学习笔记-卷积网络/1.gif">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/08/CS231n学习笔记-卷积网络/poolinglay.png">
-<meta property="og:updated_time" content="2017-06-09T15:31:11.914Z">
+<meta property="og:description" content="本文由香港中文大学于2014年发表在CVPR会议参考:  Deep Learning Face Representation from Predicting 10,000 Classes论文笔记 【深度学习论文笔记】Deep Learning Face Representation from Predicting 10,000 Classes Deep Learning Face Represen">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/21/DeepID/DeepID.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/21/DeepID/ConvNet.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/21/DeepID/hiddenlayer.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/21/DeepID/facepatch.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/21/DeepID/NN.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/21/DeepID/result.png">
+<meta property="og:updated_time" content="2017-06-22T07:07:26.187Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CS231n学习笔记(卷积网络)">
-<meta name="twitter:description" content="完成作业:  [ConvolutionalNetworks.ipynb] [cnn.py] [layers.py]">
-<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/08/CS231n学习笔记-卷积网络/1.gif">
+<meta name="twitter:title" content="Deep Learning Face Representation from Predicting 10,000 Classes 阅读笔记">
+<meta name="twitter:description" content="本文由香港中文大学于2014年发表在CVPR会议参考:  Deep Learning Face Representation from Predicting 10,000 Classes论文笔记 【深度学习论文笔记】Deep Learning Face Representation from Predicting 10,000 Classes Deep Learning Face Represen">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/21/DeepID/DeepID.png">
 
 
 
@@ -133,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/06/08/CS231n学习笔记-卷积网络/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/06/21/DeepID/"/>
 
 
 
 
 
-  <title>CS231n学习笔记(卷积网络) | Liam's Blog</title>
+  <title>Deep Learning Face Representation from Predicting 10,000 Classes 阅读笔记 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -312,7 +316,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/08/CS231n学习笔记-卷积网络/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/21/DeepID/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -329,7 +333,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">CS231n学习笔记(卷积网络)</h2>
+          <h2 class="post-title" itemprop="name headline">Deep Learning Face Representation from Predicting 10,000 Classes 阅读笔记</h2>
         
 
         <div class="post-meta">
@@ -341,8 +345,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-08T21:37:55+08:00">
-                2017-06-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-21T14:25:17+08:00">
+                2017-06-21
               </time>
             
 
@@ -357,8 +361,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-09T23:31:11+08:00">
-                2017-06-09
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-22T15:07:26+08:00">
+                2017-06-22
               </time>
             
           </span>
@@ -393,27 +397,19 @@
       
 
       
-        <p>完成作业:</p>
+        <p>本文由香港中文大学于2014年发表在CVPR会议<br>参考:</p>
 <ul>
-<li><a href="/2017/06/08/CS231n学习笔记-卷积网络/ConvolutionalNetworks.ipynb" title="[ConvolutionalNetworks.ipynb]">[ConvolutionalNetworks.ipynb]</a></li>
-<li><a href="/2017/06/08/CS231n学习笔记-卷积网络/cnn.py" title="[cnn.py]">[cnn.py]</a></li>
-<li><a href="/2017/06/08/CS231n学习笔记-卷积网络/layers.py" title="[layers.py]">[layers.py]</a>
-<a id="more"></a>
-<h2 id="Convolution-Naive-forward-pass"><a href="#Convolution-Naive-forward-pass" class="headerlink" title="Convolution: Naive forward pass"></a>Convolution: Naive forward pass</h2><img src="/2017/06/08/CS231n学习笔记-卷积网络/1.gif" alt="[Convolutional Neural Networks for Visual Recognition]" title="[Convolutional Neural Networks for Visual Recognition]">
-pad=x就是在图像边缘加x圈零,stride=2就是卷积核(fliter)在横向和纵向移动的时候都要空一格.<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">stride, pad = conv_param[<span class="string">'stride'</span>], conv_param[<span class="string">'pad'</span>]</div><div class="line">N, C, H, W = x.shape</div><div class="line">F, C, HH, WW = w.shape</div><div class="line">x_padded = np.pad(x, ((<span class="number">0</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="number">0</span>), (pad, pad), (pad, pad)), mode=<span class="string">'constant'</span>)</div><div class="line"></div><div class="line">H_n = <span class="number">1</span> + (H + <span class="number">2</span> * pad - HH) / stride</div><div class="line">W_n = <span class="number">1</span> + (W + <span class="number">2</span> * pad - WW) / stride</div><div class="line">out = np.zeros((N, F, H_n, W_n))</div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> xrange(N):       <span class="comment"># ith image    </span></div><div class="line">    <span class="keyword">for</span> f <span class="keyword">in</span> xrange(F):   <span class="comment"># fth filter        </span></div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> xrange(H_n):            </div><div class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> xrange(W_n):                </div><div class="line">                out[i, f, j, k] = np.sum(x_padded[i, :, j*stride:HH+j*stride, k*stride:WW+k*stride] * w[f]) + b[f]</div></pre></td></tr></table></figure>
-</li>
+<li><a href="http://www.cnblogs.com/zzq1989/p/4373680.html" target="_blank" rel="external">Deep Learning Face Representation from Predicting 10,000 Classes论文笔记</a></li>
+<li><a href="http://blog.csdn.net/chenriwei2/article/details/31415069" target="_blank" rel="external">【深度学习论文笔记】Deep Learning Face Representation from Predicting 10,000 Classes</a></li>
+<li><a href="http://blog.csdn.net/prm10/article/details/50598975" target="_blank" rel="external">Deep Learning Face Representation from Predicting 10,000 Classes</a></li>
+<li><a href="http://blog.csdn.net/u010318961/article/details/51967845" target="_blank" rel="external">经典计算机视觉论文笔记——DeepFace\DeepID\DeepID2\DeepID3\FaceNet\VGGFace汇总</a></li>
 </ul>
-<h3 id="图像的切割"><a href="#图像的切割" class="headerlink" title="图像的切割"></a>图像的切割</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">kitten, puppy = imread(<span class="string">'kitten.jpg'</span>), imread(<span class="string">'puppy.jpg'</span>)</div><div class="line"><span class="comment"># kitten is wide, and puppy is already square</span></div><div class="line">d = kitten.shape[<span class="number">1</span>] - kitten.shape[<span class="number">0</span>]</div><div class="line">kitten_cropped = kitten[:, d//<span class="number">2</span>:-d//<span class="number">2</span>, :] <span class="comment">#kitten[Channel,Wide,height]</span></div></pre></td></tr></table></figure>
-<p>切割图像成为一个正方形.<br>图像的3个通道分别是红,绿,蓝.也就是RGB</p>
-<h3 id="图像的放缩"><a href="#图像的放缩" class="headerlink" title="图像的放缩"></a>图像的放缩</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">img_size = <span class="number">200</span>   <span class="comment"># Make this smaller if it runs too slow</span></div><div class="line">x = np.zeros((<span class="number">2</span>, <span class="number">3</span>, img_size, img_size))</div><div class="line">x[<span class="number">0</span>, :, :, :] = imresize(puppy, (img_size, img_size)).transpose((<span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>))</div></pre></td></tr></table></figure>
-<p>imresize(puppy, (img_size, img_size))的形状是(200L, 200L, 3L)<br>transpose((2,0,1))是以原来的shape按0,1,2这样排,然后去2,0,1重排得到结果.<br>故x[0, :, :, :]的形状是(3L, 200L, 200L)</p>
-<h2 id="Convolution-Naive-backward-pass"><a href="#Convolution-Naive-backward-pass" class="headerlink" title="Convolution: Naive backward pass"></a>Convolution: Naive backward pass</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">x, w, b, conv_param = cache</div><div class="line">pad = conv_param[&apos;pad&apos;]</div><div class="line">stride = conv_param[&apos;stride&apos;]</div><div class="line">F, C, HH, WW = w.shape</div><div class="line">N, C, H, W = x.shape</div><div class="line">H_new = 1 + (H + 2 * pad - HH) / stride</div><div class="line">W_new = 1 + (W + 2 * pad - WW) / stride</div><div class="line"></div><div class="line">dx = np.zeros_like(x)</div><div class="line">dw = np.zeros_like(w)</div><div class="line">db = np.zeros_like(b)</div><div class="line"></div><div class="line">s = stride</div><div class="line">x_padded = np.pad(x, ((0, 0), (0, 0), (pad, pad), (pad, pad)), &apos;constant&apos;)</div><div class="line">dx_padded = np.pad(dx, ((0, 0), (0, 0), (pad, pad), (pad, pad)), &apos;constant&apos;)</div><div class="line"></div><div class="line">for i in xrange(N):       # ith image    </div><div class="line">    for f in xrange(F):   # fth filter        </div><div class="line">        for j in xrange(H_new):            </div><div class="line">            for k in xrange(W_new):                </div><div class="line">                window = x_padded[i, :, j*s:HH+j*s, k*s:WW+k*s]</div><div class="line">                db[f] += dout[i, f, j, k]                </div><div class="line">                dw[f] += window * dout[i, f, j, k]                </div><div class="line">                dx_padded[i, :, j*s:HH+j*s, k*s:WW+k*s] += w[f] * dout[i, f, j, k]</div><div class="line"></div><div class="line"># Unpad</div><div class="line">dx = dx_padded[:, :, pad:pad+H, pad:pad+W]</div></pre></td></tr></table></figure>
-<h2 id="Max-pooling-Naive-forward"><a href="#Max-pooling-Naive-forward" class="headerlink" title="Max pooling: Naive forward"></a>Max pooling: Naive forward</h2><img src="/2017/06/08/CS231n学习笔记-卷积网络/poolinglay.png" alt="[max pooling layer]" title="[max pooling layer]">
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">HH, WW = pool_param[&apos;pool_height&apos;], pool_param[&apos;pool_width&apos;]</div><div class="line">s = pool_param[&apos;stride&apos;]</div><div class="line">N, C, H, W = x.shape</div><div class="line">H_new = 1 + (H - HH) / s</div><div class="line">W_new = 1 + (W - WW) / s</div><div class="line">out = np.zeros((N, C, H_new, W_new))</div><div class="line">for i in xrange(N):    </div><div class="line">    for j in xrange(C):        </div><div class="line">        for k in xrange(H_new):            </div><div class="line">            for l in xrange(W_new):                </div><div class="line">                window = x[i, j, k*s:HH+k*s, l*s:WW+l*s] </div><div class="line">                out[i, j, k, l] = np.max(window)</div></pre></td></tr></table></figure>
-<h2 id="Max-pooling-Naive-backward"><a href="#Max-pooling-Naive-backward" class="headerlink" title="Max pooling: Naive backward"></a>Max pooling: Naive backward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">x, pool_param = cache</div><div class="line">HH, WW = pool_param[&apos;pool_height&apos;], pool_param[&apos;pool_width&apos;]</div><div class="line">s = pool_param[&apos;stride&apos;]</div><div class="line">N, C, H, W = x.shape</div><div class="line">H_new = 1 + (H - HH) / s</div><div class="line">W_new = 1 + (W - WW) / s</div><div class="line">dx = np.zeros_like(x)</div><div class="line">for i in xrange(N):    </div><div class="line">    for j in xrange(C):        </div><div class="line">        for k in xrange(H_new):            </div><div class="line">            for l in xrange(W_new):                </div><div class="line">                window = x[i, j, k*s:HH+k*s, l*s:WW+l*s]                </div><div class="line">                m = np.max(window)               </div><div class="line">                dx[i, j, k*s:HH+k*s, l*s:WW+l*s] = (window == m) * dout[i, j, k, l]</div></pre></td></tr></table></figure>
-<p>在编译<code>python setup.py build_ext --inplace</code>时遇到没有C语言编译环境的问题<br>解决:<a href="http://www.cnblogs.com/fbwfbi/p/4509622.html" target="_blank" rel="external">windows下安装python的C扩展编译环境(解决“Unable to find vcvarsall.bat”)</a></p>
-<h2 id="Spatial-batch-normalization-forward"><a href="#Spatial-batch-normalization-forward" class="headerlink" title="Spatial batch normalization: forward"></a>Spatial batch normalization: forward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">N, C, H, W = x.shape</div><div class="line">x_new = x.transpose(0, 2, 3, 1).reshape(N*H*W, C)</div><div class="line">out, cache = batchnorm_forward(x_new, gamma, beta, bn_param)</div><div class="line">out = out.reshape(N, H, W, C).transpose(0, 3, 1, 2)</div></pre></td></tr></table></figure>
-<h2 id="Spatial-batch-normalization-backward"><a href="#Spatial-batch-normalization-backward" class="headerlink" title="Spatial batch normalization: backward"></a>Spatial batch normalization: backward</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">N, C, H, W = dout.shape</div><div class="line">dout_new = dout.transpose(0, 2, 3, 1).reshape(N*H*W, C)</div><div class="line">dx, dgamma, dbeta = batchnorm_backward(dout_new, cache)</div><div class="line">dx = dx.reshape(N, H, W, C).transpose(0, 3, 1, 2)</div></pre></td></tr></table></figure>
+<h2 id="Introduction-and-Related-Work"><a href="#Introduction-and-Related-Work" class="headerlink" title="Introduction and Related Work"></a>Introduction and Related Work</h2><p>本文提供了一种用多个深度模型获得高水平人脸特征(DeepID)来对人脸分类的方法.所谓DeepID,假如网络有10000个分类的输出, 那么在最后一层的输入(倒数第二层的输出)就是DeepID的组成部分,文中有160维.如图<br><img src="/2017/06/21/DeepID/DeepID.png" alt="[DeepID]" title="[DeepID]"><br>DeepID有很好的泛化能力, 再对它用Joint Bayesian等方法就能进行人脸验证.</p>
+<h2 id="Deep-ConvNets"><a href="#Deep-ConvNets" class="headerlink" title="Deep ConvNets"></a>Deep ConvNets</h2><p>结构如下:<br><img src="/2017/06/21/DeepID/ConvNet.png" alt="[ConvNet]" title="[ConvNet]"><br>输入图像为39*31*k, k表示通道数(RGB图像k为3, 灰度图像k为1).<br>激活函数使用RELU.<br>DeepID层为全连接层,其输入为Maxp3和Conv4两者.输出特征160维. 因Conv4包含了较多的全局信息, 需要Maxp3进行细节补充.<img src="/2017/06/21/DeepID/hiddenlayer.png" alt="[DeepID层(FC)公式]" title="[DeepID层(FC)公式]"><br>$x^1,w^1,x^2,w^2$代表Maxp3和Conv4的输出和对应的权重.<br>该模型使用SGD的最优化方法.</p>
+<h2 id="Feature-extraction"><a href="#Feature-extraction" class="headerlink" title="Feature extraction"></a>Feature extraction</h2><p>找到人脸上的5个标记点.(两个眼睛中心点, 鼻尖点, 两个嘴角点)<br>将人脸根据两个眼睛中心点和嘴角连线的中点对齐.<br>从60个不同的小块抽取DeepID特征, 60这一数字源于10个区域, 3个大小, RGB和灰度2种通道.如图:<br><img src="/2017/06/21/DeepID/facepatch.png" alt="[face path]" title="[face path]"><br>上方的十张图是由中等大小尺寸切的.上方左边的5张图切自弱对齐后的全局区域,上方右边的5张图则分别以5个人脸标记点为中心切.下方代表3种大小.(每种大小又分为长方形和正方形两个形状.)<br>每张图片输出160维,一个patch有两张图片(一张是原始的,一张是<strong>水平翻转</strong>的副本),共有60个patch.则最终DeepID将所有维度连接起来,即160*2*60=19200维.这将用于最终的人脸验证.(每个网络输入一个patch,一张长方形一张正方形)</p>
+<h2 id="Face-verification"><a href="#Face-verification" class="headerlink" title="Face verification"></a>Face verification</h2><p>分别使用JointBayesian和神经网络进行人脸识别.后续结果表面JointBayesian效果较好.<br>神经网络部分示意图:<br><img src="/2017/06/21/DeepID/NN.png" alt="[用于人脸识别的NN]" title="[用于人脸识别的NN]"><br>输入有640*60 是因为人脸识别需要两个张人脸图像.每张图像切好得到一个patch会产生160*2维输出.共有两张图像, 故640 = 160*2*2<br>注意到第一个隐层是locally-connect layer ,表示一个神经元只与对应的group连接, 这样神经元就能学习到紧凑的局部特征.第二的隐层为全连接层, 这表示从局部特征中学习全局特征.<br>隐层都使用RELU, 最后一层(输出)使用sigmoid.并且对所有隐层节点使用dropout.</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>采用CelebFace训练模型, 在LFW上验证.<br>随机选择80%的人训练DeepID模型, 剩下20%的人训练联合贝叶斯或神经网络.<br>在人脸识别阶段, 将特征通过PCA降维至150维, 再输入联合贝叶斯中.在测试时, 判断两张脸是否是同一个人是通过看联合贝叶斯的极大似然比来决定的, 该阈值通过训练集确定.<br>在LFW上的表现如下,其他结果见论文.<br><img src="/2017/06/21/DeepID/result.png" alt="[result in LFW]" title="[result in LFW]"></p>
+
       
     </div>
 
@@ -444,6 +440,8 @@ pad=x就是在图像边缘加x圈零,stride=2就是卷积核(fliter)在横向和
           
             <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
           
+            <a href="/tags/Face-Recognition/" rel="tag"># Face Recognition</a>
+          
         </div>
       
 
@@ -455,8 +453,8 @@ pad=x就是在图像边缘加x圈零,stride=2就是卷积核(fliter)在横向和
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/06/CS231n学习笔记（批量归一化）/" rel="next" title="CS231n学习笔记(批量归一化和dropout)">
-                <i class="fa fa-chevron-left"></i> CS231n学习笔记(批量归一化和dropout)
+              <a href="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/" rel="next" title="A Light CNN for Deep Face Representation with Noisy Labels 阅读笔记">
+                <i class="fa fa-chevron-left"></i> A Light CNN for Deep Face Representation with Noisy Labels 阅读笔记
               </a>
             
           </div>
@@ -464,10 +462,6 @@ pad=x就是在图像边缘加x圈零,stride=2就是卷积核(fliter)在横向和
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/10/install-tensorflow/" rel="prev" title="Install tensorflow on Win10">
-                Install tensorflow on Win10 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -607,7 +601,7 @@ pad=x就是在图像边缘加x圈零,stride=2就是卷积核(fliter)在横向和
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolution-Naive-forward-pass"><span class="nav-number">1.</span> <span class="nav-text">Convolution: Naive forward pass</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图像的切割"><span class="nav-number">1.1.</span> <span class="nav-text">图像的切割</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图像的放缩"><span class="nav-number">1.2.</span> <span class="nav-text">图像的放缩</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolution-Naive-backward-pass"><span class="nav-number">2.</span> <span class="nav-text">Convolution: Naive backward pass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-pooling-Naive-forward"><span class="nav-number">3.</span> <span class="nav-text">Max pooling: Naive forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-pooling-Naive-backward"><span class="nav-number">4.</span> <span class="nav-text">Max pooling: Naive backward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spatial-batch-normalization-forward"><span class="nav-number">5.</span> <span class="nav-text">Spatial batch normalization: forward</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spatial-batch-normalization-backward"><span class="nav-number">6.</span> <span class="nav-text">Spatial batch normalization: backward</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-and-Related-Work"><span class="nav-number">1.</span> <span class="nav-text">Introduction and Related Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-ConvNets"><span class="nav-number">2.</span> <span class="nav-text">Deep ConvNets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feature-extraction"><span class="nav-number">3.</span> <span class="nav-text">Feature extraction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Face-verification"><span class="nav-number">4.</span> <span class="nav-text">Face verification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">5.</span> <span class="nav-text">实验</span></a></li></ol></div>
             
 
           </div>
@@ -1107,6 +1101,26 @@ pad=x就是在图像边缘加x圈零,stride=2就是卷积核(fliter)在横向和
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
