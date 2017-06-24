@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Deep Learning,Face Recognition," />
 
 
 
@@ -92,15 +92,24 @@
 
 
 
-<meta name="description" content="哈~我不适合在白天工作~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liam&#39;s Blog">
-<meta property="og:url" content="https://asdf0982.github.io/tags/Tips/index.html">
+<meta name="description" content="本文由GOOGLE于2015年发表在CVPR参考:  谷歌人脸识别系统FaceNet解析 FaceNet–Google的人脸识别 FaceNet—深度学习与人脸识别的二次结合  介绍本文提出一个系统名为FaceNet. 它可以直接将人脸图像映射至欧式空间, 其距离能直接反应出人脸间的相似度. 一旦生成该空间, 识别, 验证, 聚类等任务都可以用它来轻松完成. FaceNet在LFW上达到了99.6">
+<meta name="keywords" content="Deep Learning,Face Recognition">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FaceNet:A Unified Embedding for Face Recognition and Clustering 阅读笔记">
+<meta property="og:url" content="https://asdf0982.github.io/2017/06/24/FaceNet/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="哈~我不适合在白天工作~">
+<meta property="og:description" content="本文由GOOGLE于2015年发表在CVPR参考:  谷歌人脸识别系统FaceNet解析 FaceNet–Google的人脸识别 FaceNet—深度学习与人脸识别的二次结合  介绍本文提出一个系统名为FaceNet. 它可以直接将人脸图像映射至欧式空间, 其距离能直接反应出人脸间的相似度. 一旦生成该空间, 识别, 验证, 聚类等任务都可以用它来轻松完成. FaceNet在LFW上达到了99.6">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/24/FaceNet/1.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/24/FaceNet/triplet.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/24/FaceNet/tripletloss.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/24/FaceNet/select.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/24/FaceNet/NN1.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/24/FaceNet/NN2.png">
+<meta property="og:updated_time" content="2017-06-24T14:55:04.234Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liam&#39;s Blog">
-<meta name="twitter:description" content="哈~我不适合在白天工作~">
+<meta name="twitter:title" content="FaceNet:A Unified Embedding for Face Recognition and Clustering 阅读笔记">
+<meta name="twitter:description" content="本文由GOOGLE于2015年发表在CVPR参考:  谷歌人脸识别系统FaceNet解析 FaceNet–Google的人脸识别 FaceNet—深度学习与人脸识别的二次结合  介绍本文提出一个系统名为FaceNet. 它可以直接将人脸图像映射至欧式空间, 其距离能直接反应出人脸间的相似度. 一旦生成该空间, 识别, 验证, 聚类等任务都可以用它来轻松完成. FaceNet在LFW上达到了99.6">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/24/FaceNet/1.png">
 
 
 
@@ -128,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/tags/Tips/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/06/24/FaceNet/"/>
 
 
 
 
 
-  <title>Tag: Tips | Liam's Blog</title>
+  <title>FaceNet:A Unified Embedding for Face Recognition and Clustering 阅读笔记 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -169,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -297,100 +306,188 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2>Tips<small>Tag</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/06/10/install-tensorflow/" itemprop="url">
-              
-                <span itemprop="name">Install tensorflow on Win10</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-10T10:30:18+08:00"
-              content="2017-06-10" >
-          06-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/26/UEditor的数据回显/" itemprop="url">
-              
-                <span itemprop="name">UEditor的数据回显</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-26T09:35:52+08:00"
-              content="2017-05-26" >
-          05-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/" itemprop="url">
-              
-                <span itemprop="name">连接电脑时蓝牙耳机音质明显下降</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-25T10:47:52+08:00"
-              content="2017-05-25" >
-          05-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/24/FaceNet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">FaceNet:A Unified Embedding for Face Recognition and Clustering 阅读笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-24T11:35:03+08:00">
+                2017-06-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-24T22:55:04+08:00">
+                2017-06-24
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>hits
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文由GOOGLE于2015年发表在CVPR<br>参考:</p>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/24837264" target="_blank" rel="external">谷歌人脸识别系统FaceNet解析</a></li>
+<li><a href="http://blog.csdn.net/stdcoutzyx/article/details/46687471" target="_blank" rel="external">FaceNet–Google的人脸识别</a></li>
+<li><a href="http://www.cnblogs.com/xiaohuahua108/p/6505756.html" target="_blank" rel="external">FaceNet—深度学习与人脸识别的二次结合</a></li>
+</ul>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>本文提出一个系统名为FaceNet. 它可以直接将人脸图像映射至欧式空间, 其距离能直接反应出人脸间的相似度. 一旦生成该空间, 识别, 验证, 聚类等任务都可以用它来轻松完成. FaceNet在LFW上达到了99.63%的准确率, 在Youtube Faces DB达到95.12%.<br>和之前的方法(先输出高维度特征向量, 然后用PCA等降维, 再用分类器分类)不同, FaceNet直接使用基于triplets的LMNN（最大边界近邻分类）的loss函数训练神经网络, 网络直接输出为128维度的向量空间.<br>其人脸比对的结果如图所示:<br><img src="/2017/06/24/FaceNet/1.png" alt="[Illumination and Pose invariance]" title="[Illumination and Pose invariance]"><br>可以看到1.1就是阈值.</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>本文探索了2个网络.第一类为Zeiler&amp;Fergus研究中使用的神经网络, 受NIN影响, 我们在网络后面加了多个1*1*d卷积层, 第二类为Inception网络.<br>关键在于网络的末端使用了triplet loss作为目标函数. </p>
+<h3 id="Triplet-Loss"><a href="#Triplet-Loss" class="headerlink" title="Triplet Loss"></a>Triplet Loss</h3><p>triplet loss: 在3个样本中,最小化类内差距,最大化类间差距.如图:<br><img src="/2017/06/24/FaceNet/triplet.png" alt="[Triplet Loss]" title="[Triplet Loss]"><br>公式如下:<br><img src="/2017/06/24/FaceNet/tripletloss.png" alt="[triplet loss公式]" title="[triplet loss公式]"></p>
+<h3 id="Triplet-3个样本的选择"><a href="#Triplet-3个样本的选择" class="headerlink" title="Triplet 3个样本的选择"></a>Triplet 3个样本的选择</h3><p>我们想要从类内选择出一些P样本(hard-positive), 使他们与A样本的平均距离最大(argmax). 同时从类外选择出一些N样本(hard-negative), 使他们与A样本的平均距离最小(argmin). 但计算整个训练集之间的平均最大最小距离是不现实的.这里有两个办法解决它:</p>
+<ol>
+<li>每隔几步产生triplets, 计算它们在子数据集中的argmax和argmin. </li>
+<li>在线产生triplets, 从mini-batch中得到hard positive/negative样本.(本文使用)</li>
+</ol>
+<p>文章选用方法2, 为了防止选择不当, 使用如下公式来约束样本选择.<br><img src="/2017/06/24/FaceNet/select.png" alt="[help to select]" title="[help to select]"></p>
+<h3 id="深度卷积网络"><a href="#深度卷积网络" class="headerlink" title="深度卷积网络"></a>深度卷积网络</h3><p>第一个是Zeiler&amp;Fergus的22层网络.<br><img src="/2017/06/24/FaceNet/NN1.png" alt="[NN1]" title="[NN1]"><br>第二个网络<br><img src="/2017/06/24/FaceNet/NN2.png" alt="[NN2]" title="[NN2]"></p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><ol>
+<li>NN2(input 224*224)的效果最好.</li>
+<li>即使图像只有80*80, 验证正确率下降的也不大.</li>
+<li>NN1输出的特征在128维时效果最好.</li>
+<li>训练的数据量增大能提高准确率.</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/tags/Face-Recognition/" rel="tag"># Face Recognition</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/23/DeepID2-1/" rel="next" title="Deeply learned face representations are sparse, selective, and robust 阅读笔记">
+                <i class="fa fa-chevron-left"></i> Deeply learned face representations are sparse, selective, and robust 阅读笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -398,6 +495,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -417,8 +518,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar2.jpg"
@@ -491,6 +601,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Triplet-Loss"><span class="nav-number">2.1.</span> <span class="nav-text">Triplet Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Triplet-3个样本的选择"><span class="nav-number">2.2.</span> <span class="nav-text">Triplet 3个样本的选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度卷积网络"><span class="nav-number">2.3.</span> <span class="nav-text">深度卷积网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">3.</span> <span class="nav-text">实验</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -612,6 +738,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
@@ -981,26 +1111,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

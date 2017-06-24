@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[FaceNet:A Unified Embedding for Face Recognition and Clustering 阅读笔记]]></title>
+    <url>%2F2017%2F06%2F24%2FFaceNet%2F</url>
+    <content type="text"><![CDATA[本文由GOOGLE于2015年发表在CVPR参考: 谷歌人脸识别系统FaceNet解析 FaceNet–Google的人脸识别 FaceNet—深度学习与人脸识别的二次结合 介绍本文提出一个系统名为FaceNet. 它可以直接将人脸图像映射至欧式空间, 其距离能直接反应出人脸间的相似度. 一旦生成该空间, 识别, 验证, 聚类等任务都可以用它来轻松完成. FaceNet在LFW上达到了99.63%的准确率, 在Youtube Faces DB达到95.12%.和之前的方法(先输出高维度特征向量, 然后用PCA等降维, 再用分类器分类)不同, FaceNet直接使用基于triplets的LMNN（最大边界近邻分类）的loss函数训练神经网络, 网络直接输出为128维度的向量空间.其人脸比对的结果如图所示:可以看到1.1就是阈值. 方法本文探索了2个网络.第一类为Zeiler&amp;Fergus研究中使用的神经网络, 受NIN影响, 我们在网络后面加了多个1*1*d卷积层, 第二类为Inception网络.关键在于网络的末端使用了triplet loss作为目标函数. Triplet Losstriplet loss: 在3个样本中,最小化类内差距,最大化类间差距.如图:公式如下: Triplet 3个样本的选择我们想要从类内选择出一些P样本(hard-positive), 使他们与A样本的平均距离最大(argmax). 同时从类外选择出一些N样本(hard-negative), 使他们与A样本的平均距离最小(argmin). 但计算整个训练集之间的平均最大最小距离是不现实的.这里有两个办法解决它: 每隔几步产生triplets, 计算它们在子数据集中的argmax和argmin. 在线产生triplets, 从mini-batch中得到hard positive/negative样本.(本文使用) 文章选用方法2, 为了防止选择不当, 使用如下公式来约束样本选择. 深度卷积网络第一个是Zeiler&amp;Fergus的22层网络.第二个网络 实验 NN2(input 224*224)的效果最好. 即使图像只有80*80, 验证正确率下降的也不大. NN1输出的特征在128维时效果最好. 训练的数据量增大能提高准确率.]]></content>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>Face Recognition</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Deeply learned face representations are sparse, selective, and robust 阅读笔记]]></title>
     <url>%2F2017%2F06%2F23%2FDeepID2-1%2F</url>
     <content type="text"><![CDATA[本文由香港中文大学于2015年发表在CVPR会议 Introduction本文设计了一个深度卷积网络, 获取到 的特征名为DeepID2+.相比与DeepID2,2+ 的网络通过增加隐层特征的维度和对靠前的卷积层监督使DeepID2+在LFW上表现很好.对于人脸识别有3个点很关键: sparse: 稀疏, 即特征向量中包含很多零, 可压缩性强. selective: 精选, 指具有判别能力的一些分量, 在不同人脸上响应程度不同. robust: 健壮, 指图像被遮挡后特征中某些向量依然保持不变的一致性. DeepID2+ 网络结构如图:DeepID2+网络也使用了识别和验证两种信号进行监督.此部分参考我上一篇笔记.与DeepID2网络的不同点: 每个卷积层后(实际上是1,2,3maxpool层和conv4层后)都获得一个128维的特征, 共有4个卷积层故特征从160维增大到512维. 训练集增大.从8000类160000图增大至12000类290000图. 用全连接层连接每个卷积层, 并使用DeepID2的那种监督方式.这样监督信号就离前期的卷积层更近了,也更有效. 实验发现DeepID2选取了25个patch，DeepID2+选取了同样的25个patch，然后抽取的特征分别训练联合贝叶斯模型，得到的结果是DeepID2+平均比DeepID2提高2%。特别的,根据稀疏性对DeepID2+进行二值化处理后, 再使用联合贝叶斯或汉明距离实验,发现识别率下降有限.二值化后的特征节省空间并且可以使人脸检索变得速度更快，更接近实用场景。]]></content>
