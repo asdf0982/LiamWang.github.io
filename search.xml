@@ -12,10 +12,10 @@
   <entry>
     <title><![CDATA[Deeply learned face representations are sparse, selective, and robust 阅读笔记]]></title>
     <url>%2F2017%2F06%2F23%2FDeepID2-1%2F</url>
-    <content type="text"><![CDATA[本文由香港中文大学于2015年发表在CVPR会议 Introduction本文设计了一个深度卷积网络, 获取到 的特征名为DeepID2+.相比与DeepID2,2+ 的网络通过增加隐层特征的维度和对靠前的卷积层监督使DeepID2+在LFW上表现很好.对于人脸识别有3个点很关键: sparse: 稀疏, 即特征向量中包含很多零, 可压缩性强. selective: 精选, 指具有判别能力的一些分量, 在不同人脸上响应程度不同. robust: 健壮, 指图像被遮挡后特征中某些向量依然保持不变的一致性. DeepID2+ 网络结构如图:DeepID2+网络也使用了识别和验证两种信号进行监督.此部分参考我上一篇笔记.与DeepID2网络的不同点: 每个卷积层后(实际上是1,2,3maxpool层和conv4层后)都获得一个128维的特征, 共有4个卷积层故特征从160维增大到512维. 训练集增大.从8000类160000图增大至12000类290000图. 用全连接层连接每个卷积层, 并使用DeepID2的那种监督方式.这样监督信号就离前期的卷积层更近了,也更有效. 实验发现DeepID2选取了25个patch，DeepID2+选取了同样的25个patch，然后抽取的特征分别训练联合贝叶斯模型，得到的结果是DeepID2+平均比DeepID2提高2%。特别的,根据稀疏性对DeepID2+进行二值化处理后, 再使用联合贝叶斯或汉明距离实验,发现识别率下降有限.二值化后的特征节省空间并且可以使人脸检索变得速度更快，更接近实用场景。]]></content>
+    <content type="text"><![CDATA[本文由香港中文大学于2015年发表在CVPR会议 Introduction本文设计了一个深度卷积网络, 获取到 的特征名为DeepID2+.相比与DeepID2,2+ 的网络通过增加隐层特征的维度和对靠前的卷积层监督使DeepID2+在LFW上表现很好.对于人脸识别有3个点很关键: sparse: 稀疏, 即特征向量中包含很多零, 可压缩性强. selective: 精选, 指具有判别能力的一些分量, 在不同人脸上响应程度不同. robust: 健壮, 指图像被遮挡后特征中某些向量依然保持不变的一致性. DeepID2+ 网络结构如图:DeepID2+网络也使用了识别和验证两种信号进行监督.此部分参考我上一篇笔记.与DeepID2网络的不同点: 每个卷积层后(实际上是1,2,3maxpool层和conv4层后)都获得一个128维的特征, 共有4个卷积层故特征从160维增大到512维. 训练集增大.从8000类160000图增大至12000类290000图. 用全连接层连接每个卷积层, 并使用DeepID2的那种监督方式.这样监督信号就离前期的卷积层更近了,也更有效. 实验发现DeepID2选取了25个patch，DeepID2+选取了同样的25个patch，然后抽取的特征分别训练联合贝叶斯模型，得到的结果是DeepID2+平均比DeepID2提高2%。特别的,根据稀疏性对DeepID2+进行二值化处理后, 再使用联合贝叶斯或汉明距离实验,发现识别率下降有限.二值化后的特征节省空间并且可以使人脸检索变得速度更快，更接近实用场景。 关于DeepID3DeepID3实现了两个更深的网络,一个参考VGG, 一个参考googlenet.如图所示:但结果较DeepID2+差距不大.]]></content>
       <tags>
         <tag>Deep Learning</tag>
-        <tag>Face recognition</tag>
+        <tag>Face Recognition</tag>
       </tags>
   </entry>
   <entry>
