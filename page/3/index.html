@@ -309,6 +309,141 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/26/UEditor的数据回显/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/26/UEditor的数据回显/" itemprop="url">UEditor的数据回显</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-26T09:35:52+08:00">
+                2017-05-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-02T10:31:25+08:00">
+                2017-06-02
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近遇到了ueditor的不能显示数据的回显问题。<br>解决思路：</p>
+<ol>
+<li>在jsp页面添加div类型的隐藏栏，作为中转站保存数据。</li>
+<li>使用js代码配置ueditor面板，从上获得数据并展示</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"temp"</span> <span class="attr">style</span>=<span class="string">"display: none;"</span>&gt;</span>$&#123;***.**&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">srcipt</span> <span class="attr">id</span>=<span class="string">"container"</span> <span class="attr">name</span>=<span class="string">"content"</span> <span class="attr">type</span>=<span class="string">"text/plain"</span>&gt;</span><span class="tag">&lt;/<span class="name">srcipt</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line"><span class="keyword">var</span> ue = UE.getEditor(<span class="string">'container'</span>);</div><div class="line">ue.ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">ue.setContent($(<span class="string">'#temp'</span>).html());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>Tips：</p>
+<ol>
+<li>最初我用的办法是<code>&lt;input id=&quot;temp&quot; type=&quot;hidden&quot; value=&quot;${***.**}&quot;&gt;</code>和<code>ue.setContent($(&#39;#temp&#39;).val());</code>图像和信息能正确上传但不能回显。原因是数据库中图像的内容为<code>&lt;p&gt;&lt;img src=&quot;http://localhost:8080/…/ueditor/jsp/upload/image/20170602/**.png……&quot;&gt;</code>这里src=之后的双引号会和value=后的双引号配对，导致图像的路径信息无法传入，所以改为上面的方法。</li>
+<li>使用eclipse+tomcat调试项目，图像保存在<code>workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\myown\ueditor\jsp\upload\image</code>下的日期目录（其中workspace代表eclipse的默认工程路径，myown是我的项目名称）。在eclipse项目内点击ueditor-&gt;jsp-&gt;config.json中调整图像的保存路径。我修改为<code>&quot;imageUrlPrefix&quot;: &quot;/myown&quot;,</code></li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/25/连接电脑时蓝牙耳机音质明显下降/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1016,7 +1151,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">26</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
