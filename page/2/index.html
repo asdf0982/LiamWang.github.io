@@ -309,6 +309,164 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/18/Deep-Face-recognition/" itemprop="url">Deep Face Recognition 阅读笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-18T14:46:32+08:00">
+                2017-06-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-20T21:22:55+08:00">
+                2017-06-20
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>此文由牛津大学视觉研究所于2015年发表.<br>论文链接: <a href="https://www.robots.ox.ac.uk/~vgg/publications/2015/Parkhi15/parkhi15.pdf" target="_blank" rel="external">PDF</a><br>参考: </p>
+<ul>
+<li><a href="http://yongyuan.name/blog/deep-face-recognition-note.html" target="_blank" rel="external">Deep Face Recognition论文阅读</a></li>
+<li><a href="http://blog.csdn.net/kunyxu/article/details/54376850" target="_blank" rel="external">VGG-Face：Deep Face Recognition 笔记</a></li>
+<li><a href="http://blog.csdn.net/tangwei2014/article/details/46788025" target="_blank" rel="external">triplet loss 原理以及梯度推导</a></li>
+<li><a href="http://blog.csdn.net/sallyxyl1993/article/details/51685093" target="_blank" rel="external">论文：Deep Face Recognition 概括</a></li>
+</ul>
+<p>本文有两个主要部分:</p>
+<ol>
+<li>如何用较少的人力, 搜集和建立一个相对优质的数据集.</li>
+<li>用深度网络完成人脸识别和验证, 并比较不同的网络结构在不同的数据集上的表现.</li>
+</ol>
+<h2 id="Dataset-Collection-收集整理数据集"><a href="#Dataset-Collection-收集整理数据集" class="headerlink" title="Dataset Collection 收集整理数据集"></a>Dataset Collection 收集整理数据集</h2><ol>
+<li><strong>过滤出候选的人名列表</strong><br>从IMDB资料库中获得5k个人名, 其中男女各一半.使用google图片搜索每个人名搜集200张图片. 筛去图片纯净度低的, 与LFW汗YFW重合人名的, 还剩下2622个人名.</li>
+<li><strong>为每个人名收集更多图片</strong><br>在google和bing里搜图并在每个名字之后加上”actor”再搜一遍,每次搜500张,总计单个名字下搜集2000张图片.</li>
+<li><strong>使用自动的过滤器提高纯净度</strong><br>基于Google的查询结果, 取前50张图片作为正训练样本. 其他人名查询下的前50张为负训练样本, 使用Fisher Vector Faces训练一个one-vs-rest的线性SVM分类器对2000张图片排序, 保留前1000张.</li>
+<li><strong>删除相似的图片</strong><br>抽出不同搜索引擎找到的相同图片和在网路上不同位置的相同图片, 还有那些只是色彩平衡不同的近似图片. 通过计算每张图片的VLAD descriptor, 对每个人名下的1000张图片聚类, 使用一个相当紧缩的阈值范围保留一部分图片.(图表展示为平均623张,不是每个人名下623张.)</li>
+<li><strong>最终人工筛选</strong><br>这一步的目的是通过人为注释提高数据集纯度. 但是为了减轻人员标注的负担, 使用AlexNet对所有人名下的图片进行rank. rank完的图片以200张一批的方式展示给注释人员. 如果一批内图像的纯度大约高于95%, 那么就是good. 最终得到982803张图片.</li>
+</ol>
+<p>搜集过程和用时表格(A代表自动, M代表手动):<br><img src="/2017/06/18/Deep-Face-recognition/Table2.png" alt="[Dataset statistics after each stage of processing]" title="[Dataset statistics after each stage of processing]"><br>与公开的数据集进行对比:<br><img src="/2017/06/18/Deep-Face-recognition/Table1.png" alt="[Dataset comparisons]" title="[Dataset comparisons]"></p>
+<h2 id="Network-architecture-and-training-网络结构与训练"><a href="#Network-architecture-and-training-网络结构与训练" class="headerlink" title="Network architecture and training 网络结构与训练"></a>Network architecture and training 网络结构与训练</h2><p>训练采用VGGNet,结构如图:<br><img src="/2017/06/18/Deep-Face-recognition/VGG.png" alt="[Network configuration]" title="[Network configuration]"><br>输入的图像大小为224*224,<br>卷积层的配置为{stride=2;pad=1;filter_size=3*3;filter_num=64}<br>则卷积后输出大小1+(224+2*1-3)/1 = 224,即卷积后仍为224*224的图像,只不过包含64个通道(filter_num).<br>池化层的配置为{stride=2;pad=0;filter_size=2*2}<br>则池化后输出大小(224-2)/2+1 = 112,即池化后为112*112的图像(大小减半,通道数不变)<br>经过一系列的conv-maxpool,最后包含3个FC层(理解为filter和input一样大的卷积层).<br>第一个FC层的输入为7*7, 512通道.filter也为7*7, 512通道.filter_num为4096.故输出大小(1, 4096).<br>网络的最后一层使用<em>softmax log-loss</em>作为分类器.<br>训练结束后, 移除最后一层, 模型最终得到的score vectors可通过计算欧式距离再比较的方法进行人脸对比检测. 然而, 通过在欧式空间里使用”triplet loss”的方法可以使上面的分数向量进一步改善.公式如下:<br><img src="/2017/06/18/Deep-Face-recognition/triplet-loss.png" alt="[tripplet loss]" title="[tripplet loss]"><br>a:anchor; p:positive; n:negative, 参考<a href="http://blog.csdn.net/tangwei2014/article/details/46788025" target="_blank" rel="external"><strong>triplet loss 原理以及梯度推导</strong></a></p>
+<h3 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h3><p>考虑使用A,B,D三个网络结构, 其中A就是上表展示的VGG网络.最后3个是全连接层, 只是将他看作卷积层(卷积核与输入图像一样大).<br>我猜测BD的结构为VGGNet论文中描述的,如图:<br><img src="/2017/06/18/Deep-Face-recognition/VGGNet.png" alt="[VGGNet]" title="[VGGNet]"><br>B,D的网络结构相比A分别多了2和5个卷积层.<br>输入人脸图像的大小是224*224.</p>
+<h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><p>描述了训练的详细过程, 如使用SGD+momentum的最优化方法, 学习率的设置, 通过翻转图像增大数据集, BD模型均在A模型训练好的基础上进行微调等等.</p>
+<h2 id="Experiments-and-results"><a href="#Experiments-and-results" class="headerlink" title="Experiments and results"></a>Experiments and results</h2><p><strong>各个网络结构的表现如下</strong>:(C-数据集搜集和整理中第五步的数据集; F-第三步)<br><img src="/2017/06/18/Deep-Face-recognition/Table4.png" alt="[Performance evaluation on LFW]" title="[Performance evaluation on LFW]"><br>可以发现</p>
+<ol>
+<li>F数据集表现的更好;</li>
+<li>测试时2D对齐能轻微提高表现,但训练时没有帮助; </li>
+<li>网络B的表现最好;</li>
+<li>验证时的嵌入学习(triplet-loss)能显著提升表现.</li>
+</ol>
+<p><strong>与最先进的网络对比</strong>:<br><img src="/2017/06/18/Deep-Face-recognition/Table5.png" alt="[Performance evaluation on LFW]" title="[Performance evaluation on LFW]"><br>可以看到此文使用比其他网络少许多的数据集和较少的网络得到与其他先进网络媲美的结果.</p>
+<h2 id="疑问和思考"><a href="#疑问和思考" class="headerlink" title="疑问和思考"></a>疑问和思考</h2><ol>
+<li>triplet loss具体是在哪一步如何实现的?</li>
+<li>为什么净化后的数据集训练效果反而降低了?<br>文章给出了两点可能的解释:1.就算标签存在噪声,数据量越大越好.2.一些微妙的正确图样在步骤5被移除了.</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1511,142 +1669,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/29/CS231n学习笔记-两层网络/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/29/CS231n学习笔记-两层网络/" itemprop="url">CS231n学习笔记-两层网络</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-29T23:04:22+08:00">
-                2017-05-29
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-30T16:51:56+08:00">
-                2017-05-30
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>完成作业</p>
-<ul>
-<li><a href="/2017/05/29/CS231n学习笔记-两层网络/two_layer_net.ipynb" title="[two_layer_net.ipynb]">[two_layer_net.ipynb]</a></li>
-<li><a href="/2017/05/29/CS231n学习笔记-两层网络/neural_net.py" title="[neural_net.py]">[neural_net.py]</a>
-</li>
-</ul>
-<h2 id="前向传播计算图像在各类下的分数"><a href="#前向传播计算图像在各类下的分数" class="headerlink" title="前向传播计算图像在各类下的分数"></a>前向传播计算图像在各类下的分数</h2><p>在neural_net.py下编辑loss函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">L1 = ReLU(np.dot(X,W1)+b1)</div><div class="line">L2 = np.dot(L1,W2)+b2 <span class="comment"># N,C</span></div><div class="line">scores = L2</div></pre></td></tr></table></figure></p>
-<p>L1代表第一层，使用ReLU作为激活函数。而ReLU函数没有定义，所以需要在TwoLayerNet外建一个。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ReLU</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> np.maximum(<span class="number">0</span>,x) <span class="comment"># f(z) = max(0, z)</span></div></pre></td></tr></table></figure></p>
-<p>.ipynb文件中预置了正确答案，可以进行比对。我的如下：<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/29/CS231n学习笔记-两层网络/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1696,7 +1718,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1709,7 +1731,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

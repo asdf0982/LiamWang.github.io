@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks 阅读笔记]]></title>
+    <url>%2F2017%2F06%2F27%2FMTCNN%2F</url>
+    <content type="text"><![CDATA[参考: MTCNN（Multi-task convolutional neural networks）人脸对齐 项目地址: 原版matlab, python, C++ Approach整体流程整个方法如图所示:首先将一张图像调整至不同的大小来构建图像金字塔,作为下面操作的输入. 通过一个名为P-Net的全由卷积层构建的网络获得候选的面部窗口和边界框回归向量.然后根据边界框回归向量对候选窗口进行校准, 并使用NMS合并高度重叠的候选窗口. 将候选窗口输入到另一个名为R-Net的CNN.它能拒绝掉大量的非人脸窗口.也需要用边界框回归向量校准和NMS. 与第二步类似,输入到一个名为O-Net的CNN中.但这一步用更多的监督来分辨人脸区域.最终输出5个面部基准点. CNN结构 这一部分可以参考原版代码.在卷积层后使用PReLU激活. 训练训练MTCNN包含3个部分, 人脸/非人脸分类器, 边界框回归和面部基准点定位。 人脸分类:这是一个2分类问题.对于每一个样本$x_i$使用交叉熵计算loss. 边界框回归:这是一个回归问题,使用欧式距离计算loss.(y有四个维度:左上角点的x,y,高度,宽度.下方公式前者是预测值,后者是实际值) 面部基准点定位:和边界框回归类似, 可看作回归问题, 也使用欧式距离计算loss.公式如上.(y表示基准点的坐标,共有5个点,故y有10维) 多资源训练:N:训练样本数; $\alpha_j$:任务的重要程度. 在P-Net和R-Net使用(1, 0.5, 0.5)分配, 在O-Net使用(1, 0.5, 1)分配.$\beta$代表样本的标签. 线上的困难样本挖掘:在每个mini-batch中选出loss位于前70%的样本作为困难样本, 并且在BP阶段只利用这部分计算梯度. ExperimentsIoU表示与任何真实人脸的交并集 IoU&lt;0.3:非人脸(Negatives) 0.3&lt;IoU&lt;0.4:脸部基准点(landmarks) 0.4&lt;IoU&lt;0.65:部分人脸 IoU&gt;0.65:人脸 训练集数据按以上划分方式,由3:1:1:2(非人脸:人脸:部分人脸:基准点)数据组成.]]></content>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>Face Detection</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记]]></title>
     <url>%2F2017%2F06%2F27%2Fcenter-loss%2F</url>
     <content type="text"><![CDATA[发表于ECCV2016项目地址: caffe, mxnet参考: 【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解 Introduction传统模型抽取出的深度特征比较分散, 是因为softmax loss仅仅区分数据.论文提出了一种新的损失函数center loss. 它可以让每个类学习一个特征中心, 减小类内的距离. 结合softmax loss就可以达到增大类间差异, 减小类内差异的效果. The Proposed Approach先用如下网络LeNet++训练MNIST数据集固定输出特征为2维,这样我们就可以在平面上看到结果.如图:结论: 虽然类间的差距已经明显, 但类内的差距依然较大. The center loss $c_{y_i}$代表$y_i$所在类的中心.一次性将训练集的特征全部提取求出中心不现实, 论文中提出两个解决办法. 在mini-batch中更新. 为了避免类别标错的图片使中心抖动, 使用$\alpha$来控制中心的学习率.见下下图Algorithm1-output-6 center loss的梯度如下计算:训练模型时将softmax loss与center loss结合, 设置$\lambda$来平衡两个loss函数.不同的$\lambda$会带来不同的效果:不同的λ对于特征的分布有很大的影响，合适的λ会提高网络的精确度。center loss与contrastive loss,triplet loss相比, 不需要复杂的重建训练集,也不会造成数据戏剧性的大增. 实验部分见论文.注意激活函数使用了PReLU 疑问和思考 为什么总loss不用(1-$\lambda$)a+$\lambda$b这样的形式?]]></content>
