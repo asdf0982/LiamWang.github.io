@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记]]></title>
+    <url>%2F2017%2F06%2F27%2Fcenter-loss%2F</url>
+    <content type="text"><![CDATA[发表于ECCV2016项目地址: caffe, mxnet参考: 【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解 Introduction传统模型抽取出的深度特征比较分散, 是因为softmax loss仅仅区分数据.论文提出了一种新的损失函数center loss. 它可以让每个类学习一个特征中心, 减小类内的距离. 结合softmax loss就可以达到增大类间差异, 减小类内差异的效果. The Proposed Approach先用如下网络LeNet++训练MNIST数据集固定输出特征为2维,这样我们就可以在平面上看到结果.如图:结论: 虽然类间的差距已经明显, 但类内的差距依然较大. The center loss $c_{y_i}$代表$y_i$所在类的中心.一次性将训练集的特征全部提取求出中心不现实, 论文中提出两个解决办法. 在mini-batch中更新. 为了避免类别标错的图片使中心抖动, 使用$\alpha$来控制中心的学习率.见下下图Algorithm1-output-6 center loss的梯度如下计算:训练模型时将softmax loss与center loss结合, 设置$\lambda$来平衡两个loss函数.不同的$\lambda$会带来不同的效果:不同的λ对于特征的分布有很大的影响，合适的λ会提高网络的精确度。center loss与contrastive loss,triplet loss相比, 不需要复杂的重建训练集,也不会造成数据戏剧性的大增. 实验部分见论文.注意激活函数使用了PReLU 疑问和思考 为什么总loss不用(1-$\lambda$)a+$\lambda$b这样的形式?]]></content>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>Face Recognition</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Going Deeper with Convolutions 阅读笔记]]></title>
     <url>%2F2017%2F06%2F26%2FGoogleNet%2F</url>
     <content type="text"><![CDATA[本文由google发表于CVPR2015 Introduction &amp; Related Work本文提出一个网络结构名为Inception. 它的特点是能提升对计算资源的使用效率.使得 在计算负担不变的情况下提升了网络的宽度和深度.它的前身GoogleNet(22层)在ILSVRC14中创下了验证和检测的记录.GoogleNet借鉴了许多NIN的思想.其1x1的卷积核主要用于降维来解决计算瓶颈问题, 同时也能提高网络的深度和宽度.检测(detection)方法来源于R-CNN.分两步: 利用颜色, 文本等低层次的线索生成未知对象的位置提案. 在这些位置使用CNN分类器对物体进行检测. Motivation目前提升CNN性能的方法就是使网络变大变深. 但这也会增加计算的消耗, 并且容易导致过拟合. 增大的网络还会导致大量的计算资源被浪费.解决这些问题的方法之一就是将全连接层改为稀疏连接层. 哪个结构用这个方法用的最好呢?对啦,就是我们的Inception结构. Architechture如图:图片被多个大小的卷积核卷积, 提取出来的特征到下一层汇总. GoogleNet如图:可以参考阅读:Caffe中GoogleNet的写法#3x3 reduce代表3x3卷积前1x1滤波器的个数.所有激活函数使用RELU.第一个卷积层输出的计算为$\frac{224+2*3-7}{2}+1=112$(注意是向下取整)第一个pool层输出的计算为$\frac{112-3}{2}+1$发现并不能整除.故一定自动补了padding.结果为56inception(3a) 256 = 64(#11)+128(#33)+32(#5*5)+32(pool), 就是把各种方法得到的相同大小的结果拼接到一块输出.使用avg pool层代替全连接层在top-1的准确率上获得了0.6%的提升. 训练采用Large scale distributed deep networks提到的分布置信网络(DistBelief). SGD+momentum的最优化方法, momentum=0.9, lr每8个epoch下降4%.详见论文.]]></content>

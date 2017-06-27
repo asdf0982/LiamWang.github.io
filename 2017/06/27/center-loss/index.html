@@ -92,20 +92,25 @@
 
 
 
-<meta name="description" content="本文由香港中文大学于2015年发表在CVPR会议 Introduction本文设计了一个深度卷积网络, 获取到 的特征名为DeepID2+.相比与DeepID2,2+ 的网络通过增加隐层特征的维度和对靠前的卷积层监督使DeepID2+在LFW上表现很好.对于人脸识别有3个点很关键:  sparse: 稀疏, 即特征向量中包含很多零, 可压缩性强. selective: 精选, 指具有判别能力的一些">
+<meta name="description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解  Introduction传统模型抽取出的深度特征比较分散,">
 <meta name="keywords" content="Deep Learning,Face Recognition">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Deeply learned face representations are sparse, selective, and robust 阅读笔记">
-<meta property="og:url" content="https://asdf0982.github.io/2017/06/23/DeepID2-1/index.html">
+<meta property="og:title" content="A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记">
+<meta property="og:url" content="https://asdf0982.github.io/2017/06/27/center-loss/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="本文由香港中文大学于2015年发表在CVPR会议 Introduction本文设计了一个深度卷积网络, 获取到 的特征名为DeepID2+.相比与DeepID2,2+ 的网络通过增加隐层特征的维度和对靠前的卷积层监督使DeepID2+在LFW上表现很好.对于人脸识别有3个点很关键:  sparse: 稀疏, 即特征向量中包含很多零, 可压缩性强. selective: 精选, 指具有判别能力的一些">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/23/DeepID2-1/Deepid2plus.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/23/DeepID2-1/DeepID3.png">
-<meta property="og:updated_time" content="2017-06-25T08:23:09.289Z">
+<meta property="og:description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解  Introduction传统模型抽取出的深度特征比较分散,">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/LeNet.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/result1.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/center_loss.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/gradient.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/step.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/lambda.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/prelu.png">
+<meta property="og:updated_time" content="2017-06-27T11:18:39.167Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Deeply learned face representations are sparse, selective, and robust 阅读笔记">
-<meta name="twitter:description" content="本文由香港中文大学于2015年发表在CVPR会议 Introduction本文设计了一个深度卷积网络, 获取到 的特征名为DeepID2+.相比与DeepID2,2+ 的网络通过增加隐层特征的维度和对靠前的卷积层监督使DeepID2+在LFW上表现很好.对于人脸识别有3个点很关键:  sparse: 稀疏, 即特征向量中包含很多零, 可压缩性强. selective: 精选, 指具有判别能力的一些">
-<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/23/DeepID2-1/Deepid2plus.png">
+<meta name="twitter:title" content="A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记">
+<meta name="twitter:description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解  Introduction传统模型抽取出的深度特征比较分散,">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/27/center-loss/LeNet.png">
 
 
 
@@ -133,13 +138,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/06/23/DeepID2-1/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/06/27/center-loss/"/>
 
 
 
 
 
-  <title>Deeply learned face representations are sparse, selective, and robust 阅读笔记 | Liam's Blog</title>
+  <title>A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -312,7 +317,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/23/DeepID2-1/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/27/center-loss/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -329,7 +334,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Deeply learned face representations are sparse, selective, and robust 阅读笔记</h2>
+          <h2 class="post-title" itemprop="name headline">A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记</h2>
         
 
         <div class="post-meta">
@@ -341,8 +346,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T20:50:44+08:00">
-                2017-06-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-27T12:34:20+08:00">
+                2017-06-27
               </time>
             
 
@@ -357,8 +362,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-25T16:23:09+08:00">
-                2017-06-25
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-27T19:18:39+08:00">
+                2017-06-27
               </time>
             
           </span>
@@ -393,21 +398,24 @@
       
 
       
-        <p>本文由香港中文大学于2015年发表在CVPR会议</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>本文设计了一个深度卷积网络, 获取到 的特征名为DeepID2+.相比与DeepID2,2+ 的网络通过增加隐层特征的维度和对靠前的卷积层监督使DeepID2+在LFW上表现很好.<br>对于人脸识别有3个点很关键:</p>
+        <p>发表于ECCV2016<br>项目地址: <a href="https://github.com/ydwen/caffe-face" target="_blank" rel="external">caffe</a>, <a href="https://github.com/pangyupo/mxnet_center_loss" target="_blank" rel="external">mxnet</a><br>参考:</p>
+<ul>
+<li><a href="http://mp.weixin.qq.com/s?__biz=MzI1NTE4NTUwOQ==&amp;mid=2650325602&amp;idx=1&amp;sn=9bc6071bf62a4ccdde1df4b4c5ae39f4&amp;chksm=f235a568c5422c7ed7993b9d3b46bcd979d360605511284e4363a4a92f845019795569f8f3e9&amp;mpshare=1&amp;scene=1&amp;srcid=1028OCsg4y3EUMMTPjPzfrgo#rd" target="_blank" rel="external">【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用</a></li>
+<li><a href="http://www.jianshu.com/p/773fbd0b2472" target="_blank" rel="external">Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解</a></li>
+</ul>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>传统模型抽取出的深度特征比较分散, 是因为softmax loss仅仅区分数据.论文提出了一种新的损失函数center loss. 它可以让每个类学习一个特征中心, 减小类内的距离. 结合softmax loss就可以达到增大类间差异, 减小类内差异的效果.</p>
+<h2 id="The-Proposed-Approach"><a href="#The-Proposed-Approach" class="headerlink" title="The Proposed Approach"></a>The Proposed Approach</h2><p>先用如下网络LeNet++训练MNIST数据集<br><img src="/2017/06/27/center-loss/LeNet.png" alt="[LeNet]" title="[LeNet]"><br>固定输出特征为2维,这样我们就可以在平面上看到结果.如图:<br><img src="/2017/06/27/center-loss/result1.png" alt="[softmax result]" title="[softmax result]"><br>结论: 虽然类间的差距已经明显, 但类内的差距依然较大.</p>
+<h2 id="The-center-loss"><a href="#The-center-loss" class="headerlink" title="The center loss"></a>The center loss</h2><img src="/2017/06/27/center-loss/center_loss.png" alt="[center loss]" title="[center loss]">
+<p>$c_{y_i}$代表$y_i$所在类的中心.<br>一次性将训练集的特征全部提取求出中心不现实, 论文中提出两个解决办法.</p>
 <ol>
-<li>sparse: 稀疏, 即特征向量中包含很多零, 可压缩性强.</li>
-<li>selective: 精选, 指具有判别能力的一些分量, 在不同人脸上响应程度不同.</li>
-<li>robust: 健壮, 指图像被遮挡后特征中某些向量依然保持不变的一致性.</li>
+<li>在mini-batch中更新.</li>
+<li>为了避免类别标错的图片使中心抖动, 使用$\alpha$来控制中心的学习率.见下下图Algorithm1-output-6</li>
 </ol>
-<h2 id="DeepID2-网络结构"><a href="#DeepID2-网络结构" class="headerlink" title="DeepID2+ 网络结构"></a>DeepID2+ 网络结构</h2><p>如图:<br><img src="/2017/06/23/DeepID2-1/Deepid2plus.png" alt="[DeepID2+ net]" title="[DeepID2+ net]"><br>DeepID2+网络也使用了识别和验证两种信号进行监督.此部分参考我上一篇笔记.<br>与DeepID2网络的不同点:</p>
-<ol>
-<li>每个卷积层后(实际上是1,2,3maxpool层和conv4层后)都获得一个128维的特征, 共有4个卷积层故特征从160维增大到512维.</li>
-<li>训练集增大.从8000类160000图增大至12000类290000图.</li>
-<li>用全连接层连接每个卷积层, 并使用DeepID2的那种监督方式.这样监督信号就离前期的卷积层更近了,也更有效.</li>
+<p>center loss的梯度如下计算:<br><img src="/2017/06/27/center-loss/gradient.png" alt="[center loss gradient]" title="[center loss gradient]"><br>训练模型时将softmax loss与center loss结合, 设置$\lambda$来平衡两个loss函数.<br><img src="/2017/06/27/center-loss/step.png" alt="[step]" title="[step]"><br>不同的$\lambda$会带来不同的效果:<br><img src="/2017/06/27/center-loss/lambda.png" alt="[Different lambda]" title="[Different lambda]"><br>不同的λ对于特征的分布有很大的影响，合适的λ会提高网络的精确度。<br>center loss与contrastive loss,triplet loss相比, 不需要复杂的重建训练集,也不会造成数据戏剧性的大增.</p>
+<p>实验部分见论文.注意激活函数使用了PReLU<br><img src="/2017/06/27/center-loss/prelu.png" alt="[ReLU & PReLU]" title="[ReLU & PReLU]"></p>
+<h2 id="疑问和思考"><a href="#疑问和思考" class="headerlink" title="疑问和思考"></a>疑问和思考</h2><ol>
+<li>为什么总loss不用(1-$\lambda$)a+$\lambda$b这样的形式?</li>
 </ol>
-<p>实验发现DeepID2选取了25个patch，DeepID2+选取了同样的25个patch，然后抽取的特征分别训练联合贝叶斯模型，得到的结果是DeepID2+平均比DeepID2提高2%。<br>特别的,根据稀疏性对DeepID2+进行二值化处理后, 再使用联合贝叶斯或汉明距离实验,发现识别率下降有限.二值化后的特征节省空间并且可以使人脸检索变得速度更快，更接近实用场景。</p>
-<h2 id="关于DeepID3"><a href="#关于DeepID3" class="headerlink" title="关于DeepID3"></a>关于DeepID3</h2><p>DeepID3实现了两个更深的网络,一个参考VGG, 一个参考googlenet.<br>如图所示:<br><img src="/2017/06/23/DeepID2-1/DeepID3.png" alt="[Two DeepID3 Network]" title="[Two DeepID3 Network]"><br>但结果较DeepID2+差距不大.</p>
 
       
     </div>
@@ -452,8 +460,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/22/DeepID2/" rel="next" title="Deep Learning Face Representation by Joint Identification-Verification 阅读笔记">
-                <i class="fa fa-chevron-left"></i> Deep Learning Face Representation by Joint Identification-Verification 阅读笔记
+              <a href="/2017/06/26/GoogleNet/" rel="next" title="Going Deeper with Convolutions 阅读笔记">
+                <i class="fa fa-chevron-left"></i> Going Deeper with Convolutions 阅读笔记
               </a>
             
           </div>
@@ -461,10 +469,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/24/FaceNet/" rel="prev" title="FaceNet:A Unified Embedding for Face Recognition and Clustering 阅读笔记">
-                FaceNet:A Unified Embedding for Face Recognition and Clustering 阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -604,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DeepID2-网络结构"><span class="nav-number">2.</span> <span class="nav-text">DeepID2+ 网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于DeepID3"><span class="nav-number">3.</span> <span class="nav-text">关于DeepID3</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Proposed-Approach"><span class="nav-number">2.</span> <span class="nav-text">The Proposed Approach</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-center-loss"><span class="nav-number">3.</span> <span class="nav-text">The center loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问和思考"><span class="nav-number">4.</span> <span class="nav-text">疑问和思考</span></a></li></ol></div>
             
 
           </div>
