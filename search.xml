@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Coupled Deep Learning for Heterogeneous Face Recognition 阅读笔记]]></title>
+    <url>%2F2017%2F06%2F28%2FCDL%2F</url>
+    <content type="text"><![CDATA[Introduction不同模态(例如近红外NIR和可见光VIS)采集的人脸照片的匹配问题被称为异构人脸匹配(Heterogeneous face matching, HFM)问题. 不同模态的数据之间差异较大, 并且缺失足够的训练样本对.本文提出一个深度学习网络, 名为CDL(coupled deep learning).致力于解决HFM问题.主要想法如下: 提出一个组合迹范数(trace norm).它不但能加强不同模态之间(如VIS-NIR之间)的相关性, 而且可以约束参数空间, 特别是减轻在少量不成对的异质样本上的过拟合. 由于难以直接优化高阶组合迹范数(trace norm), 我们引入了其近似公式, 并提出了一种交互算法，以便在end-to-end CNN中有效优化。 使用一个基于跨模态三元组的跨模态排名采样方法(A cross-modal ranking sampling method defined on a set of cross-modal triplets)来最大化不同类别之间的差距. 此外, 它能有效的扩大训练数据并利用有限数量异质样本之间的信息. 在CASIA NIR-VIS 2.0面部数据库和三个素描照片数据库进行了广泛的实验评估, 表明所提出的方法提高了异构面部识别的最新性能。 方法相关性约束对CNN中的softmax loss引入相关性约束.一般情况下,loss函数这么写.$X_i$表示抽出的特征.$W_i$表示网络中的参数.N和V表示NIR和VIS.引入相关性约束后:$|| M ||_*$就表示迹范数(trace norm).是这样定义的:tr():表示矩阵的迹inf():表示最大下界$\Gamma$是一个半定矩阵.并由M得到.将M引入公式,得到则反向传播中$W_N$和$W_V$的梯度:事实上这一步我也不懂.]]></content>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>Face Recognition</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks 阅读笔记]]></title>
     <url>%2F2017%2F06%2F27%2FMTCNN%2F</url>
     <content type="text"><![CDATA[参考: MTCNN（Multi-task convolutional neural networks）人脸对齐 项目地址: 原版matlab, python, C++ Approach整体流程整个方法如图所示:首先将一张图像调整至不同的大小来构建图像金字塔,作为下面操作的输入. 通过一个名为P-Net的全由卷积层构建的网络获得候选的面部窗口和边界框回归向量.然后根据边界框回归向量对候选窗口进行校准, 并使用NMS合并高度重叠的候选窗口. 将候选窗口输入到另一个名为R-Net的CNN.它能拒绝掉大量的非人脸窗口.也需要用边界框回归向量校准和NMS. 与第二步类似,输入到一个名为O-Net的CNN中.但这一步用更多的监督来分辨人脸区域.最终输出5个面部基准点. CNN结构 这一部分可以参考原版代码.在卷积层后使用PReLU激活. 训练训练MTCNN包含3个部分, 人脸/非人脸分类器, 边界框回归和面部基准点定位。 人脸分类:这是一个2分类问题.对于每一个样本$x_i$使用交叉熵计算loss. 边界框回归:这是一个回归问题,使用欧式距离计算loss.(y有四个维度:左上角点的x,y,高度,宽度.下方公式前者是预测值,后者是实际值) 面部基准点定位:和边界框回归类似, 可看作回归问题, 也使用欧式距离计算loss.公式如上.(y表示基准点的坐标,共有5个点,故y有10维) 多资源训练:N:训练样本数; $\alpha_j$:任务的重要程度. 在P-Net和R-Net使用(1, 0.5, 0.5)分配, 在O-Net使用(1, 0.5, 1)分配.$\beta$代表样本的标签. 线上的困难样本挖掘:在每个mini-batch中选出loss位于前70%的样本作为困难样本, 并且在BP阶段只利用这部分计算梯度. ExperimentsIoU表示与任何真实人脸的交并集 IoU&lt;0.3:非人脸(Negatives) 0.3&lt;IoU&lt;0.4:脸部基准点(landmarks) 0.4&lt;IoU&lt;0.65:部分人脸 IoU&gt;0.65:人脸 训练集数据按以上划分方式,由3:1:1:2(非人脸:人脸:部分人脸:基准点)数据组成.]]></content>
