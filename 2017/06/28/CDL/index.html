@@ -104,7 +104,11 @@
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/28/CDL/3.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/28/CDL/4.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/28/CDL/5.png">
-<meta property="og:updated_time" content="2017-06-28T16:42:59.875Z">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/28/CDL/6.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/28/CDL/7.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/28/CDL/8.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/06/28/CDL/9.png">
+<meta property="og:updated_time" content="2017-06-29T05:35:03.140Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Coupled Deep Learning for Heterogeneous Face Recognition 阅读笔记">
 <meta name="twitter:description" content="Introduction不同模态(例如近红外NIR和可见光VIS)采集的人脸照片的匹配问题被称为异构人脸匹配(Heterogeneous face matching, HFM)问题. 不同模态的数据之间差异较大, 并且缺失足够的训练样本对.本文提出一个深度学习网络, 名为CDL(coupled deep learning).致力于解决HFM问题.主要想法如下:  提出一个组合迹范数(trace n">
@@ -360,7 +364,7 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-29T00:42:59+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-29T13:35:03+08:00">
                 2017-06-29
               </time>
             
@@ -404,6 +408,9 @@
 <li>在CASIA NIR-VIS 2.0面部数据库和三个素描照片数据库进行了广泛的实验评估, 表明所提出的方法提高了异构面部识别的最新性能。</li>
 </ol>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="相关性约束"><a href="#相关性约束" class="headerlink" title="相关性约束"></a>相关性约束</h3><p>对CNN中的softmax loss引入相关性约束.<br>一般情况下,loss函数这么写.<br><img src="/2017/06/28/CDL/1.png" alt="[before]" title="[before]"><br>$X_i$表示抽出的特征.$W_i$表示网络中的参数.N和V表示NIR和VIS.<br>引入相关性约束后:<br><img src="/2017/06/28/CDL/2.png" alt="[after]" title="[after]"><br>$|| M ||_*$就表示迹范数(trace norm).是这样定义的:<br><img src="/2017/06/28/CDL/3.png" alt="[trace norm]" title="[trace norm]"><br>tr():表示矩阵的迹<br>inf():表示最大下界<br>$\Gamma$是一个半定矩阵.并由M得到.<br>将M引入公式,得到<br><img src="/2017/06/28/CDL/4.png" alt="[推导过程]" title="[推导过程]"><br>则反向传播中$W_N$和$W_V$的梯度:<br><img src="/2017/06/28/CDL/5.png" alt="[推导过程2]" title="[推导过程2]"><br>事实上这一步我也不懂.</p>
+<h3 id="跨模态排名采样方法"><a href="#跨模态排名采样方法" class="headerlink" title="跨模态排名采样方法"></a>跨模态排名采样方法</h3><p>和triplet的思想类似,loss定义如下:<br><img src="/2017/06/28/CDL/6.png" alt="[Rank loss]" title="[Rank loss]"><br>在三元组中, a和n选自相同模态(如VIS)不同的类别, a和p选自相同的类别不同的模态.其约束如图:<br><img src="/2017/06/28/CDL/7.png" alt="[constraints]" title="[constraints]"></p>
+<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>使用light CNN作为基础网络.因为NIR-VIS的训练集很小, 先把网络在有大量VIS图片的数据集中训练, 然后用NIR-VIS微调.<br>在基础网络上修改,将上述的相关性约束和排名采样方法结合起来作为监督信号,如图:<br><img src="/2017/06/28/CDL/8.png" alt="[supervised signal]" title="[supervised signal]"><br>CDL的算法流程图:<br><img src="/2017/06/28/CDL/9.png" alt="[Algorithm 1]" title="[Algorithm 1]"></p>
+<h2 id="疑问和思考"><a href="#疑问和思考" class="headerlink" title="疑问和思考"></a>疑问和思考</h2><p>线性代数部分的知识遗忘的比较厉害…</p>
 
       
     </div>
@@ -596,7 +603,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关性约束"><span class="nav-number">2.1.</span> <span class="nav-text">相关性约束</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">2.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关性约束"><span class="nav-number">2.1.</span> <span class="nav-text">相关性约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跨模态排名采样方法"><span class="nav-number">2.2.</span> <span class="nav-text">跨模态排名采样方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络结构"><span class="nav-number">2.3.</span> <span class="nav-text">网络结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问和思考"><span class="nav-number">3.</span> <span class="nav-text">疑问和思考</span></a></li></ol></div>
             
 
           </div>
