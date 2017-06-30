@@ -310,6 +310,162 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/20/A-lightened-cnn-for-deep-face-representation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/20/A-lightened-cnn-for-deep-face-representation/" itemprop="url">A lightened cnn for deep face representation 阅读笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-20T11:01:47+08:00">
+                2017-06-20
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-20T21:22:24+08:00">
+                2017-06-20
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文由北京科技大学与中科院于2015年发表<br>论文链接：<a href="https://pdfs.semanticscholar.org/d4e6/69d5d35fa0ca9f8d9a193c82d4153f5ffc4e.pdf" target="_blank" rel="external">PDF</a><br>参考阅读：</p>
+<ul>
+<li><a href="http://blog.csdn.net/cv_family_z/article/details/50401101" target="_blank" rel="external">A Lightened CNN for Deep Face Representation</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_a5b8a4420102wypn.html" target="_blank" rel="external">A Lightened CNN for Deep Face Representation论文笔记</a></li>
+<li><a href="http://blog.csdn.net/tinyzhao/article/details/53127870" target="_blank" rel="external">人脸验证：Lightened CNN</a></li>
+</ul>
+<p>第一作者提供github代码地址：<a href="https://github.com/AlfredXiangWu/face_verification_experiment" target="_blank" rel="external">https://github.com/AlfredXiangWu/face_verification_experiment</a></p>
+<h2 id="Introduction-and-Related-Work"><a href="#Introduction-and-Related-Work" class="headerlink" title="Introduction and Related Work"></a>Introduction and Related Work</h2><p>概述并归类人脸识别领域相关的方法，其related work简述了最新的成果（有内容重复是什么鬼），其脚注对学习领域内经典的几篇论文有很好的借鉴意义。<br>把使用CNN对人脸验证的方法大致分成了三类：</p>
+<ol>
+<li>使用CNN提取人脸特征向量，再使用分类器进行判断是否为同一人。</li>
+<li>直接优化验证损失（verification loss），这个方法对训练集中不存在的新类别效果不佳。</li>
+<li>结合识别和验证</li>
+</ol>
+<p>尽管之前的方法都在LFW上达到了很高的准确率，但是模型计算量的需求很高，较难在移动设备中推广。<br>传统的深度网络模型由于很深，需要花费很多时间提取特征。并且大多数模型都采用RELU激活函数，这导致得到的特征通常维度高且稀疏。为了获得低维度且紧凑的特征，通常采用Joint Bayesian或metric learning等方法。因此直接寻求一个轻量的高速抽取特征且维度表现低的CNN相当重要。<br>所以论文主要说明了3件事:</p>
+<ol>
+<li>一种名为MFM的激活函数，用于卷积层。<img src="/2017/06/20/A-lightened-cnn-for-deep-face-representation/lightenedcnn.png" alt="[MFM使用示意图]" title="[MFM使用示意图]"></li>
+<li>两个轻量的CNN.</li>
+<li>提出的CNN模型在LFW和YFW上获得了不错表现。值得注意的是，模型大小仅为20-30MB，特征提取仅耗时67ms。该模型有希望应用到实时监测领域。</li>
+</ol>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><h3 id="MFM激活函数"><a href="#MFM激活函数" class="headerlink" title="MFM激活函数"></a>MFM激活函数</h3><p>根据上面的MFM示意图，可以看到灰度图像（单通道）输入到两个相同结构的卷积层中，MFM比较两个卷积层中对应的通道，取最大值。<br><img src="/2017/06/20/A-lightened-cnn-for-deep-face-representation/MFM.png" alt="[示意图2]" title="[示意图2]"><br>MFM的公式：<br><img src="/2017/06/20/A-lightened-cnn-for-deep-face-representation/MFM2.png" alt="[MFM公式]" title="[MFM公式]"><br>卷积层有相同的2个，每个有n个通道，每个通道的大小为h*w。MFM就是比较两个层里相应通道的结果，故MFM输出的大小为h*w*n。<br>其导数公式：<br><img src="/2017/06/20/A-lightened-cnn-for-deep-face-representation/MFM3.png" alt="[MFM导数公式]" title="[MFM导数公式]"><br>可以看到有一半激活层梯度为零。相比RELU，MFM能得到更紧凑的特征。<br>此外，MFM激活函数也可以被看作是两个卷积层之间的稀疏连接，它将信息稀疏地编码至特征空间。</p>
+<h3 id="lightened-CNN结构"><a href="#lightened-CNN结构" class="headerlink" title="lightened CNN结构"></a>lightened CNN结构</h3><img src="/2017/06/20/A-lightened-cnn-for-deep-face-representation/lightenedcnn2.png" alt="[Lightened CNN结构示意图]" title="[Lightened CNN结构示意图]">
+<p>NIN其实就是使用了MLP卷积层。<br>为了弄清conv2_a，找到源码中proto的代码表达。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">layers&#123;</div><div class="line">  name: &quot;conv2a&quot;</div><div class="line">  type: CONVOLUTION</div><div class="line">  blobs_lr: 1</div><div class="line">  blobs_lr: 2</div><div class="line">  weight_decay: 1</div><div class="line">  weight_decay: 0</div><div class="line">  convolution_param &#123;</div><div class="line">	num_output: 96</div><div class="line">	kernel_size: 1</div><div class="line">	stride: 1</div><div class="line">	weight_filler &#123;</div><div class="line">	  type: &quot;xavier&quot;</div><div class="line">	&#125;</div><div class="line">	bias_filler &#123;</div><div class="line">	  type: &quot;constant&quot;</div><div class="line">	  value: 0.1</div><div class="line">	&#125;</div><div class="line">  &#125;</div><div class="line">  bottom: &quot;pool1&quot;</div><div class="line">  top: &quot;conv2a&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>96个大小为1的卷积核，即一个全连接层。</p>
+<h2 id="疑问和思考"><a href="#疑问和思考" class="headerlink" title="疑问和思考"></a>疑问和思考</h2><ol>
+<li><a href="http://blog.csdn.net/u014114990/article/details/50144653" target="_blank" rel="external">神经网络为什么要有激活函数，为什么relu 能够防止梯度消失？</a></li>
+<li>NIN层是如何实现的？</li>
+</ol>
+<ul>
+<li><a href="http://zkread.com/article/1275089.html" target="_blank" rel="external">深度学习方法（十）：卷积神经网络结构变化——Maxout Networks，Network In Network，Global Average Pooling</a></li>
+<li><a href="http://blog.leanote.com/post/lonelyminer/Detection%E4%B9%8BNIN" target="_blank" rel="external">Detection之NIN</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
+    
+      
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/19/DeepFace-Closing-the-Gap-to-Human-Level-Performance-in-Face-Verification/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1577,145 +1733,6 @@
 
       
     
-      
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/01/CS231n学习笔记-全连接网络/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/01/CS231n学习笔记-全连接网络/" itemprop="url">CS231n学习笔记(全连接网络)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-01T15:21:18+08:00">
-                2017-06-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-04T20:21:39+08:00">
-                2017-06-04
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>完成作业：</p>
-<ul>
-<li><a href="/2017/06/01/CS231n学习笔记-全连接网络/FullyConnectedNets.ipynb" title="[FullyConnectedNets.ipynb]">[FullyConnectedNets.ipynb]</a></li>
-<li><a href="/2017/06/01/CS231n学习笔记-全连接网络/fc_net.py" title="[fc_net.py]">[fc_net.py]</a></li>
-<li><a href="/2017/06/01/CS231n学习笔记-全连接网络/layers.py" title="[layers.py]">[layers.py]</a></li>
-<li><a href="/2017/06/01/CS231n学习笔记-全连接网络/layer_utils.py" title="[layer_utils.py]">[layer_utils.py]</a></li>
-<li><a href="/2017/06/01/CS231n学习笔记-全连接网络/optim.py" title="[optim.py]">[optim.py]</a>
-</li>
-</ul>
-<p>这次作业非常重要，是assignment1的一次总结和大提升，我感觉应该反复咀嚼，琢磨透。<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/01/CS231n学习笔记-全连接网络/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-      
-    
   </section>
 
   
@@ -1765,7 +1782,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

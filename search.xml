@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[SphereFace:Deep Hypersphere Embedding for Face Recognition 阅读笔记]]></title>
+    <url>%2F2017%2F06%2F30%2FSphereFace%2F</url>
+    <content type="text"><![CDATA[Introduction先前的特征学习大多基于欧几里得边缘, 但是欧式边缘就适合那些学习到的具有判别力的特征吗? 本文就提出了一个组合的角度边缘来替代它.所设计的loss名为A-Softmax loss, 提取到的特征名为SphereFace本文主要有以下贡献: 提出了A-Softmax loss来学习特征, 其原理在几何上能够解释. 导出参数m的下限, 使得A-Softmax loss能够让最小类间距离大于最大类内距离. Deep Hypersphere Embedding回顾softmax loss在一个二分类问题中, softmax loss的决策边界(即正确类别的分数要比错误类别的分数要高, 其下限就是相等,也就是决策边界)是$(W_1-W_2)x+b_1-b_2=0$. 把$W^T_ix+b_i$写成$||W^T_i||||x||cos(\theta_i)+b_i$. 其中$\theta_i$是$W_i$与$x$的夹角. 如果把W进行归一化($||W_i||=1$)把b置零($b_i=0$). 这样决策边界是$cos(\theta_1)-cos(\theta_2)=0$. 最后修改后的loss为:$y_i$是样本的标签, K是类的数量, j是[1,K]中的一个元素. 向softmax引入角度边界我们都知道二分类问题的modified softmax loss需要$cos(\theta_1)&gt;cos(\theta_2)$,论文将其改为$cos(m\theta_1)&gt;cos(\theta_2)$.因为cos()在$(0,\pi)$中是递减的,所以当$m\geq2, \theta \in [0, \frac{\pi}{m} ]$时,$cos(\theta_1)&gt;cos(m\theta_1)$.所以这将让决策更严格,因为让$cos(\theta_1)$更小了但依然比$cos(\theta_2)$大.决策边界如图所示:然后把$cos(\theta_{y_i,i})$转化为$\psi(\theta_{y_i,i})$, 如图: A-softmax的超球面解释如图: A-softmax的特性特性1. m越大越不好. 存在一个最小的m能让最大类内距离小于最小类间距离.特性2. 在二分类问题中, $m_{min}\geq2+\sqrt3$. 文中给出证明.特性3. 在多分类问题中, $m_{min}\geq3$. 文中给出证明.基于以上,实验中使用$m=4$]]></content>
+      <tags>
+        <tag>Deep Learning</tag>
+        <tag>Face Recognition</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Coupled Deep Learning for Heterogeneous Face Recognition 阅读笔记]]></title>
     <url>%2F2017%2F06%2F28%2FCDL%2F</url>
     <content type="text"><![CDATA[Introduction不同模态(例如近红外NIR和可见光VIS)采集的人脸照片的匹配问题被称为异构人脸匹配(Heterogeneous face matching, HFM)问题. 不同模态的数据之间差异较大, 并且缺失足够的训练样本对.本文提出一个深度学习网络, 名为CDL(coupled deep learning).致力于解决HFM问题.主要想法如下: 提出一个组合迹范数(trace norm).它不但能加强不同模态之间(如VIS-NIR之间)的相关性, 而且可以约束参数空间, 特别是减轻在少量不成对的异质样本上的过拟合. 由于难以直接优化高阶组合迹范数(trace norm), 我们引入了其近似公式, 并提出了一种交互算法，以便在end-to-end CNN中有效优化。 使用一个基于跨模态三元组的跨模态排名采样方法(A cross-modal ranking sampling method defined on a set of cross-modal triplets)来最大化不同类别之间的差距. 此外, 它能有效的扩大训练数据并利用有限数量异质样本之间的信息. 在CASIA NIR-VIS 2.0面部数据库和三个素描照片数据库进行了广泛的实验评估, 表明所提出的方法提高了异构面部识别的最新性能。 方法相关性约束对CNN中的softmax loss引入相关性约束.一般情况下,loss函数这么写.$X_i$表示抽出的特征.$W_i$表示网络中的参数.N和V表示NIR和VIS.引入相关性约束后:$|| M ||_*$就表示迹范数(trace norm).是这样定义的:tr():表示矩阵的迹inf():表示最大下界$\Gamma$是一个半定矩阵.并由M得到.将M引入公式,得到则反向传播中$W_N$和$W_V$的梯度:事实上这一步我也不懂. 跨模态排名采样方法和triplet的思想类似,loss定义如下:在三元组中, a和n选自相同模态(如VIS)不同的类别, a和p选自相同的类别不同的模态.其约束如图: 网络结构使用light CNN作为基础网络.因为NIR-VIS的训练集很小, 先把网络在有大量VIS图片的数据集中训练, 然后用NIR-VIS微调.在基础网络上修改,将上述的相关性约束和排名采样方法结合起来作为监督信号,如图:CDL的算法流程图: 疑问和思考线性代数部分的知识遗忘的比较厉害…]]></content>
