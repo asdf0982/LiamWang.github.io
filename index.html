@@ -310,6 +310,141 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/07/02/CS231n学习笔记-NetworkVisualization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/02/CS231n学习笔记-NetworkVisualization/" itemprop="url">CS231n学习笔记(NetworkVisualization-TensorFlow)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-02T21:13:48+08:00">
+                2017-07-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-07-02T21:20:22+08:00">
+                2017-07-02
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>完成的作业:<a href="/2017/07/02/CS231n学习笔记-NetworkVisualization/NetworkVisualization-TensorFlow.ipynb" title="[NetworkVisualization-TensorFlow.ipynb]">[NetworkVisualization-TensorFlow.ipynb]</a><br>这次作业探究了3种图像生成方法:</p>
+<ol>
+<li>Saliency Maps: 探究图像的哪些部分影响了网络的验证.</li>
+<li>Fooling Images: 改变一张图像, 让它在你眼中看起来没什么变化, 但会被网络识别成目标的分类.</li>
+<li>Class Visualization: 合成一张目标类别的图像.</li>
+</ol>
+<h2 id="预训练的模型"><a href="#预训练的模型" class="headerlink" title="预训练的模型"></a>预训练的模型</h2><p>采用SqueezeNet, 它可以在显著减少参数的情况下达到AlexNet的识别率. 在<code>cs231n/classifiers/squeezenet.py</code>看到网络模型代码.</p>
+<h2 id="Saliency-Maps"><a href="#Saliency-Maps" class="headerlink" title="Saliency Maps"></a>Saliency Maps</h2><p>少量改变图像中的每一个像素, 网络分类器分数的变化情况就能反应该图像的重要性.<br>(本文的代码块相应的填入NetworkVisualization-TensorFlow.ipynb中)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pass</div><div class="line">gradlossimg = tf.gradients(correct_scores, model.image)  </div><div class="line">tgradlossimg = gradlossimg[0]</div><div class="line">tsaliency = tf.reduce_max(tf.abs(tgradlossimg), 3)</div><div class="line">saliency = sess.run(tsaliency, feed_dict=&#123;model.image: X, model.labels: y&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="Fooling-Images"><a href="#Fooling-Images" class="headerlink" title="Fooling Images"></a>Fooling Images</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">pass</div><div class="line">txf = tf.Variable(X_fooling)</div><div class="line">sess.run(tf.variables_initializer([txf]))</div><div class="line">targetclass_score =  tf.gather_nd(model.classifier, tf.stack((tf.range(X.shape[0]), model.labels), axis=1))</div><div class="line">g = tf.gradients(targetclass_score, model.image)[0]</div><div class="line">dX = learning_rate * g / tf.norm(g)</div><div class="line">txf = tf.assign_add(txf, dX)</div><div class="line">for _ in range(100):</div><div class="line">    X_fooling = sess.run(txf, feed_dict=&#123;model.image: X_fooling, model.labels:[target_y]&#125;)</div></pre></td></tr></table></figure>
+<h2 id="Class-visualization"><a href="#Class-visualization" class="headerlink" title="Class visualization"></a>Class visualization</h2><p>$I$ 是图像, $y$ 目标类别, $s_y(I)$ 卷据网络关于 $I$ 在 $y$ 类上的分数.<br>$$<br>I^* = \arg\max_I s_y(I) - R(I)<br>$$<br>注意 $R(I)$ 在 argmax 中.<br>$<br>R(I) = \lambda |I|_2^2<br>$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">loss = None # scalar loss</div><div class="line">grad = None # gradient of loss with respect to model.image, same size as model.image</div><div class="line">pass</div><div class="line">tloss = tf.gather_nd(model.classifier, tf.stack((tf.range(X.shape[0]), model.labels), axis=1))</div><div class="line">treg = l2_reg * tf.square(tf.norm(model.image))</div><div class="line"></div><div class="line">loss = tloss - treg</div><div class="line">grad = tf.gradients(loss, model.image)[0]</div><div class="line">grad_normalized = grad / tf.norm(grad)</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pass</div><div class="line">dX_normalized = sess.run(grad_normalized, feed_dict=&#123;model.image: X, model.labels:[target_y]&#125;)                </div><div class="line">X += learning_rate * dX_normalized</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
+    
+      
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/30/SphereFace/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1564,165 +1699,11 @@
 
       
     
-      
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/" itemprop="url">A Light CNN for Deep Face Representation with Noisy Labels 阅读笔记</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-20T21:14:50+08:00">
-                2017-06-20
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-21T14:16:01+08:00">
-                2017-06-21
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文中科院自动所于2017年发表。也是我上一篇博客阅读内容的升级版。<br>论文链接：<a href="https://arxiv.org/pdf/1511.02683v3.pdf" target="_blank" rel="external">PDF</a><br>参考阅读：</p>
-<ul>
-<li><a href="http://blog.csdn.net/qq_14845119/article/details/56677339" target="_blank" rel="external">人脸识别之light_cnn</a></li>
-<li><a href="http://blog.csdn.net/sihailongwang/article/details/72831259" target="_blank" rel="external">人脸识别方向论文笔记（1）– A Light CNN for Deep Face Representation With Noisy Labels</a></li>
-</ul>
-<p>第一作者提供项目地址: <a href="https://github.com/AlfredXiangWu/face_verification_experiment" target="_blank" rel="external">https://github.com/AlfredXiangWu/face_verification_experiment</a></p>
-<h2 id="Introduction-and-Related-Work"><a href="#Introduction-and-Related-Work" class="headerlink" title="Introduction and Related Work"></a>Introduction and Related Work</h2><p>本文有以下贡献：</p>
-<ol>
-<li>介绍了激活函数MFM。相比RELU，它的临界值由训练数据得到，并采用竞争关系其在不同的数据集上拥有更好泛化和适应能力。</li>
-<li>受AlexNet, VGG, ResNet启发设计了3个基于MFM的light CNN。</li>
-<li>提出了一种通过预训练深度网络的语义引导方法来处理大规模数据集中的噪声标记图像。标签不一致可以通过预测的概率有效检测，然后被重新标记或删除用于训练。</li>
-<li>提出的有256维特征的单一模型在各种不同人脸识别基准下表现不错。模型有较少参数故能在CPU或嵌入式系统上较快地抽取特征。</li>
-</ol>
-<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><h3 id="Max-Feature-Map-Operation"><a href="#Max-Feature-Map-Operation" class="headerlink" title="Max-Feature-Map Operation"></a>Max-Feature-Map Operation</h3><p>我上一篇博文已经介绍了这个概念.这里只是增加了MFM 3/2的用法.<br>附上示意图与公式.<br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/MFM.png" alt="[MFM与传统激活函数对比]" title="[MFM与传统激活函数对比]"><br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/MFM2.png" alt="[MFM公式]" title="[MFM公式]"></p>
-<h3 id="The-Light-CNN-Framework"><a href="#The-Light-CNN-Framework" class="headerlink" title="The Light CNN Framework"></a>The Light CNN Framework</h3><p>第一个结构:(缘于AlexNet)<br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/CNN1.png" alt="[Light CNN-4]" title="[Light CNN-4]"><br>第二个结构:<br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/CNN2.png" alt="[Light CNN-9]" title="[Light CNN-9]"><br>可以看到此结构相比于旧版论文, 在Conv2a位置更细致并在Conv4-5之间去掉了一个pool层.<br>第三个结构:<br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/CNN3.png" alt="[Light CNN-29]" title="[Light CNN-29]"><br>注意:</p>
-<ol>
-<li>取消了批量归一化操作(batch normalization).</li>
-<li>采用全连接层而不是global average pooling layer.因为训练图像都是对齐的.global average pooling layer可能损坏图像的一部分语义和空间特征.</li>
-</ol>
-<h3 id="Semantic-Bootstrapping-for-Noisy-Label"><a href="#Semantic-Bootstrapping-for-Noisy-Label" class="headerlink" title="Semantic Bootstrapping for Noisy Label"></a>Semantic Bootstrapping for Noisy Label</h3><p>如下步骤:</p>
-<ol>
-<li>用原始的含噪声标签数据集训练LightCNN</li>
-<li>用训练好的模型预测训练集的标签.设置一个是否接受预测的阈值.</li>
-<li>用重新标签过的数据集再次训练LightCNN</li>
-</ol>
-<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>在LFW和YFW上的表现:<br><img src="/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/result1.png" alt="[Comparison]" title="[Comparison]"><br>在其他数据集的表现见论文.</p>
-<h2 id="疑问和思考"><a href="#疑问和思考" class="headerlink" title="疑问和思考"></a>疑问和思考</h2><ol>
-<li>LightCNN-29的模型尚未理解</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-      
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1767,7 +1748,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
