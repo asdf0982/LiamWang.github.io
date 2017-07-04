@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Deep Learning," />
 
 
 
@@ -92,15 +92,28 @@
 
 
 
-<meta name="description" content="哈~我不适合在白天工作~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liam&#39;s Blog">
-<meta property="og:url" content="https://asdf0982.github.io/archives/2017/page/3/index.html">
+<meta name="description" content="参考:  Global average Pooling  Introduction 提出了一种对特征映射的一般内核池化(kernel pooling)方法。  提出的内核池化是可以区分的，可以与CNN进行联合优化。   kernel从张量中获得特征特征映射X一般有3个维度,h,w,c.我们根据c将X表示为$\mathbf{x} = [x_1,x_2,…,x_c]^T$论文提出Taylor seri">
+<meta name="keywords" content="Deep Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kernel Pooling for Convolutional Neural Networks 阅读笔记">
+<meta property="og:url" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="哈~我不适合在白天工作~">
+<meta property="og:description" content="参考:  Global average Pooling  Introduction 提出了一种对特征映射的一般内核池化(kernel pooling)方法。  提出的内核池化是可以区分的，可以与CNN进行联合优化。   kernel从张量中获得特征特征映射X一般有3个维度,h,w,c.我们根据c将X表示为$\mathbf{x} = [x_1,x_2,…,x_c]^T$论文提出Taylor seri">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/2Dtensor.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/123.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/pDtensor.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/Tkernel.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/X.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/tsk.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/A1.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/GS.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/GS1.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/F5.png">
+<meta property="og:updated_time" content="2017-07-04T15:10:44.876Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liam&#39;s Blog">
-<meta name="twitter:description" content="哈~我不适合在白天工作~">
+<meta name="twitter:title" content="Kernel Pooling for Convolutional Neural Networks 阅读笔记">
+<meta name="twitter:description" content="参考:  Global average Pooling  Introduction 提出了一种对特征映射的一般内核池化(kernel pooling)方法。  提出的内核池化是可以区分的，可以与CNN进行联合优化。   kernel从张量中获得特征特征映射X一般有3个维度,h,w,c.我们根据c将X表示为$\mathbf{x} = [x_1,x_2,…,x_c]^T$论文提出Taylor seri">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/2Dtensor.png">
 
 
 
@@ -128,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/archives/2017/page/3/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/"/>
 
 
 
 
 
-  <title>Archive | Liam's Blog</title>
+  <title>Kernel Pooling for Convolutional Neural Networks 阅读笔记 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -169,7 +182,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -297,402 +310,177 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-       
-      
-      OK! 32 posts in total. Keep on posting.
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Kernel Pooling for Convolutional Neural Networks 阅读笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-04T19:41:12+08:00">
+                2017-07-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-07-04T23:10:44+08:00">
+                2017-07-04
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>hits
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <p>参考:</p>
+<ul>
+<li><a href="http://blog.csdn.net/losteng/article/details/51520555" target="_blank" rel="external">Global average Pooling</a></li>
+</ul>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ol>
+<li>提出了一种对特征映射的一般内核池化(kernel pooling)方法。 </li>
+<li>提出的内核池化是可以区分的，可以与CNN进行联合优化。 </li>
+</ol>
+<h2 id="kernel"><a href="#kernel" class="headerlink" title="kernel"></a>kernel</h2><h3 id="从张量中获得特征"><a href="#从张量中获得特征" class="headerlink" title="从张量中获得特征"></a>从张量中获得特征</h3><p>特征映射X一般有3个维度,h,w,c.<br>我们根据c将X表示为$\mathbf{x} = [x_1,x_2,…,x_c]^T$<br>论文提出Taylor series kernel来抽取特征.<br>首先定义2级张量:<br><img src="/2017/07/04/Kernel-Pooling/2Dtensor.png" alt="[2-level tensor]" title="[2-level tensor]"><br>如图为可视化的2级3级张量:<br><img src="/2017/07/04/Kernel-Pooling/123.png" alt="[tensor]" title="[tensor]"><br>引申出p级张量(p&gt;2):<br><img src="/2017/07/04/Kernel-Pooling/pDtensor.png" alt="[p-level tensor]" title="[p-level tensor]"><br>Taylor series kernel的公式为:<br><img src="/2017/07/04/Kernel-Pooling/Tkernel.png" alt="[Taylor series kernel]" title="[Taylor series kernel]"><br>将其表示为:$\kappa(\mathbf{x},\mathbf{y})=\phi(\mathbf{x})^T\phi(\mathbf{y})$<br>则<img src="/2017/07/04/Kernel-Pooling/X.png" alt="[taylor x]" title="[taylor x]"><br>其特征向量维度为:$\bigcirc(c^p)$ 所以即使c=512,p=3也有$10^8$.<br>因此需要一个近似方法.</p>
+<h3 id="近似方法"><a href="#近似方法" class="headerlink" title="近似方法"></a>近似方法</h3><p>基于Tensor Sketching.</p>
+<h4 id="Taylor-series-kernel"><a href="#Taylor-series-kernel" class="headerlink" title="Taylor series kernel"></a>Taylor series kernel</h4><img src="/2017/07/04/Kernel-Pooling/tsk.png" alt="[公式介绍]" title="[公式介绍]">
+<p>算法的流程如下:<br><img src="/2017/07/04/Kernel-Pooling/A1.png" alt="[Algorithm 1]" title="[Algorithm 1]"><br>这样我们就把特征减少至$d=1+c+\sum_{i=2}^pd_i$<br>在实验中发现更高维度的特征有更好的近似,p越大错误越大,错误也和两个特征向量的夹角有关.</p>
+<h4 id="Gaussian-RBF-kernel"><a href="#Gaussian-RBF-kernel" class="headerlink" title="Gaussian RBF kernel"></a>Gaussian RBF kernel</h4><p>使用Taylor series kernel 来近似Gaussian RBF.<br><img src="/2017/07/04/Kernel-Pooling/GS.png" alt="[Gaussian RBF kernel]" title="[Gaussian RBF kernel]"><br>p=4时最合适.<img src="/2017/07/04/Kernel-Pooling/GS1.png" alt="[Gaussian RBF & Tayler series with p]" title="[Gaussian RBF & Tayler series with p]"></p>
+<h2 id="Learning-kernel-composition-end-to-end"><a href="#Learning-kernel-composition-end-to-end" class="headerlink" title="Learning kernel composition end-to-end"></a>Learning kernel composition end-to-end</h2><img src="/2017/07/04/Kernel-Pooling/F5.png" alt="[结构]" title="[结构]">
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
         </div>
       
+
+      
+        
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/02/CS231n学习笔记-NetworkVisualization/" rel="next" title="CS231n学习笔记(NetworkVisualization-TensorFlow)">
+                <i class="fa fa-chevron-left"></i> CS231n学习笔记(NetworkVisualization-TensorFlow)
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/06/08/CS231n学习笔记-卷积网络/" itemprop="url">
-              
-                <span itemprop="name">CS231n学习笔记(卷积网络)</span>
-              
-            </a>
-        
-      </h3>
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-08T21:37:55+08:00"
-              content="2017-06-08" >
-          06-08
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/06/06/CS231n学习笔记（批量归一化）/" itemprop="url">
-              
-                <span itemprop="name">CS231n学习笔记(批量归一化和dropout)</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-06T21:20:53+08:00"
-              content="2017-06-06" >
-          06-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/06/01/CS231n学习笔记-全连接网络/" itemprop="url">
-              
-                <span itemprop="name">CS231n学习笔记(全连接网络)</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-06-01T15:21:18+08:00"
-              content="2017-06-01" >
-          06-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/31/Date型数据在SSM架构下的参数绑定与回显/" itemprop="url">
-              
-                <span itemprop="name">Date型数据在SSM架构下的参数绑定与回显</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-31T18:23:09+08:00"
-              content="2017-05-31" >
-          05-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/29/CS231n学习笔记-两层网络/" itemprop="url">
-              
-                <span itemprop="name">CS231n学习笔记-两层网络</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-29T23:04:22+08:00"
-              content="2017-05-29" >
-          05-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/28/CS231n学习笔记-softmax/" itemprop="url">
-              
-                <span itemprop="name">CS231n学习笔记(softmax)</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-28T15:39:26+08:00"
-              content="2017-05-28" >
-          05-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/26/UEditor的数据回显/" itemprop="url">
-              
-                <span itemprop="name">UEditor的数据回显</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-26T09:35:52+08:00"
-              content="2017-05-26" >
-          05-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/25/连接电脑时蓝牙耳机音质明显下降/" itemprop="url">
-              
-                <span itemprop="name">连接电脑时蓝牙耳机音质明显下降</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-25T10:47:52+08:00"
-              content="2017-05-25" >
-          05-25
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/24/CS231n-学习笔记-SVM/" itemprop="url">
-              
-                <span itemprop="name">CS231n 学习笔记(SVM)</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-24T22:10:08+08:00"
-              content="2017-05-24" >
-          05-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2017/05/22/CS231n学习笔记/" itemprop="url">
-              
-                <span itemprop="name">CS231n学习笔记(KNN)</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-22T23:02:58+08:00"
-              content="2017-05-22" >
-          05-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2017/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2017/">1</a><a class="page-number" href="/archives/2017/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2017/page/4/">4</a><a class="extend next" rel="next" href="/archives/2017/page/4/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
+    </div>
+  </div>
 
 
           </div>
@@ -700,6 +488,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -719,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar2.jpg"
@@ -793,6 +594,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#kernel"><span class="nav-number">2.</span> <span class="nav-text">kernel</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#从张量中获得特征"><span class="nav-number">2.1.</span> <span class="nav-text">从张量中获得特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#近似方法"><span class="nav-number">2.2.</span> <span class="nav-text">近似方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Taylor-series-kernel"><span class="nav-number">2.2.1.</span> <span class="nav-text">Taylor series kernel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gaussian-RBF-kernel"><span class="nav-number">2.2.2.</span> <span class="nav-text">Gaussian RBF kernel</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-kernel-composition-end-to-end"><span class="nav-number">3.</span> <span class="nav-text">Learning kernel composition end-to-end</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -914,11 +731,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
 
 
   
@@ -1289,26 +1104,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

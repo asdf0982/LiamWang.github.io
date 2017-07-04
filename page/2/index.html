@@ -310,6 +310,143 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/21/DeepID/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/21/DeepID/" itemprop="url">Deep Learning Face Representation from Predicting 10,000 Classes 阅读笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-21T14:25:17+08:00">
+                2017-06-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-22T15:07:26+08:00">
+                2017-06-22
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文由香港中文大学于2014年发表在CVPR会议<br>参考:</p>
+<ul>
+<li><a href="http://www.cnblogs.com/zzq1989/p/4373680.html" target="_blank" rel="external">Deep Learning Face Representation from Predicting 10,000 Classes论文笔记</a></li>
+<li><a href="http://blog.csdn.net/chenriwei2/article/details/31415069" target="_blank" rel="external">【深度学习论文笔记】Deep Learning Face Representation from Predicting 10,000 Classes</a></li>
+<li><a href="http://blog.csdn.net/prm10/article/details/50598975" target="_blank" rel="external">Deep Learning Face Representation from Predicting 10,000 Classes</a></li>
+<li><a href="http://blog.csdn.net/u010318961/article/details/51967845" target="_blank" rel="external">经典计算机视觉论文笔记——DeepFace\DeepID\DeepID2\DeepID3\FaceNet\VGGFace汇总</a></li>
+</ul>
+<h2 id="Introduction-and-Related-Work"><a href="#Introduction-and-Related-Work" class="headerlink" title="Introduction and Related Work"></a>Introduction and Related Work</h2><p>本文提供了一种用多个深度模型获得高水平人脸特征(DeepID)来对人脸分类的方法.所谓DeepID,假如网络有10000个分类的输出, 那么在最后一层的输入(倒数第二层的输出)就是DeepID的组成部分,文中有160维.如图<br><img src="/2017/06/21/DeepID/DeepID.png" alt="[DeepID]" title="[DeepID]"><br>DeepID有很好的泛化能力, 再对它用Joint Bayesian等方法就能进行人脸验证.</p>
+<h2 id="Deep-ConvNets"><a href="#Deep-ConvNets" class="headerlink" title="Deep ConvNets"></a>Deep ConvNets</h2><p>结构如下:<br><img src="/2017/06/21/DeepID/ConvNet.png" alt="[ConvNet]" title="[ConvNet]"><br>输入图像为39*31*k, k表示通道数(RGB图像k为3, 灰度图像k为1).<br>激活函数使用RELU.<br>DeepID层为全连接层,其输入为Maxp3和Conv4两者.输出特征160维. 因Conv4包含了较多的全局信息, 需要Maxp3进行细节补充.<img src="/2017/06/21/DeepID/hiddenlayer.png" alt="[DeepID层(FC)公式]" title="[DeepID层(FC)公式]"><br>$x^1,w^1,x^2,w^2$代表Maxp3和Conv4的输出和对应的权重.<br>该模型使用SGD的最优化方法.</p>
+<h2 id="Feature-extraction"><a href="#Feature-extraction" class="headerlink" title="Feature extraction"></a>Feature extraction</h2><p>找到人脸上的5个标记点.(两个眼睛中心点, 鼻尖点, 两个嘴角点)<br>将人脸根据两个眼睛中心点和嘴角连线的中点对齐.<br>从60个不同的小块抽取DeepID特征, 60这一数字源于10个区域, 3个大小, RGB和灰度2种通道.如图:<br><img src="/2017/06/21/DeepID/facepatch.png" alt="[face path]" title="[face path]"><br>上方的十张图是由中等大小尺寸切的.上方左边的5张图切自弱对齐后的全局区域,上方右边的5张图则分别以5个人脸标记点为中心切.下方代表3种大小.(每种大小又分为长方形和正方形两个形状.)<br>每张图片输出160维,一个patch有两张图片(一张是原始的,一张是<strong>水平翻转</strong>的副本),共有60个patch.则最终DeepID将所有维度连接起来,即160*2*60=19200维.这将用于最终的人脸验证.(每个网络输入一个patch,一张长方形一张正方形)</p>
+<h2 id="Face-verification"><a href="#Face-verification" class="headerlink" title="Face verification"></a>Face verification</h2><p>分别使用JointBayesian和神经网络进行人脸识别.后续结果表面JointBayesian效果较好.<br>神经网络部分示意图:<br><img src="/2017/06/21/DeepID/NN.png" alt="[用于人脸识别的NN]" title="[用于人脸识别的NN]"><br>输入有640*60 是因为人脸识别需要两个张人脸图像.每张图像切好得到一个patch会产生160*2维输出.共有两张图像, 故640 = 160*2*2<br>注意到第一个隐层是locally-connect layer ,表示一个神经元只与对应的group连接, 这样神经元就能学习到紧凑的局部特征.第二的隐层为全连接层, 这表示从局部特征中学习全局特征.<br>隐层都使用RELU, 最后一层(输出)使用sigmoid.并且对所有隐层节点使用dropout.</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>采用CelebFace训练模型, 在LFW上验证.<br>随机选择80%的人训练DeepID模型, 剩下20%的人训练联合贝叶斯或神经网络.<br>在人脸识别阶段, 将特征通过PCA降维至150维, 再输入联合贝叶斯中.在测试时, 判断两张脸是否是同一个人是通过看联合贝叶斯的极大似然比来决定的, 该阈值通过训练集确定.<br>在LFW上的表现如下,其他结果见论文.<br><img src="/2017/06/21/DeepID/result.png" alt="[result in LFW]" title="[result in LFW]"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
+    
+      
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1621,140 +1758,6 @@
 
       
     
-      
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/08/CS231n学习笔记-卷积网络/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/08/CS231n学习笔记-卷积网络/" itemprop="url">CS231n学习笔记(卷积网络)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-08T21:37:55+08:00">
-                2017-06-08
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-09T23:31:11+08:00">
-                2017-06-09
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>完成作业:</p>
-<ul>
-<li><a href="/2017/06/08/CS231n学习笔记-卷积网络/ConvolutionalNetworks.ipynb" title="[ConvolutionalNetworks.ipynb]">[ConvolutionalNetworks.ipynb]</a></li>
-<li><a href="/2017/06/08/CS231n学习笔记-卷积网络/cnn.py" title="[cnn.py]">[cnn.py]</a></li>
-<li><a href="/2017/06/08/CS231n学习笔记-卷积网络/layers.py" title="[layers.py]">[layers.py]</a></li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/08/CS231n学习笔记-卷积网络/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-      
-    
   </section>
 
   
@@ -1804,7 +1807,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
