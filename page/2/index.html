@@ -310,6 +310,144 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/22/DeepID2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/22/DeepID2/" itemprop="url">Deep Learning Face Representation by Joint Identification-Verification 阅读笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-22T15:22:18+08:00">
+                2017-06-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-22T22:55:05+08:00">
+                2017-06-22
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文由香港中文大学于2014年发表<br>参考:</p>
+<ul>
+<li><a href="http://blog.csdn.net/stdcoutzyx/article/details/41497545" target="_blank" rel="external">DeepID2——强大的人脸分类算法</a></li>
+<li><a href="http://blog.csdn.net/u010318961/article/details/51967845" target="_blank" rel="external">经典计算机视觉论文笔记汇总</a></li>
+<li><a href="http://blog.csdn.net/stdcoutzyx/article/details/42091205" target="_blank" rel="external">DeepID人脸识别算法之三代</a></li>
+</ul>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>人脸识别的中心主题应该是减少类内变化增大类间差异.<br>所谓识别(identification)是将一张图片从大量的类别中识别出来. 而所谓验证(verification)是比较两批图像是否为同一类.我们使用识别和验证两种信号(signal)得到的特征称为DeepID2. 使用DeepID2, 在LFW数据集上得到了99.15%的正确率</p>
+<h2 id="特征抽取"><a href="#特征抽取" class="headerlink" title="特征抽取"></a>特征抽取</h2><p>DeepID2使用的结构:<br><img src="/2017/06/22/DeepID2/DeepID2.png" alt="[The ConvNet for DeepID2]" title="[The ConvNet for DeepID2]"><br>其网络结构与DeepID很相似,只不过输入图像的大小改为55*47.<br>DeepID2特征从两个监督信号学习得到.<br>首先是人脸识别信号, 识别通过在DeepID2层后接一个softmax层实现.loss表示为Ident loss<br>然后是人脸验证信号, 它能有效的减小类内变化, 通常有L1, L2, Cosine相似度3种形式, 文中使用L2.表示为Verif loss, 公式如下:<br><img src="/2017/06/22/DeepID2/L2.png" alt="[Verif loss]" title="[Verif loss]"><br>当图同类时($y_{ij}=1$)减小类内差距.<br>当图异类时($y_{ij}=-1$)增大类间差距至m, m是需要手动调节的.<br>余弦距离公式也给出, 但文章没有使用,我就不列出.<br>DeepID2特征学习算法:<br><img src="/2017/06/22/DeepID2/train.png" alt="[loss]" title="[loss]"><br>可以看到最终的目标函数(loss)是由Ident loss和Verif loss加权得到的.</p>
+<h2 id="人脸验证"><a href="#人脸验证" class="headerlink" title="人脸验证"></a>人脸验证</h2><p>使用SDM获得人脸的21个基准点, 然后使用这些基准点将人脸图像对齐.<br>然后在不同的位置, 大小, 色彩通道和水平翻转切割每张人脸图像,每张图像得到400个不同的patch. 将其放入200个前文提到的深度卷积网络, 抽取出400个DeepID2特征向量.选择水平翻转的图像与原始图像作为一对, 放入网络得到2个DeepID2特征向量.<br>为了减少DeepID2特征的长度, 使用前向-反向贪心算法选择出25个特征向量. 25*160=4000维依然太大, 使用PCA将人脸特征向量压缩至180维, 然后使用联合贝叶斯算法进行人脸识别. 例子:<br><img src="/2017/06/22/DeepID2/25face.png" alt="[example]" title="[example]"></p>
+<h2 id="疑问和思考"><a href="#疑问和思考" class="headerlink" title="疑问和思考"></a>疑问和思考</h2><ol>
+<li>联合贝叶斯算法是什么样的?</li>
+<li>SDM算法是什么?</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
+    
+      
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/21/DeepID/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1609,155 +1747,6 @@
 
       
     
-      
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/10/install-tensorflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/10/install-tensorflow/" itemprop="url">Install tensorflow on Win10</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-10T10:30:18+08:00">
-                2017-06-10
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-10T11:08:36+08:00">
-                2017-06-10
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="install-anaconda3"><a href="#install-anaconda3" class="headerlink" title="install anaconda3"></a>install anaconda3</h2><p>I use Anaconda2 and my python version is 2.7, but tensorflow needs python3.5. So the first step is to build python2.7 and 3.5 coexistence environment.</p>
-<ol>
-<li>If you have already installed Anaconda2, you need download <a href="https://repo.continuum.io/archive/.winzip/" target="_blank" rel="external">Anaconda3.</a> (choose 4.2.0)</li>
-<li>Install it and change install path to “D:\Anaconda2\envs\Anaconda3”(D:\Anaconda2 is your Anaconda2’s path)<img src="/2017/06/10/install-tensorflow/20151231222220973.jpg" alt="[change path]" title="[change path]"></li>
-<li>Cancel the default check when installing the software.<img src="/2017/06/10/install-tensorflow/20151231222309050.jpg" alt="[cancel tick]" title="[cancel tick]"></li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># To activate this environment, use:</div><div class="line"># &gt; activate Anaconda3</div><div class="line">#</div><div class="line"># To deactivate this environment, use:</div><div class="line"># &gt; deactivate Anaconda3</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>you can <code>activate Anaconda3</code> and then <code>python</code> to check your python version.</p>
-<h2 id="tensorflow"><a href="#tensorflow" class="headerlink" title="tensorflow"></a>tensorflow</h2><p>look at <a href="https://www.tensorflow.org/install/install_windows" target="_blank" rel="external">install_windows</a></p>
-<ol>
-<li><code>activate Anaconda3</code></li>
-<li>update pip <code>(Anaconda3) D:\&gt;python -m pip install --upgrade pip</code></li>
-<li><p>if your PC don’t hava a GPU </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(Anaconda3) D:\&gt;pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow-1.1.0-cp35-cp35m-win_amd64.whl</div></pre></td></tr></table></figure>
-</li>
-<li><p>if you succeed, you can see </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Installing collected packages: numpy, six, werkzeug, setuptools, protobuf, wheel, tensorflow</div><div class="line">Successfully installed numpy-1.13.0 protobuf-3.3.0 setuptools-36.0.1 six-1.10.0 tensorflow-1.1.0 werkzeug-0.12.2 wheel-0.29.0</div></pre></td></tr></table></figure>
-</li>
-<li><p>Invoke python from your shell as follows:<br><code>$ python</code><br>Enter the following short program inside the python interactive shell:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; import tensorflow as tf</div><div class="line">&gt;&gt;&gt; hello = tf.constant(&apos;Hello, TensorFlow!&apos;)</div><div class="line">&gt;&gt;&gt; sess = tf.Session()</div><div class="line">&gt;&gt;&gt; print(sess.run(hello))</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>If the system outputs the following, then you are ready to begin writing TensorFlow programs:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hello, TensorFlow!</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-      
-    
   </section>
 
   
@@ -1807,7 +1796,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1820,7 +1809,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>

@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Deep Learning,Face Recognition," />
+  <meta name="keywords" content="fine-grained classification," />
 
 
 
@@ -92,25 +92,23 @@
 
 
 
-<meta name="description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解  Introduction传统模型抽取出的深度特征比较分散,">
-<meta name="keywords" content="Deep Learning,Face Recognition">
+<meta name="description" content="主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为了解决过拟合问题, 提出了DropFactor的正则化(regularization)方法.  回顾Bilinear Pooling  输出特征是的大小是(h,w,n),一般情况下h,w比较小,n比较大,表现为一个长方体.那么这里的$x_i$,就是长方体中的一条(1">
+<meta name="keywords" content="fine-grained classification">
 <meta property="og:type" content="article">
-<meta property="og:title" content="A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记">
-<meta property="og:url" content="https://asdf0982.github.io/2017/06/27/center-loss/index.html">
+<meta property="og:title" content="Factorized Bilinear Models for Image Recognition 阅读笔记">
+<meta property="og:url" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解  Introduction传统模型抽取出的深度特征比较分散,">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/LeNet.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/result1.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/center_loss.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/gradient.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/step.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/lambda.png">
-<meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/prelu.png">
-<meta property="og:updated_time" content="2017-06-29T07:55:12.931Z">
+<meta property="og:description" content="主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为了解决过拟合问题, 提出了DropFactor的正则化(regularization)方法.  回顾Bilinear Pooling  输出特征是的大小是(h,w,n),一般情况下h,w比较小,n比较大,表现为一个长方体.那么这里的$x_i$,就是长方体中的一条(1">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/BilinearPooling.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/FB.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/BP.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/DF.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/DF2.png">
+<meta property="og:updated_time" content="2017-07-06T14:27:01.047Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记">
-<meta name="twitter:description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解  Introduction传统模型抽取出的深度特征比较分散,">
-<meta name="twitter:image" content="https://asdf0982.github.io/2017/06/27/center-loss/LeNet.png">
+<meta name="twitter:title" content="Factorized Bilinear Models for Image Recognition 阅读笔记">
+<meta name="twitter:description" content="主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为了解决过拟合问题, 提出了DropFactor的正则化(regularization)方法.  回顾Bilinear Pooling  输出特征是的大小是(h,w,n),一般情况下h,w比较小,n比较大,表现为一个长方体.那么这里的$x_i$,就是长方体中的一条(1">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/BilinearPooling.png">
 
 
 
@@ -138,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/06/27/center-loss/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/"/>
 
 
 
 
 
-  <title>A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记 | Liam's Blog</title>
+  <title>Factorized Bilinear Models for Image Recognition 阅读笔记 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -317,7 +315,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/27/center-loss/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -334,7 +332,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记</h2>
+          <h2 class="post-title" itemprop="name headline">Factorized Bilinear Models for Image Recognition 阅读笔记</h2>
         
 
         <div class="post-meta">
@@ -346,8 +344,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-27T12:34:20+08:00">
-                2017-06-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-06T16:58:44+08:00">
+                2017-07-06
               </time>
             
 
@@ -362,8 +360,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-29T15:55:12+08:00">
-                2017-06-29
+              <time title="Post modified" itemprop="dateModified" datetime="2017-07-06T22:27:01+08:00">
+                2017-07-06
               </time>
             
           </span>
@@ -398,23 +396,24 @@
       
 
       
-        <p>发表于ECCV2016<br>项目地址: <a href="https://github.com/ydwen/caffe-face" target="_blank" rel="external">caffe</a>, <a href="https://github.com/pangyupo/mxnet_center_loss" target="_blank" rel="external">mxnet</a><br>参考:</p>
-<ul>
-<li><a href="http://mp.weixin.qq.com/s?__biz=MzI1NTE4NTUwOQ==&amp;mid=2650325602&amp;idx=1&amp;sn=9bc6071bf62a4ccdde1df4b4c5ae39f4&amp;chksm=f235a568c5422c7ed7993b9d3b46bcd979d360605511284e4363a4a92f845019795569f8f3e9&amp;mpshare=1&amp;scene=1&amp;srcid=1028OCsg4y3EUMMTPjPzfrgo#rd" target="_blank" rel="external">【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用</a></li>
-<li><a href="http://www.jianshu.com/p/773fbd0b2472" target="_blank" rel="external">Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解</a></li>
-</ul>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>传统模型抽取出的深度特征比较分散, 是因为softmax loss仅仅区分数据.论文提出了一种新的损失函数center loss. 它可以让每个类学习一个特征中心, 减小类内的距离. 结合softmax loss就可以达到增大类间差异, 减小类内差异的效果.</p>
-<h2 id="The-Proposed-Approach"><a href="#The-Proposed-Approach" class="headerlink" title="The Proposed Approach"></a>The Proposed Approach</h2><p>先用如下网络LeNet++训练MNIST数据集<br><img src="/2017/06/27/center-loss/LeNet.png" alt="[LeNet]" title="[LeNet]"><br>固定输出特征为2维,这样我们就可以在平面上看到结果.如图:<br><img src="/2017/06/27/center-loss/result1.png" alt="[softmax result]" title="[softmax result]"><br>结论: 虽然类间的差距已经明显, 但类内的差距依然较大.</p>
-<h2 id="The-center-loss"><a href="#The-center-loss" class="headerlink" title="The center loss"></a>The center loss</h2><img src="/2017/06/27/center-loss/center_loss.png" alt="[center loss]" title="[center loss]">
-<p>$c_{y_i}$代表$y_i$所在类的中心.<br>一次性将训练集的特征全部提取求出中心不现实, 论文中提出两个解决办法.</p>
+        <p>主要做了这些事:</p>
 <ol>
-<li>在mini-batch中更新.</li>
-<li>为了避免类别标错的图片使中心抖动, 使用$\alpha$来控制中心的学习率.见下下图Algorithm1-output-6</li>
+<li>提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层.</li>
+<li>为了解决过拟合问题, 提出了DropFactor的正则化(regularization)方法.</li>
 </ol>
-<p>center loss的梯度如下计算:<br><img src="/2017/06/27/center-loss/gradient.png" alt="[center loss gradient]" title="[center loss gradient]"><br>训练模型时将softmax loss与center loss结合, 设置$\lambda$来平衡两个loss函数.<br><img src="/2017/06/27/center-loss/step.png" alt="[step]" title="[step]"><br>不同的$\lambda$会带来不同的效果:<br><img src="/2017/06/27/center-loss/lambda.png" alt="[Different lambda]" title="[Different lambda]"><br>不同的λ对于特征的分布有很大的影响，合适的λ会提高网络的精确度。<br>center loss与contrastive loss,triplet loss相比, 不需要复杂的重建训练集,也不会造成数据戏剧性的大增.</p>
-<p>实验部分见论文.注意激活函数使用了PReLU<br><img src="/2017/06/27/center-loss/prelu.png" alt="[ReLU & PReLU]" title="[ReLU & PReLU]"></p>
-<h2 id="疑问和思考"><a href="#疑问和思考" class="headerlink" title="疑问和思考"></a>疑问和思考</h2><ol>
-<li>为什么总loss不用(1-$\lambda$)a+$\lambda$b这样的形式?</li>
+<h2 id="回顾Bilinear-Pooling"><a href="#回顾Bilinear-Pooling" class="headerlink" title="回顾Bilinear Pooling"></a>回顾Bilinear Pooling</h2><img src="/2017/07/06/Factorized-Bilinear/BilinearPooling.png" alt="[BilinearPooling]" title="[BilinearPooling]">
+<p> 输出特征是的大小是(h,w,n),一般情况下h,w比较小,n比较大,表现为一个长方体.那么这里的$x_i$,就是长方体中的一条(1,1,n).<br>为了最终z的大小为(n,n)所以$x_i$的大小改为(n,1).<br>在之后的全链接层, y=b+Wz, z原本是一个(n,n)的矩阵被拉成了(n^2,1)的向量.<br>我们可以发现Bilinear Pooling有大量的参数和很高的计算负担.</p>
+<h2 id="Factorized-Bilinear-model"><a href="#Factorized-Bilinear-model" class="headerlink" title="Factorized Bilinear model"></a>Factorized Bilinear model</h2><p>相比于上述的模型,FB模型把bilinear与FC层合并了.<br><img src="/2017/07/06/Factorized-Bilinear/FB.png" alt="[Factorized Bilinear]" title="[Factorized Bilinear]"><br>疑惑:</p>
+<ol>
+<li>这里的$x_i$有n个,不知道这个n和上述的bilibearpooling的n维是不是同一个意思.(应该不是.)</li>
+<li>$(f_i,f_j)$是什么?</li>
+</ol>
+<p>反向传播时算法的梯度公式:<br><img src="/2017/07/06/Factorized-Bilinear/BP.png" alt="[back-propagating]" title="[back-propagating]"><br>计算复杂度:O(kn)</p>
+<h2 id="DropFactor"><a href="#DropFactor" class="headerlink" title="DropFactor"></a>DropFactor</h2><img src="/2017/07/06/Factorized-Bilinear/DF.png" alt="[DropFactor]" title="[DropFactor]">
+<p>(a)图不使用DropFactor,所有路径都要跑(注意共1+k条)所以为了防止过拟合,引入公式:<br><img src="/2017/07/06/Factorized-Bilinear/DF2.png" alt="DF2.png" title=""><br>疑惑:</p>
+<ol>
+<li>$m_j$ ~ Bernoulli(p)中间的符号</li>
+<li>为什么测试时都乘以p?</li>
 </ol>
 
       
@@ -445,9 +444,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
-          
-            <a href="/tags/Face-Recognition/" rel="tag"># Face Recognition</a>
+            <a href="/tags/fine-grained-classification/" rel="tag"># fine-grained classification</a>
           
         </div>
       
@@ -460,8 +457,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/26/GoogleNet/" rel="next" title="Going Deeper with Convolutions 阅读笔记">
-                <i class="fa fa-chevron-left"></i> Going Deeper with Convolutions 阅读笔记
+              <a href="/2017/07/04/Kernel-Pooling/" rel="next" title="Kernel Pooling for Convolutional Neural Networks 阅读笔记">
+                <i class="fa fa-chevron-left"></i> Kernel Pooling for Convolutional Neural Networks 阅读笔记
               </a>
             
           </div>
@@ -469,10 +466,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/27/MTCNN/" rel="prev" title="Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks 阅读笔记">
-                Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks 阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -612,7 +605,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Proposed-Approach"><span class="nav-number">2.</span> <span class="nav-text">The Proposed Approach</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-center-loss"><span class="nav-number">3.</span> <span class="nav-text">The center loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问和思考"><span class="nav-number">4.</span> <span class="nav-text">疑问和思考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾Bilinear-Pooling"><span class="nav-number">1.</span> <span class="nav-text">回顾Bilinear Pooling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factorized-Bilinear-model"><span class="nav-number">2.</span> <span class="nav-text">Factorized Bilinear model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DropFactor"><span class="nav-number">3.</span> <span class="nav-text">DropFactor</span></a></li></ol></div>
             
 
           </div>
@@ -1112,26 +1105,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
