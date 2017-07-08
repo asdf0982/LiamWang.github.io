@@ -310,6 +310,131 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/07/07/α-pooling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/07/07/α-pooling/" itemprop="url">α-pooling</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-07T19:31:26+08:00">
+                2017-07-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-07-07T19:31:26+08:00">
+                2017-07-07
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
+    
+      
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -357,7 +482,7 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-07-06T22:27:01+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2017-07-06T22:30:55+08:00">
                 2017-07-06
               </time>
             
@@ -501,8 +626,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-07-04T23:10:44+08:00">
-                2017-07-04
+              <time title="Post modified" itemprop="dateModified" datetime="2017-07-08T22:31:37+08:00">
+                2017-07-08
               </time>
             
           </span>
@@ -537,12 +662,15 @@
             <p>参考:</p>
 <ul>
 <li><a href="http://blog.csdn.net/losteng/article/details/51520555" target="_blank" rel="external">Global average Pooling</a></li>
+<li>基础-<a href="http://blog.csdn.net/heyijia0327/article/details/38090229" target="_blank" rel="external">径向基(Radial basis function)神经网络、核函数的一些理解</a></li>
+<li>进阶-<a href="http://www.cnblogs.com/zhangchaoyang/articles/2591663.html" target="_blank" rel="external">径向基函数（RBF）神经网络</a></li>
 </ul>
 <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ol>
 <li>提出了一种对特征映射的一般内核池化(kernel pooling)方法。 </li>
 <li>提出的内核池化是可以区分的，可以与CNN进行联合优化。 </li>
 </ol>
-<h2 id="kernel"><a href="#kernel" class="headerlink" title="kernel"></a>kernel</h2><h3 id="从张量中获得特征"><a href="#从张量中获得特征" class="headerlink" title="从张量中获得特征"></a>从张量中获得特征</h3><p>特征映射X一般有3个维度,h,w,c.<br>我们根据c将X表示为$\mathbf{x} = [x_1,x_2,…,x_c]^T$<br>论文提出Taylor series kernel来抽取特征.<br>首先定义2级张量:<br><img src="/2017/07/04/Kernel-Pooling/2Dtensor.png" alt="[2-level tensor]" title="[2-level tensor]"><br>如图为可视化的2级3级张量:<br><img src="/2017/07/04/Kernel-Pooling/123.png" alt="[tensor]" title="[tensor]"><br>引申出p级张量(p&gt;2):<br><img src="/2017/07/04/Kernel-Pooling/pDtensor.png" alt="[p-level tensor]" title="[p-level tensor]"><br>Taylor series kernel的公式为:<br><img src="/2017/07/04/Kernel-Pooling/Tkernel.png" alt="[Taylor series kernel]" title="[Taylor series kernel]"><br>将其表示为:$\kappa(\mathbf{x},\mathbf{y})=\phi(\mathbf{x})^T\phi(\mathbf{y})$<br>则<img src="/2017/07/04/Kernel-Pooling/X.png" alt="[taylor x]" title="[taylor x]"><br>其特征向量维度为:$\bigcirc(c^p)$ 所以即使c=512,p=3也有$10^8$.<br>因此需要一个近似方法.</p>
+<h2 id="kernel"><a href="#kernel" class="headerlink" title="kernel"></a>kernel</h2><p>全连接层的参数太多,平均池化层又一刀切损失关键特征.怎么办啊!使用我们的Tayler系列核函数吧!<br>它可以近似高斯GBF.</p>
+<h3 id="从张量中获得特征"><a href="#从张量中获得特征" class="headerlink" title="从张量中获得特征"></a>从张量中获得特征</h3><p>特征映射X一般有3个维度,h,w,c.<br>我们根据c将X表示为$\mathbf{x} = [x_1,x_2,…,x_c]^T$<br>论文提出Taylor series kernel来抽取特征.<br>首先定义2级张量:<br><img src="/2017/07/04/Kernel-Pooling/2Dtensor.png" alt="[2-level tensor]" title="[2-level tensor]"><br>也就是$xx^T$.<br>注: 当$x=(x_1,x_2),y=(y_1,y_2)$时,传统的内积$&lt;x,y&gt;=x^Ty=x_1y_1+x_2y_2$<br>如图为可视化的2级3级张量:<br><img src="/2017/07/04/Kernel-Pooling/123.png" alt="[tensor]" title="[tensor]"><br>引申出p级张量(p&gt;2):<br><img src="/2017/07/04/Kernel-Pooling/pDtensor.png" alt="[p-level tensor]" title="[p-level tensor]"><br>Taylor series kernel的公式为:<br><img src="/2017/07/04/Kernel-Pooling/Tkernel.png" alt="[Taylor series kernel]" title="[Taylor series kernel]"><br>将其表示为:$\kappa(\mathbf{x},\mathbf{y})=\phi(\mathbf{x})^T\phi(\mathbf{y})$<br>则<img src="/2017/07/04/Kernel-Pooling/X.png" alt="[taylor x]" title="[taylor x]"><br>其特征向量维度为:$\bigcirc(c^p)$ 所以即使c=512,p=3也有$10^8$.<br>因此需要一个近似方法.</p>
 <h3 id="近似方法"><a href="#近似方法" class="headerlink" title="近似方法"></a>近似方法</h3><p>基于Tensor Sketching.</p>
 <h4 id="Taylor-series-kernel"><a href="#Taylor-series-kernel" class="headerlink" title="Taylor series kernel"></a>Taylor series kernel</h4><img src="/2017/07/04/Kernel-Pooling/tsk.png" alt="[公式介绍]" title="[公式介绍]">
 <p>算法的流程如下:<br><img src="/2017/07/04/Kernel-Pooling/A1.png" alt="[Algorithm 1]" title="[Algorithm 1]"><br>这样我们就把特征减少至$d=1+c+\sum_{i=2}^pd_i$<br>在实验中发现更高维度的特征有更好的近似,p越大错误越大,错误也和两个特征向量的夹角有关.</p>
@@ -1566,146 +1694,6 @@
 
       
     
-      
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/23/DeepID2-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/23/DeepID2-1/" itemprop="url">Deeply learned face representations are sparse, selective, and robust 阅读笔记</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T20:50:44+08:00">
-                2017-06-23
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-25T16:23:09+08:00">
-                2017-06-25
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>本文由香港中文大学于2015年发表在CVPR会议</p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>本文设计了一个深度卷积网络, 获取到 的特征名为DeepID2+.相比与DeepID2,2+ 的网络通过增加隐层特征的维度和对靠前的卷积层监督使DeepID2+在LFW上表现很好.<br>对于人脸识别有3个点很关键:</p>
-<ol>
-<li>sparse: 稀疏, 即特征向量中包含很多零, 可压缩性强.</li>
-<li>selective: 精选, 指具有判别能力的一些分量, 在不同人脸上响应程度不同.</li>
-<li>robust: 健壮, 指图像被遮挡后特征中某些向量依然保持不变的一致性.</li>
-</ol>
-<h2 id="DeepID2-网络结构"><a href="#DeepID2-网络结构" class="headerlink" title="DeepID2+ 网络结构"></a>DeepID2+ 网络结构</h2><p>如图:<br><img src="/2017/06/23/DeepID2-1/Deepid2plus.png" alt="[DeepID2+ net]" title="[DeepID2+ net]"><br>DeepID2+网络也使用了识别和验证两种信号进行监督.此部分参考我上一篇笔记.<br>与DeepID2网络的不同点:</p>
-<ol>
-<li>每个卷积层后(实际上是1,2,3maxpool层和conv4层后)都获得一个128维的特征, 共有4个卷积层故特征从160维增大到512维.</li>
-<li>训练集增大.从8000类160000图增大至12000类290000图.</li>
-<li>用全连接层连接每个卷积层, 并使用DeepID2的那种监督方式.这样监督信号就离前期的卷积层更近了,也更有效.</li>
-</ol>
-<p>实验发现DeepID2选取了25个patch，DeepID2+选取了同样的25个patch，然后抽取的特征分别训练联合贝叶斯模型，得到的结果是DeepID2+平均比DeepID2提高2%。<br>特别的,根据稀疏性对DeepID2+进行二值化处理后, 再使用联合贝叶斯或汉明距离实验,发现识别率下降有限.二值化后的特征节省空间并且可以使人脸检索变得速度更快，更接近实用场景。</p>
-<h2 id="关于DeepID3"><a href="#关于DeepID3" class="headerlink" title="关于DeepID3"></a>关于DeepID3</h2><p>DeepID3实现了两个更深的网络,一个参考VGG, 一个参考googlenet.<br>如图所示:<br><img src="/2017/06/23/DeepID2-1/DeepID3.png" alt="[Two DeepID3 Network]" title="[Two DeepID3 Network]"><br>但结果较DeepID2+差距不大.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-      
-    
   </section>
 
   
@@ -1755,7 +1743,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

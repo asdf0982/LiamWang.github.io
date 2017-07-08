@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="fine-grained classification," />
+  <meta name="keywords" content="Deep Learning,fine-grained classification," />
 
 
 
@@ -93,7 +93,7 @@
 
 
 <meta name="description" content="主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为了解决过拟合问题, 提出了DropFactor的正则化(regularization)方法.  回顾Bilinear Pooling  输出特征是的大小是(h,w,n),一般情况下h,w比较小,n比较大,表现为一个长方体.那么这里的$x_i$,就是长方体中的一条(1">
-<meta name="keywords" content="fine-grained classification">
+<meta name="keywords" content="Deep Learning,fine-grained classification">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Factorized Bilinear Models for Image Recognition 阅读笔记">
 <meta property="og:url" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/index.html">
@@ -104,7 +104,7 @@
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/BP.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/DF.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/DF2.png">
-<meta property="og:updated_time" content="2017-07-06T14:27:01.047Z">
+<meta property="og:updated_time" content="2017-07-06T14:30:55.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Factorized Bilinear Models for Image Recognition 阅读笔记">
 <meta name="twitter:description" content="主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为了解决过拟合问题, 提出了DropFactor的正则化(regularization)方法.  回顾Bilinear Pooling  输出特征是的大小是(h,w,n),一般情况下h,w比较小,n比较大,表现为一个长方体.那么这里的$x_i$,就是长方体中的一条(1">
@@ -360,7 +360,7 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-07-06T22:27:01+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2017-07-06T22:30:55+08:00">
                 2017-07-06
               </time>
             
@@ -444,6 +444,8 @@
       
         <div class="post-tags">
           
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
             <a href="/tags/fine-grained-classification/" rel="tag"># fine-grained classification</a>
           
         </div>
@@ -466,6 +468,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/07/α-pooling/" rel="prev" title="α-pooling">
+                α-pooling <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -537,7 +543,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -1105,6 +1111,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

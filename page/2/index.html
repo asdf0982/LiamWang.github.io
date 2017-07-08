@@ -310,6 +310,146 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/23/DeepID2-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/23/DeepID2-1/" itemprop="url">Deeply learned face representations are sparse, selective, and robust 阅读笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-23T20:50:44+08:00">
+                2017-06-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-06-25T16:23:09+08:00">
+                2017-06-25
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>本文由香港中文大学于2015年发表在CVPR会议</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>本文设计了一个深度卷积网络, 获取到 的特征名为DeepID2+.相比与DeepID2,2+ 的网络通过增加隐层特征的维度和对靠前的卷积层监督使DeepID2+在LFW上表现很好.<br>对于人脸识别有3个点很关键:</p>
+<ol>
+<li>sparse: 稀疏, 即特征向量中包含很多零, 可压缩性强.</li>
+<li>selective: 精选, 指具有判别能力的一些分量, 在不同人脸上响应程度不同.</li>
+<li>robust: 健壮, 指图像被遮挡后特征中某些向量依然保持不变的一致性.</li>
+</ol>
+<h2 id="DeepID2-网络结构"><a href="#DeepID2-网络结构" class="headerlink" title="DeepID2+ 网络结构"></a>DeepID2+ 网络结构</h2><p>如图:<br><img src="/2017/06/23/DeepID2-1/Deepid2plus.png" alt="[DeepID2+ net]" title="[DeepID2+ net]"><br>DeepID2+网络也使用了识别和验证两种信号进行监督.此部分参考我上一篇笔记.<br>与DeepID2网络的不同点:</p>
+<ol>
+<li>每个卷积层后(实际上是1,2,3maxpool层和conv4层后)都获得一个128维的特征, 共有4个卷积层故特征从160维增大到512维.</li>
+<li>训练集增大.从8000类160000图增大至12000类290000图.</li>
+<li>用全连接层连接每个卷积层, 并使用DeepID2的那种监督方式.这样监督信号就离前期的卷积层更近了,也更有效.</li>
+</ol>
+<p>实验发现DeepID2选取了25个patch，DeepID2+选取了同样的25个patch，然后抽取的特征分别训练联合贝叶斯模型，得到的结果是DeepID2+平均比DeepID2提高2%。<br>特别的,根据稀疏性对DeepID2+进行二值化处理后, 再使用联合贝叶斯或汉明距离实验,发现识别率下降有限.二值化后的特征节省空间并且可以使人脸检索变得速度更快，更接近实用场景。</p>
+<h2 id="关于DeepID3"><a href="#关于DeepID3" class="headerlink" title="关于DeepID3"></a>关于DeepID3</h2><p>DeepID3实现了两个更深的网络,一个参考VGG, 一个参考googlenet.<br>如图所示:<br><img src="/2017/06/23/DeepID2-1/DeepID3.png" alt="[Two DeepID3 Network]" title="[Two DeepID3 Network]"><br>但结果较DeepID2+差距不大.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
+    
+      
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/22/DeepID2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1603,150 +1743,6 @@
 
       
     
-      
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/06/11/CS231n学习笔记-TensorFlow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Liam Wang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Liam's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/11/CS231n学习笔记-TensorFlow/" itemprop="url">CS231n学习笔记(TensorFlow)</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-06-11T00:27:32+08:00">
-                2017-06-11
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-12T21:28:25+08:00">
-                2017-06-12
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>完成作业: <a href="/2017/06/11/CS231n学习笔记-TensorFlow/TensorFlow.ipynb" title="[TensorFlow.ipynb]">[TensorFlow.ipynb]</a><br>跳过数据导入部分,直接进入model部分.<br>tensorflow的api有很多,建议边写边查.<a href="https://www.tensorflow.org/api_docs/python/tf/nn/max_pool" target="_blank" rel="external">api文档</a></p>
-<h2 id="simple-model"><a href="#simple-model" class="headerlink" title="simple_model"></a>simple_model</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># clear old variables</span></div><div class="line">tf.reset_default_graph()</div><div class="line"></div><div class="line"><span class="comment"># setup input (e.g. the data that changes every batch)</span></div><div class="line"><span class="comment"># The first dim is None, and gets sets automatically based on batch size fed in</span></div><div class="line">X = tf.placeholder(tf.float32, [<span class="keyword">None</span>, <span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>])</div><div class="line">y = tf.placeholder(tf.int64, [<span class="keyword">None</span>])</div><div class="line">is_training = tf.placeholder(tf.bool)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">simple_model</span><span class="params">(X,y)</span>:</span></div><div class="line">    <span class="comment"># define our weights (e.g. init_two_layer_convnet)</span></div><div class="line">    </div><div class="line">    <span class="comment"># setup variables</span></div><div class="line">    Wconv1 = tf.get_variable(<span class="string">"Wconv1"</span>, shape=[<span class="number">7</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">32</span>])</div><div class="line">    bconv1 = tf.get_variable(<span class="string">"bconv1"</span>, shape=[<span class="number">32</span>])</div><div class="line">    W1 = tf.get_variable(<span class="string">"W1"</span>, shape=[<span class="number">5408</span>, <span class="number">10</span>])</div><div class="line">    b1 = tf.get_variable(<span class="string">"b1"</span>, shape=[<span class="number">10</span>])</div><div class="line"></div><div class="line">    <span class="comment"># define our graph (e.g. two_layer_convnet)</span></div><div class="line">    a1 = tf.nn.conv2d(X, Wconv1, strides=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>], padding=<span class="string">'VALID'</span>) + bconv1</div><div class="line">    h1 = tf.nn.relu(a1)</div><div class="line">    h1_flat = tf.reshape(h1,[<span class="number">-1</span>,<span class="number">5408</span>])</div><div class="line">    y_out = tf.matmul(h1_flat,W1) + b1</div><div class="line">    <span class="keyword">return</span> y_out</div><div class="line"></div><div class="line">y_out = simple_model(X,y)</div><div class="line"></div><div class="line"><span class="comment"># define our loss</span></div><div class="line">total_loss = tf.losses.hinge_loss(tf.one_hot(y,<span class="number">10</span>),logits=y_out)</div><div class="line">mean_loss = tf.reduce_mean(total_loss)</div><div class="line"></div><div class="line"><span class="comment"># define our optimizer</span></div><div class="line">optimizer = tf.train.AdamOptimizer(<span class="number">5e-4</span>) <span class="comment"># select optimizer and set learning rate</span></div><div class="line">train_step = optimizer.minimize(mean_loss)</div></pre></td></tr></table></figure>
-<img src="/2017/06/11/CS231n学习笔记-TensorFlow/fliter.gif" alt="[回顾卷积过程]" title="[回顾卷积过程]">
-<p><code>Wconv1 = tf.get_variable(&quot;Wconv1&quot;, shape=[7, 7, 3, 32])</code><br>表示卷积核的大小为7*7,每个卷积核包含3个通道,共有32个卷积核.</p>
-<p><code>bconv1 = tf.get_variable(&quot;bconv1&quot;, shape=[32])</code><br>32个卷积核,每个都包含1个偏置项.</p>
-<p><code>W1 = tf.get_variable(&quot;W1&quot;, shape=[5408, 10])</code><br>已知stride,图像与卷积核的宽度高度,根据公式’H_n = 1 + (H + 2 * pad - HH)/stride’计算卷积后输出矩阵的大小,1+(32-7)/2 = 13, 故每个卷积核会输出一个13*13的矩阵(不再以通道区分),共有32个卷积核,故输出的参数总数为13*13*32 = 5408. 而CASIA-10是最终分10类的,所以取10.</p>
-<p><code>a1 = tf.nn.conv2d(X, Wconv1, strides=[1,2,2,1], padding=&#39;VALID&#39;) + bconv1</code></p>
-<ul>
-<li><a href="https://stackoverflow.com/questions/34619177/what-does-tf-nn-conv2d-do-in-tensorflow" target="_blank" rel="external">What does tf.nn.conv2d do in tensorflow?</a></li>
-<li><a href="http://blog.csdn.net/lujiandong1/article/details/53728053" target="_blank" rel="external">tensorflow conv2d的padding解释以及参数解释</a><br>strides[0]和strides[3]必须为1.因为tensor的shape是<code>[batch, height, width, channels]</code>我们的stride只在中间两个中进行, 所以一般strides = [1, X, X, 1]</li>
-</ul>
-<p><code>total_loss = tf.losses.hinge_loss(tf.one_hot(y,10),logits=y_out)</code><br><a href="https://zhuanlan.zhihu.com/p/25896409" target="_blank" rel="external">tf.one_hot()使用</a>,即创建一个全零矩阵,将对应位置置1.</p>
-<h2 id="Training-the-model-on-one-epoch"><a href="#Training-the-model-on-one-epoch" class="headerlink" title="Training the model on one epoch"></a>Training the model on one epoch</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">run_model</span><span class="params">(session, predict, loss_val, Xd, yd,</span></span></div><div class="line">              epochs=<span class="number">1</span>, batch_size=<span class="number">64</span>, print_every=<span class="number">100</span>,</div><div class="line">              training=None, plot_losses=False):</div><div class="line">    <span class="comment"># have tensorflow compute accuracy</span></div><div class="line">    correct_prediction = tf.equal(tf.argmax(predict,<span class="number">1</span>), y)</div><div class="line">    accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))</div><div class="line">    </div><div class="line">    <span class="comment"># shuffle indicies</span></div><div class="line">    train_indicies = np.arange(Xd.shape[<span class="number">0</span>])</div><div class="line">    np.random.shuffle(train_indicies)</div><div class="line"></div><div class="line">    training_now = training <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="comment">#True</span></div><div class="line">    </div><div class="line">    <span class="comment"># setting up variables we want to compute (and optimizing)</span></div><div class="line">    <span class="comment"># if we have a training function, add that to things we compute</span></div><div class="line">    variables = [mean_loss,correct_prediction,accuracy]</div><div class="line">    <span class="keyword">if</span> training_now:</div><div class="line">        variables[<span class="number">-1</span>] = training</div><div class="line">    </div><div class="line">    <span class="comment"># counter </span></div><div class="line">    iter_cnt = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> range(epochs):</div><div class="line">        <span class="comment"># keep track of losses and accuracy</span></div><div class="line">        correct = <span class="number">0</span></div><div class="line">        losses = []</div><div class="line">        <span class="comment"># make sure we iterate over the dataset once</span></div><div class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(int(math.ceil(Xd.shape[<span class="number">0</span>]/batch_size))):<span class="comment">#也许最后还有一些训练集没有被纳入,也就不管它们了,宁缺毋滥</span></div><div class="line">            <span class="comment"># generate indicies for the batch</span></div><div class="line">            start_idx = (i*batch_size)%Xd.shape[<span class="number">0</span>] <span class="comment">#batch索引起始位置</span></div><div class="line">            idx = train_indicies[start_idx:start_idx+batch_size] <span class="comment">#一个batch所有索引(已打乱)</span></div><div class="line">            </div><div class="line">            <span class="comment"># create a feed dictionary for this batch</span></div><div class="line">            feed_dict = &#123;X: Xd[idx,:],</div><div class="line">                         y: yd[idx],</div><div class="line">                         is_training: training_now &#125;</div><div class="line">            <span class="comment"># get batch size</span></div><div class="line">            actual_batch_size = yd[idx].shape[<span class="number">0</span>]</div><div class="line">            </div><div class="line">            <span class="comment"># have tensorflow compute loss and correct predictions</span></div><div class="line">            <span class="comment"># and (if given) perform a training step</span></div><div class="line">            loss, corr, _ = session.run(variables,feed_dict=feed_dict)</div><div class="line">            </div><div class="line">            <span class="comment"># aggregate performance stats</span></div><div class="line">            losses.append(loss*actual_batch_size)</div><div class="line">            correct += np.sum(corr)</div><div class="line">            </div><div class="line">            <span class="comment"># print every now and then</span></div><div class="line">            <span class="keyword">if</span> training_now <span class="keyword">and</span> (iter_cnt % print_every) == <span class="number">0</span>:</div><div class="line">                print(<span class="string">"Iteration &#123;0&#125;: with minibatch training loss = &#123;1:.3g&#125; and accuracy of &#123;2:.2g&#125;"</span>\</div><div class="line">                      .format(iter_cnt,loss,np.sum(corr)/actual_batch_size)) <span class="comment">#.ng表示n位有效数字</span></div><div class="line">            iter_cnt += <span class="number">1</span></div><div class="line">        total_correct = correct/Xd.shape[<span class="number">0</span>]</div><div class="line">        total_loss = np.sum(losses)/Xd.shape[<span class="number">0</span>]</div><div class="line">        print(<span class="string">"Epoch &#123;2&#125;, Overall loss = &#123;0:.3g&#125; and accuracy of &#123;1:.3g&#125;"</span>\</div><div class="line">              .format(total_loss,total_correct,e+<span class="number">1</span>))</div><div class="line">        <span class="keyword">if</span> plot_losses:</div><div class="line">            plt.plot(losses)</div><div class="line">            plt.grid(<span class="keyword">True</span>)</div><div class="line">            plt.title(<span class="string">'Epoch &#123;&#125; Loss'</span>.format(e+<span class="number">1</span>))</div><div class="line">            plt.xlabel(<span class="string">'minibatch number'</span>)</div><div class="line">            plt.ylabel(<span class="string">'minibatch loss'</span>)</div><div class="line">            plt.show()</div><div class="line">    <span class="keyword">return</span> total_loss,total_correct</div><div class="line"></div><div class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</div><div class="line">    <span class="keyword">with</span> tf.device(<span class="string">"/cpu:0"</span>): <span class="comment">#"/cpu:0" or "/gpu:0" </span></div><div class="line">        sess.run(tf.global_variables_initializer())</div><div class="line">        print(<span class="string">'Training'</span>)</div><div class="line">        run_model(sess,y_out,mean_loss,X_train,y_train,<span class="number">1</span>,<span class="number">64</span>,<span class="number">100</span>,train_step,<span class="keyword">True</span>)</div><div class="line">        print(<span class="string">'Validation'</span>)</div><div class="line">        run_model(sess,y_out,mean_loss,X_val,y_val,<span class="number">1</span>,<span class="number">64</span>)</div></pre></td></tr></table></figure>
-<p><code>correct_prediction = tf.equal(tf.argmax(predict,1), y)</code><br><code>tf.argmax</code>是一个非常有用的函数，它能给出某个tensor对象在某一维上的其数据最大值所在的索引值。由于标签向量是由0,1组成，因此最大值1所在的索引位置就是类别标签，比如tf.argmax(predict,1)返回的是模型对于任一输入x预测到的标签值.<br><code>tf.equal</code>返回一个布尔数组,如<code>[True, False, True, True]</code></p>
-<p><code>accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))</code><br>可以使用<code>tf.cast()</code>函数将其转换为布尔值转换为[1, 0, 1, 1]，以方便准确率的计算.<br><code>tf.reduce_mean</code>可跨越维度的计算张量各元素的平均值.</p>
-<p><code>np.random.shuffle(train_indicies)</code><br>以随机次序重组序列</p>
-<h2 id="Training-a-specific-model"><a href="#Training-a-specific-model" class="headerlink" title="Training a specific model"></a>Training a specific model</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">def complex_model(X,y,is_training):</div><div class="line">    Wconv1 = tf.get_variable(&quot;Wconv1&quot;, shape=[7, 7, 3, 32])</div><div class="line">    bconv1 = tf.get_variable(&quot;bconv1&quot;, shape=[32])</div><div class="line">    W1 = tf.get_variable(&quot;W1&quot;, shape=[5408, 1024])</div><div class="line">    b1 = tf.get_variable(&quot;b1&quot;, shape=[1024])</div><div class="line">    W2 = tf.get_variable(&quot;W2&quot;, shape=[1024, 10])</div><div class="line">    b2 = tf.get_variable(&quot;b2&quot;, shape=[10])</div><div class="line"></div><div class="line">    # define our graph (e.g. two_layer_convnet)</div><div class="line">    a1 = tf.nn.conv2d(X, Wconv1, strides=[1,1,1,1], padding=&apos;VALID&apos;) + bconv1</div><div class="line">    #print (a1.shape)</div><div class="line">    h1 = tf.nn.relu(a1)</div><div class="line">    h2 = tf.contrib.layers.batch_norm(h1, </div><div class="line">                                      center=True, scale=True, </div><div class="line">                                      is_training=True,</div><div class="line">                                      scope=&apos;bn&apos;)</div><div class="line">    pool1 = tf.layers.max_pooling2d(inputs=h2, pool_size=[2, 2], strides=2)</div><div class="line">    pool1_flat = tf.reshape(pool1,[-1,5408])</div><div class="line">    y_1 = tf.matmul(pool1_flat,W1) + b1</div><div class="line">    y_1_new = tf.nn.relu(y_1)</div><div class="line">    y_out = tf.matmul(y_1_new,W2) + b2</div><div class="line">    </div><div class="line">    return y_out</div></pre></td></tr></table></figure>
-<p>经过conv层,a1.shape = [?,26,26,32],再经过maxpooling层,pool1_flat的参数个数为(26*26*32)/(2*2) = 5408</p>
-<p><code>Train a great model on CIFAR-10!</code>部分的模型在最开始的文件里.</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-      
-    
   </section>
 
   
@@ -1796,7 +1792,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
