@@ -102,7 +102,7 @@
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/BatchNormalization1.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/Backpropagatethegradientofloss.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/06/CS231n学习笔记（批量归一化）/dropout.png">
-<meta property="og:updated_time" content="2017-06-07T04:12:35.272Z">
+<meta property="og:updated_time" content="2017-07-10T14:02:49.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231n学习笔记(批量归一化和dropout)">
 <meta name="twitter:description" content="引言大意：  使深层网络更容易训练的一种方法是使用更复杂的优化程序，如SGD +momentum，RMSProp或Adam。 另一个策略是改变网络架构，使其更容易训练。这些方面的一个想法是最近提出的批量归一化(Batch normalization)这个想法比较简单。 当机器学习方法的输入数据由零均值和单位方差的不相关特征组成时，往往会更好地工作。 在训练神经网络时，我们可以在将数据馈送到网络之前">
@@ -358,8 +358,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-07T12:12:35+08:00">
-                2017-06-07
+              <time title="Post modified" itemprop="dateModified" datetime="2017-07-10T22:02:49+08:00">
+                2017-07-10
               </time>
             
           </span>
@@ -408,6 +408,11 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mask = (np.random.rand(*x.shape) &lt; p) / p</div><div class="line">out = x * mask</div></pre></td></tr></table></figure>
 <p>p代表节点生效的概率。最后除以p是为了让整体的均值不变。</p>
 <h2 id="dropout-backward"><a href="#dropout-backward" class="headerlink" title="dropout_backward"></a>dropout_backward</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dx = dout * mask</div></pre></td></tr></table></figure>
+<p>参考:</p>
+<ul>
+<li>(L2范数归一化)[<a href="http://blog.csdn.net/geekmanong/article/details/51344732]:L2范数归一化就是向量中每个元素除以向量的L2范数" target="_blank" rel="external">http://blog.csdn.net/geekmanong/article/details/51344732]:L2范数归一化就是向量中每个元素除以向量的L2范数</a>.</li>
+</ul>
+
       
     </div>
 
