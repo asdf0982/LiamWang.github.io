@@ -92,22 +92,24 @@
 
 
 
-<meta name="description" content="主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为了解决过拟合问题, 提出了DropFactor的正则化(regularization)方法.  回顾Bilinear Pooling  输出特征是的大小是(h,w,n),一般情况下h,w比较小,n比较大,表现为一个长方体.那么这里的$x_i$,就是长方体中的一条(1">
+<meta name="description" content="关于细粒度(fine-grained), 还记得CIFAR-10数据集吗?里面有卡车, 飞机等10个截然不同的类别.这是用于传统的区分, 而细粒度就是如CUB鸟类数据集, 里面都是鸟,不过包含了不同的种类. 对这些看似相同实际不同种类的图像进行区分,就是细粒度区分.主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为">
 <meta name="keywords" content="Deep Learning,fine-grained classification">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Factorized Bilinear Models for Image Recognition 阅读笔记">
 <meta property="og:url" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为了解决过拟合问题, 提出了DropFactor的正则化(regularization)方法.  回顾Bilinear Pooling  输出特征是的大小是(h,w,n),一般情况下h,w比较小,n比较大,表现为一个长方体.那么这里的$x_i$,就是长方体中的一条(1">
+<meta property="og:description" content="关于细粒度(fine-grained), 还记得CIFAR-10数据集吗?里面有卡车, 飞机等10个截然不同的类别.这是用于传统的区分, 而细粒度就是如CUB鸟类数据集, 里面都是鸟,不过包含了不同的种类. 对这些看似相同实际不同种类的图像进行区分,就是细粒度区分.主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/BilinearPooling.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/BL.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/FB.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/BP.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/DF.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/DF2.png">
-<meta property="og:updated_time" content="2017-07-06T14:30:55.401Z">
+<meta property="og:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/result.png">
+<meta property="og:updated_time" content="2017-07-21T05:17:32.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Factorized Bilinear Models for Image Recognition 阅读笔记">
-<meta name="twitter:description" content="主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为了解决过拟合问题, 提出了DropFactor的正则化(regularization)方法.  回顾Bilinear Pooling  输出特征是的大小是(h,w,n),一般情况下h,w比较小,n比较大,表现为一个长方体.那么这里的$x_i$,就是长方体中的一条(1">
+<meta name="twitter:description" content="关于细粒度(fine-grained), 还记得CIFAR-10数据集吗?里面有卡车, 飞机等10个截然不同的类别.这是用于传统的区分, 而细粒度就是如CUB鸟类数据集, 里面都是鸟,不过包含了不同的种类. 对这些看似相同实际不同种类的图像进行区分,就是细粒度区分.主要做了这些事:  提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层. 为">
 <meta name="twitter:image" content="https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/BilinearPooling.png">
 
 
@@ -360,8 +362,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-07-06T22:30:55+08:00">
-                2017-07-06
+              <time title="Post modified" itemprop="dateModified" datetime="2017-07-21T13:17:32+08:00">
+                2017-07-21
               </time>
             
           </span>
@@ -396,18 +398,13 @@
       
 
       
-        <p>主要做了这些事:</p>
+        <p>关于细粒度(fine-grained), 还记得CIFAR-10数据集吗?里面有卡车, 飞机等10个截然不同的类别.这是用于传统的区分, 而细粒度就是如CUB鸟类数据集, 里面都是鸟,不过包含了不同的种类. 对这些看似相同实际不同种类的图像进行区分,就是细粒度区分.<br>主要做了这些事:</p>
 <ol>
 <li>提出了Factorized Bilinear layer来增强CNN层的能力,并使它更好的并入卷积和全链接层.</li>
 <li>为了解决过拟合问题, 提出了DropFactor的正则化(regularization)方法.</li>
 </ol>
-<h2 id="回顾Bilinear-Pooling"><a href="#回顾Bilinear-Pooling" class="headerlink" title="回顾Bilinear Pooling"></a>回顾Bilinear Pooling</h2><img src="/2017/07/06/Factorized-Bilinear/BilinearPooling.png" alt="[BilinearPooling]" title="[BilinearPooling]">
-<p> 输出特征是的大小是(h,w,n),一般情况下h,w比较小,n比较大,表现为一个长方体.那么这里的$x_i$,就是长方体中的一条(1,1,n).<br>为了最终z的大小为(n,n)所以$x_i$的大小改为(n,1).<br>在之后的全链接层, y=b+Wz, z原本是一个(n,n)的矩阵被拉成了(n^2,1)的向量.<br>我们可以发现Bilinear Pooling有大量的参数和很高的计算负担.</p>
-<h2 id="Factorized-Bilinear-model"><a href="#Factorized-Bilinear-model" class="headerlink" title="Factorized Bilinear model"></a>Factorized Bilinear model</h2><p>相比于上述的模型,FB模型把bilinear与FC层合并了.<br><img src="/2017/07/06/Factorized-Bilinear/FB.png" alt="[Factorized Bilinear]" title="[Factorized Bilinear]"><br>疑惑:</p>
-<ol>
-<li>这里的$x_i$有n个,不知道这个n和上述的bilibearpooling的n维是不是同一个意思.(应该不是.)</li>
-<li>$(f_i,f_j)$是什么?</li>
-</ol>
+<h2 id="回顾Bilinear-Pooling"><a href="#回顾Bilinear-Pooling" class="headerlink" title="回顾Bilinear Pooling"></a>回顾Bilinear Pooling</h2><p>也就是回顾[Bilinear CNN Models for Fine-grained Visual Recognition]这篇论文.<br><img src="/2017/07/06/Factorized-Bilinear/BilinearPooling.png" alt="[BilinearPooling]" title="[BilinearPooling]"><br>输入特征的大小是(h,w,n), 一般情况下h,w比较小,n比较大, 表现为一个长方体. 那么这里的$x_i$, 就是长方体中的一条(1,1,n).<br>当然以上都是我的假设,因为最终z的大小为(n,n)所以$x_i$的大小实际上是(n,1).<br>在之后的全链接层, y=b+Wz, z原本是一个(n,n)的矩阵被拉成了$(n^2,1)$的向量.<br>合并上面的两个式子<img src="/2017/07/06/Factorized-Bilinear/BL.png" alt="[合并]" title="[合并]"><br>看到xWx的格式这两个x就代表了(双线性)bilinear的意义,  实验也证明双线性的方法在细粒度领域是有效的.<br>同时我们也观察到Bilinear Pooling有大量的参数和很高的计算负担.并且参数过多容易导致过拟合,需要适当调整.</p>
+<h2 id="Factorized-Bilinear-model"><a href="#Factorized-Bilinear-model" class="headerlink" title="Factorized Bilinear model"></a>Factorized Bilinear model</h2><p>基于上述的模型的优缺点,提出了FB模型.<br><img src="/2017/07/06/Factorized-Bilinear/FB.png" alt="[Factorized Bilinear]" title="[Factorized Bilinear]"><br><strong>其实就是将原本xWx(W的大小为NN)的部分改为了xFFx(F的大小为KN).</strong><br>疑惑:<br><del>1. 这里的$x_i$有n个,不知道这个n和上述的bilibearpooling的n维是不是同一个意思.(应该不是.)</del><br><del>2. $(f_i,f_j)$是什么?</del></p>
 <p>反向传播时算法的梯度公式:<br><img src="/2017/07/06/Factorized-Bilinear/BP.png" alt="[back-propagating]" title="[back-propagating]"><br>计算复杂度:O(kn)</p>
 <h2 id="DropFactor"><a href="#DropFactor" class="headerlink" title="DropFactor"></a>DropFactor</h2><img src="/2017/07/06/Factorized-Bilinear/DF.png" alt="[DropFactor]" title="[DropFactor]">
 <p>(a)图不使用DropFactor,所有路径都要跑(注意共1+k条)所以为了防止过拟合,引入公式:<br><img src="/2017/07/06/Factorized-Bilinear/DF2.png" alt="DF2.png" title=""><br>疑惑:</p>
@@ -415,7 +412,7 @@
 <li>$m_j$ ~ Bernoulli(p)中间的符号</li>
 <li>为什么测试时都乘以p?</li>
 </ol>
-
+<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><img src="/2017/07/06/Factorized-Bilinear/result.png" alt="[result]" title="[result]">
       
     </div>
 
@@ -611,7 +608,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾Bilinear-Pooling"><span class="nav-number">1.</span> <span class="nav-text">回顾Bilinear Pooling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factorized-Bilinear-model"><span class="nav-number">2.</span> <span class="nav-text">Factorized Bilinear model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DropFactor"><span class="nav-number">3.</span> <span class="nav-text">DropFactor</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾Bilinear-Pooling"><span class="nav-number">1.</span> <span class="nav-text">回顾Bilinear Pooling</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factorized-Bilinear-model"><span class="nav-number">2.</span> <span class="nav-text">Factorized Bilinear model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DropFactor"><span class="nav-number">3.</span> <span class="nav-text">DropFactor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">4.</span> <span class="nav-text">实验结果</span></a></li></ol></div>
             
 
           </div>

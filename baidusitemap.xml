@@ -4,25 +4,8 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/06/06/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%89/</loc>
-    <lastmod>2017-07-10T14:02:49.009Z</lastmod>
-    <data>
-        <display>
-        <title>CS231n学习笔记(批量归一化和dropout)</title>
-        <pubTime>2017-06-06T13:20:53.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://asdf0982.github.io/2017/07/04/Kernel-Pooling/</loc>
-    <lastmod>2017-07-10T06:08:05.410Z</lastmod>
+    <lastmod>2017-07-21T05:23:08.091Z</lastmod>
     <data>
         <display>
         <title>Kernel Pooling for Convolutional Neural Networks 阅读笔记</title>
@@ -40,23 +23,8 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/07/07/%CE%B1-pooling/</loc>
-    <lastmod>2017-07-07T11:31:26.714Z</lastmod>
-    <data>
-        <display>
-        <title>α-pooling</title>
-        <pubTime>2017-07-07T11:31:26.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/</loc>
-    <lastmod>2017-07-06T14:30:55.401Z</lastmod>
+    <lastmod>2017-07-21T05:17:32.726Z</lastmod>
     <data>
         <display>
         <title>Factorized Bilinear Models for Image Recognition 阅读笔记</title>
@@ -66,6 +34,39 @@
          
         <tag>fine-grained classification</tag>
          
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/06/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%89/</loc>
+    <lastmod>2017-07-10T14:02:49.009Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记(批量归一化和dropout)</title>
+        <pubTime>2017-06-06T13:20:53.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/07/07/%CE%B1-pooling/</loc>
+    <lastmod>2017-07-07T11:31:26.714Z</lastmod>
+    <data>
+        <display>
+        <title>α-pooling</title>
+        <pubTime>2017-07-07T11:31:26.000Z</pubTime>
+        
          
            
         </display>
@@ -368,7 +369,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/</loc>
