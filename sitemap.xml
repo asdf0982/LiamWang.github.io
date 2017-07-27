@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://asdf0982.github.io/about/index.html</loc>
+    
+    <lastmod>2017-07-22T02:22:21.424Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://asdf0982.github.io/2017/07/04/Kernel-Pooling/</loc>
     
     <lastmod>2017-07-21T05:23:08.091Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/</loc>
     
     <lastmod>2017-07-21T05:17:32.726Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/about/index.html</loc>
-    
-    <lastmod>2017-07-14T03:19:04.721Z</lastmod>
     
   </url>
   
