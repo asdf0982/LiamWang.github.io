@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="spring mvc," />
+  <meta name="keywords" content="Tips," />
 
 
 
@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="Date型数据有很多种表现形式，传递起来相对来说比较复杂。最近做的项目涉及到这方面内容，做个笔记。 Date型数据的参数绑定。想要将jsp页面收到String型参数转为Date型参数再保存到实体类中，首先需要创建一个转换器。创建Controller包,姑且命名为liam.ssm.controller.converter。在其中创建一个类(Class),命名为CustomDateConverter.">
-<meta name="keywords" content="spring mvc">
+<meta name="description" content="首先要生成密码，打开python终端。 1234567In [1]: from IPython.lib import passwdIn [2]: passwd()Enter password: Verify password: Out[2]: &amp;apos;sha1:0e422dfccef2:84cfbcb b3ef95872fb8e23be3999c123f862d856&amp;apos;  接下来生">
+<meta name="keywords" content="Tips">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Date型数据在SSM架构下的参数绑定与回显">
-<meta property="og:url" content="https://asdf0982.github.io/2017/05/31/Date型数据在SSM架构下的参数绑定与回显/index.html">
+<meta property="og:title" content="jupyternotebook服务器端">
+<meta property="og:url" content="https://asdf0982.github.io/2017/08/14/jupyternotebook-server/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="Date型数据有很多种表现形式，传递起来相对来说比较复杂。最近做的项目涉及到这方面内容，做个笔记。 Date型数据的参数绑定。想要将jsp页面收到String型参数转为Date型参数再保存到实体类中，首先需要创建一个转换器。创建Controller包,姑且命名为liam.ssm.controller.converter。在其中创建一个类(Class),命名为CustomDateConverter.">
-<meta property="og:updated_time" content="2017-05-31T10:39:36.237Z">
+<meta property="og:description" content="首先要生成密码，打开python终端。 1234567In [1]: from IPython.lib import passwdIn [2]: passwd()Enter password: Verify password: Out[2]: &amp;apos;sha1:0e422dfccef2:84cfbcb b3ef95872fb8e23be3999c123f862d856&amp;apos;  接下来生">
+<meta property="og:updated_time" content="2017-08-14T15:11:37.410Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Date型数据在SSM架构下的参数绑定与回显">
-<meta name="twitter:description" content="Date型数据有很多种表现形式，传递起来相对来说比较复杂。最近做的项目涉及到这方面内容，做个笔记。 Date型数据的参数绑定。想要将jsp页面收到String型参数转为Date型参数再保存到实体类中，首先需要创建一个转换器。创建Controller包,姑且命名为liam.ssm.controller.converter。在其中创建一个类(Class),命名为CustomDateConverter.">
+<meta name="twitter:title" content="jupyternotebook服务器端">
+<meta name="twitter:description" content="首先要生成密码，打开python终端。 1234567In [1]: from IPython.lib import passwdIn [2]: passwd()Enter password: Verify password: Out[2]: &amp;apos;sha1:0e422dfccef2:84cfbcb b3ef95872fb8e23be3999c123f862d856&amp;apos;  接下来生">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/2017/05/31/Date型数据在SSM架构下的参数绑定与回显/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/08/14/jupyternotebook-server/"/>
 
 
 
 
 
-  <title>Date型数据在SSM架构下的参数绑定与回显 | Liam's Blog</title>
+  <title>jupyternotebook服务器端 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -309,7 +309,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/31/Date型数据在SSM架构下的参数绑定与回显/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/08/14/jupyternotebook-server/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -326,7 +326,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Date型数据在SSM架构下的参数绑定与回显</h2>
+          <h2 class="post-title" itemprop="name headline">jupyternotebook服务器端</h2>
         
 
         <div class="post-meta">
@@ -338,8 +338,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-31T18:23:09+08:00">
-                2017-05-31
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T23:04:33+08:00">
+                2017-08-14
               </time>
             
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-31T18:39:36+08:00">
-                2017-05-31
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-14T23:11:37+08:00">
+                2017-08-14
               </time>
             
           </span>
@@ -390,141 +390,25 @@
       
 
       
-        <p>Date型数据有很多种表现形式，传递起来相对来说比较复杂。最近做的项目涉及到这方面内容，做个笔记。</p>
-<h2 id="Date型数据的参数绑定。"><a href="#Date型数据的参数绑定。" class="headerlink" title="Date型数据的参数绑定。"></a>Date型数据的参数绑定。</h2><p>想要将jsp页面收到String型参数转为Date型参数再保存到实体类中，首先需要<strong>创建一个转换器</strong>。<br>创建Controller包,姑且命名为liam.ssm.controller.converter。在其中创建一个类(Class),命名为CustomDateConverter.java<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomDateConverter</span> <span class="keyword">implements</span> <span class="title">Converter</span>&lt;<span class="title">String</span>, <span class="title">Date</span>&gt; </span>&#123;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Date <span class="title">convert</span><span class="params">(String source)</span> </span>&#123;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd HH:mm:ss"</span>);</div><div class="line">			<span class="comment">//String型数据的格式为"yyyy-MM-dd HH:mm:ss"才能被正确转换</span></div><div class="line">			<span class="keyword">return</span> simpleDateFormat.parse(source);</div><div class="line">		&#125; <span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		<span class="comment">//转换失败返回空</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>然后由于spingmvc使用注解驱动。需要在配置文件(springmvc.xml)将刚刚设置的转换器配置进去。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">conversion-service</span>=<span class="string">"conversionService"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- conversionService --&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"conversionService"</span></span></div><div class="line">		<span class="attr">class</span>=<span class="string">"org.springframework.format.support.FormattingConversionServiceFactoryBean"</span>&gt;</div><div class="line">		<span class="comment">&lt;!-- 转换器 --&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"converters"</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">				<span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"liam.ssm.controller.converter.CustomDateConverter"</span>/&gt;</span></div><div class="line">			<span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p>这样参数绑定就完成了，下面看看jsp中的相关代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input name=<span class="string">"liam.time"</span> id=<span class="string">"time"</span> value=<span class="string">"2017-5-31 18:02:12"</span>/&gt;</div></pre></td></tr></table></figure></p>
-<p>到后台controller，假如我们创建过liam这个实体类，那么time这个参数应该能正确传递。（本质上以上的操作均属于自定义的参数绑定，可以应用到其他类型绑定上去。）<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">test</span><span class="params">(Liam liam)</span><span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">	<span class="comment">//TODO 设置有个断点，进来看看liam内包含的time是否正确</span></div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="Date型数据的回显"><a href="#Date型数据的回显" class="headerlink" title="Date型数据的回显"></a>Date型数据的回显</h2><p>如果简单使用<code>&lt;input name=&quot;liam.time&quot; id=&quot;time&quot; value=&quot;${liam.time}&quot;/&gt;</code>会发现显示的时间是<code>Wed May 31 18:11:32 CST 2017</code>这样的形式。<br>为了将其原模原样的回显成<code>yyyy-MM-dd HH:mm:ss</code>格式我使用JSTL标签。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">%@taglib</span> <span class="attr">uri</span>=<span class="string">"http://java.sun.com/jsp/jstl/fmt"</span> <span class="attr">prefix</span>=<span class="string">"fmt"</span>%&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">fmt:formatDate</span> <span class="attr">value</span>=<span class="string">"$&#123;liam.time&#125;"</span> <span class="attr">pattern</span>=<span class="string">"yyyy-MM-dd HH:mm:ss"</span>/&gt;</span></div></pre></td></tr></table></figure></p>
-<p>如果想要在input输入框回显，不显示具体时间，则这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;input name=&quot;liam.time&quot; value=&apos;&lt;fmt:formatDate value=&quot;$&#123;liam.time &#125;&quot; pattern=&quot;yyyy-MM-dd&quot; /&gt;&apos; /&gt;</div></pre></td></tr></table></figure></p>
-<p><strong>注意</strong>：<br><code>yyyy-MM-dd HH:mm:ss</code>中的字符大小写不要随意修改，也许包含不同的含义。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">字母</th>
-<th style="text-align:left">日期或时间元素</th>
-<th style="text-align:left">表示</th>
-<th style="text-align:left">示例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">G</td>
-<td style="text-align:left">Era 标志符</td>
-<td style="text-align:left">Text</td>
-<td style="text-align:left">AD</td>
-</tr>
-<tr>
-<td style="text-align:left">y</td>
-<td style="text-align:left">年</td>
-<td style="text-align:left">Year</td>
-<td style="text-align:left">1996 ; 96</td>
-</tr>
-<tr>
-<td style="text-align:left">M</td>
-<td style="text-align:left">年中的月份</td>
-<td style="text-align:left">Month</td>
-<td style="text-align:left">July ; Jul ; 07</td>
-</tr>
-<tr>
-<td style="text-align:left">w</td>
-<td style="text-align:left">年中的周数</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">27</td>
-</tr>
-<tr>
-<td style="text-align:left">W</td>
-<td style="text-align:left">月份中的周数</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">D</td>
-<td style="text-align:left">年中的天数</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">189</td>
-</tr>
-<tr>
-<td style="text-align:left">d</td>
-<td style="text-align:left">月份中的天数</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">10</td>
-</tr>
-<tr>
-<td style="text-align:left">F</td>
-<td style="text-align:left">月份中的星期</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">2</td>
-</tr>
-<tr>
-<td style="text-align:left">E</td>
-<td style="text-align:left">星期中的天数</td>
-<td style="text-align:left">Text</td>
-<td style="text-align:left">Tuesday ; Tue</td>
-</tr>
-<tr>
-<td style="text-align:left">a</td>
-<td style="text-align:left">Am/pm 标记</td>
-<td style="text-align:left">Text</td>
-<td style="text-align:left">PM</td>
-</tr>
-<tr>
-<td style="text-align:left">H</td>
-<td style="text-align:left">一天中的小时数（0-23）</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:left">k</td>
-<td style="text-align:left">一天中的小时数（1-24）</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">24</td>
-</tr>
-<tr>
-<td style="text-align:left">K</td>
-<td style="text-align:left">am/pm 中的小时数（0-11）</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">0</td>
-</tr>
-<tr>
-<td style="text-align:left">h</td>
-<td style="text-align:left">am/pm 中的小时数（1-12）</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">12</td>
-</tr>
-<tr>
-<td style="text-align:left">m</td>
-<td style="text-align:left">小时中的分钟数</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">30</td>
-</tr>
-<tr>
-<td style="text-align:left">s</td>
-<td style="text-align:left">分钟中的秒数</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">55</td>
-</tr>
-<tr>
-<td style="text-align:left">S</td>
-<td style="text-align:left">毫秒数</td>
-<td style="text-align:left">Number</td>
-<td style="text-align:left">978</td>
-</tr>
-<tr>
-<td style="text-align:left">z</td>
-<td style="text-align:left">时区</td>
-<td style="text-align:left">General time zone</td>
-<td style="text-align:left">Pacific Standard Time ; PST ; GMT-08:00</td>
-</tr>
-<tr>
-<td style="text-align:left">Z</td>
-<td style="text-align:left">时区</td>
-<td style="text-align:left">RFC 822 time zone</td>
-<td style="text-align:left">-0800</td>
-</tr>
-</tbody>
-</table>
-
+        <ol>
+<li><p>首先要生成密码，打开python终端。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">In [1]: from IPython.lib import passwd</div><div class="line"></div><div class="line">In [2]: passwd()</div><div class="line">Enter password: </div><div class="line">Verify password: </div><div class="line">Out[2]: &apos;sha1:0e422dfccef2:84cfbcb </div><div class="line">b3ef95872fb8e23be3999c123f862d856&apos;</div></pre></td></tr></table></figure>
+</li>
+<li><p>接下来生成秘钥：<br><code>openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem</code></p>
+</li>
+<li>创建一个服务器配置：<br><code>ipython profile create nbserver</code></li>
+<li>产生一个配置文件<br><code>jupyter notebook --generate-config</code></li>
+<li><p>编辑文件jupyter_notebook_config.py，在~/.jupyter/文件夹里找.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">c.NotebookApp.password = u&apos;sha1:拷贝上面生成的密码&apos;</div><div class="line">c.NotebookApp.certfile = u&apos;/用户的根目录/.jupyter/mycert.pem&apos;</div><div class="line">c.NotebookApp.ip = &apos;*&apos;</div><div class="line">c.NotebookApp.port = 9998(关联的端口号,只要是空闲的就行)</div><div class="line">c.NotebookApp.notebook_dir (用于配置启动时的根目录)</div></pre></td></tr></table></figure>
+</li>
+<li><p>最后启动服务器：<br><code>ipython notebook --profile=nbserver</code></p>
+</li>
+<li>在浏览器中输入<br><code>https://服务器IP:端口号</code></li>
+</ol>
+<p>配置 anaconda 环境</p>
+<pre><code>1. 在 kirino 环境下安装 ipykernel
+2. python -m ipykernel install --name kirino --p /home/chenchao/.conda
+</code></pre>
       
     </div>
 
@@ -553,7 +437,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/spring-mvc/" rel="tag"># spring mvc</a>
+            <a href="/tags/Tips/" rel="tag"># Tips</a>
           
         </div>
       
@@ -566,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/29/CS231n学习笔记-两层网络/" rel="next" title="CS231n学习笔记-两层网络">
-                <i class="fa fa-chevron-left"></i> CS231n学习笔记-两层网络
+              <a href="/2017/08/14/TipsInDL/" rel="next" title="深度学习调参技巧">
+                <i class="fa fa-chevron-left"></i> 深度学习调参技巧
               </a>
             
           </div>
@@ -575,10 +459,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/06/01/CS231n学习笔记-全连接网络/" rel="prev" title="CS231n学习笔记(全连接网络)">
-                CS231n学习笔记(全连接网络) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -625,17 +505,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar2.jpg"
@@ -722,22 +593,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Date型数据的参数绑定。"><span class="nav-number">1.</span> <span class="nav-text">Date型数据的参数绑定。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Date型数据的回显"><span class="nav-number">2.</span> <span class="nav-text">Date型数据的回显</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
