@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://asdf0982.github.io/2017/08/14/TipsInDL/</loc>
+    
+    <lastmod>2017-08-14T14:01:42.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/06/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%89/</loc>
+    
+    <lastmod>2017-08-13T06:37:48.066Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://asdf0982.github.io/about/index.html</loc>
     
     <lastmod>2017-07-22T02:22:21.424Z</lastmod>
@@ -19,20 +33,6 @@
     <loc>https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/</loc>
     
     <lastmod>2017-07-21T05:17:32.726Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/06/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E6%89%B9%E9%87%8F%E5%BD%92%E4%B8%80%E5%8C%96%EF%BC%89/</loc>
-    
-    <lastmod>2017-07-10T14:02:49.009Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/07/07/%CE%B1-pooling/</loc>
-    
-    <lastmod>2017-07-07T11:31:26.714Z</lastmod>
     
   </url>
   

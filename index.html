@@ -310,7 +310,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/07/07/α-pooling/">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/08/14/TipsInDL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Liam Wang">
@@ -329,7 +329,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/07/α-pooling/" itemprop="url">α-pooling</a></h2>
+                <a class="post-title-link" href="/2017/08/14/TipsInDL/" itemprop="url">深度学习调参技巧</a></h2>
         
 
         <div class="post-meta">
@@ -341,8 +341,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-07T19:31:26+08:00">
-                2017-07-07
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-14T19:31:26+08:00">
+                2017-08-14
               </time>
             
 
@@ -357,8 +357,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-07-07T19:31:26+08:00">
-                2017-07-07
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-14T22:01:42+08:00">
+                2017-08-14
               </time>
             
           </span>
@@ -390,7 +390,21 @@
       
         
           
-            
+            <p>持续更新…</p>
+<h2 id="扩大数据集"><a href="#扩大数据集" class="headerlink" title="扩大数据集"></a>扩大数据集</h2><p>常用的方法有将图像水平翻转, 随机剪裁,fancy PCA等.<br><a href="http://blog.csdn.net/u010555688/article/details/60757932" target="_blank" rel="external">data augmentation 数据增强方法总结</a><br>如在caffe的prototxt中加上<code>mirror</code> <code>crop_size</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">layer &#123;</div><div class="line">  name: &quot;data&quot;</div><div class="line">  type: &quot;Data&quot;</div><div class="line">  top: &quot;data&quot;</div><div class="line">  top: &quot;label&quot;</div><div class="line">  include &#123;</div><div class="line">    phase: TRAIN</div><div class="line">  &#125;</div><div class="line">  transform_param &#123;</div><div class="line">    mirror: true</div><div class="line">    crop_size: 224</div><div class="line">    mean_value: 123.0</div><div class="line">    mean_value: 123.0</div><div class="line">    mean_value: 123.0</div><div class="line">  &#125;</div><div class="line">  data_param &#123;</div><div class="line">    source: &quot;examples/****/train_lmdb&quot;</div><div class="line">    batch_size: 8</div><div class="line">    backend: LMDB</div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="图像预处理"><a href="#图像预处理" class="headerlink" title="图像预处理"></a>图像预处理</h2><ol>
+<li>零均值+归一化</li>
+<li>PCA白化<br><a href="http://blog.csdn.net/danieljianfeng/article/details/42147109" target="_blank" rel="external">白化（Whitening） PCA白化 ZCA白化</a></li>
+</ol>
+<h2 id="训练过程"><a href="#训练过程" class="headerlink" title="训练过程"></a>训练过程</h2><h3 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h3><ol>
+<li>推荐从0.1开始向下调整学习率.当感觉loss不再下降时,可以将当前学习率除以2/5/10继续训练,看看loss是否继续降.</li>
+<li>如果遇到loss一直上涨的情况,可能遇到了梯度过大的问题. 在caffe的solver中可以设置<code>clip_gradients</code>来抑制梯度.</li>
+</ol>
+<h3 id="在公开模型的基础上继续训练"><a href="#在公开模型的基础上继续训练" class="headerlink" title="在公开模型的基础上继续训练"></a>在公开模型的基础上继续训练</h3><p>可以从<a href="https://github.com/BVLC/caffe/wiki/Model-Zoo" target="_blank" rel="external">Caffe Model Zoo</a>下载模型,新增层继续训练,节约时间.</p>
+<h3 id="从loss曲线中得到信息"><a href="#从loss曲线中得到信息" class="headerlink" title="从loss曲线中得到信息"></a>从loss曲线中得到信息</h3><img src="/2017/08/14/TipsInDL/2.png" alt="[tips]" title="[tips]">
+<h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>现常用ReLU. 可以考虑换成PReLU</p>
+<h2 id="正则化与随机失活"><a href="#正则化与随机失活" class="headerlink" title="正则化与随机失活"></a>正则化与随机失活</h2><p><a href="http://blog.csdn.net/u012162613/article/details/44261657" target="_blank" rel="external">正则化方法：L1和L2 regularization、数据集扩增、dropout</a></p>
+
           
         
       
