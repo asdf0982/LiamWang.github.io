@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="完成的作业:[NetworkVisualization-TensorFlow.ipynb]这次作业探究了3种图像生成方法:  Saliency Maps: 探究图像的哪些部分影响了网络的验证. Fooling Images: 改变一张图像, 让它在你眼中看起来没什么变化, 但会被网络识别成目标的分类. Class Visualization: 合成一张目标类别的图像.  预训练的模型采用Squee">
+<meta name="description" content="完成的作业:[NetworkVisualization-TensorFlow.ipynb]这次作业探究了3种图像生成方法:  Saliency Maps: 探究图像的哪些部分影响了网络的验证. Fooling Images: 改变一张图像, 让它在你眼中看起来没什么变化, 但会被网络识别成目标的分类. Class Visualization: 合成一张目标类别的图像.">
 <meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS231n学习笔记(NetworkVisualization-TensorFlow)">
 <meta property="og:url" content="https://asdf0982.github.io/2017/07/02/CS231n学习笔记-NetworkVisualization/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="完成的作业:[NetworkVisualization-TensorFlow.ipynb]这次作业探究了3种图像生成方法:  Saliency Maps: 探究图像的哪些部分影响了网络的验证. Fooling Images: 改变一张图像, 让它在你眼中看起来没什么变化, 但会被网络识别成目标的分类. Class Visualization: 合成一张目标类别的图像.  预训练的模型采用Squee">
-<meta property="og:updated_time" content="2017-07-02T13:20:22.591Z">
+<meta property="og:description" content="完成的作业:[NetworkVisualization-TensorFlow.ipynb]这次作业探究了3种图像生成方法:  Saliency Maps: 探究图像的哪些部分影响了网络的验证. Fooling Images: 改变一张图像, 让它在你眼中看起来没什么变化, 但会被网络识别成目标的分类. Class Visualization: 合成一张目标类别的图像.">
+<meta property="og:updated_time" content="2017-08-29T11:26:26.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231n学习笔记(NetworkVisualization-TensorFlow)">
-<meta name="twitter:description" content="完成的作业:[NetworkVisualization-TensorFlow.ipynb]这次作业探究了3种图像生成方法:  Saliency Maps: 探究图像的哪些部分影响了网络的验证. Fooling Images: 改变一张图像, 让它在你眼中看起来没什么变化, 但会被网络识别成目标的分类. Class Visualization: 合成一张目标类别的图像.  预训练的模型采用Squee">
+<meta name="twitter:description" content="完成的作业:[NetworkVisualization-TensorFlow.ipynb]这次作业探究了3种图像生成方法:  Saliency Maps: 探究图像的哪些部分影响了网络的验证. Fooling Images: 改变一张图像, 让它在你眼中看起来没什么变化, 但会被网络识别成目标的分类. Class Visualization: 合成一张目标类别的图像.">
 
 
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-07-02T21:20:22+08:00">
-                2017-07-02
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-29T19:26:26+08:00">
+                2017-08-29
               </time>
             
           </span>
@@ -394,10 +394,10 @@
 <ol>
 <li>Saliency Maps: 探究图像的哪些部分影响了网络的验证.</li>
 <li>Fooling Images: 改变一张图像, 让它在你眼中看起来没什么变化, 但会被网络识别成目标的分类.</li>
-<li>Class Visualization: 合成一张目标类别的图像.</li>
+<li>Class Visualization: 合成一张目标类别的图像.<a id="more"></a>
+<h2 id="预训练的模型"><a href="#预训练的模型" class="headerlink" title="预训练的模型"></a>预训练的模型</h2>采用SqueezeNet, 它可以在显著减少参数的情况下达到AlexNet的识别率. 在<code>cs231n/classifiers/squeezenet.py</code>看到网络模型代码.<h2 id="Saliency-Maps"><a href="#Saliency-Maps" class="headerlink" title="Saliency Maps"></a>Saliency Maps</h2>少量改变图像中的每一个像素, 网络分类器分数的变化情况就能反应该图像的重要性.<br>(本文的代码块相应的填入NetworkVisualization-TensorFlow.ipynb中)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pass</div><div class="line">gradlossimg = tf.gradients(correct_scores, model.image)  </div><div class="line">tgradlossimg = gradlossimg[0]</div><div class="line">tsaliency = tf.reduce_max(tf.abs(tgradlossimg), 3)</div><div class="line">saliency = sess.run(tsaliency, feed_dict=&#123;model.image: X, model.labels: y&#125;)</div></pre></td></tr></table></figure>
+</li>
 </ol>
-<h2 id="预训练的模型"><a href="#预训练的模型" class="headerlink" title="预训练的模型"></a>预训练的模型</h2><p>采用SqueezeNet, 它可以在显著减少参数的情况下达到AlexNet的识别率. 在<code>cs231n/classifiers/squeezenet.py</code>看到网络模型代码.</p>
-<h2 id="Saliency-Maps"><a href="#Saliency-Maps" class="headerlink" title="Saliency Maps"></a>Saliency Maps</h2><p>少量改变图像中的每一个像素, 网络分类器分数的变化情况就能反应该图像的重要性.<br>(本文的代码块相应的填入NetworkVisualization-TensorFlow.ipynb中)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">pass</div><div class="line">gradlossimg = tf.gradients(correct_scores, model.image)  </div><div class="line">tgradlossimg = gradlossimg[0]</div><div class="line">tsaliency = tf.reduce_max(tf.abs(tgradlossimg), 3)</div><div class="line">saliency = sess.run(tsaliency, feed_dict=&#123;model.image: X, model.labels: y&#125;)</div></pre></td></tr></table></figure></p>
 <h2 id="Fooling-Images"><a href="#Fooling-Images" class="headerlink" title="Fooling Images"></a>Fooling Images</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">pass</div><div class="line">txf = tf.Variable(X_fooling)</div><div class="line">sess.run(tf.variables_initializer([txf]))</div><div class="line">targetclass_score =  tf.gather_nd(model.classifier, tf.stack((tf.range(X.shape[0]), model.labels), axis=1))</div><div class="line">g = tf.gradients(targetclass_score, model.image)[0]</div><div class="line">dX = learning_rate * g / tf.norm(g)</div><div class="line">txf = tf.assign_add(txf, dX)</div><div class="line">for _ in range(100):</div><div class="line">    X_fooling = sess.run(txf, feed_dict=&#123;model.image: X_fooling, model.labels:[target_y]&#125;)</div></pre></td></tr></table></figure>
 <h2 id="Class-visualization"><a href="#Class-visualization" class="headerlink" title="Class visualization"></a>Class visualization</h2><p>$I$ 是图像, $y$ 目标类别, $s_y(I)$ 卷据网络关于 $I$ 在 $y$ 类上的分数.<br>$$<br>I^* = \arg\max_I s_y(I) - R(I)<br>$$<br>注意 $R(I)$ 在 argmax 中.<br>$<br>R(I) = \lambda |I|_2^2<br>$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">loss = None # scalar loss</div><div class="line">grad = None # gradient of loss with respect to model.image, same size as model.image</div><div class="line">pass</div><div class="line">tloss = tf.gather_nd(model.classifier, tf.stack((tf.range(X.shape[0]), model.labels), axis=1))</div><div class="line">treg = l2_reg * tf.square(tf.norm(model.image))</div><div class="line"></div><div class="line">loss = tloss - treg</div><div class="line">grad = tf.gradients(loss, model.image)[0]</div><div class="line">grad_normalized = grad / tf.norm(grad)</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">pass</div><div class="line">dX_normalized = sess.run(grad_normalized, feed_dict=&#123;model.image: X, model.labels:[target_y]&#125;)                </div><div class="line">X += learning_rate * dX_normalized</div></pre></td></tr></table></figure>

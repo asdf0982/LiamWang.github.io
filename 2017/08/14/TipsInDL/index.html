@@ -92,18 +92,18 @@
 
 
 
-<meta name="description" content="持续更新… 扩大数据集常用的方法有将图像水平翻转, 随机剪裁,fancy PCA等.data augmentation 数据增强方法总结如在caffe的prototxt中加上mirror crop_size123456789101112131415161718192021layer &amp;#123;  name: &amp;quot;data&amp;quot;  type: &amp;quot;Data&amp;quot;  to">
+<meta name="description" content="持续更新…">
 <meta name="keywords" content="Deep Learning,Tips">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度学习调参技巧">
 <meta property="og:url" content="https://asdf0982.github.io/2017/08/14/TipsInDL/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="持续更新… 扩大数据集常用的方法有将图像水平翻转, 随机剪裁,fancy PCA等.data augmentation 数据增强方法总结如在caffe的prototxt中加上mirror crop_size123456789101112131415161718192021layer &amp;#123;  name: &amp;quot;data&amp;quot;  type: &amp;quot;Data&amp;quot;  to">
+<meta property="og:description" content="持续更新…">
 <meta property="og:image" content="https://asdf0982.github.io/2017/08/14/TipsInDL/2.png">
-<meta property="og:updated_time" content="2017-08-14T14:01:42.867Z">
+<meta property="og:updated_time" content="2017-08-29T11:26:02.448Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习调参技巧">
-<meta name="twitter:description" content="持续更新… 扩大数据集常用的方法有将图像水平翻转, 随机剪裁,fancy PCA等.data augmentation 数据增强方法总结如在caffe的prototxt中加上mirror crop_size123456789101112131415161718192021layer &amp;#123;  name: &amp;quot;data&amp;quot;  type: &amp;quot;Data&amp;quot;  to">
+<meta name="twitter:description" content="持续更新…">
 <meta name="twitter:image" content="https://asdf0982.github.io/2017/08/14/TipsInDL/2.png">
 
 
@@ -356,8 +356,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-08-14T22:01:42+08:00">
-                2017-08-14
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-29T19:26:02+08:00">
+                2017-08-29
               </time>
             
           </span>
@@ -392,7 +392,7 @@
       
 
       
-        <p>持续更新…</p>
+        <p>持续更新…<br><a id="more"></a></p>
 <h2 id="扩大数据集"><a href="#扩大数据集" class="headerlink" title="扩大数据集"></a>扩大数据集</h2><p>常用的方法有将图像水平翻转, 随机剪裁,fancy PCA等.<br><a href="http://blog.csdn.net/u010555688/article/details/60757932" target="_blank" rel="external">data augmentation 数据增强方法总结</a><br>如在caffe的prototxt中加上<code>mirror</code> <code>crop_size</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">layer &#123;</div><div class="line">  name: &quot;data&quot;</div><div class="line">  type: &quot;Data&quot;</div><div class="line">  top: &quot;data&quot;</div><div class="line">  top: &quot;label&quot;</div><div class="line">  include &#123;</div><div class="line">    phase: TRAIN</div><div class="line">  &#125;</div><div class="line">  transform_param &#123;</div><div class="line">    mirror: true</div><div class="line">    crop_size: 224</div><div class="line">    mean_value: 123.0</div><div class="line">    mean_value: 123.0</div><div class="line">    mean_value: 123.0</div><div class="line">  &#125;</div><div class="line">  data_param &#123;</div><div class="line">    source: &quot;examples/****/train_lmdb&quot;</div><div class="line">    batch_size: 8</div><div class="line">    backend: LMDB</div><div class="line">  &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="图像预处理"><a href="#图像预处理" class="headerlink" title="图像预处理"></a>图像预处理</h2><ol>
 <li>零均值+归一化</li>

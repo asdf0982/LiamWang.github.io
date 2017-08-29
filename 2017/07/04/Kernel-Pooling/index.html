@@ -92,13 +92,13 @@
 
 
 
-<meta name="description" content="参考:  Global average Pooling 基础-径向基(Radial basis function)神经网络、核函数的一些理解 进阶-径向基函数（RBF）神经网络 DFT-傅里叶分析之掐死教程 kernel SVM-支持向量机通俗导论（理解SVM的三层境界）  Introduction 提出了一种对特征映射的一般内核池化(kernel pooling)方法。  提出的内核池化是可以区">
+<meta name="description" content="参考:  Global average Pooling 基础-径向基(Radial basis function)神经网络、核函数的一些理解 进阶-径向基函数（RBF）神经网络 DFT-傅里叶分析之掐死教程 kernel SVM-支持向量机通俗导论（理解SVM的三层境界）">
 <meta name="keywords" content="Deep Learning,fine-grained classification">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kernel Pooling for Convolutional Neural Networks 阅读笔记">
 <meta property="og:url" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="参考:  Global average Pooling 基础-径向基(Radial basis function)神经网络、核函数的一些理解 进阶-径向基函数（RBF）神经网络 DFT-傅里叶分析之掐死教程 kernel SVM-支持向量机通俗导论（理解SVM的三层境界）  Introduction 提出了一种对特征映射的一般内核池化(kernel pooling)方法。  提出的内核池化是可以区">
+<meta property="og:description" content="参考:  Global average Pooling 基础-径向基(Radial basis function)神经网络、核函数的一些理解 进阶-径向基函数（RBF）神经网络 DFT-傅里叶分析之掐死教程 kernel SVM-支持向量机通俗导论（理解SVM的三层境界）">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/2Dtensor.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/123.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/pDtensor.png">
@@ -109,10 +109,10 @@
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/GS.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/GS1.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/F5.png">
-<meta property="og:updated_time" content="2017-07-21T05:23:08.091Z">
+<meta property="og:updated_time" content="2017-08-29T11:26:19.184Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kernel Pooling for Convolutional Neural Networks 阅读笔记">
-<meta name="twitter:description" content="参考:  Global average Pooling 基础-径向基(Radial basis function)神经网络、核函数的一些理解 进阶-径向基函数（RBF）神经网络 DFT-傅里叶分析之掐死教程 kernel SVM-支持向量机通俗导论（理解SVM的三层境界）  Introduction 提出了一种对特征映射的一般内核池化(kernel pooling)方法。  提出的内核池化是可以区">
+<meta name="twitter:description" content="参考:  Global average Pooling 基础-径向基(Radial basis function)神经网络、核函数的一些理解 进阶-径向基函数（RBF）神经网络 DFT-傅里叶分析之掐死教程 kernel SVM-支持向量机通俗导论（理解SVM的三层境界）">
 <meta name="twitter:image" content="https://asdf0982.github.io/2017/07/04/Kernel-Pooling/2Dtensor.png">
 
 
@@ -365,8 +365,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-07-21T13:23:08+08:00">
-                2017-07-21
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-29T19:26:19+08:00">
+                2017-08-29
               </time>
             
           </span>
@@ -407,9 +407,10 @@
 <li>基础-<a href="http://blog.csdn.net/heyijia0327/article/details/38090229" target="_blank" rel="external">径向基(Radial basis function)神经网络、核函数的一些理解</a></li>
 <li>进阶-<a href="http://www.cnblogs.com/zhangchaoyang/articles/2591663.html" target="_blank" rel="external">径向基函数（RBF）神经网络</a></li>
 <li>DFT-<a href="https://zhuanlan.zhihu.com/p/19763358" target="_blank" rel="external">傅里叶分析之掐死教程</a></li>
-<li>kernel SVM-<a href="http://blog.csdn.net/v_july_v/article/details/7624837" target="_blank" rel="external">支持向量机通俗导论（理解SVM的三层境界）</a></li>
+<li>kernel SVM-<a href="http://blog.csdn.net/v_july_v/article/details/7624837" target="_blank" rel="external">支持向量机通俗导论（理解SVM的三层境界）</a><a id="more"></a>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2></li>
 </ul>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ol>
+<ol>
 <li>提出了一种对特征映射的一般内核池化(kernel pooling)方法。 </li>
 <li>提出的内核池化是可以区分的，可以与CNN进行联合优化。 </li>
 </ol>

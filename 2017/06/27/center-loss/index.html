@@ -92,13 +92,13 @@
 
 
 
-<meta name="description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解  Introduction传统模型抽取出的深度特征比较分散,">
+<meta name="description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解">
 <meta name="keywords" content="Deep Learning,Face Recognition">
 <meta property="og:type" content="article">
 <meta property="og:title" content="A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记">
 <meta property="og:url" content="https://asdf0982.github.io/2017/06/27/center-loss/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解  Introduction传统模型抽取出的深度特征比较分散,">
+<meta property="og:description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/LeNet.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/result1.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/center_loss.png">
@@ -106,10 +106,10 @@
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/step.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/lambda.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/27/center-loss/prelu.png">
-<meta property="og:updated_time" content="2017-06-29T07:55:12.931Z">
+<meta property="og:updated_time" content="2017-08-29T11:26:44.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记">
-<meta name="twitter:description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解  Introduction传统模型抽取出的深度特征比较分散,">
+<meta name="twitter:description" content="发表于ECCV2016项目地址: caffe, mxnet参考:  【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用 Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解">
 <meta name="twitter:image" content="https://asdf0982.github.io/2017/06/27/center-loss/LeNet.png">
 
 
@@ -362,8 +362,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-29T15:55:12+08:00">
-                2017-06-29
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-29T19:26:44+08:00">
+                2017-08-29
               </time>
             
           </span>
@@ -401,12 +401,12 @@
         <p>发表于ECCV2016<br>项目地址: <a href="https://github.com/ydwen/caffe-face" target="_blank" rel="external">caffe</a>, <a href="https://github.com/pangyupo/mxnet_center_loss" target="_blank" rel="external">mxnet</a><br>参考:</p>
 <ul>
 <li><a href="http://mp.weixin.qq.com/s?__biz=MzI1NTE4NTUwOQ==&amp;mid=2650325602&amp;idx=1&amp;sn=9bc6071bf62a4ccdde1df4b4c5ae39f4&amp;chksm=f235a568c5422c7ed7993b9d3b46bcd979d360605511284e4363a4a92f845019795569f8f3e9&amp;mpshare=1&amp;scene=1&amp;srcid=1028OCsg4y3EUMMTPjPzfrgo#rd" target="_blank" rel="external">【Technical Review】ECCV16 Center Loss及其在人脸识别中的应用</a></li>
-<li><a href="http://www.jianshu.com/p/773fbd0b2472" target="_blank" rel="external">Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解</a></li>
+<li><a href="http://www.jianshu.com/p/773fbd0b2472" target="_blank" rel="external">Center Loss - A Discriminative Feature Learning Approach for Deep Face Recognition 论文理解</a><a id="more"></a>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2>传统模型抽取出的深度特征比较分散, 是因为softmax loss仅仅区分数据.论文提出了一种新的损失函数center loss. 它可以让每个类学习一个特征中心, 减小类内的距离. 结合softmax loss就可以达到增大类间差异, 减小类内差异的效果.<h2 id="The-Proposed-Approach"><a href="#The-Proposed-Approach" class="headerlink" title="The Proposed Approach"></a>The Proposed Approach</h2>先用如下网络LeNet++训练MNIST数据集<img src="/2017/06/27/center-loss/LeNet.png" alt="[LeNet]" title="[LeNet]">
+固定输出特征为2维,这样我们就可以在平面上看到结果.如图:<img src="/2017/06/27/center-loss/result1.png" alt="[softmax result]" title="[softmax result]">
+结论: 虽然类间的差距已经明显, 但类内的差距依然较大.<h2 id="The-center-loss"><a href="#The-center-loss" class="headerlink" title="The center loss"></a>The center loss</h2><img src="/2017/06/27/center-loss/center_loss.png" alt="[center loss]" title="[center loss]">
+$c_{y_i}$代表$y_i$所在类的中心.<br>一次性将训练集的特征全部提取求出中心不现实, 论文中提出两个解决办法.</li>
 </ul>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>传统模型抽取出的深度特征比较分散, 是因为softmax loss仅仅区分数据.论文提出了一种新的损失函数center loss. 它可以让每个类学习一个特征中心, 减小类内的距离. 结合softmax loss就可以达到增大类间差异, 减小类内差异的效果.</p>
-<h2 id="The-Proposed-Approach"><a href="#The-Proposed-Approach" class="headerlink" title="The Proposed Approach"></a>The Proposed Approach</h2><p>先用如下网络LeNet++训练MNIST数据集<br><img src="/2017/06/27/center-loss/LeNet.png" alt="[LeNet]" title="[LeNet]"><br>固定输出特征为2维,这样我们就可以在平面上看到结果.如图:<br><img src="/2017/06/27/center-loss/result1.png" alt="[softmax result]" title="[softmax result]"><br>结论: 虽然类间的差距已经明显, 但类内的差距依然较大.</p>
-<h2 id="The-center-loss"><a href="#The-center-loss" class="headerlink" title="The center loss"></a>The center loss</h2><img src="/2017/06/27/center-loss/center_loss.png" alt="[center loss]" title="[center loss]">
-<p>$c_{y_i}$代表$y_i$所在类的中心.<br>一次性将训练集的特征全部提取求出中心不现实, 论文中提出两个解决办法.</p>
 <ol>
 <li>在mini-batch中更新.</li>
 <li>为了避免类别标错的图片使中心抖动, 使用$\alpha$来控制中心的学习率.见下下图Algorithm1-output-6</li>

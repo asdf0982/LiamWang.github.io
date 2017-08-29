@@ -4,14 +4,147 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/08/29/pycaffeExample/</loc>
-    <lastmod>2017-08-29T09:08:51.987Z</lastmod>
+    <loc>https://asdf0982.github.io/2017/06/27/center-loss/</loc>
+    <lastmod>2017-08-29T11:26:44.482Z</lastmod>
     <data>
         <display>
-        <title>pycaffeExample</title>
-        <pubTime>2017-08-29T08:12:24.000Z</pubTime>
+        <title>A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记</title>
+        <pubTime>2017-06-27T04:34:20.000Z</pubTime>
         
-        <tag>Caffe</tag>
+        <tag>Deep Learning</tag>
+         
+        <tag>Face Recognition</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/27/MTCNN/</loc>
+    <lastmod>2017-08-29T11:26:40.687Z</lastmod>
+    <data>
+        <display>
+        <title>Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks 阅读笔记</title>
+        <pubTime>2017-06-27T11:28:41.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>Face Detection</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/28/CDL/</loc>
+    <lastmod>2017-08-29T11:26:34.763Z</lastmod>
+    <data>
+        <display>
+        <title>Coupled Deep Learning for Heterogeneous Face Recognition 阅读笔记</title>
+        <pubTime>2017-06-28T15:48:54.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>Face Recognition</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/30/SphereFace/</loc>
+    <lastmod>2017-08-29T11:26:31.012Z</lastmod>
+    <data>
+        <display>
+        <title>SphereFace:Deep Hypersphere Embedding for Face Recognition 阅读笔记</title>
+        <pubTime>2017-06-30T02:51:27.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>Face Recognition</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/07/02/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NetworkVisualization/</loc>
+    <lastmod>2017-08-29T11:26:26.670Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记(NetworkVisualization-TensorFlow)</title>
+        <pubTime>2017-07-02T13:13:48.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/07/04/Kernel-Pooling/</loc>
+    <lastmod>2017-08-29T11:26:19.184Z</lastmod>
+    <data>
+        <display>
+        <title>Kernel Pooling for Convolutional Neural Networks 阅读笔记</title>
+        <pubTime>2017-07-04T11:41:12.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>fine-grained classification</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/</loc>
+    <lastmod>2017-08-29T11:26:09.543Z</lastmod>
+    <data>
+        <display>
+        <title>Factorized Bilinear Models for Image Recognition 阅读笔记</title>
+        <pubTime>2017-07-06T08:58:44.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>fine-grained classification</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/08/14/TipsInDL/</loc>
+    <lastmod>2017-08-29T11:26:02.448Z</lastmod>
+    <data>
+        <display>
+        <title>深度学习调参技巧</title>
+        <pubTime>2017-08-14T11:31:26.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>Tips</tag>
          
          
            
@@ -22,7 +155,7 @@
     
   <url>
     <loc>https://asdf0982.github.io/2017/08/14/jupyternotebook-server/</loc>
-    <lastmod>2017-08-14T15:11:37.410Z</lastmod>
+    <lastmod>2017-08-29T11:25:55.937Z</lastmod>
     <data>
         <display>
         <title>jupyternotebook服务器端</title>
@@ -38,16 +171,14 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/08/14/TipsInDL/</loc>
-    <lastmod>2017-08-14T14:01:42.867Z</lastmod>
+    <loc>https://asdf0982.github.io/2017/08/29/pycaffeExample/</loc>
+    <lastmod>2017-08-29T11:25:42.905Z</lastmod>
     <data>
         <display>
-        <title>深度学习调参技巧</title>
-        <pubTime>2017-08-14T11:31:26.000Z</pubTime>
+        <title>pycaffeExample</title>
+        <pubTime>2017-08-29T08:12:24.000Z</pubTime>
         
-        <tag>Deep Learning</tag>
-         
-        <tag>Tips</tag>
+        <tag>Caffe</tag>
          
          
            
@@ -73,137 +204,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/07/04/Kernel-Pooling/</loc>
-    <lastmod>2017-07-21T05:23:08.091Z</lastmod>
-    <data>
-        <display>
-        <title>Kernel Pooling for Convolutional Neural Networks 阅读笔记</title>
-        <pubTime>2017-07-04T11:41:12.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-        <tag>fine-grained classification</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/07/06/Factorized-Bilinear/</loc>
-    <lastmod>2017-07-21T05:17:32.726Z</lastmod>
-    <data>
-        <display>
-        <title>Factorized Bilinear Models for Image Recognition 阅读笔记</title>
-        <pubTime>2017-07-06T08:58:44.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-        <tag>fine-grained classification</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/07/02/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NetworkVisualization/</loc>
-    <lastmod>2017-07-02T13:20:22.591Z</lastmod>
-    <data>
-        <display>
-        <title>CS231n学习笔记(NetworkVisualization-TensorFlow)</title>
-        <pubTime>2017-07-02T13:13:48.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/30/SphereFace/</loc>
-    <lastmod>2017-06-30T14:47:40.741Z</lastmod>
-    <data>
-        <display>
-        <title>SphereFace:Deep Hypersphere Embedding for Face Recognition 阅读笔记</title>
-        <pubTime>2017-06-30T02:51:27.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-        <tag>Face Recognition</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/27/center-loss/</loc>
-    <lastmod>2017-06-29T07:55:12.931Z</lastmod>
-    <data>
-        <display>
-        <title>A Discriminative Feature Learning Approach for Deep Face Recognition 阅读笔记</title>
-        <pubTime>2017-06-27T04:34:20.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-        <tag>Face Recognition</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/27/MTCNN/</loc>
-    <lastmod>2017-06-29T07:54:40.339Z</lastmod>
-    <data>
-        <display>
-        <title>Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks 阅读笔记</title>
-        <pubTime>2017-06-27T11:28:41.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-        <tag>Face Detection</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/28/CDL/</loc>
-    <lastmod>2017-06-29T07:54:10.007Z</lastmod>
-    <data>
-        <display>
-        <title>Coupled Deep Learning for Heterogeneous Face Recognition 阅读笔记</title>
-        <pubTime>2017-06-28T15:48:54.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-        <tag>Face Recognition</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>https://asdf0982.github.io/2017/06/26/GoogleNet/</loc>

@@ -92,21 +92,21 @@
 
 
 
-<meta name="description" content="参考:  MTCNN（Multi-task convolutional neural networks）人脸对齐  项目地址: 原版matlab, python, C++ Approach整体流程整个方法如图所示:首先将一张图像调整至不同的大小来构建图像金字塔,作为下面操作的输入.  通过一个名为P-Net的全由卷积层构建的网络获得候选的面部窗口和边界框回归向量.然后根据边界框回归向量对候选窗口进">
+<meta name="description" content="参考:  MTCNN（Multi-task convolutional neural networks）人脸对齐">
 <meta name="keywords" content="Deep Learning,Face Detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks 阅读笔记">
 <meta property="og:url" content="https://asdf0982.github.io/2017/06/27/MTCNN/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="参考:  MTCNN（Multi-task convolutional neural networks）人脸对齐  项目地址: 原版matlab, python, C++ Approach整体流程整个方法如图所示:首先将一张图像调整至不同的大小来构建图像金字塔,作为下面操作的输入.  通过一个名为P-Net的全由卷积层构建的网络获得候选的面部窗口和边界框回归向量.然后根据边界框回归向量对候选窗口进">
+<meta property="og:description" content="参考:  MTCNN（Multi-task convolutional neural networks）人脸对齐">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/27/MTCNN/fig1.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/27/MTCNN/fig2.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/27/MTCNN/1.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/27/MTCNN/multi.png">
-<meta property="og:updated_time" content="2017-06-29T07:54:40.339Z">
+<meta property="og:updated_time" content="2017-08-29T11:26:40.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks 阅读笔记">
-<meta name="twitter:description" content="参考:  MTCNN（Multi-task convolutional neural networks）人脸对齐  项目地址: 原版matlab, python, C++ Approach整体流程整个方法如图所示:首先将一张图像调整至不同的大小来构建图像金字塔,作为下面操作的输入.  通过一个名为P-Net的全由卷积层构建的网络获得候选的面部窗口和边界框回归向量.然后根据边界框回归向量对候选窗口进">
+<meta name="twitter:description" content="参考:  MTCNN（Multi-task convolutional neural networks）人脸对齐">
 <meta name="twitter:image" content="https://asdf0982.github.io/2017/06/27/MTCNN/fig1.png">
 
 
@@ -359,8 +359,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-29T15:54:40+08:00">
-                2017-06-29
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-29T19:26:40+08:00">
+                2017-08-29
               </time>
             
           </span>
@@ -397,10 +397,10 @@
       
         <p>参考:</p>
 <ul>
-<li><a href="http://blog.csdn.net/qq_14845119/article/details/52680940" target="_blank" rel="external">MTCNN（Multi-task convolutional neural networks）人脸对齐</a></li>
+<li><a href="http://blog.csdn.net/qq_14845119/article/details/52680940" target="_blank" rel="external">MTCNN（Multi-task convolutional neural networks）人脸对齐</a><a id="more"></a>
+项目地址: <a href="https://github.com/kpzhang93/MTCNN_face_detection_alignment" target="_blank" rel="external">原版matlab</a>, <a href="https://github.com/DuinoDu/mtcnn" target="_blank" rel="external">python</a>, <a href="https://github.com/foreverYoungGitHub/MTCNN" target="_blank" rel="external">C++</a><h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3>整个方法如图所示:<img src="/2017/06/27/MTCNN/fig1.png" alt="[cascaded framework]" title="[cascaded framework]">
+首先将一张图像调整至不同的大小来构建图像金字塔,作为下面操作的输入.</li>
 </ul>
-<p>项目地址: <a href="https://github.com/kpzhang93/MTCNN_face_detection_alignment" target="_blank" rel="external">原版matlab</a>, <a href="https://github.com/DuinoDu/mtcnn" target="_blank" rel="external">python</a>, <a href="https://github.com/foreverYoungGitHub/MTCNN" target="_blank" rel="external">C++</a></p>
-<h2 id="Approach"><a href="#Approach" class="headerlink" title="Approach"></a>Approach</h2><h3 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h3><p>整个方法如图所示:<br><img src="/2017/06/27/MTCNN/fig1.png" alt="[cascaded framework]" title="[cascaded framework]"><br>首先将一张图像调整至不同的大小来构建图像金字塔,作为下面操作的输入.</p>
 <ol>
 <li>通过一个名为P-Net的全由卷积层构建的网络获得候选的面部窗口和边界框回归向量.然后根据边界框回归向量对候选窗口进行校准, 并使用NMS合并高度重叠的候选窗口.</li>
 <li>将候选窗口输入到另一个名为R-Net的CNN.它能拒绝掉大量的非人脸窗口.也需要用边界框回归向量校准和NMS.</li>
