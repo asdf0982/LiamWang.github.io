@@ -1,0 +1,1077 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="zioBb4Ac5xjO7-IkGVs3Qnyfbu-5lW01M2wTphSvcWU" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Caffe," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="一直在用命令行运行caffe, 现在来试试它的python接口.最近在看compact bilinear pooling相关的内容, github上有完整的网络结构prototxt, 适合拿来练习.文件:[compact_bilinear.py]首先你得确定已经make pycaffe接下来创建一个python文件.1234567891011121314151617# -*- coding: ut">
+<meta name="keywords" content="Caffe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pycaffeExample">
+<meta property="og:url" content="https://asdf0982.github.io/2017/08/29/pycaffeExample/index.html">
+<meta property="og:site_name" content="Liam&#39;s Blog">
+<meta property="og:description" content="一直在用命令行运行caffe, 现在来试试它的python接口.最近在看compact bilinear pooling相关的内容, github上有完整的网络结构prototxt, 适合拿来练习.文件:[compact_bilinear.py]首先你得确定已经make pycaffe接下来创建一个python文件.1234567891011121314151617# -*- coding: ut">
+<meta property="og:updated_time" content="2017-08-29T09:08:51.987Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pycaffeExample">
+<meta name="twitter:description" content="一直在用命令行运行caffe, 现在来试试它的python接口.最近在看compact bilinear pooling相关的内容, github上有完整的网络结构prototxt, 适合拿来练习.文件:[compact_bilinear.py]首先你得确定已经make pycaffe接下来创建一个python文件.1234567891011121314151617# -*- coding: ut">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://asdf0982.github.io/2017/08/29/pycaffeExample/"/>
+
+
+
+
+
+  <title>pycaffeExample | Liam's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-99966000-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liam's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">Share the joy of coding.</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/08/29/pycaffeExample/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">pycaffeExample</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-29T16:12:24+08:00">
+                2017-08-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-29T17:08:51+08:00">
+                2017-08-29
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>hits
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一直在用命令行运行caffe, 现在来试试它的python接口.<br>最近在看<a href="https://github.com/gy20073/compact_bilinear_pooling" target="_blank" rel="external">compact bilinear pooling</a>相关的内容, github上有完整的网络结构prototxt, 适合拿来练习.<br>文件:<a href="/2017/08/29/pycaffeExample/compact_bilinear.py" title="[compact_bilinear.py]">[compact_bilinear.py]</a><br><strong>首先</strong>你得确定已经<code>make pycaffe</code><br>接下来创建一个python文件.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># -*- coding: utf-8 -*-</span></div><div class="line"><span class="keyword">import</span> caffe </div><div class="line"><span class="keyword">from</span> caffe <span class="keyword">import</span> layers <span class="keyword">as</span> L, params <span class="keyword">as</span> P, proto, to_proto</div><div class="line"></div><div class="line"><span class="comment"># 设定文件的保存路径</span></div><div class="line">root = <span class="string">'/home/liangw/work/caffe/'</span>  <span class="comment"># 根目录</span></div><div class="line"><span class="comment">#train_list = root + 'mnist/train/train.txt'  # 训练图片列表</span></div><div class="line"><span class="comment">#test_list = root + 'mnist/test/test.txt'  # 测试图片列表</span></div><div class="line">train_lmdb = root + <span class="string">'examples/compact_bilinear/train_lmdb'</span> <span class="comment"># 训练集lmdb</span></div><div class="line">test_lmdb = root + <span class="string">'examples/compact_bilinear/val_lmdb'</span> <span class="comment"># 看不顺眼"+"号? 你也可以采用os.path.join()这样的写法 </span></div><div class="line"><span class="comment">#train_meanfile = root + 'data/cifar100_train_mean.binaryproto' #训练集均值文件 </span></div><div class="line"><span class="comment">#test_meanfile = root + 'data/cifar100_test_mean.binaryproto'</span></div><div class="line"></div><div class="line">train_proto = root + <span class="string">'examples/attentive_cb/attentive_cb_train.prototxt'</span>  <span class="comment"># 生成的训练配置文件</span></div><div class="line">test_proto = root + <span class="string">'examples/attentive_cb/attentive_cb_test.prototxt'</span>  <span class="comment"># 生成的测试配置文件</span></div><div class="line">solver_proto = root + <span class="string">'examples/attentive_cb/attentive_cb_solver.prototxt'</span>  <span class="comment"># 生成的参数文件</span></div><div class="line">weight = root + <span class="string">'examples/attentive_cb/VGG_ILSVRC_16_layers.caffemodel'</span> <span class="comment"># finetune所需的caffemodel</span></div></pre></td></tr></table></figure></p>
+<p>上面的内容作用相当于一个config.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 定义网络结构</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Network</span><span class="params">(lmdb, batch_size, include_acc=False, finetune_last=False)</span>:</span></div><div class="line">    n = caffe.NetSpec()</div><div class="line">    <span class="keyword">if</span> include_acc: <span class="comment"># 是否需要测试</span></div><div class="line">        n.data,n.label = L.Data(source=lmdb, name=<span class="string">'data'</span>, backend=P.Data.LMDB, batch_size=batch_size, ntop=<span class="number">2</span>, transform_param=dict(mirror=<span class="keyword">False</span>, crop_size=<span class="number">448</span>, mean_value=[<span class="number">104</span>,<span class="number">117</span>,<span class="number">123</span>])) <span class="comment">#假如测试, 数据就不需要扩增了,即mirror=False</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        n.data,n.label = L.Data(source=lmdb, name=<span class="string">'data'</span>, backend=P.Data.LMDB, batch_size=batch_size, ntop=<span class="number">2</span>, transform_param=dict(mirror=<span class="keyword">True</span>, crop_size=<span class="number">448</span>, mean_value=[<span class="number">104</span>,<span class="number">117</span>,<span class="number">124</span>]))</div><div class="line">    </div><div class="line">    <span class="comment">#使用VGG作为基础网络</span></div><div class="line">    <span class="keyword">if</span> (finetune_last == <span class="keyword">True</span>): <span class="comment"># 由于是finetune我们需要先训练新加上去的层,故原有的层权重不变</span></div><div class="line">        w_lr_mult = <span class="number">0.0</span></div><div class="line">        w_decay_mult = <span class="number">0.0</span></div><div class="line">        b_lr_mult = <span class="number">0.0</span></div><div class="line">        b_decay_mult = <span class="number">0.0</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        w_lr_mult = <span class="number">1.0</span></div><div class="line">        w_decay_mult = <span class="number">1.0</span></div><div class="line">        b_lr_mult = <span class="number">2.0</span></div><div class="line">        b_decay_mult = <span class="number">0.0</span></div><div class="line"></div><div class="line">    n.conv1_1 = L.Convolution(n.data, name=<span class="string">'conv1_1'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">64</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)]) <span class="comment"># 注意name属性, 若不定义, caffe将自己生成一个名字, 可能与使用的caffemodel中层的名称不同, 导致参数无法导入.</span></div><div class="line">    n.relu1_1 = L.ReLU(n.conv1_1, name=<span class="string">'relu1_1'</span>) <span class="comment"># 关于层的使用,建议去看caffe.proto文件, 其中有详细的定义.当我不知道层中的参数该如何写的时候, 我会到github去搜别人的代码.</span></div><div class="line">    n.conv1_2 = L.Convolution(n.relu1_1, name=<span class="string">'conv1_2'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">64</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    </div><div class="line">    n.relu1_2 = L.ReLU(n.conv1_2, name=<span class="string">'relu1_2'</span>)</div><div class="line">    n.pool1 = L.Pooling(n.relu1_2, name=<span class="string">'pool1'</span>, pool=P.Pooling.MAX, kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)</div><div class="line"></div><div class="line"></div><div class="line">    n.conv2_1 = L.Convolution(n.pool1, name=<span class="string">'conv2_1'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">128</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    </div><div class="line">    n.relu2_1 = L.ReLU(n.conv2_1, name=<span class="string">'relu2_1'</span>)</div><div class="line">    n.conv2_2 = L.Convolution(n.relu2_1, name=<span class="string">'conv2_2'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">128</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])          </div><div class="line">    n.relu2_2 = L.ReLU(n.conv2_2, name=<span class="string">'relu2_2'</span>)</div><div class="line">    n.pool2 = L.Pooling(n.relu2_2, name=<span class="string">'pool2'</span>, pool=P.Pooling.MAX, kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)</div><div class="line"></div><div class="line"></div><div class="line">    n.conv3_1 = L.Convolution(n.pool2, name=<span class="string">'conv3_1'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">256</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    </div><div class="line">    n.relu3_1 = L.ReLU(n.conv3_1, name=<span class="string">'relu3_1'</span>)</div><div class="line">    n.conv3_2 = L.Convolution(n.relu3_1, name=<span class="string">'conv3_2'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">256</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])          </div><div class="line">    n.relu3_2 = L.ReLU(n.conv3_2, name=<span class="string">'relu3_2'</span>)</div><div class="line">    n.conv3_3 = L.Convolution(n.relu3_2, name=<span class="string">'conv3_3'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">256</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    </div><div class="line">    n.relu3_3 = L.ReLU(n.conv3_3, name=<span class="string">'relu3_3'</span>)</div><div class="line">    n.pool3 = L.Pooling(n.relu3_3, name=<span class="string">'pool3'</span>, pool=P.Pooling.MAX, kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)    </div><div class="line"></div><div class="line"></div><div class="line">    n.conv4_1 = L.Convolution(n.pool3, name=<span class="string">'conv4_1'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">512</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    </div><div class="line">    n.relu4_1 = L.ReLU(n.conv4_1, name=<span class="string">'relu4_1'</span>)</div><div class="line">    n.conv4_2 = L.Convolution(n.relu4_1, name=<span class="string">'conv4_2'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">512</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])          </div><div class="line">    n.relu4_2 = L.ReLU(n.conv4_2, name=<span class="string">'relu4_2'</span>)</div><div class="line">    n.conv4_3 = L.Convolution(n.relu4_2, name=<span class="string">'conv4_3'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">512</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    </div><div class="line">    n.relu4_3 = L.ReLU(n.conv4_3, name=<span class="string">'relu4_3'</span>)</div><div class="line">    n.pool4 = L.Pooling(n.relu4_3, name=<span class="string">'pool4'</span>, pool=P.Pooling.MAX, kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>)</div><div class="line"></div><div class="line"></div><div class="line">    n.conv5_1 = L.Convolution(n.pool4, name=<span class="string">'conv5_1'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">512</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    </div><div class="line">    n.relu5_1 = L.ReLU(n.conv5_1, name=<span class="string">'relu5_1'</span>)</div><div class="line">    n.conv5_2 = L.Convolution(n.relu5_1, name=<span class="string">'conv5_2'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">512</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])          </div><div class="line">    n.relu5_2 = L.ReLU(n.conv5_2, name=<span class="string">'relu5_2'</span>)</div><div class="line">    n.conv5_3 = L.Convolution(n.relu5_2, name=<span class="string">'conv5_3'</span>, kernel_size=<span class="number">3</span>, pad=<span class="number">1</span>, num_output=<span class="number">512</span>, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\</div><div class="line">                    dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    </div><div class="line">    n.relu5_3 = L.ReLU(n.conv5_3, name=<span class="string">'relu5_3'</span>) </div><div class="line"></div><div class="line">    <span class="comment">#bilinear</span></div><div class="line">    n.bilinear_layer = L.CompactBilinear(n.relu5_3, n.relu5_3, name=<span class="string">'bilinear_layer'</span>, compact_bilinear_param=dict(num_output=<span class="number">8192</span>,sum_pool=<span class="keyword">False</span>))</div><div class="line"></div><div class="line">    <span class="comment">#sqrt+l2</span></div><div class="line">    n.signed_sqrt = L.SignedSqrt(n.bilinear_layer, name=<span class="string">'signed_sqrt'</span>)</div><div class="line">    n.l2_normalization= L.L2Normalize(n.signed_sqrt, name=<span class="string">'l2_normalization'</span>)</div><div class="line"></div><div class="line">    <span class="comment">#FC</span></div><div class="line">    n.fc = L.InnerProduct(n.l2_normalization, name=<span class="string">'fc'</span>, num_output=<span class="number">200</span>, param=[dict(lr_mult=<span class="number">1</span>, decay_mult=<span class="number">1</span>),\</div><div class="line">            dict(lr_mult=<span class="number">2</span>, decay_mult=<span class="number">0</span>)], weight_filler=dict(type=<span class="string">'gaussian'</span>,std=<span class="number">0.0001</span>), bias_filler=dict(type=<span class="string">'constant'</span>,value=<span class="number">0.0</span>))</div><div class="line">    n.loss = L.SoftmaxWithLoss(n.fc, n.label, name=<span class="string">'loss'</span>)</div><div class="line">    <span class="keyword">if</span> include_acc:  <span class="comment"># test阶段需要有accuracy层</span></div><div class="line">        n.accuracy = L.Accuracy(n.fc, n.label, name=<span class="string">'accuracy'</span>)</div><div class="line">        <span class="keyword">return</span> to_proto(n.loss, n.accuracy)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span> to_proto(n.loss)    </div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_net</span><span class="params">(finetune_last=False)</span>:</span></div><div class="line">    <span class="comment"># 写入train.prototxt</span></div><div class="line">    <span class="keyword">with</span> open(train_proto, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">        f.write(str(Network(train_lmdb, batch_size=<span class="number">8</span>, finetune_last=finetune_last)))</div><div class="line"></div><div class="line">    <span class="comment"># 写入test.prototxt</span></div><div class="line">    <span class="keyword">with</span> open(test_proto, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">        f.write(str(Network(test_lmdb, batch_size=<span class="number">4</span>, include_acc=<span class="keyword">True</span>, finetune_last=finetune_last)))</div></pre></td></tr></table></figure></p>
+<p>以上就是网络结构的定义, 直观上来说将会生成train.prototxt/test.prototxt这样的文件.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 编写一个函数，生成参数文件</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">gen_solver</span><span class="params">(solver_file, train_net, test_net)</span>:</span></div><div class="line">    s = proto.caffe_pb2.SolverParameter()</div><div class="line">    s.train_net = train_net</div><div class="line">    s.test_net.append(test_net)</div><div class="line">    s.test_interval = <span class="number">4000</span>  <span class="comment"># 每训练多少次进行一次测试</span></div><div class="line">    s.test_iter.append(<span class="number">1450</span>)  <span class="comment"># 测试样本数/test_batch_size,如10000/100=100</span></div><div class="line">    s.test_initialization=<span class="keyword">False</span></div><div class="line">    s.average_loss=<span class="number">100</span></div><div class="line">    s.max_iter = <span class="number">60000</span>  <span class="comment"># 最大训练次数</span></div><div class="line">    s.base_lr = <span class="number">1</span>  <span class="comment"># 基础学习率</span></div><div class="line">    s.momentum = <span class="number">0.9</span>  <span class="comment"># 动量</span></div><div class="line">    s.weight_decay = <span class="number">0.000005</span>  <span class="comment"># 权值衰减项</span></div><div class="line">    s.lr_policy = <span class="string">'multistep'</span>  <span class="comment"># 学习率变化规则</span></div><div class="line">    s.stepvalue.append(<span class="number">20000</span>)</div><div class="line">    s.stepvalue.append(<span class="number">30000</span>) </div><div class="line">    s.stepvalue.append(<span class="number">40000</span>)</div><div class="line">    s.stepvalue.append(<span class="number">50000</span>)</div><div class="line"></div><div class="line">    <span class="comment">#s.stepsize = 3000  # 学习率变化频率</span></div><div class="line">    s.gamma = <span class="number">0.25</span>  <span class="comment"># 学习率变化指数</span></div><div class="line">    s.display = <span class="number">100</span>  <span class="comment"># 屏幕显示间隔</span></div><div class="line">    s.snapshot = <span class="number">10000</span>  <span class="comment"># 保存caffemodel的间隔</span></div><div class="line">    s.snapshot_prefix = root + <span class="string">'examples/attentive_cb/snapshot/att_cb'</span>  <span class="comment"># caffemodel前缀</span></div><div class="line">    s.type = <span class="string">'SGD'</span>  <span class="comment"># 优化算法</span></div><div class="line">    s.solver_mode = proto.caffe_pb2.SolverParameter.GPU  <span class="comment"># 加速</span></div><div class="line">    <span class="comment"># 写入solver.prototxt</span></div><div class="line">    <span class="keyword">with</span> open(solver_file, <span class="string">'w'</span>) <span class="keyword">as</span> f:</div><div class="line">        f.write(str(s))</div></pre></td></tr></table></figure>
+<p>以上将写入solver.prototxt<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 开始训练</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">training</span><span class="params">(solver_proto)</span>:</span></div><div class="line">    caffe.set_device(<span class="number">2</span>) <span class="comment">#选择哪块GPU</span></div><div class="line">    caffe.set_mode_gpu()</div><div class="line">    solver = caffe.SGDSolver(solver_proto)</div><div class="line">    solver.net.copy_from(weight) <span class="comment"># 载入需finetune的预训练模型</span></div><div class="line">    solver.solve()</div><div class="line"></div><div class="line"><span class="comment">#主函数</span></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    write_net(finetune_last=<span class="keyword">True</span>)</div><div class="line">    gen_solver(solver_proto, train_proto, test_proto)</div><div class="line">    training(solver_proto)</div></pre></td></tr></table></figure></p>
+<p>于是在caffe的根目录下<code>python ./需运行的python文件.py</code>即可</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Caffe/" rel="tag"># Caffe</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/14/jupyternotebook-server/" rel="next" title="jupyternotebook服务器端">
+                <i class="fa fa-chevron-left"></i> jupyternotebook服务器端
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar2.jpg"
+               alt="Liam Wang" />
+          <p class="site-author-name" itemprop="name">Liam Wang</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+           
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/asdf0982" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://cockyyao.github.io/" title="CockyYao's Note" target="_blank">CockyYao's Note</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Liam Wang</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (search_path.endsWith("json")) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
