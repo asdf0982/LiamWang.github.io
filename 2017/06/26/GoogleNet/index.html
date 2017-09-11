@@ -92,19 +92,19 @@
 
 
 
-<meta name="description" content="本文由google发表于CVPR2015 Introduction &amp;amp; Related Work本文提出一个网络结构名为Inception. 它的特点是能提升对计算资源的使用效率.使得 在计算负担不变的情况下提升了网络的宽度和深度.它的前身GoogleNet(22层)在ILSVRC14中创下了验证和检测的记录.GoogleNet借鉴了许多NIN的思想.其1x1的卷积核主要用于降维来解决计算">
+<meta name="description" content="本文由google发表于CVPR2015">
 <meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Going Deeper with Convolutions 阅读笔记">
 <meta property="og:url" content="https://asdf0982.github.io/2017/06/26/GoogleNet/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="本文由google发表于CVPR2015 Introduction &amp;amp; Related Work本文提出一个网络结构名为Inception. 它的特点是能提升对计算资源的使用效率.使得 在计算负担不变的情况下提升了网络的宽度和深度.它的前身GoogleNet(22层)在ILSVRC14中创下了验证和检测的记录.GoogleNet借鉴了许多NIN的思想.其1x1的卷积核主要用于降维来解决计算">
+<meta property="og:description" content="本文由google发表于CVPR2015">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/26/GoogleNet/Inception.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/26/GoogleNet/GoogleNet.png">
-<meta property="og:updated_time" content="2017-06-26T13:57:59.188Z">
+<meta property="og:updated_time" content="2017-08-29T11:28:22.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Going Deeper with Convolutions 阅读笔记">
-<meta name="twitter:description" content="本文由google发表于CVPR2015 Introduction &amp;amp; Related Work本文提出一个网络结构名为Inception. 它的特点是能提升对计算资源的使用效率.使得 在计算负担不变的情况下提升了网络的宽度和深度.它的前身GoogleNet(22层)在ILSVRC14中创下了验证和检测的记录.GoogleNet借鉴了许多NIN的思想.其1x1的卷积核主要用于降维来解决计算">
+<meta name="twitter:description" content="本文由google发表于CVPR2015">
 <meta name="twitter:image" content="https://asdf0982.github.io/2017/06/26/GoogleNet/Inception.png">
 
 
@@ -357,8 +357,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-26T21:57:59+08:00">
-                2017-06-26
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-29T19:28:22+08:00">
+                2017-08-29
               </time>
             
           </span>
@@ -393,7 +393,7 @@
       
 
       
-        <p>本文由google发表于CVPR2015</p>
+        <p>本文由google发表于CVPR2015<br><a id="more"></a></p>
 <h2 id="Introduction-amp-Related-Work"><a href="#Introduction-amp-Related-Work" class="headerlink" title="Introduction &amp; Related Work"></a>Introduction &amp; Related Work</h2><p>本文提出一个网络结构名为Inception. 它的特点是能提升对计算资源的使用效率.使得 在计算负担不变的情况下提升了网络的宽度和深度.它的前身GoogleNet(22层)在ILSVRC14中创下了验证和检测的记录.<br>GoogleNet借鉴了许多NIN的思想.其1x1的卷积核主要用于降维来解决计算瓶颈问题, 同时也能提高网络的深度和宽度.<br>检测(detection)方法来源于R-CNN.分两步:</p>
 <ol>
 <li>利用颜色, 文本等低层次的线索生成未知对象的位置提案.</li>

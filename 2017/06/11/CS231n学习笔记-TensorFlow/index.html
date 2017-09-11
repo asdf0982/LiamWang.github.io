@@ -92,18 +92,18 @@
 
 
 
-<meta name="description" content="完成作业: [TensorFlow.ipynb]跳过数据导入部分,直接进入model部分.tensorflow的api有很多,建议边写边查.api文档 simple_model12345678910111213141516171819202122232425262728293031323334# clear old variablestf.reset_default_graph()# setup">
+<meta name="description" content="完成作业: [TensorFlow.ipynb]">
 <meta name="keywords" content="Deep Learning,tensorflow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS231n学习笔记(TensorFlow)">
 <meta property="og:url" content="https://asdf0982.github.io/2017/06/11/CS231n学习笔记-TensorFlow/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="完成作业: [TensorFlow.ipynb]跳过数据导入部分,直接进入model部分.tensorflow的api有很多,建议边写边查.api文档 simple_model12345678910111213141516171819202122232425262728293031323334# clear old variablestf.reset_default_graph()# setup">
+<meta property="og:description" content="完成作业: [TensorFlow.ipynb]">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/11/CS231n学习笔记-TensorFlow/fliter.gif">
-<meta property="og:updated_time" content="2017-06-12T13:28:25.556Z">
+<meta property="og:updated_time" content="2017-08-29T11:29:26.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231n学习笔记(TensorFlow)">
-<meta name="twitter:description" content="完成作业: [TensorFlow.ipynb]跳过数据导入部分,直接进入model部分.tensorflow的api有很多,建议边写边查.api文档 simple_model12345678910111213141516171819202122232425262728293031323334# clear old variablestf.reset_default_graph()# setup">
+<meta name="twitter:description" content="完成作业: [TensorFlow.ipynb]">
 <meta name="twitter:image" content="https://asdf0982.github.io/2017/06/11/CS231n学习笔记-TensorFlow/fliter.gif">
 
 
@@ -356,8 +356,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-12T21:28:25+08:00">
-                2017-06-12
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-29T19:29:26+08:00">
+                2017-08-29
               </time>
             
           </span>
@@ -392,7 +392,7 @@
       
 
       
-        <p>完成作业: <a href="/2017/06/11/CS231n学习笔记-TensorFlow/TensorFlow.ipynb" title="[TensorFlow.ipynb]">[TensorFlow.ipynb]</a><br>跳过数据导入部分,直接进入model部分.<br>tensorflow的api有很多,建议边写边查.<a href="https://www.tensorflow.org/api_docs/python/tf/nn/max_pool" target="_blank" rel="external">api文档</a></p>
+        <p>完成作业: <a href="/2017/06/11/CS231n学习笔记-TensorFlow/TensorFlow.ipynb" title="[TensorFlow.ipynb]">[TensorFlow.ipynb]</a><br><a id="more"></a><br>跳过数据导入部分,直接进入model部分.<br>tensorflow的api有很多,建议边写边查.<a href="https://www.tensorflow.org/api_docs/python/tf/nn/max_pool" target="_blank" rel="external">api文档</a></p>
 <h2 id="simple-model"><a href="#simple-model" class="headerlink" title="simple_model"></a>simple_model</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># clear old variables</span></div><div class="line">tf.reset_default_graph()</div><div class="line"></div><div class="line"><span class="comment"># setup input (e.g. the data that changes every batch)</span></div><div class="line"><span class="comment"># The first dim is None, and gets sets automatically based on batch size fed in</span></div><div class="line">X = tf.placeholder(tf.float32, [<span class="keyword">None</span>, <span class="number">32</span>, <span class="number">32</span>, <span class="number">3</span>])</div><div class="line">y = tf.placeholder(tf.int64, [<span class="keyword">None</span>])</div><div class="line">is_training = tf.placeholder(tf.bool)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">simple_model</span><span class="params">(X,y)</span>:</span></div><div class="line">    <span class="comment"># define our weights (e.g. init_two_layer_convnet)</span></div><div class="line">    </div><div class="line">    <span class="comment"># setup variables</span></div><div class="line">    Wconv1 = tf.get_variable(<span class="string">"Wconv1"</span>, shape=[<span class="number">7</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">32</span>])</div><div class="line">    bconv1 = tf.get_variable(<span class="string">"bconv1"</span>, shape=[<span class="number">32</span>])</div><div class="line">    W1 = tf.get_variable(<span class="string">"W1"</span>, shape=[<span class="number">5408</span>, <span class="number">10</span>])</div><div class="line">    b1 = tf.get_variable(<span class="string">"b1"</span>, shape=[<span class="number">10</span>])</div><div class="line"></div><div class="line">    <span class="comment"># define our graph (e.g. two_layer_convnet)</span></div><div class="line">    a1 = tf.nn.conv2d(X, Wconv1, strides=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>], padding=<span class="string">'VALID'</span>) + bconv1</div><div class="line">    h1 = tf.nn.relu(a1)</div><div class="line">    h1_flat = tf.reshape(h1,[<span class="number">-1</span>,<span class="number">5408</span>])</div><div class="line">    y_out = tf.matmul(h1_flat,W1) + b1</div><div class="line">    <span class="keyword">return</span> y_out</div><div class="line"></div><div class="line">y_out = simple_model(X,y)</div><div class="line"></div><div class="line"><span class="comment"># define our loss</span></div><div class="line">total_loss = tf.losses.hinge_loss(tf.one_hot(y,<span class="number">10</span>),logits=y_out)</div><div class="line">mean_loss = tf.reduce_mean(total_loss)</div><div class="line"></div><div class="line"><span class="comment"># define our optimizer</span></div><div class="line">optimizer = tf.train.AdamOptimizer(<span class="number">5e-4</span>) <span class="comment"># select optimizer and set learning rate</span></div><div class="line">train_step = optimizer.minimize(mean_loss)</div></pre></td></tr></table></figure>
 <img src="/2017/06/11/CS231n学习笔记-TensorFlow/fliter.gif" alt="[回顾卷积过程]" title="[回顾卷积过程]">
 <p><code>Wconv1 = tf.get_variable(&quot;Wconv1&quot;, shape=[7, 7, 3, 32])</code><br>表示卷积核的大小为7*7,每个卷积核包含3个通道,共有32个卷积核.</p>

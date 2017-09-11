@@ -92,22 +92,22 @@
 
 
 
-<meta name="description" content="作业: [LSTM_Captioning.ipynb]参考:Understanding LSTM Networks和CS231n_assignment3在使用RNN时,时间(t)过大会导致前后的信息相关程度越来越小,最后出现梯度消失现象.而LSTM(Long Short-Term Memory Networks)就是为了解决这个长期依赖问题而被提出的.LSTM的一般结构见下图. 和RNN一样，LS">
+<meta name="description" content="作业: [LSTM_Captioning.ipynb]">
 <meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS231n学习笔记(LSTM)">
 <meta property="og:url" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="作业: [LSTM_Captioning.ipynb]参考:Understanding LSTM Networks和CS231n_assignment3在使用RNN时,时间(t)过大会导致前后的信息相关程度越来越小,最后出现梯度消失现象.而LSTM(Long Short-Term Memory Networks)就是为了解决这个长期依赖问题而被提出的.LSTM的一般结构见下图. 和RNN一样，LS">
+<meta property="og:description" content="作业: [LSTM_Captioning.ipynb]">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/LSTM.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/forget_gate.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/input_gate.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/update.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/output_gate.png">
-<meta property="og:updated_time" content="2017-06-16T13:34:15.418Z">
+<meta property="og:updated_time" content="2017-08-29T11:29:11.210Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231n学习笔记(LSTM)">
-<meta name="twitter:description" content="作业: [LSTM_Captioning.ipynb]参考:Understanding LSTM Networks和CS231n_assignment3在使用RNN时,时间(t)过大会导致前后的信息相关程度越来越小,最后出现梯度消失现象.而LSTM(Long Short-Term Memory Networks)就是为了解决这个长期依赖问题而被提出的.LSTM的一般结构见下图. 和RNN一样，LS">
+<meta name="twitter:description" content="作业: [LSTM_Captioning.ipynb]">
 <meta name="twitter:image" content="https://asdf0982.github.io/2017/06/16/CS231n学习笔记-LSTM/LSTM.png">
 
 
@@ -360,8 +360,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-16T21:34:15+08:00">
-                2017-06-16
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-29T19:29:11+08:00">
+                2017-08-29
               </time>
             
           </span>
@@ -396,7 +396,7 @@
       
 
       
-        <p>作业: <a href="/2017/06/16/CS231n学习笔记-LSTM/LSTM_Captioning.ipynb" title="[LSTM_Captioning.ipynb]">[LSTM_Captioning.ipynb]</a><br>参考:<a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external"><strong>Understanding LSTM Networks</strong></a>和<a href="http://www.jianshu.com/p/e46b1aa48886" target="_blank" rel="external"><strong>CS231n_assignment3</strong></a><br>在使用RNN时,时间(t)过大会导致前后的信息相关程度越来越小,最后出现梯度消失现象.而LSTM(Long Short-Term Memory Networks)就是为了解决这个<strong>长期依赖</strong>问题而被提出的.<br>LSTM的一般结构见下图. 和RNN一样，LSTM也是随着时间序列重复着一样的模块，只是LSTM的每个某块比RNN更加复杂，拥有四个层（3个门+1个记忆单元）。下图方框内上方的那条水平线，被称为胞元状态（cell state），LSTM通过门结构对记忆单元上的信息进行线性修改，保证了当时间序列变得很长的时候，前后信息的关联度不会衰减。<img src="/2017/06/16/CS231n学习笔记-LSTM/LSTM.png" alt="[LSTM]" title="[LSTM]"></p>
+        <p>作业: <a href="/2017/06/16/CS231n学习笔记-LSTM/LSTM_Captioning.ipynb" title="[LSTM_Captioning.ipynb]">[LSTM_Captioning.ipynb]</a><br><a id="more"></a><br>参考:<a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/" target="_blank" rel="external"><strong>Understanding LSTM Networks</strong></a>和<a href="http://www.jianshu.com/p/e46b1aa48886" target="_blank" rel="external"><strong>CS231n_assignment3</strong></a><br>在使用RNN时,时间(t)过大会导致前后的信息相关程度越来越小,最后出现梯度消失现象.而LSTM(Long Short-Term Memory Networks)就是为了解决这个<strong>长期依赖</strong>问题而被提出的.<br>LSTM的一般结构见下图. 和RNN一样，LSTM也是随着时间序列重复着一样的模块，只是LSTM的每个某块比RNN更加复杂，拥有四个层（3个门+1个记忆单元）。下图方框内上方的那条水平线，被称为胞元状态（cell state），LSTM通过门结构对记忆单元上的信息进行线性修改，保证了当时间序列变得很长的时候，前后信息的关联度不会衰减。<img src="/2017/06/16/CS231n学习笔记-LSTM/LSTM.png" alt="[LSTM]" title="[LSTM]"></p>
 <ol>
 <li>forget gate:根据上一个时刻输出的h_t-1和当前输入x_t,通过sigmoid控制得到f_t <img src="/2017/06/16/CS231n学习笔记-LSTM/forget_gate.png" alt="[forget gate]" title="[forget gate]"></li>
 <li>Input gate:决定哪些值进行更新进cell state.<img src="/2017/06/16/CS231n学习笔记-LSTM/input_gate.png" alt="[input gate]" title="[input gate]"><br>对cell state进行更新<img src="/2017/06/16/CS231n学习笔记-LSTM/update.png" alt="[update cell state]" title="[update cell state]"></li>

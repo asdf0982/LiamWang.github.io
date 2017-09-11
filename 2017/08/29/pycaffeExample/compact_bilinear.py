@@ -19,9 +19,9 @@ weight = root + 'examples/attentive_cb/VGG_ILSVRC_16_layers.caffemodel'
 def Network(lmdb, batch_size, include_acc=False, finetune_last=False):
     n = caffe.NetSpec()
     if include_acc:
-        n.data,n.label = L.Data(source=lmdb, name='data', backend=P.Data.LMDB, batch_size=batch_size, ntop=2, transform_param=dict(mirror=False, crop_size=448, mean_value=[104,117,123]))
+        n.data,n.label = L.Data(source=lmdb, backend=P.Data.LMDB, batch_size=batch_size, ntop=2, transform_param=dict(mirror=False, crop_size=448, mean_value=[104,117,123]))
     else:
-        n.data,n.label = L.Data(source=lmdb, name='data', backend=P.Data.LMDB, batch_size=batch_size, ntop=2, transform_param=dict(mirror=True, crop_size=448, mean_value=[104,117,124]))
+        n.data,n.label = L.Data(source=lmdb, backend=P.Data.LMDB, batch_size=batch_size, ntop=2, transform_param=dict(mirror=True, crop_size=448, mean_value=[104,117,124]))
     
     #basenet_VGG
     if (finetune_last == True):
@@ -35,74 +35,74 @@ def Network(lmdb, batch_size, include_acc=False, finetune_last=False):
         b_lr_mult = 2.0
         b_decay_mult = 0.0
 
-    n.conv1_1 = L.Convolution(n.data, name='conv1_1', kernel_size=3, pad=1, num_output=64, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.conv1_1 = L.Convolution(n.data, kernel_size=3, pad=1, num_output=64, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])
-    n.relu1_1 = L.ReLU(n.conv1_1, name='relu1_1')
-    n.conv1_2 = L.Convolution(n.relu1_1, name='conv1_2', kernel_size=3, pad=1, num_output=64, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.relu1_1 = L.ReLU(n.conv1_1)
+    n.conv1_2 = L.Convolution(n.relu1_1, kernel_size=3, pad=1, num_output=64, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    
-    n.relu1_2 = L.ReLU(n.conv1_2, name='relu1_2')
-    n.pool1 = L.Pooling(n.relu1_2, name='pool1', pool=P.Pooling.MAX, kernel_size=2, stride=2)
+    n.relu1_2 = L.ReLU(n.conv1_2)
+    n.pool1 = L.Pooling(n.relu1_2, pool=P.Pooling.MAX, kernel_size=2, stride=2)
 
 
-    n.conv2_1 = L.Convolution(n.pool1, name='conv2_1', kernel_size=3, pad=1, num_output=128, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.conv2_1 = L.Convolution(n.pool1, kernel_size=3, pad=1, num_output=128, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    
-    n.relu2_1 = L.ReLU(n.conv2_1, name='relu2_1')
-    n.conv2_2 = L.Convolution(n.relu2_1, name='conv2_2', kernel_size=3, pad=1, num_output=128, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.relu2_1 = L.ReLU(n.conv2_1)
+    n.conv2_2 = L.Convolution(n.relu2_1, kernel_size=3, pad=1, num_output=128, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])          
-    n.relu2_2 = L.ReLU(n.conv2_2, name='relu2_2')
-    n.pool2 = L.Pooling(n.relu2_2, name='pool2', pool=P.Pooling.MAX, kernel_size=2, stride=2)
+    n.relu2_2 = L.ReLU(n.conv2_2)
+    n.pool2 = L.Pooling(n.relu2_2, pool=P.Pooling.MAX, kernel_size=2, stride=2)
 
 
-    n.conv3_1 = L.Convolution(n.pool2, name='conv3_1', kernel_size=3, pad=1, num_output=256, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.conv3_1 = L.Convolution(n.pool2, kernel_size=3, pad=1, num_output=256, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    
-    n.relu3_1 = L.ReLU(n.conv3_1, name='relu3_1')
-    n.conv3_2 = L.Convolution(n.relu3_1, name='conv3_2', kernel_size=3, pad=1, num_output=256, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.relu3_1 = L.ReLU(n.conv3_1)
+    n.conv3_2 = L.Convolution(n.relu3_1, kernel_size=3, pad=1, num_output=256, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])          
-    n.relu3_2 = L.ReLU(n.conv3_2, name='relu3_2')
-    n.conv3_3 = L.Convolution(n.relu3_2, name='conv3_3', kernel_size=3, pad=1, num_output=256, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.relu3_2 = L.ReLU(n.conv3_2)
+    n.conv3_3 = L.Convolution(n.relu3_2, kernel_size=3, pad=1, num_output=256, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    
-    n.relu3_3 = L.ReLU(n.conv3_3, name='relu3_3')
-    n.pool3 = L.Pooling(n.relu3_3, name='pool3', pool=P.Pooling.MAX, kernel_size=2, stride=2)    
+    n.relu3_3 = L.ReLU(n.conv3_3)
+    n.pool3 = L.Pooling(n.relu3_3, pool=P.Pooling.MAX, kernel_size=2, stride=2)    
 
 
-    n.conv4_1 = L.Convolution(n.pool3, name='conv4_1', kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.conv4_1 = L.Convolution(n.pool3, kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    
-    n.relu4_1 = L.ReLU(n.conv4_1, name='relu4_1')
-    n.conv4_2 = L.Convolution(n.relu4_1, name='conv4_2', kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.relu4_1 = L.ReLU(n.conv4_1)
+    n.conv4_2 = L.Convolution(n.relu4_1, kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])          
-    n.relu4_2 = L.ReLU(n.conv4_2, name='relu4_2')
-    n.conv4_3 = L.Convolution(n.relu4_2, name='conv4_3', kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.relu4_2 = L.ReLU(n.conv4_2)
+    n.conv4_3 = L.Convolution(n.relu4_2, kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    
-    n.relu4_3 = L.ReLU(n.conv4_3, name='relu4_3')
-    n.pool4 = L.Pooling(n.relu4_3, name='pool4', pool=P.Pooling.MAX, kernel_size=2, stride=2)
+    n.relu4_3 = L.ReLU(n.conv4_3)
+    n.pool4 = L.Pooling(n.relu4_3, pool=P.Pooling.MAX, kernel_size=2, stride=2)
 
 
-    n.conv5_1 = L.Convolution(n.pool4, name='conv5_1', kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.conv5_1 = L.Convolution(n.pool4, kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    
-    n.relu5_1 = L.ReLU(n.conv5_1, name='relu5_1')
-    n.conv5_2 = L.Convolution(n.relu5_1, name='conv5_2', kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.relu5_1 = L.ReLU(n.conv5_1)
+    n.conv5_2 = L.Convolution(n.relu5_1, kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])          
-    n.relu5_2 = L.ReLU(n.conv5_2, name='relu5_2')
-    n.conv5_3 = L.Convolution(n.relu5_2, name='conv5_3', kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
+    n.relu5_2 = L.ReLU(n.conv5_2)
+    n.conv5_3 = L.Convolution(n.relu5_2, kernel_size=3, pad=1, num_output=512, param=[dict(lr_mult=w_lr_mult, decay_mult=w_decay_mult),\
                     dict(lr_mult=b_lr_mult, decay_mult=b_decay_mult)])    
-    n.relu5_3 = L.ReLU(n.conv5_3, name='relu5_3') 
+    n.relu5_3 = L.ReLU(n.conv5_3) 
 
     #bilinear
-    n.bilinear_layer = L.CompactBilinear(n.relu5_3, n.relu5_3, name='bilinear_layer', compact_bilinear_param=dict(num_output=8192,sum_pool=False))
+    n.bilinear_layer = L.CompactBilinear(n.relu5_3, n.relu5_3, compact_bilinear_param=dict(num_output=8192,sum_pool=False))
 
     #sqrt+l2
-    n.signed_sqrt = L.SignedSqrt(n.bilinear_layer, name='signed_sqrt')
-    n.l2_normalization= L.L2Normalize(n.signed_sqrt, name='l2_normalization')
+    n.signed_sqrt = L.SignedSqrt(n.bilinear_layer)
+    n.l2_normalization= L.L2Normalize(n.signed_sqrt)
 
     #FC
-    n.fc = L.InnerProduct(n.l2_normalization, name='fc', num_output=200, param=[dict(lr_mult=1, decay_mult=1),\
+    n.fc = L.InnerProduct(n.l2_normalization, num_output=200, param=[dict(lr_mult=1, decay_mult=1),\
             dict(lr_mult=2, decay_mult=0)], weight_filler=dict(type='gaussian',std=0.0001), bias_filler=dict(type='constant',value=0.0))
-    n.loss = L.SoftmaxWithLoss(n.fc, n.label, name='loss')
+    n.loss = L.SoftmaxWithLoss(n.fc, n.label)
     if include_acc:  # test阶段需要有accuracy层
-        n.accuracy = L.Accuracy(n.fc, n.label, name='accuracy')
-        return to_proto(n.loss, n.accuracy)
+        n.accuracy = L.Accuracy(n.fc, n.label)
+        return n.to_proto()
     else:
-        return to_proto(n.loss)    
+        return n.to_proto()    
 
 def write_net(finetune_last=False):
     # 写入train.prototxt
@@ -114,7 +114,7 @@ def write_net(finetune_last=False):
         f.write(str(Network(test_lmdb, batch_size=4, include_acc=True, finetune_last=finetune_last)))
 
 # 编写一个函数，生成参数文件
-def gen_solver(solver_file, train_net, test_net):
+def generate_solver(solver_file, train_net, test_net):
     s = proto.caffe_pb2.SolverParameter()
     s.train_net = train_net
     s.test_net.append(test_net)
@@ -155,5 +155,5 @@ def training(solver_proto):
 #主函数
 if __name__ == '__main__':
     write_net(finetune_last=True)
-    gen_solver(solver_proto, train_proto, test_proto)
+    generate_solver(solver_proto, train_proto, test_proto)
     training(solver_proto)

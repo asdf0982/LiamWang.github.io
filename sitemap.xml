@@ -2,6 +2,111 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://asdf0982.github.io/2017/08/14/TipsInDL/</loc>
+    
+    <lastmod>2017-09-07T12:09:09.520Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/10/install-tensorflow/</loc>
+    
+    <lastmod>2017-08-29T11:29:32.757Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/11/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-TensorFlow/</loc>
+    
+    <lastmod>2017-08-29T11:29:26.961Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/</loc>
+    
+    <lastmod>2017-08-29T11:29:23.017Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/14/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN/</loc>
+    
+    <lastmod>2017-08-29T11:29:17.272Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/16/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-LSTM/</loc>
+    
+    <lastmod>2017-08-29T11:29:11.210Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/</loc>
+    
+    <lastmod>2017-08-29T11:29:04.228Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/19/DeepFace-Closing-the-Gap-to-Human-Level-Performance-in-Face-Verification/</loc>
+    
+    <lastmod>2017-08-29T11:28:56.660Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/20/A-lightened-cnn-for-deep-face-representation/</loc>
+    
+    <lastmod>2017-08-29T11:28:52.919Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/</loc>
+    
+    <lastmod>2017-08-29T11:28:48.280Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/21/DeepID/</loc>
+    
+    <lastmod>2017-08-29T11:28:41.677Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/22/DeepID2/</loc>
+    
+    <lastmod>2017-08-29T11:28:37.179Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/23/DeepID2-1/</loc>
+    
+    <lastmod>2017-08-29T11:28:32.616Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/24/FaceNet/</loc>
+    
+    <lastmod>2017-08-29T11:28:28.237Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/26/GoogleNet/</loc>
+    
+    <lastmod>2017-08-29T11:28:22.210Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://asdf0982.github.io/2017/06/27/center-loss/</loc>
     
     <lastmod>2017-08-29T11:26:44.482Z</lastmod>
@@ -51,13 +156,6 @@
   </url>
   
   <url>
-    <loc>https://asdf0982.github.io/2017/08/14/TipsInDL/</loc>
-    
-    <lastmod>2017-08-29T11:26:02.448Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://asdf0982.github.io/2017/08/14/jupyternotebook-server/</loc>
     
     <lastmod>2017-08-29T11:25:55.937Z</lastmod>
@@ -82,104 +180,6 @@
     <loc>https://asdf0982.github.io/about/index.html</loc>
     
     <lastmod>2017-07-22T02:22:21.424Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/26/GoogleNet/</loc>
-    
-    <lastmod>2017-06-26T13:57:59.188Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/23/DeepID2-1/</loc>
-    
-    <lastmod>2017-06-25T08:23:09.289Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/24/FaceNet/</loc>
-    
-    <lastmod>2017-06-24T14:55:04.234Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/22/DeepID2/</loc>
-    
-    <lastmod>2017-06-22T14:55:05.504Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/21/DeepID/</loc>
-    
-    <lastmod>2017-06-22T07:07:26.187Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/20/A-Light-CNN-for-Deep-Face-Representation-with-Noisy-Labels/</loc>
-    
-    <lastmod>2017-06-21T06:16:01.383Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/18/Deep-Face-recognition/</loc>
-    
-    <lastmod>2017-06-20T13:22:55.547Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/19/DeepFace-Closing-the-Gap-to-Human-Level-Performance-in-Face-Verification/</loc>
-    
-    <lastmod>2017-06-20T13:22:46.832Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/20/A-lightened-cnn-for-deep-face-representation/</loc>
-    
-    <lastmod>2017-06-20T13:22:24.975Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/14/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN/</loc>
-    
-    <lastmod>2017-06-16T13:35:03.183Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/16/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-LSTM/</loc>
-    
-    <lastmod>2017-06-16T13:34:15.418Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/13/PHPstorm10wamp3/</loc>
-    
-    <lastmod>2017-06-13T15:13:09.952Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/11/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-TensorFlow/</loc>
-    
-    <lastmod>2017-06-12T13:28:25.556Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/10/install-tensorflow/</loc>
-    
-    <lastmod>2017-06-10T03:08:36.060Z</lastmod>
     
   </url>
   

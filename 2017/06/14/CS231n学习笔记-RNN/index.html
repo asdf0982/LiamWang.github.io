@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="作业: [RNN_Captioning.ipynb]数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.运行至第三个代码块时可能运行至os.remove(fname)报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.np.linspace在指定的间隔内返回均匀间隔的数字. Vanilla RNN: step forward打开c">
+<meta name="description" content="作业: [RNN_Captioning.ipynb]">
 <meta name="keywords" content="Deep Learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS231n学习笔记(RNN)">
 <meta property="og:url" content="https://asdf0982.github.io/2017/06/14/CS231n学习笔记-RNN/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="作业: [RNN_Captioning.ipynb]数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.运行至第三个代码块时可能运行至os.remove(fname)报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.np.linspace在指定的间隔内返回均匀间隔的数字. Vanilla RNN: step forward打开c">
-<meta property="og:updated_time" content="2017-06-16T13:35:03.183Z">
+<meta property="og:description" content="作业: [RNN_Captioning.ipynb]">
+<meta property="og:updated_time" content="2017-08-29T11:29:17.272Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS231n学习笔记(RNN)">
-<meta name="twitter:description" content="作业: [RNN_Captioning.ipynb]数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.运行至第三个代码块时可能运行至os.remove(fname)报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.np.linspace在指定的间隔内返回均匀间隔的数字. Vanilla RNN: step forward打开c">
+<meta name="twitter:description" content="作业: [RNN_Captioning.ipynb]">
 
 
 
@@ -354,8 +354,8 @@
               
                 <span class="post-meta-item-text">Post modified</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-16T21:35:03+08:00">
-                2017-06-16
+              <time title="Post modified" itemprop="dateModified" datetime="2017-08-29T19:29:17+08:00">
+                2017-08-29
               </time>
             
           </span>
@@ -390,7 +390,7 @@
       
 
       
-        <p>作业: <a href="/2017/06/14/CS231n学习笔记-RNN/RNN_Captioning.ipynb" title="[RNN_Captioning.ipynb]">[RNN_Captioning.ipynb]</a><br>数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.<br>运行至第三个代码块时可能运行至<code>os.remove(fname)</code>报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.<br><code>np.linspace</code>在指定的间隔内返回均匀间隔的数字.</p>
+        <p>作业: <a href="/2017/06/14/CS231n学习笔记-RNN/RNN_Captioning.ipynb" title="[RNN_Captioning.ipynb]">[RNN_Captioning.ipynb]</a><br><a id="more"></a><br>数据集准备:打开datesets内的shell文件,找到url拖至迅雷里下载至datasets并解压.<br>运行至第三个代码块时可能运行至<code>os.remove(fname)</code>报错.是因为文件缓存被python打开无法删除导致的,注释掉这句即可.<br><code>np.linspace</code>在指定的间隔内返回均匀间隔的数字.</p>
 <h2 id="Vanilla-RNN-step-forward"><a href="#Vanilla-RNN-step-forward" class="headerlink" title="Vanilla RNN: step forward"></a>Vanilla RNN: step forward</h2><p>打开<code>cs231n/rnn_layers.py</code>找到<code>rnn_step_forward(x, prev_h, Wx, Wh, b)</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = prev_h.dot(Wh) + x.dot(Wx) + b</div><div class="line">next_h = np.tanh(a)</div><div class="line">cache = (x, prev_h, Wh, Wx, b, next_h)</div></pre></td></tr></table></figure></p>
 <p>即next_h = tanh(x*Wx+pre_h*Wh+b)</p>
 <h2 id="Vanilla-RNN-step-backward"><a href="#Vanilla-RNN-step-backward" class="headerlink" title="Vanilla RNN: step backward"></a>Vanilla RNN: step backward</h2><p>找到<code>rnn_step_backward(dnext_h, cache)</code><br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">x, prev_h, Wh, Wx, b, next_h = cache</div><div class="line">da = dnext_h * (<span class="number">1</span> - next_h ** <span class="number">2</span>) <span class="comment">#(N,H)</span></div><div class="line">dx = np.dot(da, Wx.T) <span class="comment">#(N,D)</span></div><div class="line">dprev_h = np.dot(da, Wh.T) <span class="comment">#(N,H)</span></div><div class="line">dWx = np.dot(x.T, da) <span class="comment">#(D,H)</span></div><div class="line">dWh = np.dot(prev_h.T, da) <span class="comment">#(H,H)</span></div><div class="line">db = np.sum(da, axis = <span class="number">0</span>) <span class="comment">#(H,)</span></div></pre></td></tr></table></figure></p>
