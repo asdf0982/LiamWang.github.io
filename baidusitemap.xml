@@ -4,27 +4,8 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/08/14/TipsInDL/</loc>
-    <lastmod>2017-09-07T12:09:09.520Z</lastmod>
-    <data>
-        <display>
-        <title>深度学习调参技巧</title>
-        <pubTime>2017-08-14T11:31:26.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-        <tag>Tips</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://asdf0982.github.io/2017/06/10/install-tensorflow/</loc>
-    <lastmod>2017-08-29T11:29:32.757Z</lastmod>
+    <lastmod>2017-09-12T04:02:27.182Z</lastmod>
     <data>
         <display>
         <title>Install tensorflow on Win10</title>
@@ -44,16 +25,16 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/06/11/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-TensorFlow/</loc>
-    <lastmod>2017-08-29T11:29:26.961Z</lastmod>
+    <loc>https://asdf0982.github.io/2017/08/14/TipsInDL/</loc>
+    <lastmod>2017-09-07T12:09:09.520Z</lastmod>
     <data>
         <display>
-        <title>CS231n学习笔记(TensorFlow)</title>
-        <pubTime>2017-06-10T16:27:32.000Z</pubTime>
+        <title>深度学习调参技巧</title>
+        <pubTime>2017-08-14T11:31:26.000Z</pubTime>
         
         <tag>Deep Learning</tag>
          
-        <tag>tensorflow</tag>
+        <tag>Tips</tag>
          
          
            
@@ -71,40 +52,6 @@
         <pubTime>2017-06-13T13:51:48.000Z</pubTime>
         
         <tag>PHP</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/14/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN/</loc>
-    <lastmod>2017-08-29T11:29:17.272Z</lastmod>
-    <data>
-        <display>
-        <title>CS231n学习笔记(RNN)</title>
-        <pubTime>2017-06-14T08:18:19.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/16/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-LSTM/</loc>
-    <lastmod>2017-08-29T11:29:11.210Z</lastmod>
-    <data>
-        <display>
-        <title>CS231n学习笔记(LSTM)</title>
-        <pubTime>2017-06-16T10:04:25.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
          
          
            
@@ -359,23 +306,6 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/07/02/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NetworkVisualization/</loc>
-    <lastmod>2017-08-29T11:26:26.670Z</lastmod>
-    <data>
-        <display>
-        <title>CS231n学习笔记(NetworkVisualization-TensorFlow)</title>
-        <pubTime>2017-07-02T13:13:48.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://asdf0982.github.io/2017/07/04/Kernel-Pooling/</loc>
     <lastmod>2017-08-29T11:26:19.184Z</lastmod>
     <data>
@@ -466,57 +396,6 @@
     
     
   <url>
-    <loc>https://asdf0982.github.io/2017/06/08/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2017-06-09T15:31:11.914Z</lastmod>
-    <data>
-        <display>
-        <title>CS231n学习笔记(卷积网络)</title>
-        <pubTime>2017-06-08T13:37:55.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/05/22/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2017-06-06T13:27:08.345Z</lastmod>
-    <data>
-        <display>
-        <title>CS231n学习笔记(KNN)</title>
-        <pubTime>2017-05-22T15:02:58.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/01/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2017-06-04T12:21:39.770Z</lastmod>
-    <data>
-        <display>
-        <title>CS231n学习笔记(全连接网络)</title>
-        <pubTime>2017-06-01T07:21:18.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://asdf0982.github.io/2017/05/26/UEditor%E7%9A%84%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE/</loc>
     <lastmod>2017-06-02T02:31:25.986Z</lastmod>
     <data>
@@ -551,46 +430,12 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/05/29/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%A4%E5%B1%82%E7%BD%91%E7%BB%9C/</loc>
-    <lastmod>2017-05-30T08:51:56.698Z</lastmod>
-    <data>
-        <display>
-        <title>CS231n学习笔记-两层网络</title>
-        <pubTime>2017-05-29T15:04:22.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://asdf0982.github.io/2017/05/28/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-softmax/</loc>
     <lastmod>2017-05-28T09:01:53.005Z</lastmod>
     <data>
         <display>
         <title>CS231n学习笔记(softmax)</title>
         <pubTime>2017-05-28T07:39:26.000Z</pubTime>
-        
-        <tag>Deep Learning</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://asdf0982.github.io/2017/05/24/CS231n-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-SVM/</loc>
-    <lastmod>2017-05-28T03:35:40.894Z</lastmod>
-    <data>
-        <display>
-        <title>CS231n 学习笔记(SVM)</title>
-        <pubTime>2017-05-24T14:10:08.000Z</pubTime>
         
         <tag>Deep Learning</tag>
          
@@ -659,4 +504,176 @@
     </url>
 
     
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/11/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-TensorFlow/</loc>
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记(TensorFlow)</title>
+        <pubTime>2017-06-10T16:27:32.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+        <tag>tensorflow</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/16/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-LSTM/</loc>
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记(LSTM)</title>
+        <pubTime>2017-06-16T10:04:25.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/05/22/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记(KNN)</title>
+        <pubTime>2017-05-22T15:02:58.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/08/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记(卷积网络)</title>
+        <pubTime>2017-06-08T13:37:55.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/01/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记(全连接网络)</title>
+        <pubTime>2017-06-01T07:21:18.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/05/24/CS231n-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-SVM/</loc>
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n 学习笔记(SVM)</title>
+        <pubTime>2017-05-24T14:10:08.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/09/12/NDArray-mxnet/</loc>
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>NDArray Tutorial - mxnet</title>
+        <pubTime>2017-09-12T13:11:45.000Z</pubTime>
+        
+        <tag>mxnet</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/07/02/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NetworkVisualization/</loc>
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记(NetworkVisualization-TensorFlow)</title>
+        <pubTime>2017-07-02T13:13:48.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/05/29/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%A4%E5%B1%82%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记-两层网络</title>
+        <pubTime>2017-05-29T15:04:22.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/14/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN/</loc>
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>CS231n学习笔记(RNN)</title>
+        <pubTime>2017-06-14T08:18:19.000Z</pubTime>
+        
+        <tag>Deep Learning</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
 </urlset>

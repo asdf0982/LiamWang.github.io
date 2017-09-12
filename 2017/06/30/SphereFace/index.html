@@ -99,6 +99,7 @@
 <meta property="og:url" content="https://asdf0982.github.io/2017/06/30/SphereFace/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
 <meta property="og:description" content="Introduction先前的特征学习大多基于欧几里得边缘, 但是欧式边缘就适合那些学习到的具有判别力的特征吗? 本文就提出了一个组合的角度边缘来替代它.所设计的loss名为A-Softmax loss, 提取到的特征名为SphereFace本文主要有以下贡献:  提出了A-Softmax loss来学习特征, 其原理在几何上能够解释. 导出参数m的下限, 使得A-Softmax loss能够让最">
+<meta property="og:locale" content="en">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/30/SphereFace/loss1.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/30/SphereFace/boundary.png">
 <meta property="og:image" content="https://asdf0982.github.io/2017/06/30/SphereFace/A.png">
@@ -369,16 +370,23 @@
 
           
             
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/30/SphereFace/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/06/30/SphereFace/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
           
 
           
           
 
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv">
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>hits
-            </span>
           
 
           
@@ -487,6 +495,8 @@ $y_i$是样本的标签, K是类的数量, j是[1,K]中的一个元素.<h3 id="�
           
   <div class="comments" id="comments">
     
+      <div id="hypercomments_widget"></div>
+    
   </div>
 
 
@@ -533,7 +543,7 @@ $y_i$是样本的标签, K是类的数量, j是[1,K]中的一个元素.<h3 id="�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
@@ -546,7 +556,7 @@ $y_i$是样本的标签, K是类的数量, j是[1,K]中的一个元素.<h3 id="�
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -650,14 +660,6 @@ $y_i$是样本的标签, K是类的数量, j是[1,K]中的一个元素.<h3 id="�
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-
-  
-</div>
-
 
         
       </div>
@@ -755,23 +757,33 @@ $y_i$是样本的标签, K是类的数量, j是[1,K]中的一个元素.<h3 id="�
 
 	
 
+		<script type="text/javascript">
+		_hcwp = window._hcwp || [];
+
+		_hcwp.push({widget:"Bloggerstream", widget_id: 95462, selector:".hc-comment-count", label: "{\%COUNT%\}" });
+
+		
+		_hcwp.push({widget:"Stream", widget_id: 95462, xid: "2017/06/30/SphereFace/"});
+		
+
+		(function() {
+		if("HC_LOAD_INIT" in window)return;
+		HC_LOAD_INIT = true;
+		var lang = (navigator.language || navigator.systemLanguage || navigator.userLanguage || "en").substr(0, 2).toLowerCase();
+		var hcc = document.createElement("script"); hcc.type = "text/javascript"; hcc.async = true;
+		hcc.src = ("https:" == document.location.protocol ? "https" : "http")+"://w.hypercomments.com/widget/hc/95462/"+lang+"/widget.js";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hcc, s.nextSibling);
+		})();
+		</script>
+
+	
 
 
 
 
-  
 
 
-
-
-
-  
-
-
-
-
-
-  
 
 
 
