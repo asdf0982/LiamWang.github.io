@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://asdf0982.github.io/2017/09/13/Symbol-mxnet/</loc>
+    
+    <lastmod>2017-09-13T06:50:07.241Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/09/12/NDArray-mxnet/</loc>
+    
+    <lastmod>2017-09-12T15:41:14.424Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://asdf0982.github.io/2017/06/10/install-tensorflow/</loc>
     
     <lastmod>2017-09-12T04:02:27.182Z</lastmod>
@@ -212,7 +226,7 @@
   </url>
   
   <url>
-    <loc>https://asdf0982.github.io/2017/06/11/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-TensorFlow/</loc>
+    <loc>https://asdf0982.github.io/2017/05/24/CS231n-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-SVM/</loc>
     
     <lastmod>1970-01-01T00:00:00.000Z</lastmod>
     
@@ -220,6 +234,34 @@
   
   <url>
     <loc>https://asdf0982.github.io/2017/06/16/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-LSTM/</loc>
+    
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/14/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN/</loc>
+    
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/01/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C/</loc>
+    
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/07/02/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NetworkVisualization/</loc>
+    
+    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asdf0982.github.io/2017/06/11/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-TensorFlow/</loc>
     
     <lastmod>1970-01-01T00:00:00.000Z</lastmod>
     
@@ -240,42 +282,7 @@
   </url>
   
   <url>
-    <loc>https://asdf0982.github.io/2017/06/01/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%BD%91%E7%BB%9C/</loc>
-    
-    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/05/24/CS231n-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-SVM/</loc>
-    
-    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/09/12/NDArray-mxnet/</loc>
-    
-    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/07/02/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-NetworkVisualization/</loc>
-    
-    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://asdf0982.github.io/2017/05/29/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E4%B8%A4%E5%B1%82%E7%BD%91%E7%BB%9C/</loc>
-    
-    <lastmod>1970-01-01T00:00:00.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asdf0982.github.io/2017/06/14/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN/</loc>
     
     <lastmod>1970-01-01T00:00:00.000Z</lastmod>
     

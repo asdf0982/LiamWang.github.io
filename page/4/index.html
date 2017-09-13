@@ -311,6 +311,144 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/29/CS231n学习笔记-两层网络/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/29/CS231n学习笔记-两层网络/" itemprop="url">CS231n学习笔记-两层网络</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-29T23:04:22+08:00">
+                2017-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/29/CS231n学习笔记-两层网络/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/05/29/CS231n学习笔记-两层网络/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>完成作业</p>
+<ul>
+<li><a href="/2017/05/29/CS231n学习笔记-两层网络/two_layer_net.ipynb" title="[two_layer_net.ipynb]">[two_layer_net.ipynb]</a></li>
+<li><a href="/2017/05/29/CS231n学习笔记-两层网络/neural_net.py" title="[neural_net.py]">[neural_net.py]</a>
+</li>
+</ul>
+<h2 id="前向传播计算图像在各类下的分数"><a href="#前向传播计算图像在各类下的分数" class="headerlink" title="前向传播计算图像在各类下的分数"></a>前向传播计算图像在各类下的分数</h2><p>在neural_net.py下编辑loss函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">L1 = ReLU(np.dot(X,W1)+b1)</div><div class="line">L2 = np.dot(L1,W2)+b2 <span class="comment"># N,C</span></div><div class="line">scores = L2</div></pre></td></tr></table></figure></p>
+<p>L1代表第一层，使用ReLU作为激活函数。而ReLU函数没有定义，所以需要在TwoLayerNet外建一个。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">ReLU</span><span class="params">(x)</span>:</span></div><div class="line">    <span class="keyword">return</span> np.maximum(<span class="number">0</span>,x) <span class="comment"># f(z) = max(0, z)</span></div></pre></td></tr></table></figure></p>
+<p>.ipynb文件中预置了正确答案，可以进行比对。我的如下：<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/29/CS231n学习笔记-两层网络/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+      
+    
+      
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/05/28/CS231n学习笔记-softmax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -348,19 +486,7 @@
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-28T17:01:53+08:00">
-                2017-05-28
-              </time>
             
           </span>
 
@@ -496,19 +622,7 @@
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-06-02T10:31:25+08:00">
-                2017-06-02
-              </time>
             
           </span>
 
@@ -645,19 +759,7 @@
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-25T11:15:41+08:00">
-                2017-05-25
-              </time>
             
           </span>
 
@@ -789,19 +891,7 @@
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="1970-01-01T08:00:00+08:00">
-                1970-01-01
-              </time>
             
           </span>
 
@@ -938,19 +1028,7 @@
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="1970-01-01T08:00:00+08:00">
-                1970-01-01
-              </time>
             
           </span>
 
@@ -1088,19 +1166,7 @@
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-18T13:37:48+08:00">
-                2017-05-18
-              </time>
             
           </span>
 
@@ -1234,19 +1300,7 @@
             
 
             
-              <span class="post-meta-divider">|</span>
-            
 
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Post modified</span>
-              
-              <time title="Post modified" itemprop="dateModified" datetime="2017-05-17T22:13:21+08:00">
-                2017-05-17
-              </time>
             
           </span>
 
@@ -1384,7 +1438,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>

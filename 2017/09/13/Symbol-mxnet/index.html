@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="mxnet," />
 
 
 
@@ -92,16 +92,18 @@
 
 
 
-<meta name="description" content="哈~我不适合在白天工作~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liam&#39;s Blog">
-<meta property="og:url" content="https://asdf0982.github.io/tags/Caffe/index.html">
+<meta name="description" content="根据mxnet documentation-Symbol为了简化构造神经网络, 便于绘制流程图.mxnet引入了Symbol概念.(可以实现类似pycaffe的网络结构配置)">
+<meta name="keywords" content="mxnet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Symbol Tutorial - mxnet">
+<meta property="og:url" content="https://asdf0982.github.io/2017/09/13/Symbol-mxnet/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="哈~我不适合在白天工作~">
+<meta property="og:description" content="根据mxnet documentation-Symbol为了简化构造神经网络, 便于绘制流程图.mxnet引入了Symbol概念.(可以实现类似pycaffe的网络结构配置)">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2017-09-13T06:50:07.241Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liam&#39;s Blog">
-<meta name="twitter:description" content="哈~我不适合在白天工作~">
+<meta name="twitter:title" content="Symbol Tutorial - mxnet">
+<meta name="twitter:description" content="根据mxnet documentation-Symbol为了简化构造神经网络, 便于绘制流程图.mxnet引入了Symbol概念.(可以实现类似pycaffe的网络结构配置)">
 
 
 
@@ -129,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/tags/Caffe/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/09/13/Symbol-mxnet/"/>
 
 
 
 
 
-  <title>Tag: Caffe | Liam's Blog</title>
+  <title>Symbol Tutorial - mxnet | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -170,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -298,44 +300,169 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2>Caffe<small>Tag</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/09/13/Symbol-mxnet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Symbol Tutorial - mxnet</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-13T14:48:57+08:00">
+                2017-09-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/13/Symbol-mxnet/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/09/13/Symbol-mxnet/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>根据<a href="https://mxnet.incubator.apache.org/tutorials/basic/symbol.html" target="_blank" rel="external">mxnet documentation-Symbol</a><br>为了简化构造神经网络, 便于绘制流程图.mxnet引入了Symbol概念.(可以实现类似pycaffe的网络结构配置)<br><a id="more"></a></p>
+<h2 id="基础神经网络"><a href="#基础神经网络" class="headerlink" title="基础神经网络"></a>基础神经网络</h2><p>构造一个简单的网络<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">net = mx.sym.Variable(&apos;data&apos;)</div><div class="line">net = mx.sym.FullyConnected(data=net, name=&apos;fc1&apos;, num_hidden=128) #全链接层</div><div class="line">net = mx.sym.Activation(data=net, name=&apos;relu1&apos;, act_type=&quot;relu&quot;) #激活层</div><div class="line">net = mx.sym.FullyConnected(data=net, name=&apos;fc2&apos;, num_hidden=10)</div><div class="line">net = mx.sym.SoftmaxOutput(data=net, name=&apos;out&apos;)</div><div class="line"># 绘制网络结构图</div><div class="line">mx.viz.plot_network(net, shape=&#123;&apos;data&apos;:(100,200)&#125;)</div></pre></td></tr></table></figure></p>
+<p>使用<code>net.list_arguments()</code>查看网络中的参数.(若未定义则自动生成)<br>也可手动指定参数名称如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">net = mx.symbol.Variable(&apos;data&apos;)</div><div class="line">w = mx.symbol.Variable(&apos;myweight&apos;)</div><div class="line">net = mx.symbol.FullyConnected(data=net, weight=w, name=&apos;fc1&apos;, num_hidden=128)</div><div class="line">net.list_arguments()</div></pre></td></tr></table></figure></p>
+<h2 id="更复杂的网络"><a href="#更复杂的网络" class="headerlink" title="更复杂的网络"></a>更复杂的网络</h2><p>Symbol的用法相当灵活, 可在输入数据中套python运算或引入另一个网络<br>如Inception网络, 可使用模块化定义来构造<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">def ConvFactory(data, num_filter, kernel, stride=(1,1), pad=(0, 0),name=None, suffix=&apos;&apos;):</div><div class="line">    conv = mx.sym.Convolution(data=data, num_filter=num_filter, kernel=kernel,</div><div class="line">                  stride=stride, pad=pad, name=&apos;conv_%s%s&apos; %(name, suffix))</div><div class="line">    bn = mx.sym.BatchNorm(data=conv, name=&apos;bn_%s%s&apos; %(name, suffix))</div><div class="line">    act = mx.sym.Activation(data=bn, act_type=&apos;relu&apos;, name=&apos;relu_%s%s&apos;</div><div class="line">                  %(name, suffix))</div><div class="line">    return act</div><div class="line">prev = mx.sym.Variable(name=&quot;Previous Output&quot;)</div><div class="line">conv_comp = ConvFactory(data=prev, num_filter=64, kernel=(7,7), stride=(2, 2))</div><div class="line">shape = &#123;&quot;Previous Output&quot; : (128, 3, 28, 28)&#125;</div><div class="line">mx.viz.plot_network(symbol=conv_comp, shape=shape)</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">def InceptionFactoryA(data, num_1x1, num_3x3red, num_3x3, num_d3x3red, num_d3x3,</div><div class="line">                      pool, proj, name):</div><div class="line">    # 1x1</div><div class="line">    c1x1 = ConvFactory(data=data, num_filter=num_1x1, kernel=(1, 1), name=(&apos;%s_1x1&apos; % name))</div><div class="line">    # 3x3 reduce + 3x3</div><div class="line">    c3x3r = ConvFactory(data=data, num_filter=num_3x3red, kernel=(1, 1), name=(&apos;%s_3x3&apos; % name), suffix=&apos;_reduce&apos;)</div><div class="line">    c3x3 = ConvFactory(data=c3x3r, num_filter=num_3x3, kernel=(3, 3), pad=(1, 1), name=(&apos;%s_3x3&apos; % name))</div><div class="line">    # double 3x3 reduce + double 3x3</div><div class="line">    cd3x3r = ConvFactory(data=data, num_filter=num_d3x3red, kernel=(1, 1), name=(&apos;%s_double_3x3&apos; % name), suffix=&apos;_reduce&apos;)</div><div class="line">    cd3x3 = ConvFactory(data=cd3x3r, num_filter=num_d3x3, kernel=(3, 3), pad=(1, 1), name=(&apos;%s_double_3x3_0&apos; % name))</div><div class="line">    cd3x3 = ConvFactory(data=cd3x3, num_filter=num_d3x3, kernel=(3, 3), pad=(1, 1), name=(&apos;%s_double_3x3_1&apos; % name))</div><div class="line">    # pool + proj</div><div class="line">    pooling = mx.sym.Pooling(data=data, kernel=(3, 3), stride=(1, 1), pad=(1, 1), pool_type=pool, name=(&apos;%s_pool_%s_pool&apos; % (pool, name)))</div><div class="line">    cproj = ConvFactory(data=pooling, num_filter=proj, kernel=(1, 1), name=(&apos;%s_proj&apos; %  name))</div><div class="line">    # concat</div><div class="line">    concat = mx.sym.Concat(*[c1x1, c3x3, cd3x3, cproj], name=&apos;ch_concat_%s_chconcat&apos; % name)</div><div class="line">    return concat</div><div class="line">prev = mx.sym.Variable(name=&quot;Previous Output&quot;)</div><div class="line">in3a = InceptionFactoryA(prev, 64, 64, 64, 64, 96, &quot;avg&quot;, 32, name=&quot;in3a&quot;)</div><div class="line">mx.viz.plot_network(symbol=in3a, shape=shape)</div></pre></td></tr></table></figure>
+<p>如果网络中包含多个loss可以使用<code>mxnet.sym.Group</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">net = mx.sym.Variable(&apos;data&apos;)</div><div class="line">fc1 = mx.sym.FullyConnected(data=net, name=&apos;fc1&apos;, num_hidden=128)</div><div class="line">net = mx.sym.Activation(data=fc1, name=&apos;relu1&apos;, act_type=&quot;relu&quot;)</div><div class="line">out1 = mx.sym.SoftmaxOutput(data=net, name=&apos;softmax&apos;)</div><div class="line">out2 = mx.sym.LinearRegressionOutput(data=net, name=&apos;regression&apos;)</div><div class="line">group = mx.sym.Group([out1, out2])</div><div class="line">group.list_outputs()</div></pre></td></tr></table></figure></p>
+<h2 id="绑定数据并执行"><a href="#绑定数据并执行" class="headerlink" title="绑定数据并执行"></a>绑定数据并执行</h2><p>使用<code>bind</code>方法, 它能接收设备信息和一个以NDArray为基础的字典结构, 返回一个执行器. 执行器有两个方法,<code>forward</code>和<code>outputs</code>,分别用于计算和显示结果.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">gpu_device=mx.gpu() # Change this to mx.cpu() in absence of GPUs.</div><div class="line"></div><div class="line">ex_gpu = c.bind(ctx=gpu_device, args=&#123;&apos;a&apos; : mx.nd.ones([3,4], gpu_device)*2,</div><div class="line">                                      &apos;b&apos; : mx.nd.ones([3,4], gpu_device)*3&#125;)</div><div class="line">ex_gpu.forward()</div><div class="line">ex_gpu.outputs[0].asnumpy()</div></pre></td></tr></table></figure></p>
+<p>也可以使用<code>eval</code>方法, 这是bind和forward的集合,如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ex = c.eval(ctx = mx.cpu(), a = mx.nd.ones([2,3]), b = mx.nd.ones([2,3]))</div><div class="line">print(&apos;number of outputs = %d\nthe first output = \n%s&apos; % (</div><div class="line">            len(ex), ex[0].asnumpy()))</div></pre></td></tr></table></figure></p>
+<h2 id="存取"><a href="#存取" class="headerlink" title="存取"></a>存取</h2><p>Symbol使用易读的json格式存取.使用tojson()方法就可以了.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">print(c.tojson())</div><div class="line">c.save(&apos;symbol-c.json&apos;)</div><div class="line">c2 = mx.sym.load(&apos;symbol-c.json&apos;)</div><div class="line">c.tojson() == c2.tojson() #True</div></pre></td></tr></table></figure></p>
+<p>在Symbol中改变数据类型使用<code>mx.sym.cast</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">a = mx.sym.Variable(&apos;data&apos;)</div><div class="line">b = mx.sym.cast(data=a, dtype=&apos;float16&apos;)</div><div class="line">arg, out, _ = b.infer_type(data=&apos;float32&apos;)</div><div class="line">print(&#123;&apos;input&apos;:arg, &apos;output&apos;:out&#125;)</div><div class="line"></div><div class="line">c = mx.sym.cast(data=a, dtype=&apos;uint8&apos;)</div><div class="line">arg, out, _ = c.infer_type(data=&apos;int32&apos;)</div><div class="line">print(&#123;&apos;input&apos;:arg, &apos;output&apos;:out&#125;)</div></pre></td></tr></table></figure></p>
 
-      <h3 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/08/29/pycaffeExample/" itemprop="url">
-              
-                <span itemprop="name">pycaffeExample</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h3>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-29T16:12:24+08:00"
-              content="2017-08-29" >
-          08-29
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/mxnet/" rel="tag"># mxnet</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/12/NDArray-mxnet/" rel="next" title="NDArray Tutorial - mxnet">
+                <i class="fa fa-chevron-left"></i> NDArray Tutorial - mxnet
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -343,6 +470,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
 
         </div>
         
@@ -362,8 +495,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar2.jpg"
@@ -441,6 +583,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础神经网络"><span class="nav-number">1.</span> <span class="nav-text">基础神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更复杂的网络"><span class="nav-number">2.</span> <span class="nav-text">更复杂的网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定数据并执行"><span class="nav-number">3.</span> <span class="nav-text">绑定数据并执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存取"><span class="nav-number">4.</span> <span class="nav-text">存取</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -554,6 +712,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
@@ -577,6 +739,8 @@
 
 		_hcwp.push({widget:"Bloggerstream", widget_id: 95462, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
+		
+		_hcwp.push({widget:"Stream", widget_id: 95462, xid: "2017/09/13/Symbol-mxnet/"});
 		
 
 		(function() {
@@ -931,26 +1095,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
