@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>https://asdf0982.github.io/2017/09/13/Module-mxnet/</loc>
+    <lastmod>2017-09-13T15:13:52.970Z</lastmod>
+    <data>
+        <display>
+        <title>Module Tutorial - mxnet</title>
+        <pubTime>2017-09-13T15:11:23.000Z</pubTime>
+        
+        <tag>mxnet</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://asdf0982.github.io/2017/08/29/pycaffeExample/</loc>
     <lastmod>2017-09-13T09:44:57.415Z</lastmod>
     <data>
@@ -540,14 +557,16 @@
     
     
   <url>
-    <loc>https://asdf0982.github.io/2017/06/08/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/</loc>
+    <loc>https://asdf0982.github.io/2017/06/11/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-TensorFlow/</loc>
     <lastmod>1970-01-01T00:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>CS231n学习笔记(卷积网络)</title>
-        <pubTime>2017-06-08T13:37:55.000Z</pubTime>
+        <title>CS231n学习笔记(TensorFlow)</title>
+        <pubTime>2017-06-10T16:27:32.000Z</pubTime>
         
         <tag>Deep Learning</tag>
+         
+        <tag>tensorflow</tag>
          
          
            
@@ -591,16 +610,14 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/06/11/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-TensorFlow/</loc>
+    <loc>https://asdf0982.github.io/2017/06/08/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%8D%B7%E7%A7%AF%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>1970-01-01T00:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>CS231n学习笔记(TensorFlow)</title>
-        <pubTime>2017-06-10T16:27:32.000Z</pubTime>
+        <title>CS231n学习笔记(卷积网络)</title>
+        <pubTime>2017-06-08T13:37:55.000Z</pubTime>
         
         <tag>Deep Learning</tag>
-         
-        <tag>tensorflow</tag>
          
          
            
@@ -627,12 +644,12 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/06/16/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-LSTM/</loc>
+    <loc>https://asdf0982.github.io/2017/06/14/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN/</loc>
     <lastmod>1970-01-01T00:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>CS231n学习笔记(LSTM)</title>
-        <pubTime>2017-06-16T10:04:25.000Z</pubTime>
+        <title>CS231n学习笔记(RNN)</title>
+        <pubTime>2017-06-14T08:18:19.000Z</pubTime>
         
         <tag>Deep Learning</tag>
          
@@ -644,12 +661,12 @@
 
     
   <url>
-    <loc>https://asdf0982.github.io/2017/06/14/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-RNN/</loc>
+    <loc>https://asdf0982.github.io/2017/06/16/CS231n%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-LSTM/</loc>
     <lastmod>1970-01-01T00:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>CS231n学习笔记(RNN)</title>
-        <pubTime>2017-06-14T08:18:19.000Z</pubTime>
+        <title>CS231n学习笔记(LSTM)</title>
+        <pubTime>2017-06-16T10:04:25.000Z</pubTime>
         
         <tag>Deep Learning</tag>
          
