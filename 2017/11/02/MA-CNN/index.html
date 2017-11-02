@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="fine-grained," />
 
 
 
@@ -92,16 +92,22 @@
 
 
 
-<meta name="description" content="哈~我不适合在白天工作~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Liam&#39;s Blog">
-<meta property="og:url" content="https://asdf0982.github.io/tags/windows/index.html">
+<meta name="description" content="Learning Multi-Attention Convolutional Neural Network for Fine-Grained Image Recognition发表在ICCV2017">
+<meta name="keywords" content="fine-grained">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MA-CNN 论文阅读">
+<meta property="og:url" content="https://asdf0982.github.io/2017/11/02/MA-CNN/index.html">
 <meta property="og:site_name" content="Liam&#39;s Blog">
-<meta property="og:description" content="哈~我不适合在白天工作~">
+<meta property="og:description" content="Learning Multi-Attention Convolutional Neural Network for Fine-Grained Image Recognition发表在ICCV2017">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https://asdf0982.github.io/2017/11/02/MA-CNN/1.png">
+<meta property="og:image" content="https://asdf0982.github.io/2017/11/02/MA-CNN/2.jpg">
+<meta property="og:image" content="https://asdf0982.github.io/2017/11/02/MA-CNN/4.png">
+<meta property="og:updated_time" content="2017-11-02T07:50:36.242Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Liam&#39;s Blog">
-<meta name="twitter:description" content="哈~我不适合在白天工作~">
+<meta name="twitter:title" content="MA-CNN 论文阅读">
+<meta name="twitter:description" content="Learning Multi-Attention Convolutional Neural Network for Fine-Grained Image Recognition发表在ICCV2017">
+<meta name="twitter:image" content="https://asdf0982.github.io/2017/11/02/MA-CNN/1.png">
 
 
 
@@ -129,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="https://asdf0982.github.io/tags/windows/"/>
+  <link rel="canonical" href="https://asdf0982.github.io/2017/11/02/MA-CNN/"/>
 
 
 
 
 
-  <title>Tag: windows | Liam's Blog</title>
+  <title>MA-CNN 论文阅读 | Liam's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -170,7 +176,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -298,44 +304,164 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2>windows<small>Tag</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://asdf0982.github.io/2017/11/02/MA-CNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Liam Wang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liam's Blog">
+    </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">MA-CNN 论文阅读</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-11-02T14:48:52+08:00">
+                2017-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            <!--noindex-->
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/02/MA-CNN/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count hc-comment-count" data-xid="2017/11/02/MA-CNN/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+              <!--/noindex-->
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p>Learning Multi-Attention Convolutional Neural Network for Fine-Grained Image Recognition<br>发表在ICCV2017<br><a id="more"></a><br>要实现图像的细粒度分类需要模型自动关注图像细微的区域.论文的方法简而言之是提出了一套自适应的寻找关键区域的方法.通过组合完整图像区域和关键区域图像特征进行图像分类.我觉得可以分为3个部分.<br><img src="/2017/11/02/MA-CNN/1.png" alt="[概括]" title="[概括]"></p>
+<h2 id="MA-CNN"><a href="#MA-CNN" class="headerlink" title="MA-CNN"></a>MA-CNN</h2><p>这是一个找到mask的过程.<br>一张图像输入VGG19取conv5_4输出的特征表示为<strong>WxX</strong>. 论文分别通过N个全链接层.得到4个d.然后将d与<strong>WxX</strong>对应元素相乘,在并在channel维度上取总和再通过sigmoid激活函数.得到N个Mask(Mi).再将mask与<strong>WxX</strong>对应元素相乘并channel上取总和得到带attention的特征P.</p>
+<h2 id="Loss"><a href="#Loss" class="headerlink" title="Loss"></a>Loss</h2><p>multi-attention顾名思义有多个注意点.那么如何让多个特征图的关注点在不同的位置? 论文提出可以通过loss的监督来实现.<br>Loss由L_cls和L_cng组成. L_cls是用于图像分类的softmaxloss. L_cng是用于监督关注区域的.<br>L_cng=Dis+λxDiv<br><img src="/2017/11/02/MA-CNN/2.jpg" alt="[良心手绘]" title="[良心手绘]"><br>如上图左Dis(distance),(tx,ty)是位置坐标,代表从VGG19输出的特征图像wxh上数值最大的点的位置,是两个固定的值,每一张图像有且只有一个(tx,ty).<br>mi(x,y)是Mi在(x,y)位置上的值.公式的作用是让Mi上的关注点向(tx,ty)集中.<br>如上图右Div(diversity), 共有4个M. 我用等高线大致表示每个M上分布的权重. max mk(x,y)是指除去当前M(即Mi), 在剩下M中找到(x,y)位置上最大的值. mrg是一个超参. 公式的作用是让不同M关注不同的区域.</p>
+<h2 id="Part-CNN-details"><a href="#Part-CNN-details" class="headerlink" title="Part-CNN + details"></a>Part-CNN + details</h2><img src="/2017/11/02/MA-CNN/4.png" alt="[4个关键区域]" title="[4个关键区域]">
+<p>找到带不同的关键区域的Mask后去他们的峰值点位置映射到原图对应点.<br>以其为中心点切割N块96<em>96的小块并将他们放大到224</em>224再放到VGG19中得到关键区域的特征. 将原特征和关键区域特征拼接起来喂到网络最后的分类器中.</p>
 
-      <h3 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/05/17/20170517/" itemprop="url">
-              
-                <span itemprop="name">windows下使用hexo+github部署个人博客</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h3>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-05-17T10:26:50+08:00"
-              content="2017-05-17" >
-          05-17
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/fine-grained/" rel="tag"># fine-grained</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/29/pycaffeExample/" rel="next" title="pycaffeExample">
+                <i class="fa fa-chevron-left"></i> pycaffeExample
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -343,6 +469,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="hypercomments_widget"></div>
+    
+  </div>
+
 
         </div>
         
@@ -362,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar2.jpg"
@@ -441,6 +582,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MA-CNN"><span class="nav-number">1.</span> <span class="nav-text">MA-CNN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loss"><span class="nav-number">2.</span> <span class="nav-text">Loss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-CNN-details"><span class="nav-number">3.</span> <span class="nav-text">Part-CNN + details</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -554,6 +711,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 
@@ -577,6 +738,8 @@
 
 		_hcwp.push({widget:"Bloggerstream", widget_id: 95462, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
+		
+		_hcwp.push({widget:"Stream", widget_id: 95462, xid: "2017/11/02/MA-CNN/"});
 		
 
 		(function() {
@@ -931,26 +1094,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
